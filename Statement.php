@@ -175,7 +175,7 @@ class Statement {
             $result = str_repeat(" ", 14);
         $result .= $this->fonction;
         foreach ($this->args as $a) {
-            if (false !== strpos($a, ' '))
+            if (false === strpos($a, ' '))
                 $result .= " " . $a;
             else
                 $result .= " '$a'";
