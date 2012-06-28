@@ -68,7 +68,7 @@ class Statement {
     // creates a new statement with one operand/argument
 
     public function __construct($aLabel, $aFunction, $anArgument, $arg2 = '', $arg3 = '') {
-        $this->label = aLabel . trim();
+        $this->label = trim($aLabel);
         $this->fonction = trim($aFunction);
         $this->args = array();
         $this->args[] = $anArgument;
@@ -87,9 +87,9 @@ class Statement {
     private function doCommonStuff() {
         $this->jump = -1;
         $this->operator = $this->functionToInt($this->fonction);
-        $this->arg1 = $args[0];
-        $this->arg2 = $args[1];
-        $this->arg3 = $args[2];
+        $this->arg1 = $this->args[0];
+        $this->arg2 = $this->args[1];
+        $this->arg3 = $this->args[2];
     }
 
 // end of Statement.doCommonStuff()
@@ -123,7 +123,7 @@ class Statement {
             "unify_variable" => self::opUnifyVariable,
             "smaller" => self::opSmaller,
             "smallereq" => self::opSmallerEq,
-            "nop" => self::opNoop,
+            "nop" => self::opNoOp,
             "noop" => self::opNoOp
         );
 
@@ -176,12 +176,12 @@ class Statement {
         $result .= $this->fonction;
         foreach ($this->args as $a) {
             if (false !== strpos($a, ' '))
-                $result .= " " + $a;
+                $result .= " " . $a;
             else
                 $result .= " '$a'";
         }
         if ($this->jump >= 0)
-            $result .= " (" + $this->jump + ")";
+            $result .= " (" . $this->jump . ")";
         return $result;
     }
 

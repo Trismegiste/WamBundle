@@ -259,7 +259,7 @@ class Program
     public function __toString()
     {
         $result = "";
-        foreach ($this->statements as $st) {
+        foreach ($this->statements as $i => $st) {
             $line = "(";
             if ($i < 1000)
                 $line .= "0";
@@ -267,10 +267,10 @@ class Program
                 $line .= "0";
             if ($i < 10)
                 $line .= "0";
-            $line .= $i + ")  ";
+            $line .= $i . ")  ";
             $result .= $line . $st;
             if ($i < (count($this->statements) - 1))
-                $result += "\n";
+                $result .= "\n";
         }
         return $result;
     }
