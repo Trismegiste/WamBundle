@@ -145,7 +145,7 @@ class Program
             //Statement s;
             do {
                 $s = $this->getStatement($line);
-                if (($s->operator == Statement::opTryMeElse) || ($s->operator == Statement::opRetryMeElse)) {
+                if (in_array($s->operator, array(Statement::opTryMeElse, Statement::opRetryMeElse))) {
                     $result = $line;
                     $line = $s->jump;
                 }
