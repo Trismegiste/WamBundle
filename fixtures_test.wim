@@ -5,3 +5,17 @@ male:         try_me_else male2
 male2:        trust_me
               get_constant james A0
               proceed
+
+not:          try_me_else not2
+              allocate
+              get_variable Y0 A0
+              get_level Y1
+              put_value Y0 A0
+              call call
+              cut Y1
+              call fail
+              deallocate
+              proceed
+
+not2:         trust_me
+              proceed
