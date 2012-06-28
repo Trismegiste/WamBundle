@@ -217,7 +217,7 @@ abstract class Compiler {
       if ($this->isNextToken($prog, ">")) {
         $this->token($prog, ">");
         if ($this->isNextToken($prog, "=")) {
-          if (($this->token($prog, "=")) && ($this->atom($$prog, $struc->tail))) {
+          if (($this->token($prog, "=")) && ($this->atom($prog, $struc->tail))) {
             $struc->value = ">=";
             return true;
           }
@@ -242,7 +242,7 @@ abstract class Compiler {
       }
       else if ($this->isNextToken($prog, "!")) {
         $this->token($prog, "!");
-        if (($this->token($prog, "=")) && ($this->atom($$prog, $struc->tail))) {
+        if (($this->token($prog, "=")) && ($this->atom($prog, $struc->tail))) {
           $struc->value = "!=";
           return true;
         }
@@ -257,7 +257,7 @@ abstract class Compiler {
     } // end of comparison checks
      
     $prog = $oldProg;
-    if ((element($prog, $struc->head)) && ($this->token($prog, "=")) && (element($prog, $struc->tail))) {
+    if (($this->element($prog, $struc->head)) && ($this->token($prog, "=")) && ($this->element($prog, $struc->tail))) {
       $struc->type = CompilerStructure::UNIFICATION;
       return true;
     }
@@ -313,7 +313,7 @@ abstract class Compiler {
     if (condition($prog, $struc->head)) {
       if ($this->isNextToken($prog, ",")) {
         $this->token($prog, ",");
-        if (body($prog, $struc->tail)) return true;
+        if ($this->body($prog, $struc->tail)) return true;
       }
       else {
         $struc->tail = null;
@@ -333,7 +333,7 @@ abstract class Compiler {
     if (head($prog, $struc->head)) {
       if ($this->isNextToken($prog, ":")) {
         $this->token($prog, ":");
-        if (($this->token($prog, "-")) && (body($prog, $struc->tail)) && ($this->token($prog, ".")))
+        if (($this->token($prog, "-")) && ($this->body($prog, $struc->tail)) && ($this->token($prog, ".")))
           return true;
       }
       else if ($this->isNextToken($prog, ".")) {
@@ -386,10 +386,10 @@ abstract class Compiler {
     $struc->type = CompilerStructure::LISTX;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
-    if (element($prog, $struc->head)) {
+    if ($this->element($prog, $struc->head)) {
       if ($this->isNextToken($prog, "|")) {
         $this->token($prog, "|");
-        if (element($prog, $struc->tail)) return true;
+        if ($this->element($prog, $struc->tail)) return true;
       }
       else if ($this->isNextToken($prog, ",")) {
         $this->token($prog, ",");
