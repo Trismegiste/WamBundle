@@ -1,6 +1,7 @@
 male:         try_me_else male2
               get_constant john A0
               proceed
+
 male2:        trust_me
               get_constant james A0
               proceed

@@ -12,7 +12,7 @@
 class CodeReader {
 
     public function __construct() {
-        
+
     }
 
     /**
@@ -55,7 +55,7 @@ class CodeReader {
                         $s = new Statement($mark, $str, "");
                     $p->addStatement($s);
                 }
-            } while ($str != null);
+            } while ($str !== false);
             fclose($b);
             $p->updateLabels();
             return $p;
