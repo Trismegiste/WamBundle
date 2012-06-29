@@ -54,13 +54,17 @@ abstract class Compiler {
   public function isVariable($s) {
     if ($s === "_")
       return true;
-    return preg_match('#^[A-Z][_0Aa-9Zz]*$#', $s);
+    $check =  preg_match('#^[A-Z][a-zA-Z0-9_]*$#', $s);
+     if (!$check)
+         $this-> errorString = "\"$s\" is no valid variable.";
+
+      return $check;
   } // end of Compiler.isVariable()
 
   public function isConstant($s) {
     $c = $s[0];
     if (($c >= 'a') && ($c <= 'z')) {
-        $check = preg_match('#^[_0Aa-9Zz]*$#', $s);
+        $check = preg_match('#^[a-zA-Z0-9_]*$#', $s);
         if (!$check)
          $this-> errorString = "\"$s\" is no valid constant or predicate.";
 
@@ -263,13 +267,13 @@ abstract class Compiler {
     }
 
     $prog = $oldProg;
-    if (($this->variable($prog, $struc->head)) && ($this->token($prog, "is")) && (expression($prog, $struc->tail))) {
+    if (($this->variable($prog, $struc->head)) && ($this->token($prog, "is")) && ($this->expression($prog, $struc->tail))) {
       $struc->type = CompilerStructure::ASSIGNMENT;
       return true;
     }
 
     $prog = $oldProg;
-    if (($this->token($prog, "not")) && (predicate($prog, $struc->head))) {
+    if (($this->token($prog, "not")) && ($this->predicate($prog, $struc->head))) {
       $struc->type = CompilerStructure::NOT_CALL;
       if ($this->isNextToken($prog, "(")) {
         $this->token($prog, "(");
@@ -283,7 +287,7 @@ abstract class Compiler {
     }
 
     $prog = $oldProg;
-    if (predicate($prog, $struc->head)) {
+    if ($this->predicate($prog, $struc->head)) {
       $struc->type = CompilerStructure::CALL;
       if ($this->isNextToken($prog, "(")) {
         $this->token($prog, "(");
@@ -368,7 +372,7 @@ abstract class Compiler {
     $struc->type = CompilerStructure::HEAD;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
-    if (predicate($prog, $struc->head)) {
+    if ($this->predicate($prog, $struc->head)) {
       if ($this->isNextToken($prog, "(")) {
         $this->token($prog, "(");
         if (($this->listx($prog, $struc->tail)) && ($this->token($prog, ")"))) return true;
