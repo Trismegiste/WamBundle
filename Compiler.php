@@ -413,17 +413,17 @@ abstract class Compiler {
     //int i;
     $result = array();
     $dummy = "";
-    for (i = 0; i < text.length(); i++) {
-      char pos = text.charAt(i);
-      if (pos == '\'') {
-        if (dummy.length() > 0) return null;
-        dummy = "'";
+    for ($i = 0; $i < strlen($text); $i++) {
+      $pos = $text[$i];
+      if ($pos == '\'') {
+        if (strlen($dummy) > 0) return null;
+        $dummy = "'";
         do {
-          i++;
-          dummy += text.charAt(i);
-          if (text.charAt(i) == '\'')
+          $i++;
+          $dummy += $text[$i];
+          if ($text[$i] == '\'')
             break;
-        } while (i < text.length() - 1);
+        } while ($i < strlen($text) - 1);
       }
       else if (pos != ' ') {
         if ((pos == '(') || (pos == ')') || (pos == '[') || (pos == ']') ||
