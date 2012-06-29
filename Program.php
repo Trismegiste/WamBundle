@@ -39,7 +39,8 @@ class Program
 
 // end of Program.Program(WAM)
 
-    public function addProgram(Program $p)
+    // TODO Typing null ?
+    public function addProgram(/*Program*/ $p)
     {
         if ($p == null)
             return;

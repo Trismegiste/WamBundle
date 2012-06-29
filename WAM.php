@@ -13,7 +13,8 @@
 class WAM {
 
     public function debug($str, $lvl) {
-        $this->writeLn($str);
+        print_r($str);
+        echo "\n";
     }
 
     public function writeLn($str) {

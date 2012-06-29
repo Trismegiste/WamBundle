@@ -25,17 +25,17 @@ class PrologCompiler extends Compiler {
         $programList = $this->stringToList($programCode);
         $this->owner->debug("Program List:", 2);
         $this->owner->debug("String to List: " . (microtime(true) - $ms) . " ms.", -1);
-        $this->owner->debug($programList->__toString(), 2);
+        $this->owner->debug($programList, 2);
         $struc = new CompilerStructure();
 
         $ms = microtime(true);
         if (($this->program($programList, $struc)) && (count($programList) == 0)) {
-            $this->owner->debug("List to Structure: " + (microtime(true) - ms) + " ms.", -1);
-            $this->updateNames(struc);
+            $this->owner->debug("List to Structure: " . (microtime(true) - $ms) . " ms.", -1);
+            $this->updateNames($struc);
             $this->owner->debug($struc->__toString(), 2);
             $ms = microtime(true);
             $p = $this->structureToCode($struc);
-            $this->owner->debug("Structure to Code: " + (microtime(true) - ms) + " ms.", -1);
+            $this->owner->debug("Structure to Code: " . (microtime(true) - $ms) . " ms.", -1);
             return $p;
         } else {
             if (strlen($this->errorString) > 0)
@@ -77,7 +77,7 @@ class PrologCompiler extends Compiler {
                     $code .= " " . $dummy;
                 }
             } while ($dummy != null);
-            $this->owner->debug("File Operations: " + (microtime(true) - ms) + " ms.", -1);
+            $this->owner->debug("File Operations: " . (microtime(true) - ms) . " ms.", -1);
             $p = $this->compile($code);
             return $p;
         } catch (Exception $io) {

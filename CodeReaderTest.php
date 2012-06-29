@@ -6,6 +6,7 @@ require_once('CodeReader.php');
 require_once('CompilerStructure.php');
 require_once('Compiler.php');
 require_once('QueryCompiler.php');
+require_once('PrologCompiler.php');
 require_once('WAM.php');
 /*
 $cr = new CodeReader();
@@ -15,6 +16,11 @@ echo "\n";
  */
 
 $c = new QueryCompiler(new WAM());
-$p = $c->compile("mere(luke, X).");
+$p = $c->compile("pere(X, luke).");
+
+echo $p;
+
+$c = new PrologCompiler(new WAM());
+$p = $c->compile("pere(anakin, luke).");
 
 echo $p;
