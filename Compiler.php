@@ -534,7 +534,7 @@ abstract class Compiler {
     // a WAM program from it, recursively
     // TODO Typing null ?
     public function structureToCode(/*CompilerStructure*/ $struc) {
-        print_r($struc);
+        //print_r($struc);
         if ($struc == null)
             return null;
         $result = new Program($this->owner);

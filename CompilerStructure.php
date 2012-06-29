@@ -118,7 +118,7 @@ class CompilerStructure {
                     return $this->head->__toString() . ", " . $this->tail->__toString();
             }
         }
-        else if ($this->type == STRUCTURE) {
+        else if ($this->type == self::STRUCTURE) {
             if ($this->tail == null)
                 return $this->head->__toString();
             else

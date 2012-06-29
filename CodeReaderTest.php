@@ -9,10 +9,10 @@ require_once('QueryCompiler.php');
 require_once('PrologCompiler.php');
 require_once('WAM.php');
 /*
-$cr = new CodeReader();
-$p = $cr->readProgram('fixtures_test.wim');
-echo $p;
-echo "\n";
+  $cr = new CodeReader();
+  $p = $cr->readProgram('fixtures_test.wim');
+  echo $p;
+  echo "\n";
  */
 
 $c = new QueryCompiler(new WAM());
@@ -21,6 +21,7 @@ $p = $c->compile("pere(X, luke).");
 echo $p;
 
 $c = new PrologCompiler(new WAM());
-$p = $c->compile("pere(anakin, luke).");
+$p = $c->compile(
+        "male(john). male(thmoas). not(Call) :- call(Call), !, fail. not(Call). female(X) :- not(male(X)).");
 
 echo $p;
