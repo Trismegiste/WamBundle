@@ -60,9 +60,9 @@ class CompilerStructure {
             return "[no type]";
         else if (($this->type == self::TERM) || ($this->type == self::QUERY)) {
             if ($this->tail == null)
-                return $head->__toString();
+                return $this->head->__toString();
             else
-                return $head->__toString() . "(" . $this->tail->__toString() . ")";
+                return $this->head->__toString() . "(" . $this->tail->__toString() . ")";
         }
         else if ($this->type == self::PREDICATE)
             return $this->value;
@@ -72,57 +72,57 @@ class CompilerStructure {
             return "var " . $this->value;
         else if ($this->type == self::PROGRAM) {
             if ($this->tail == null)
-                return "\n" . $head->__toString();
+                return "\n" . $this->head->__toString();
             else
-                return "\n" . $head->__toString() . $this->tail->__toString();
+                return "\n" . $this->head->__toString() . $this->tail->__toString();
         }
         else if ($this->type == self::CLAUSE) {
             if ($this->tail == null)
-                return $head->__toString() . ".";
+                return $this->head->__toString() . ".";
             else
-                return $head->__toString() . " :-\n" . $this->tail->__toString() . ".";
+                return $this->head->__toString() . " :-\n" . $this->tail->__toString() . ".";
         }
         else if ($this->type == self::HEAD) {
             if ($this->tail == null)
-                return $head->__toString();
+                return $this->head->__toString();
             else
-                return $head->__toString() . "(" . $this->tail->__toString() . ")";
+                return $this->head->__toString() . "(" . $this->tail->__toString() . ")";
         }
         else if ($this->type == self::BODY) {
             if ($this->tail == null)
-                return "  " . $head->__toString();
+                return "  " . $this->head->__toString();
             else
-                return "  " . $head->__toString() . ",\n" . $this->tail->__toString();
+                return "  " . $this->head->__toString() . ",\n" . $this->tail->__toString();
         }
         else if ($this->type == self::CALL) {
             if ($this->tail == null)
-                return $head->__toString();
+                return $this->head->__toString();
             else
-                return $head->__toString() . "(" . $this->tail->__toString() . ")";
+                return $this->head->__toString() . "(" . $this->tail->__toString() . ")";
         }
         else if ($this->type == self::NOT_CALL) {
             if ($this->tail == null)
-                return "not " . $head->__toString();
+                return "not " . $this->head->__toString();
             else
-                return "not " . $head->__toString() . "(" . $this->tail->__toString() . ")";
+                return "not " . $this->head->__toString() . "(" . $this->tail->__toString() . ")";
         }
         else if ($this->type == self::COMPARISON) {
-            return $head->__toString() . " " . $this->value . " " . $this->tail->__toString();
+            return $this->head->__toString() . " " . $this->value . " " . $this->tail->__toString();
         } else if ($this->type == self::LISTX) {
             if ($this->head == null)
                 return "[]";
             else {
                 if ($this->tail == null)
-                    return $head->__toString();
+                    return $this->head->__toString();
                 else
-                    return $head->__toString() . ", " . $this->tail->__toString();
+                    return $this->head->__toString() . ", " . $this->tail->__toString();
             }
         }
         else if ($this->type == STRUCTURE) {
             if ($this->tail == null)
-                return $head->__toString();
+                return $this->head->__toString();
             else
-                return $head->__toString() . "(" . $this->tail->__toString() . ")";
+                return $this->head->__toString() . "(" . $this->tail->__toString() . ")";
         }
         else
             return "[unknown type]";

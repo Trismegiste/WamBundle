@@ -356,7 +356,7 @@ abstract class Compiler {
         $struc->type = CompilerStructure::BODY;
         $struc->head = new CompilerStructure();
         $struc->tail = new CompilerStructure();
-        if (condition($prog, $struc->head)) {
+        if ($this->condition($prog, $struc->head)) {
             if ($this->isNextToken($prog, ",")) {
                 $this->token($prog, ",");
                 if ($this->body($prog, $struc->tail))
@@ -510,12 +510,12 @@ abstract class Compiler {
         if ((strlen($variable) > 0) && ($variable === "_"))
             foreach ($this->substitutionList as $item)
                 if ($variable === $item->key) {
-                    $lastVar = $item->stringValue;
-                    return $lastVar;
+                    $this->lastVar = $item->stringValue;
+                    return $this->lastVar;
                 }
         $newVar = $this->varPrefix . count($this->substitutionList);
         $this->substitutionList[$variable] = $newVar;
-        $lastVar = $newVar;
+        $this->lastVar = $newVar;
         return $newVar;
     }
 
@@ -543,21 +543,21 @@ abstract class Compiler {
             $result->addProgram($this->structureToCode($struc->tail));
         } // end of case CompilerStructure::PROGRAM
         else if (($struc->type == CompilerStructure::CALL) || ($struc->type == CompilerStructure::NOT_CALL)) {
-            $bodyCalls++;
+            $this->bodyCalls++;
             if ($struc->tail != null) {
                 $s = $struc->tail;
                 $argCount = 0;
                 do {
-                    if ($s->head->type == s . CONSTANT)
+                    if ($s->head->type == CompilerStructure::CONSTANT)
                         $result->addStatement(new Statement("", "put_constant", $s->head->value, "A" . $argCount));
-                    else if ($s->head->type == s . VARIABLE) {
+                    else if ($s->head->type == CompilerStructure::VARIABLE) {
                         if (($this->varPrefix === "Q") && ($this->firstOccurrence($s->head->value)))
                             $result->addStatement(new Statement("", "create_variable", $this->substituteVariable($s->head->value), $s->head->value));
                         $result->addStatement(new Statement("", "put_value", $this->substituteVariable($s->head->value), "A" . $argCount));
                     }
                     else {
                         $result->addProgram($this->structureToCode($s->head));
-                        $result->addStatement(new Statement("", "put_value", $lastVar, "A" . $argCount));
+                        $result->addStatement(new Statement("", "put_value", $this->lastVar, "A" . $argCount));
                     }
                     $argCount++;
                     $s = $s->tail;
@@ -570,9 +570,9 @@ abstract class Compiler {
         } // end of case CompilerStructure::CALL / CompilerStructure::NOT_CALL
         else if ($struc->type == CompilerStructure::UNIFICATION) {
             $result->addProgram($this->structureToCode($struc->head));
-            $headVar = $lastVar;
+            $headVar = $this->lastVar;
             $result->addProgram($this->structureToCode($struc->tail));
-            $tailVar = $lastVar;
+            $tailVar = $this->lastVar;
             $result->addStatement(new Statement("", "unify_variable", $headVar, $tailVar));
         } // end of case CompilerStructure::UNIFICATION
         else if ($struc->type == CompilerStructure::HEAD) {
@@ -587,7 +587,7 @@ abstract class Compiler {
                 $struc->head->value = $name;
             else
                 $struc->head->value = $name . '~' . $countr;
-            if ($countr < atAll) {
+            if ($countr < $atAll) {
                 if ($countr > 1)
                     $result->addStatement(new Statement($struc->head->value, "retry_me_else", $name . '~' . ($countr + 1)));
                 else
@@ -613,7 +613,7 @@ abstract class Compiler {
                         $subst = $this->substituteVariable("");
                         $result->addStatement(new Statement("", "get_variable", $subst, "A" . $argCount));
                         $result->addProgram($this->structureToCode($s->head));
-                        $result->addStatement(new Statement("", "unify_variable", $subst, $lastVar));
+                        $result->addStatement(new Statement("", "unify_variable", $subst, $this->lastVar));
                     }
                     $argCount++;
                     $s = $s->tail;
@@ -638,7 +638,7 @@ abstract class Compiler {
                 if ($struc->head->type == CompilerStructure::VARIABLE)
                     $headVar = $this->substituteVariable($struc->head->value);
                 else
-                    $headVar = $lastVar;
+                    $headVar = $this->lastVar;
                 if ($struc->tail == null) {  // end of list: put NIL sign
                     $tailVar = $this->substituteVariable("");
                     $result->addStatement(new Statement("", "put_constant", "[]", $tailVar));
@@ -647,7 +647,7 @@ abstract class Compiler {
                     if ($p == null)
                         return null;
                     $result->addProgram($p);
-                    $tailVar = $lastVar;
+                    $tailVar = $this->lastVar;
                 }  // and finally, unify the list with head and tail
                 $result->addStatement(new Statement("", "unify_list", $this->substituteVariable(""), $headVar, $tailVar));
                 return $result;
@@ -657,18 +657,18 @@ abstract class Compiler {
         } // end of case CompilerStructure::LISTX
         else if ($struc->type == CompilerStructure::STRUCTURE) {
             $result->addProgram($this->structureToCode($struc->head));
-            $headVar = $lastVar;
+            $headVar = $this->lastVar;
             $result->addProgram($this->structureToCode($struc->tail));
-            $tailVar = $lastVar;
+            $tailVar = $this->lastVar;
             $result->addStatement(new Statement("", "unify_struc", $this->substituteVariable(""), $headVar, $tailVar));
             return $result;
         } // end of case CompilerStructure::STRUCTURE
         else if ($struc->type == CompilerStructure::CLAUSE) {
             $this->substitutionList = array();
-            $bodyCalls = 0;
+            $this->bodyCalls = 0;
             $result->addProgram($this->structureToCode($struc->head));
             $result->addProgram($this->structureToCode($struc->tail));
-            if ((count($this->substitutionList) > 0) || ($bodyCalls > 0)) {
+            if ((count($this->substitutionList) > 0) || ($this->bodyCalls > 0)) {
                 $result->addStatementAtPosition(new Statement("", "allocate", ""), 1);
                 $result->addStatement(new Statement("", "deallocate", ""));
             }
@@ -697,9 +697,9 @@ abstract class Compiler {
         } // end of case CompilerStructure::BODY
         else if ($struc->type == CompilerStructure::COMPARISON) {
             $result->addProgram($this->structureToCode($struc->head));
-            $headVar = $lastVar;
+            $headVar = $this->lastVar;
             $result->addProgram($this->structureToCode($struc->tail));
-            $tailVar = $lastVar;
+            $tailVar = $this->lastVar;
             if ($struc->value === ">")
                 $result->addStatement(new Statement("", "bigger", $headVar, $tailVar));
             else if ($struc->value === "<")
@@ -713,11 +713,11 @@ abstract class Compiler {
         } // end of case CompilerStructure::COMPARISON
         else if ($struc->type == CompilerStructure::ASSIGNMENT) {
             $result->addProgram($this->structureToCode($struc->tail->head));
-            $headVar = $lastVar;
+            $headVar = $this->lastVar;
             $result->addProgram($this->structureToCode($struc->tail->tail));
-            $tailVar = $lastVar;
+            $tailVar = $this->lastVar;
             $result->addProgram($this->structureToCode($struc->head));
-            $result->addStatement(new Statement("", "is", $lastVar, $struc->tail->value, $headVar . " " . $tailVar));
+            $result->addStatement(new Statement("", "is", $this->lastVar, $struc->tail->value, $headVar . " " . $tailVar));
         } // end of case CompilerStructure::COMPARISON
         return $result;
     }
