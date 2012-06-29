@@ -63,7 +63,7 @@ abstract class Compiler {
         $check = preg_match('#^[_0Aa-9Zz]*$#', $s);
         if (!$check)
          $this-> errorString = "\"$s\" is no valid constant or predicate.";
-            
+
       return $check;
     }
     if (($c == '\'') && ($s[strlen($s) - 1] == '\''))
@@ -77,7 +77,7 @@ abstract class Compiler {
       return is_float($s);
   } // end of Compiler.isNumber(String)
 
-  public function predicate(array $prog, CompilerStructure $struc) {
+  public function predicate(array &$prog, CompilerStructure $struc) {
     if (count($prog) == 0) return false;
     $q0 = (string)$prog[0];
     if ($this->isPredicate($q0)) {
@@ -89,7 +89,7 @@ abstract class Compiler {
     return false;
   } // end of Compiler.predicate(Vector, CompilerStructure)
 
-  public function constant(array $prog, CompilerStructure $struc) {
+  public function constant(array &$prog, CompilerStructure $struc) {
     if (count($prog) == 0) return false;
     $q0 = (string)$prog[0];
     if ($this->isConstant($q0)) {
@@ -101,7 +101,7 @@ abstract class Compiler {
       array_shift($prog);
       return true;
     }
-    $oldProg = clone $prog;
+    $oldProg = $prog;
     if (($this->token($prog, "[")) && ($this->token($prog, "]"))) {
       $struc->type = CompilerStructure::CONSTANT;
       $struc->value = "[]";
@@ -111,7 +111,7 @@ abstract class Compiler {
     return false;
   } // end of Compiler.constant(Vector, CompilerStructure)
 
-  public function variable(array $prog, CompilerStructure $struc) {
+  public function variable(array &$prog, CompilerStructure $struc) {
     if (count($prog) == 0) return false;
     $q0 = (string) $prog[0];
     if ($this->isVariable($q0)) {
@@ -123,28 +123,28 @@ abstract class Compiler {
     return false;
   } // end of Compiler.variable(Vector, CompilerStructure)
 
-  public function structure(array $prog, CompilerStructure $struc) {
+  public function structure(array &$prog, CompilerStructure $struc) {
     if (count($prog) == 0) return false;
-    $oldProg = clone $prog;
+    $oldProg = $prog;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
     $struc->type = CompilerStructure::STRUCTURE;
-    if (($this->predicate($prog, $struc->head)) && ($this->token($prog, "(")) 
+    if (($this->predicate($prog, $struc->head)) && ($this->token($prog, "("))
             && ($this->listx($prog, $struc->tail)) && ($this->token($prog, ")"))) {
       $struc->head->type = CompilerStructure::CONSTANT;
       return true;
     }
     $prog = $oldProg;
-    if (($this->variable($prog, $struc->head)) && ($this->token($prog, "(")) 
+    if (($this->variable($prog, $struc->head)) && ($this->token($prog, "("))
             && ($this->listx($prog, $struc->tail)) && ($this->token($prog, ")")))
       return true;
     $prog = $oldProg;
     return false;
   } // end of Compiler.structure(Vector, CompilerStructure)
 
-  public function element(array $prog, CompilerStructure $struc) {
+  public function element(array &$prog, CompilerStructure $struc) {
     if (count($prog) == 0) return false;
-    $oldProg = clone $prog;
+    $oldProg = $prog;
     if ($this->structure($prog, $struc))
       return true;
     if ($this->variable($prog, $struc))
@@ -157,14 +157,14 @@ abstract class Compiler {
     return false;
   } // end of Compiler.element(Vector, CompilerStructure)
 
-  public function isNextToken(array $prog, $tok) {
+  public function isNextToken(array &$prog, $tok) {
     if (count($prog) == 0) return false;
     if ($tok == $prog[0])
       return true;
     return false;
   } // end of Compiler.isNextToken(Vector, String)
 
-  public function token(array $prog, $tok) {
+  public function token(array &$prog, $tok) {
     if (count($prog) == 0) return false;
     if ($tok == $prog[0]) {
       array_shift($prog);
@@ -173,7 +173,7 @@ abstract class Compiler {
     return false;
   } // end of Compiler.token(Vector, String)
 
-  public function atom(array $prog, CompilerStructure $struc) {
+  public function atom(array &$prog, CompilerStructure $struc) {
     if ($this->constant($prog, $struc))
       return true;
     if ($this->variable($prog, $struc))
@@ -181,8 +181,8 @@ abstract class Compiler {
     return false;
   } // end of Compiler.atom(Vector, CompilerStructure)
 
-  public function expression(array $prog, CompilerStructure $struc) {
-    $oldProg = clone $prog;
+  public function expression(array &$prog, CompilerStructure $struc) {
+    $oldProg = $prog;
     $struc->type = CompilerStructure::EXPRESSION;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
@@ -206,9 +206,9 @@ abstract class Compiler {
     return false;
   } // end of Compiler.expression(Vector, CompilerStructure)
 
-  public function condition(array $prog, CompilerStructure $struc) {
+  public function condition(array &$prog, CompilerStructure $struc) {
     if ($prog == null) return false;
-    $oldProg = clone $prog;
+    $oldProg = $prog;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
     // first type of a condition is a comparison
@@ -255,19 +255,19 @@ abstract class Compiler {
         }
       }
     } // end of comparison checks
-     
+
     $prog = $oldProg;
     if (($this->element($prog, $struc->head)) && ($this->token($prog, "=")) && ($this->element($prog, $struc->tail))) {
       $struc->type = CompilerStructure::UNIFICATION;
       return true;
     }
-     
+
     $prog = $oldProg;
     if (($this->variable($prog, $struc->head)) && ($this->token($prog, "is")) && (expression($prog, $struc->tail))) {
       $struc->type = CompilerStructure::ASSIGNMENT;
       return true;
     }
-     
+
     $prog = $oldProg;
     if (($this->token($prog, "not")) && (predicate($prog, $struc->head))) {
       $struc->type = CompilerStructure::NOT_CALL;
@@ -281,7 +281,7 @@ abstract class Compiler {
         return true;
       }
     }
-     
+
     $prog = $oldProg;
     if (predicate($prog, $struc->head)) {
       $struc->type = CompilerStructure::CALL;
@@ -295,7 +295,7 @@ abstract class Compiler {
         return true;
       }
     }
-     
+
     $prog = $oldProg;
     if ($this->isNextToken($prog, "!")) {
       $this->token($prog, "!");
@@ -305,8 +305,8 @@ abstract class Compiler {
     return false;
   } // end of Compiler.condition(Vector, CompilerStructure)
 
-  public function body(array $prog, CompilerStructure $struc) {
-    $oldProg = clone $prog;
+  public function body(array &$prog, CompilerStructure $struc) {
+    $oldProg = $prog;
     $struc->type = CompilerStructure::BODY;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
@@ -320,13 +320,13 @@ abstract class Compiler {
         return true;
       }
     }
-     
+
     $prog = $oldProg;
     return false;
   } // end of Compiler.body(Vector, CompilerStructure)
 
-  public function clause(array $prog, CompilerStructure $struc) {
-    $oldProg = clone $prog;
+  public function clause(array &$prog, CompilerStructure $struc) {
+    $oldProg = $prog;
     $struc->type = CompilerStructure::CLAUSE;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
@@ -344,13 +344,13 @@ abstract class Compiler {
       else
        $this->errorString = "Missing \".\" at end of clause.";
     }
-     
+
     $prog = $oldProg;
     return false;
   } // end of Compiler.clause(Vector, CompilerStructure)
 
-  public function program(array $prog, CompilerStructure $struc) {
-    $oldProg = clone $prog;
+  public function program(array &$prog, CompilerStructure $struc) {
+    $oldProg = $prog;
     $struc->type = CompilerStructure::PROGRAM;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
@@ -363,8 +363,8 @@ abstract class Compiler {
     return false;
   } // end of Compiler.program(Vector, CompilerStructure)
 
-  public function head(array $prog, CompilerStructure $struc) {
-    $oldProg = clone $prog;
+  public function head(array &$prog, CompilerStructure $struc) {
+    $oldProg = $prog;
     $struc->type = CompilerStructure::HEAD;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
@@ -381,8 +381,8 @@ abstract class Compiler {
     return false;
   } // end of Compiler.head(Vector, CompilerStructure)
 
-  public function listx(array $prog, CompilerStructure $struc) {
-    $oldProg = clone $prog;
+  public function listx(array &$prog, CompilerStructure $struc) {
+    $oldProg = $prog;
     $struc->type = CompilerStructure::LISTX;
     $struc->head = new CompilerStructure();
     $struc->tail = new CompilerStructure();
@@ -400,7 +400,7 @@ abstract class Compiler {
         return true;
       }
     }
-     
+
     $prog = $oldProg;
     return false;
   } // end of Compiler.list(Vector, CompilerStructure)
