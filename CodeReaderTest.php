@@ -15,5 +15,6 @@ echo "\n";
  */
 
 $c = new QueryCompiler(new WAM());
-$c->compile("mere(Xluke, Xleia).");
+$p = $c->compile("mere(luke, X).");
 
+echo $p;
