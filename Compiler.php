@@ -182,7 +182,7 @@ abstract class Compiler {
             return true;
         if ($this->constant($prog, $struc))
             return true;
-        if (($this->token($prog, "[")) && ($this->listx($prog, $struc)) && (token($prog, "]")))
+        if (($this->token($prog, "[")) && ($this->listx($prog, $struc)) && ($this->token($prog, "]")))
             return true;
         $prog = $oldProg;
         return false;

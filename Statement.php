@@ -74,7 +74,7 @@ class Statement {
         $this->args[] = $anArgument;
         $this->args[] = $arg2;
         if (strlen($arg3)) {
-            $rest = explode(' ', $args3);
+            $rest = explode(' ', $arg3);
             foreach ($rest as $item)
                 $this->args[] = $item;
         } else

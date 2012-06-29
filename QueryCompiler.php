@@ -44,7 +44,7 @@ class QueryCompiler extends Compiler {
         $queryList = $this->stringToList($aQuery);
         $struc = new CompilerStructure();
         $this->errorString = "";
-        $this->owner->debug("List:      " . $queryList, 2);
+        $this->owner->debug("List:      " . implode(' ',$queryList), 2);
         if ($this->query($queryList, $struc)) {
             if (count($queryList) > 0) {
                 if (stlen($this->errorString) > 0)
