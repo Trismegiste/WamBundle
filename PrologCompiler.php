@@ -69,6 +69,7 @@ class PrologCompiler extends Compiler {
         try {
             $ms = microtime(true);
             $atAll = $ms;
+            // reading file in java is much different from php
             $r = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($r as $dummy) {
                 if ($dummy == "#")
