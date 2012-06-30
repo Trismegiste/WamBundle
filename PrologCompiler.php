@@ -71,14 +71,14 @@ class PrologCompiler extends Compiler {
             $atAll = $ms;
             $r = fopen($fileName, 'r');
             do {
-                $dummy = fgets($r);
+                $dummy = rtrim(fgets($r));
                 if ($dummy != null) {
                     if ($dummy == "#")
                         break;
                     $code .= " " . $dummy;
                 }
             } while ($dummy != null);
-            $this->owner->debug("File Operations: " . (microtime(true) - ms) . " ms.", -1);
+            $this->owner->debug("File Operations: " . (microtime(true) - $ms) . " ms.", -1);
             $p = $this->compile($code);
             return $p;
         } catch (Exception $io) {

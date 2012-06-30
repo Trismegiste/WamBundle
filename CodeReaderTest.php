@@ -14,14 +14,14 @@ require_once('WAM.php');
   echo $p;
   echo "\n";
  */
-
+/*
 $c = new QueryCompiler(new WAM());
 $p = $c->compile("pere(X, luke).");
 
-echo $p;
+echo $p;*/
 
 $c = new PrologCompiler(new WAM());
-//$p = $c->compile("male(john). male(thmoas). not(Call) :- call(Call), !, fail. not(Call). female(X) :- not(male(X)).");
-$p = $c->compile("female(X) :- not(male(X)).");
+$p = $c->compileFile('fixtures_test.pro');
+//$p = $c->compile("female(X) :- not(male(X)).");
 
 echo $p;
