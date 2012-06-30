@@ -507,7 +507,7 @@ abstract class Compiler {
 // end of Compiler.stringToList(String)
 
     public function substituteVariable($variable) {
-        if ((strlen($variable) > 0) && ($variable === "_"))
+        if ((strlen($variable) > 0) && ($variable !== "_"))
             foreach ($this->substitutionList as $item)
                 if ($variable === $item->key) {
                     $this->lastVar = $item->stringValue;
