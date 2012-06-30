@@ -514,7 +514,7 @@ abstract class Compiler {
                     return $this->lastVar;
                 }
         $newVar = $this->varPrefix . count($this->substitutionList);
-        $this->substitutionList[$variable] = $newVar;
+        $this->substitutionList[] = new KeyValue($variable, $newVar);
         $this->lastVar = $newVar;
         return $newVar;
     }

@@ -33,6 +33,7 @@ class PrologCompiler extends Compiler {
             $this->owner->debug("List to Structure: " . (microtime(true) - $ms) . " ms.", -1);
             $this->updateNames($struc);
             $this->owner->debug($struc->__toString(), 2);
+            print_r($struc);
             $ms = microtime(true);
             $p = $this->structureToCode($struc);
             $this->owner->debug("Structure to Code: " . (microtime(true) - $ms) . " ms.", -1);
