@@ -69,15 +69,12 @@ class PrologCompiler extends Compiler {
         try {
             $ms = microtime(true);
             $atAll = $ms;
-            $r = fopen($fileName, 'r');
-            do {
-                $dummy = rtrim(fgets($r));
-                if ($dummy != null) {
-                    if ($dummy == "#")
-                        break;
-                    $code .= " " . $dummy;
-                }
-            } while ($dummy != null);
+            $r = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($r as $dummy) {
+                if ($dummy == "#")
+                    break;
+                $code .= " " . $dummy;
+            }
             $this->owner->debug("File Operations: " . (microtime(true) - $ms) . " ms.", -1);
             $p = $this->compile($code);
             return $p;
