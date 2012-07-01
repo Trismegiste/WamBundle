@@ -143,7 +143,7 @@ class WAM {
         writeLn(s);
     }
     else
-      if (debugOn >= debugLevel)
+      if ($this->debugOn >= debugLevel)
         writeLn(s);
   } // end of WAM.debug(String, int)
 */
@@ -182,7 +182,7 @@ class WAM {
       if (variable.compareToIgnoreCase("benchmark") == 0)
         benchmarkOn = parseInt(value);
       if (variable.compareToIgnoreCase("debug") == 0)
-        debugOn = parseInt(value);
+        $this->debugOn = parseInt(value);
       getInternalVariable(variable);
     } catch (Exception e) {
       writeLn("An error occurred. Illegal query.");
@@ -196,7 +196,7 @@ class WAM {
     else if (variable.compareToIgnoreCase("benchmark") == 0)
       writeLn("Internal variable BENCHMARK = " + benchmarkOn);
     else if (variable.compareToIgnoreCase("debug") == 0)
-      writeLn("Internal variable DEBUG = " + debugOn);
+      writeLn("Internal variable DEBUG = " + $this->debugOn);
     else
       writeLn("Unknown internal variable.");
   } // end of WAM.getInternalVariable(String)
@@ -568,7 +568,7 @@ class WAM {
     foreach ($this->arguments as $item)
       $wam2->arguments[] = new Variable($item);
     // we don't need any benchmarking information from the child WAM
-    $wam2->debugOn = $debugOn;
+    $wam2->debugOn = $$this->debugOn;
     $wam2->benchmarkOn = 0;
     $wam2->run();
     $wam2failed = $wam2->failed;
@@ -602,26 +602,26 @@ class WAM {
 
   // called upon an unsuccessful binding operation or a call with non-existent target
   private function backtrack() {
-    int i;
-    if (debugOn > 0)
-      writeLn("-> backtrack");
+    //int i;
+    if ($this->debugOn > 0)
+      $this->writeLn("-> backtrack");
     $this->backtrackCount++;
     $this->failed = true;
     if ($this->choicePoint != null) {
-      $this->continuationPointer = $this->choicePoint.returnAddress;
-      $this->programCounter = $this->choicePoint.nextClause;
-      env = $this->choicePoint.lastEnviron;
-      int tp = $this->choicePoint.trailPointer;
-      for (i = $this->trail.getLength() - 1; i >= tp; i--)
-        $this->trail.undo(i);
-      $this->trail.setLength(tp);
-      $this->arguments = $this->choicePoint.arguments;
-      $this->cutPoint = $this->choicePoint.cutPoint;
-      $this->choicePoint = $this->choicePoint.lastCP;
+      $this->continuationPointer = $this->choicePoint->returnAddress;
+      $this->programCounter = $this->choicePoint->nextClause;
+      $this->env = $this->choicePoint->lastEnviron;
+      $tp = $this->choicePoint->trailPointer;
+      for ($i = $this->trail->getLength() - 1; $i >= $tp; $i--)
+        $this->trail->undo($i);
+      $this->trail->setLength($tp);
+      $this->arguments = $this->choicePoint->arguments;
+      $this->cutPoint = $this->choicePoint->cutPoint;
+      $this->choicePoint = $this->choicePoint->lastCP;
     }
     else {
-      for (i = $this->trail.getLength() - 1; i >= 0; i--)
-        $this->trail.undo(i);
+      for ($i = $this->trail->getLength() - 1; $i >= 0; $i--)
+        $this->trail->undo($i);
       $this->programCounter = -1;
     }
   } // end of WAM.backtrack()
@@ -629,87 +629,88 @@ class WAM {
 /******************** BEGIN INTERNAL PREDICATES ********************/
 
   // internalPredicate manages the execution of all built-in predicates, e.g. write, consult, isbound
-  private boolean internalPredicate(int index) {
-    boolean result = true;
-    Variable v = (Variable)$this->arguments->elementAt(0);
-    if (index == callIsAtom)
-      isAtom(v->deref());
-    else if (index == callIsInteger)
-      isInteger(v.toString());
-    else if (index == callIsBound)
-      is_bound(v);
-    else if (index == callWrite) {
-      write(v.toString());
+  private function internalPredicate($index) {
+    $result = true;
+    $v = $this->arguments[0];
+    if ($index == self::callIsAtom)
+      $this->isAtom($v->deref());
+    else if ($index == self::callIsInteger)
+      $this->isInteger($v->__toString());
+    else if ($index == self::callIsBound)
+      $this->is_bound($v);
+    else if ($index == self::callWrite) {
+      $this->write($v->__toString());
       $this->programCounter++;
     }
-    else if (index == callWriteLn) {
-      writeLn(v.toString());
+    else if ($index == self::callWriteLn) {
+      $this->writeLn($v->__toString());
       $this->programCounter++;
     }
-    else if (index == callNewLine) {
-      writeLn("");
+    else if ($index == self::callNewLine) {
+      $this->writeLn("");
       $this->programCounter++;
     }
-    else if (index == callAssert) {
-      assert(v->head.toString(), v.toString());
+    else if ($index == self::callAssert) {
+      $this->assert($v->head->__toString(), $v->__toString());
       return true;
     }
-    else if (index == callRetractOne) {
-      if (retract(v.toString()))
+    else if ($index == self::callRetractOne) {
+      if ($this->retract($v->__toString()))
         $this->programCounter++;
       else
         $this->backtrack();
     }
-    else if (index == callRetractAll)
-      retractall(v.toString());
-    else if (index == callCall) {  // internal predicate call(X)
-      Variable v2 = new Variable(v)->deref();
-      Integer intg;
-      int target = -1;
-      if (v2->tag == self::CON) {
-        intg = (Integer)p.labels.get(v2->value);
-        if (intg != null)
-          target = intg.intValue();
+    else if ($index == self::callRetractAll)
+      $this->retractall($v->__toString());
+    else if ($index == self::callCall) {  // internal predicate call(X)
+      $v2tmp = new Variable($v);
+      $v2 = $v2tmp->deref();
+      $intg = null;
+      $target = -1;
+      if ($v2->tag == self::CON) {
+        $intg = (int)$this->p->labels[$v2->value];
+        if ($intg !== null)
+          $target = $intg;
       }
-      else if (v2->tag == self::STR) {
-        intg = (Integer)p.labels.get(v2->head->value);
-        if (intg != null) {
-          target = intg.intValue();
-          Variable tail = v2->tail;
-          int cnt = 0;
-          while (tail != null) {
-            $this->get_ref("A" + cnt)->tag = self::REF;
-            $this->get_ref("A" + cnt)->reference = tail->head;
-            cnt++;
-            tail = tail->tail;
+      else if ($v2->tag == self::STR) {
+        $intg = (int)$this->p->labels[$v2->head->value];  // TODO notice array_key ?
+        if ($intg !== null) {
+          $target = (int)$intg;   // TODO useless ?
+          $tail = $v2->tail;
+          $cnt = 0;
+          while ($tail != null) {
+            $this->get_ref("A" . $cnt)->tag = self::REF;
+            $this->get_ref("A" . $cnt)->reference = $tail->head;
+            $cnt++;
+            $tail = $tail->tail;
           }
         }
       }
-      if (target >= 0)
-        call(target);
+      if ($target >= 0)
+        $this->call($target);
       else
         $this->backtrack();
     }
-    else if (index == callLoad)
-      load(v.toString());
-    else if (index == callConsult)
-      consult(v.toString());
-    else if (index == callReadLn) {
-      Variable w = new Variable("", readLn());
-      $this->unify_variable2(v->deref(), w);
+    else if ($index == self::callLoad)
+      load($v->__toString());
+    else if ($index == self::callConsult)
+      consult($v->__toString());
+    else if ($index == self::callReadLn) {
+      $w = new Variable("", $this->readLn());  // TODO foireux ?
+      $this->unify_variable2($v->deref(), $w);
       $this->programCounter++;
     }
     else
-      result = false;
-    return result;
+      $result = false;
+    return $result;
   } // end of WAM.internalPredicate(String)
 
   private function load(String fileName) {
     Program prog = CodeReader.readProgram(fileName);
     if (prog == null)
       if (fileName.indexOf(".wam") <= 0) {  // if compilation didn't work, try with different file extension
-        writeLn("File \"" + fileName + "\" could not be opened.");
-        writeLn("Trying \"" + fileName + ".wam\" instead.");
+        $this->writeLn("File \"" + fileName + "\" could not be opened.");
+        $this->writeLn("Trying \"" + fileName + ".wam\" instead.");
         prog = CodeReader.readProgram(fileName + ".wam");
       }
     if (prog == null)
@@ -804,14 +805,14 @@ class WAM {
     Program prog = pc.compileFile(fileName);
     if (prog == null)
       if (fileName.indexOf(".pro") <= 0) {  // if compilation didn't work, try with different file extension
-        writeLn("Trying \"" + fileName + ".prolog\" instead.");
+        $this->writeLn("Trying \"" + fileName + ".prolog\" instead.");
         prog = pc.compileFile(fileName + ".prolog");
       }
     if (prog == null)  // program could not be compiled/loaded for whatever reason
       $this->backtrack();
     else {
-      if (debugOn > 1)  // in case of debug mode, display the WAM code
-        writeLn(prog.toString());
+      if ($this->debugOn > 1)  // in case of debug mode, display the WAM code
+        $this->writeLn(prog->__toString());
       p.owner = this;
       p.addProgram(prog);  // add program to that already in memory
       p.updateLabels();  // and don't forget to update the jump labels
@@ -857,8 +858,8 @@ class WAM {
       $this->failed = false;
       Statement s = p.getStatement($this->programCounter);  // get current WAM statement
 
-      if (debugOn > 0)  // display statement and line number information in case of debug mode
-        writeLn("(" + int2FormatStr($this->programCounter) + ")  " + s.toString());
+      if ($this->debugOn > 0)  // display statement and line number information in case of debug mode
+        writeLn("(" + int2FormatStr($this->programCounter) + ")  " + s->__toString());
 
       // we have introduced an artificial stack overflow limit in order to prevent the WAM from infinite execution
       if ($this->opCount++ > maxOpCount) {
@@ -956,7 +957,7 @@ class WAM {
       if (p.getStatementCount() == 0)
         writeLn("No program in memory.");
       else
-        writeLn(p.toString());
+        writeLn(p->__toString());
       return true;
     }
     if (s.compareTo("new") == 0) {  // clear memory
@@ -991,9 +992,9 @@ class WAM {
       return true;
     }
     else {
-      if (debugOn > 1) {  // if in debug mode, display query WAM code
+      if ($this->debugOn > 1) {  // if in debug mode, display query WAM code
         writeLn("----- BEGIN QUERYCODE -----");
-        writeLn(query.toString());
+        writeLn(query->__toString());
         writeLn("------ END QUERYCODE ------");
       }
       p.addProgram(query);  // add query to program in memory and
@@ -1025,7 +1026,7 @@ class WAM {
           if ($this->displayQValue[i]) {
             cnt++;  // if Q[i] is to be displayed, just do that
             write(((Variable)$this->queryVariables.elementAt(i)).name + " = ");
-            write(((Variable)$this->queryVariables.elementAt(i)).toString());
+            write(((Variable)$this->queryVariables.elementAt(i))->__toString());
             if (cnt < $this->displayQCount) write(", ");
               else writeLn(".");
           }
