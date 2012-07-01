@@ -31,27 +31,27 @@ class Variable {
 
     // constructor for creating a new, unbound variable without a name
     protected function constructVariable1() {
-        $this->tag = REF;
+        $this->tag = WAM::REF;
         $this->reference = $this;
     }
 
     // constructor for creating a new, unbound variable with a name
     protected function constructVariable2($aName) {
-        $this->tag = REF;
+        $this->tag = WAM::REF;
         $this->reference = $this;
         $this->name = $aName;
     }
 
     // constructor for creating a new variable and binding it to a constant
     protected function constructVariable3($aName, $s) {
-        $this->tag = CON;
+        $this->tag = WAM::CON;
         $this->value = $s;
         $this->name = $aName;
     }
 
     // constructor for creating a new variable and unifying it with another
     protected function constructVariable4($aName, Variable $v) {
-        $this->tag = REF;
+        $this->tag = WAM::REF;
         $this->reference = $v;
         $this->name = $aName;
     }
@@ -64,9 +64,9 @@ class Variable {
     // sets internal components to that of source
     public function copyFrom(Variable $source) {
         $this->tag = $source->tag;
-        if ($this->tag == REF)
+        if ($this->tag == WAM::REF)
             $this->reference = $source->reference;
-        else if ($this->tag == CON)
+        else if ($this->tag == WAM::CON)
             $this->value = $source->value;
         else {
             $this->head = $source->head;
@@ -76,9 +76,9 @@ class Variable {
 
     // dereferencing: if this variable points to another var, then return that dereferenced
     public function deref() {
-        if (($this->tag == REF) && ($this->reference != $this)) {
+        if (($this->tag == WAM::REF) && ($this->reference != $this)) {
             $result = $this->reference;
-            while (($result->tag == REF) && ($result->reference != $result))
+            while (($result->tag == WAM::REF) && ($result->reference != $result))
                 $result = $result->reference;
             return $result;
         }
@@ -89,9 +89,9 @@ class Variable {
 // end of Variable.deref()
     // returns a string in the form NAME = VALUE, representing the variable's value
     public function __toString() {
-        if (($this->tag == REF) && ($this->reference == $this))
+        if (($this->tag == WAM::REF) && ($this->reference == $this))
             return "_"; // "(unbound variable)";
-        if ($this->tag == CON) {
+        if ($this->tag == WAM::CON) {
 //        if (value.indexOf(' ') < 0) {
             if ((strlen($this->value) > 2) && (strpos($this->value, ".0") === (strlen($this->value) - 2)))
                 return substr($this->value, 0, strlen($this->value) - 2);
@@ -102,13 +102,13 @@ class Variable {
 //        else
 //          return("'" + value + "'");
         }
-        if ($this->tag == LIS)
+        if ($this->tag == WAM::LIS)
             return "[" . $this->toString2() . "]";
-        if ($this->tag == STR) {
+        if ($this->tag == WAM::STR) {
             $result = $this->head->__toString() . "(" . $this->tail->toString2() . ")";
             return $result;
         }
-        if ($this->tag == REF)
+        if ($this->tag == WAM::REF)
             return $this->deref()->__toString();
         return "";
     }
@@ -116,7 +116,7 @@ class Variable {
 // end of Variable.toString()
 
     public function toString2() {
-        if ($this->tag == LIS) {
+        if ($this->tag == WAM::LIS) {
             $result = $this->head->__toString();
             if (($this->tail != null) && ($this->tail->tag != WAM::CON))
                 $result .= ", " . $this->tail->toString2();
@@ -206,10 +206,10 @@ class Trail {
     public function undo($index) {
         $v = $this->contents[$index];
         if ($v != null) {
-            if ($v->tag == ASSERT)
+            if ($v->tag == WAM::ASSERT)
                 retract($v->value);
             else {
-                $v->tag = REF;
+                $v->tag = WAM::REF;
                 $v->reference = $v;
             }
         }
