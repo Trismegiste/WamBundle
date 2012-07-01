@@ -11,10 +11,6 @@
 
 class CodeReader {
 
-    public function __construct() {
-
-    }
-
     /**
      * @return Program
      */

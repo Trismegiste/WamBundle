@@ -9,8 +9,7 @@ require_once('QueryCompiler.php');
 require_once('PrologCompiler.php');
 require_once('WAM.php');
 /*
-  $cr = new CodeReader();
-  $p = $cr->readProgram('fixtures_test.wim');
+  $p = CodeReader::readProgram('fixtures_test.wam');
   echo $p;
   echo "\n";
  */

@@ -705,70 +705,70 @@ class WAM {
     return $result;
   } // end of WAM.internalPredicate(String)
 
-  private function load(String fileName) {
-    Program prog = CodeReader.readProgram(fileName);
-    if (prog == null)
-      if (fileName.indexOf(".wam") <= 0) {  // if compilation didn't work, try with different file extension
-        $this->writeLn("File \"" + fileName + "\" could not be opened.");
-        $this->writeLn("Trying \"" + fileName + ".wam\" instead.");
-        prog = CodeReader.readProgram(fileName + ".wam");
+  private function load($fileName) {
+    $prog = CodeReader::readProgram($fileName);
+    if ($prog == null)
+      if (false === strpos($fileName, ".wam")) {  // if compilation didn't work, try with different file extension
+        $this->writeLn("File \"" + $fileName . "\" could not be opened.");
+        $this->writeLn("Trying \"" + $fileName . ".wam\" instead.");
+        $prog = CodeReader::readProgram($fileName . ".wam");
       }
-    if (prog == null)
+    if ($prog == null)
       $this->backtrack();
     else {
-      p.addProgram(prog);
-      p.updateLabels();
+      $this->p->addProgram($prog);
+      $this->p->updateLabels();
       $this->programCounter++;
     }
   } // end of WAM.load(String)
 
-  private function isAtom(Variable v) {
-    v = v->deref();
-    if ((v->tag == self::CON) || (v->tag == self::REF))
+  private function isAtom(Variable $v) {
+    $v = $v->deref();
+    if (($v->tag == self::CON) || ($v->tag == self::REF))
       $this->programCounter++;
     else
       $this->backtrack();
   } // end of WAM.isAtom(Variable)
 
   // checks if stuff contains an integer number
-  private function isInteger(String stuff) {
+  private function isInteger($stuff) {
     try {
-      $this->parseInt(stuff);
+      $this->parseInt($stuff);
       $this->programCounter++;
     }
-    catch (Exception e) {
+    catch (Exception $e) {
       $this->backtrack();
     }
   } // end of WAM.isInteger(String)
 
   // assert asserts a new clause to the current program
-  private function assert(String label, String clause) {
-    PrologCompiler pc = new PrologCompiler(this);
-    Program prog = pc.compileSimpleClause(clause + ".");
-    if (prog != null) {
-      p.addClause(label, prog);
+  private function assert($label, $clause) {
+    $pc = new PrologCompiler($this);
+    $prog = $pc->compileSimpleClause($clause + ".");
+    if ($prog != null) {
+      $p->addClause($label, $prog);
       $this->programCounter++;
-      Variable v = new Variable("", label);
-      v->tag = ASSERT;
-      $this->trail->addEntry(v);
+      $v = new Variable("", $label);
+      $v->tag = ASSERT;
+      $this->trail->addEntry($v);
     }
     else
       $this->backtrack();
   } // end of WAM.assert(String, String)
 
-  private function removeProgramLines(int fromLine) {
-    int size = p.getStatementCount();
-    int removed = p.deleteFromLine(fromLine);
-    if ($this->programCounter >= fromLine) {
-      if ($this->programCounter >= fromLine + removed)
-        $this->programCounter -= removed;
+  private function removeProgramLines($fromLine) {
+    $size = $this->p->getStatementCount();
+    $removed = $this->p->deleteFromLine($fromLine);
+    if ($this->programCounter >= $fromLine) {
+      if ($this->programCounter >= $fromLine + $removed)
+        $this->programCounter -= $removed;
       else
         $this->backtrack();
     }
   }
 
   // retract undoes an assert action
-  private boolean retract(String clauseName) {
+  private function retract($clauseName) {
     int index1 = p.getLastClauseOf(clauseName);
     int index2 = p.getLastClauseButOneOf(clauseName);
     if (index1 >= 0) {
