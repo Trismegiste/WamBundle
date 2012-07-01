@@ -1,7 +1,5 @@
 <?php
 
-/* * **************************** BEGIN SUBCLASSES ***************************** */
-
 class Variable {
 
     public $tag;            // UNB, REF, CON, LIS or STR

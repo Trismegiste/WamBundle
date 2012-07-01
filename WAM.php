@@ -65,54 +65,54 @@ class WAM {
   const callCall          = -23;
 
   // internal parameters, accessible by using the "set" command
-  public int debugOn = 0;   // display debug information?
-  private int benchmarkOn = 0;   // show benchmark information?
-  private int maxOpCount = 50000000;  // artificial stack overflow limit
+  public $debugOn = 0;   // display debug information?
+  private $benchmarkOn = 0;   // show benchmark information?
+  private $maxOpCount = 50000000;  // artificial stack overflow limit
 
-  public int opCount, backtrackCount;
+  public $opCount, $backtrackCount;
 
-  private Program p;         // the program(s) loaded into memory
-  private Trail trail;       // undo-list (WAM trail)
-  private boolean failed;    // set to true upon an unsuccessful binding operation
-  boolean displayQValue[] = new boolean[100];   // which Query-Variables do have to displayed upon success?
-  int displayQCount = 0;     // how many of them?
+  private /*Program*/ $p;         // the program(s) loaded into memory
+  private /*Trail*/ $trail;       // undo-list (WAM trail)
+  private $failed;    // set to true upon an unsuccessful binding operation
+  protected $displayQValue = array(); //new boolean[100];   // which Query-Variables do have to displayed upon success?
+  protected $displayQCount = 0;     // how many of them?
 
   // the WAM's register set
-  private Vector queryVariables; // query variables, to be accessed by Q1, Q2, and so on
-  private int programCounter = 0; // program counter
-  private int continuationPointer = 0; // continuation pointer
-  private ChoicePoint choicePoint = null; // last choicepoint on stack
-  private ChoicePoint cutPoint = null; // current choicepoint for cut instruction
-  private Environment env = null; // last environment on stack
-  private Vector arguments;      // argument registers
+  private $queryVariables = array(); // query variables, to be accessed by Q1, Q2, and so on
+  private $programCounter = 0; // program counter
+  private $continuationPointer = 0; // continuation pointer
+  private $choicePoint = null; // last choicepoint on stack
+  private $cutPoint = null; // current choicepoint for cut instruction
+  private $env = null; // last environment on stack
+  private $arguments = array();      // argument registers
 
   // in case we want to use the WAM inside our GUI
-  public TextArea response = null;   // this is the memo box all the output is written into
-  public Frame frame = null;
-  public int GUImode = 0;    // 0 means: text mode, 1 means: GUI mode
+  //public TextArea response = null;   // this is the memo box all the output is written into
+  //public Frame frame = null;
+  //public int GUImode = 0;    // 0 means: text mode, 1 means: GUI mode
 
   // creates a new WAM with program data initialized to aProgram
-  public WAM(Program aProgram) {
-    p = aProgram;
-    reset();
+  public function __construct(Program $aProgram) {
+    $this->p = $aProgram;
+    $this->reset();
   } // end of WAM.WAM(Program)
 
   // resets sets all WAM parameters to their initial values
-  private void reset() {
-    arguments = new Vector();  // no argument registers so far
-    arguments.addElement(new Variable());
-    env = new Environment(999999999, null);  // empty environment
-    continuationPointer = -1;  // no continuation point
-    trail = new Trail();
-    queryVariables = new Vector();
-    displayQCount = 0;
-    for (int i = 0; i < 100; i++) displayQValue[i] = false;
-    choicePoint = null;
-    cutPoint = null;
+  private function reset() {
+    $this->arguments = array();  // no argument registers so far
+    $this->arguments[] = new Variable();
+    $this->env = new Environment(999999999, null);  // empty environment
+    $this->continuationPointer = -1;  // no continuation point
+    $this->trail = new Trail();
+    $this->queryVariables = new Vector();
+    $this->displayQCount = 0;
+    $this->displayQValue = array_fill(0, 100, false);
+    $this->choicePoint = null;
+    $this->cutPoint = null;
   } // end of WAM.reset()
 
   // reads a String line from standard input
-  private String readLn() {
+ /* private String readLn() {
     try {
       return new BufferedReader(new InputStreamReader(System.in)).readLine();
     } catch (IOException io) {
@@ -146,20 +146,30 @@ class WAM {
       if (debugOn >= debugLevel)
         writeLn(s);
   } // end of WAM.debug(String, int)
+*/
+  
+    public function debug($str, $lvl) {
+        print_r($str);
+        echo "\n";
+    }
 
+    public function writeLn($str) {
+        echo $str . "\n";
+    }
+    
   // formats an integer to a string
-  private String int2FormatStr(int i) {
-    String result = "";
-    if (i < 1000) result += "0";
-    if (i < 100) result += "0";
-    if (i < 10) result += "0";
-    result += i;
-    return result;
+  private function int2FormatStr($i) {
+    $result = "";
+    if ($i < 1000) $result .= "0";
+    if ($i < 100) $result .= "0";
+    if ($i < 10) $result .= "0";
+    $result .= $i;
+    return $result;
   } // end of WAM.int2FormatStr(int)
-
+/*
   // displays the values of all internal parameters that can be modyfied using the "set" command
-  private void displayInternalVariables() {
-    getInternalVariable("autostop");
+  private function displayInternalVariables() {
+    $this->getInternalVariable("autostop");
     getInternalVariable("benchmark");
     getInternalVariable("debug");
   } // end of WAM.displayInternalVariables()
@@ -190,38 +200,31 @@ class WAM {
     else
       writeLn("Unknown internal variable.");
   } // end of WAM.getInternalVariable(String)
-
-  private int parseInt(String number) throws NumberFormatException {
-    int len = number.length();
-    int cnt = -1;
-    int value = 0;
-    char c;
-    while (++cnt < len) {
-      c = number.charAt(cnt);
-      if ((c < '0') || (c > '9')) throw new NumberFormatException();
-      value = value * 10 + (number.charAt(cnt) - '0');
-    }
-    return value;
+*/
+  private function parseInt($number) {
+      if (!preg_match('#^[0-9]+$#', $number))
+              throw new Exception('NumberFormatException');
+      return (int) $number;
   }
 
   // returns the Variable pointer belonging to a string, e.g. "A3", "Y25"
-  private Variable get_ref(String name) {
-    Vector array;
-    switch (name.charAt(0)) {
-      case 'Y': array = env.variables; break;
-      case 'A': array = arguments; break;
-      case 'Q': array = queryVariables; break;
+  private function get_ref($name) {
+    $anArray = array();
+    switch ($name[0]) {
+      case 'Y': $anArray = &$this->env->variables; break;  // TODO passage par ref ok ?
+      case 'A': $anArray = &$this->arguments; break;
+      case 'Q': $anArray = &$this->queryVariables; break;
       default: return null;
     }
-    int len = name.length();
-    int cnt = 0;
-    int index = 0;
-    while (++cnt < len)
-      index = index * 10 + (name.charAt(cnt) - '0');
-    cnt = array.size();
-    while (cnt++ < index + 1)
-      array.addElement(new Variable());
-    return (Variable)array.elementAt(index);
+    $len = strlen($name);
+    $cnt = 0;
+    $index = 0;
+    while (++$cnt < $len)
+      $index = $index * 10 + ($name[$cnt] - '0');
+    $cnt = count($anArray);
+    while ($cnt++ < ($index + 1))
+      $anArray[] = new Variable();
+    return $anArray[$index];
   } // end of WAM.get_ref(String)
 
 /******************** BEGIN WAM CODE OPERATIONS ********************/
@@ -229,397 +232,397 @@ class WAM {
 // WAM code operations are described in Ait Kaci: Warren's Abstract Machine -- A Tutorial Reconstruction
 
   // gives a name to a variable; usually used on Qxx variables that occur within the query
-  private void create_variable(String v, String name) {
-    if (name.compareTo("_") != 0) {  // keep "_" from being displayed as solution
-      Variable q = get_ref(v);
-      q.name = name;
+  private function create_variable($v, $name) {
+    if ($name === "_") {  // keep "_" from being displayed as solution
+      $q = $this->get_ref($v);
+      $q->name = $name;
       // update displayQ-stuff
-      int i = parseInt(v.substring(1));
-      if (!displayQValue[i]) {
-        displayQCount++;
-        displayQValue[i] = true;
+      $i = $this->parseInt(substr($v, 1));
+      if (!$this->displayQValue[i]) {
+        $this->displayQCount++;
+        $this->displayQValue[i] = true;
       }
     }
-    programCounter++;
+    $this->programCounter++;
   } // end of WAM.create_variable(String, String)
 
   // comparison manages "<", "<=", ">=", ">" and "!="
-  private void comparison(String s1, String s2, int comparator) {
+  private function comparison($s1, $s2, $comparator) {
     // comparator values: 1 = "<", 2 = "<=", 3 = ">=", 4 = ">", 5 = "!="
-    Variable v1 = get_ref(s1).deref();
-    Variable v2 = get_ref(s2).deref();
-    if ((v1.tag == CON) && (v2.tag == CON)) {
-      int compareValue;
-      try { compareValue = parseInt(v1.value) - parseInt(v2.value); }
-      catch (Exception e) { compareValue = v1.value.compareTo(v2.value); }
-      switch (comparator) {
-        case 1: if (compareValue < 0) programCounter++;
-                  else backtrack();
+    $v1 = $this->get_ref(s1)->deref();
+    $v2 = $this->get_ref(s2)->deref();
+    if (($v1->tag == self::CON) && ($v2->tag == self::CON)) {
+      //int compareValue;
+      try { $compareValue = $this->parseInt($v1->value) - $this->parseInt($v2->value); }
+      catch (Exception $e) { $compareValue = strcmp($v1->value, $v2->value); }
+      switch ($comparator) {
+        case 1: if ($compareValue < 0) $this->programCounter++;
+                  else $this->backtrack();
                 break;
-        case 2: if (compareValue <= 0) programCounter++;
-                  else backtrack();
+        case 2: if ($compareValue <= 0) $this->programCounter++;
+                  else $this->backtrack();
                 break;
-        case 3: if (compareValue >= 0) programCounter++;
-                  else backtrack();
+        case 3: if ($compareValue >= 0) $this->programCounter++;
+                  else $this->backtrack();
                 break;
-        case 4: if (compareValue > 0) programCounter++;
-                  else backtrack();
+        case 4: if ($compareValue > 0) $this->programCounter++;
+                  else $this->backtrack();
                 break;
-        case 5: if (compareValue != 0) programCounter++;
-                  else backtrack();
+        case 5: if ($compareValue != 0) $this->programCounter++;
+                  else $this->backtrack();
                 break;
-        default: backtrack();
+        default: $this->backtrack();
       }
     }
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.comparison(String, String, String)
 
-  private void smaller(String s1, String s2) {
-    comparison(s1, s2, 1);
+  private function smaller($s1, $s2) {
+    $this->comparison($s1, $s2, 1);
   } // end of WAM.smaller(String, String)
 
-  private void smallereq(String s1, String s2) {
-    comparison(s1, s2, 2);
+  private function smallereq($s1, $s2) {
+    $this->comparison($s1, $s2, 2);
   } // end of WAM.smallereq(String, String)
 
-  private void biggereq(String s1, String s2) {
-    comparison(s1, s2, 3);
+  private function biggereq($s1, $s2) {
+    $this->comparison($s1, $s2, 3);
   } // end of WAM.biggereq(String, String)
 
-  private void bigger(String s1, String s2) {
-    comparison(s1, s2, 4);
+  private function bigger($s1, $s2) {
+    $this->comparison($s1, $s2, 4);
   } // end of WAM.bigger(String, String)
 
-  private void unequal(String s1, String s2) {
-    comparison(s1, s2, 5);
+  private function unequal($s1, $s2) {
+    $this->comparison($s1, $s2, 5);
   } // end of WAM.unequal(String, String)
 
   // is manages integer arithmetic (floating point may be added later)
-  private void is(String target, char op, String s1, String s2) {
-    Variable v1, v2, v3;
-    int z1, z2, z3;
+  private function is($target, $op, $s1, $s2) {
+    //Variable v1, v2, v3;
+    //int z1, z2, z3;
     // convert s1 or the value of the variable referenced by s1 to int value
-    try { z1 = parseInt(s1); }
-    catch (Exception e) {
-      v1 = get_ref(s1).deref();
-      if (v1.tag != CON) { backtrack(); return; }
-      try { z1 = parseInt(v1.value); }
-      catch (Exception e2) { backtrack(); return; }
+    try { $z1 = $this->parseInt($s1); }
+    catch (Exception $e) {
+      $v1 = $this->get_ref($s1)->deref();
+      if ($v1->tag != self::CON) { $this->backtrack(); return; }
+      try { $z1 = $this->parseInt($v1->value); }
+      catch (Exception $e2) { $this->backtrack(); return; }
     }
     // convert s2 or the value of the variable referenced by s2 to int value
-    try { z2 = parseInt(s2); }
-    catch (Exception e) {
-      v2 = get_ref(s2).deref();
-      if (v2.tag != CON) { backtrack(); return; }
-      try { z2 = parseInt(v2.value); }
-      catch (Exception e2) { backtrack(); return; }
+    try { $z2 = $this->parseInt($s2); }
+    catch (Exception $e) {
+      $v2 = $this->get_ref($s2)->deref();
+      if ($v2->tag != self::CON) { $this->backtrack(); return; }
+      try { $z2 = $this->parseInt($v2->value); }
+      catch (Exception $e2) { $this->backtrack(); return; }
     }
     // check which variable is referenced by target
-    v3 = get_ref(target).deref();
+    $v3 = $this->get_ref($target)->deref();
     try {
-      z3 = 0;
+      $z3 = 0;
       // do the arithmetic
-      if (op == '+') z3 = z1 + z2;
-      if (op == '-') z3 = z1 - z2;
-      if (op == '*') z3 = z1 * z2;
-      if (op == '/') z3 = z1 / z2;
-      if (op == '%') z3 = z1 % z2;
+      if ($op == '+') $z3 = $z1 + $z2;
+      if ($op == '-') $z3 = $z1 - $z2;
+      if ($op == '*') $z3 = $z1 * $z2;
+      if ($op == '/') $z3 = $z1 / $z2;
+      if ($op == '%') $z3 = $z1 % $z2;
       // if v3 (the target) has already been bound, consider this an equality check
 //      if ((v3.tag == CON) && (parseInt(v3.value) != z3))      // do not allow this for now, since problems might occur
 //        backtrack();
-      if (v3.tag == REF) {
+      if ($v3->tag == self::REF) {
         // if it has not been bound yet, bind it to constant value z3 (the integer number)
-        trail.addEntry(v3);
-        v3.tag = CON;
-        v3.value = "" + z3;
-        programCounter++;
+        $this->trail->addEntry($v3);
+        $v3->tag = self::CON;
+        $v3->value = "" . $z3;
+        $this->programCounter++;
       }
       // only when alle stricke reissen: backtrack!
       else
-        backtrack();
+        $this->backtrack();
     }
-    catch (Exception e) {
-      backtrack();
+    catch (Exception $e) {
+      $this->backtrack();
     }
   } // end of WAM.is(String, String, String, String)
 
-  private void get_variable(String s1, String s2) {
-    Variable Vn = get_ref(s1);
-    Variable Ai = get_ref(s2);
-    Vn.copyFrom(Ai);
-    programCounter++;
+  private function get_variable($s1, $s2) {
+    $Vn = $this->get_ref($s1);
+    $Ai = $this->get_ref($s2);
+    $Vn->copyFrom($Ai);
+    $this->programCounter++;
   } // end of WAM.get_variable(String, String)
 
-  private void get_value(String s1, String s2) {
-    unify_variable(s2, s1);
+  private function get_value($s1, $s2) {
+    $this->unify_variable($s2, $s1);
   } // end of WAM.get_value(String, String)
 
-  private void get_constant(String c, String variable) {
-    Variable v = get_ref(variable).deref();
-    boolean fail = true;
-    if (v.tag == REF) {
-      trail.addEntry(v);
-      v.tag = CON;
-      v.value = c;
-      fail = false;
+  private function get_constant($c, $variable) {
+    $v = $this->get_ref($variable)->deref();
+    $fail = true;
+    if ($v->tag == self::REF) {
+      $this->trail->addEntry($v);
+      $v->tag = self::CON;
+      $v->value = $c;
+      $fail = false;
     }
-    else if (v.tag == CON) {
-      if (c.compareTo(v.value) == 0)
-        fail = false;
+    else if ($v->tag == self::CON) {
+      if ($c === $v->value)
+        $fail = false;
     }
-    if (fail)
-      backtrack();
+    if ($fail)
+      $this->backtrack();
     else
-      programCounter++;
+      $this->programCounter++;
   } // end of WAM.get_constant(String, String)
 
-  private boolean unify_variable2(Variable v1, Variable v2) {
-    if ((v1 == null) || (v2 == null)) return false;
-    v1 = v1.deref();
-    v2 = v2.deref();
-    if (v1 == v2) return true;
+  private function unify_variable2($v1, $v2) {
+    if (($v1 == null) || ($v2 == null)) return false;
+    $v1 = $v1->deref();
+    $v2 = $v2->deref();
+    if ($v1 === $v2) return true;
 
-    if (v1.tag == REF) {
-      trail.addEntry(v1);
-      v1.copyFrom(v2);
+    if ($v1->tag == self::REF) {
+      $this->trail->addEntry($v1);
+      $v1->copyFrom($v2);
       return true;
     }
-    if (v2.tag == REF) {
-      trail.addEntry(v2);
-      v2.copyFrom(v1);
+    if ($v2->tag == self::REF) {
+      $this->trail->addEntry($v2);
+      $v2->copyFrom($v1);
       return true;
     }
 
-    if ((v1.tag == CON) && (v2.tag == CON)) {
-      if (v1.value.compareTo(v2.value) == 0)
+    if (($v1->tag == self::CON) && ($v2->tag == self::CON)) {
+      if ($v1->value === $v2->value)
         return true;
       else
         return false;
     }
 
-    if (((v1.tag == LIS) && (v2.tag == LIS)) || ((v1.tag == STR) && (v2.tag == STR)))
-      if ((unify_variable2(v1.head, v2.head)) && (unify_variable2(v1.tail, v2.tail)))
+    if ((($v1->tag == self::LIS) && ($v2->tag == self::LIS)) || (($v1->tag == self::STR) && ($v2->tag == self::STR)))
+      if (($this->unify_variable2($v1->head, $v2->head)) && ($this->unify_variable2($v1->tail, $v2->tail)))
         return true;
 
     return false;
   } // end of WAM.unify_variable2(Variable, Variable)
 
-  private boolean unify_list2(Variable list, Variable head, Variable tail) {
-//    list = list.deref();
+  private function unify_list2(Variable $liste, Variable $head, Variable $tail) {
+//    liste = list.deref();
 //    head = head.deref();
 //    tail = tail.deref();
-    if (list.tag == REF) {
-      trail.addEntry(list);
-      list.tag = LIS;
-      list.head = head;
-      list.tail = tail;
+    if ($liste->tag == self::REF) {
+      $this->trail->addEntry($liste);
+      $liste->tag = self::LIS;
+      $liste->head = $head;
+      $liste->tail = $tail;
       return true;
     }
-    if (list.tag == LIS) {
-      if (unify_variable2(head, list.head))
-        if (unify_variable2(tail, list.tail))
+    if ($liste->tag == self::LIS) {
+      if ($this->unify_variable2($head, $liste->head))
+        if ($this->unify_variable2($tail, $liste->tail))
           return true;
     }
     return false;
   } // end of WAM.unify_list2(Variable, Variable, Variable)
 
-  private boolean unify_struc2(Variable struc, Variable head, Variable tail) {
+  private function unify_struc2(Variable $struc, Variable $head, Variable $tail) {
 //    struc = struc.deref();
 //    head = head.deref();
 //    tail = tail.deref();
-    if (struc.tag == REF) {
-      trail.addEntry(struc);
-      struc.tag = STR;
-      struc.head = head;
-      struc.tail = tail;
+    if ($struc->tag == self::REF) {
+      $this->trail->addEntry($struc);
+      $struc->tag = self::STR;
+      $struc->head = $head;
+      $struc->tail = $tail;
       return true;
     }
-    if (struc.tag == STR) {
-      if (unify_variable2(head, struc.head))
-        if (unify_variable2(tail, struc.tail))
+    if ($struc->tag == self::STR) {
+      if ($this->unify_variable2($head, $struc->head))
+        if ($this->unify_variable2($tail, $struc->tail))
           return true;
     }
     return false;
   } // end of WAM.unify_struc2(Variable, Variable, Variable)
 
-  private void unify_variable(String s1, String s2) {
-    Variable v1 = get_ref(s1);
-    Variable v2 = get_ref(s2);
-    if (unify_variable2(v1, v2))
-      programCounter++;
+  private function unify_variable($s1, $s2) {
+    $v1 = $this->get_ref($s1);
+    $v2 = $this->get_ref($s2);
+    if ($this->unify_variable2($v1, $v2))
+      $this->programCounter++;
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.unify_variable(String, String)
 
-  private void unify_list(String l, String h, String t) {
-    Variable list = get_ref(l);
-    Variable head = get_ref(h);
-    Variable tail = get_ref(t);
-    if (unify_list2(list, head, tail))
-      programCounter++;
+  private function unify_list($l, $h, $t) {
+    $liste = $this->get_ref($l);
+    $head = $this->get_ref($h);
+    $tail = $this->get_ref($t);
+    if ($this->unify_list2($liste, $head, $tail))
+      $this->programCounter++;
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.unify_list(String, String, String)
 
-  private void unify_struc(String s, String h, String t) {
-    Variable struc = get_ref(s);
-    Variable head = get_ref(h);
-    Variable tail = get_ref(t);
-    if (unify_struc2(struc, head, tail))
-      programCounter++;
+  private function unify_struc($s, $h, $t) {
+    $struc = $this->get_ref($s);
+    $head = $this->get_ref($h);
+    $tail = $this->get_ref($t);
+    if ($this->unify_struc2(struc, head, tail))
+      $this->programCounter++;
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.unify_struc(String, String, String)
 
-  private void put_constant(String c, String a) {
-    Variable Ai = get_ref(a);
-    Ai.tag = CON;
-    Ai.value = c;
-    programCounter++;
+  private function put_constant($c, $a) {
+    $Ai = $this->get_ref($a);
+    $Ai->tag = self::CON;
+    $Ai->value = $c;
+    $this->programCounter++;
   } // end of WAM.put_constant(String, String)
 
-  private void put_list(String h, String t, String a) {
-    Variable Ai = get_ref(a);
-    Ai.tag = LIS;
-    Ai.head = get_ref(h).deref();
-    Ai.tail = get_ref(t).deref();
-    programCounter++;
+  private function put_list($h, $t, $a) {
+    $Ai = $this->get_ref($a);
+    $Ai->tag = self::LIS;
+    $Ai->head = $this->get_ref($h)->deref();
+    $Ai->tail = $this->get_ref($t)->deref();
+    $this->programCounter++;
   } // end of WAM.put_list(String, String, String);
 
-  private void put_value(String s1, String s2) {
-    Variable Vi = get_ref(s1);
-    Variable An = get_ref(s2);
-    An.copyFrom(Vi);
-    programCounter++;
+  private function put_value($s1, $s2) {
+    $Vi = $this->get_ref($s1);
+    $An = $this->get_ref($s2);
+    $An->copyFrom($Vi);
+    $this->programCounter++;
   } // end of WAM.put_value(String, String)
 
-  private void put_variable(String s1, String s2) {
-    Variable Vn = get_ref(s1).deref();
-    Variable Ai = get_ref(s2);
-    Ai.tag = REF;
-    Ai.reference = Vn;
-    programCounter++;
+  private function put_variable($s1, $s2) {
+    $Vn = $this->get_ref($s1)->deref();
+    $Ai = $this->get_ref($s2);
+    $Ai->tag = self::REF;
+    $Ai->reference = $Vn;
+    $this->programCounter++;
   } // end of WAM.put_variable(String, String)
 
-  private void try_me_else(int whom) {
-    int i;
-    ChoicePoint cp = new ChoicePoint(arguments, trail.getLength(), continuationPointer);
-    cp.lastCP = choicePoint;
-    cp.cutPoint = cutPoint;
-    choicePoint = cp;
-    cp.nextClause = whom;
-    cp.lastEnviron = env;
-    programCounter++;
+  private function try_me_else($whom) {
+    //int i;
+    $cp = new ChoicePoint($this->arguments, $this->trail->getLength(), $this->continuationPointer);
+    $cp->lastCP = $this->choicePoint;
+    $cp->cutPoint = $this->cutPoint;
+    $this->choicePoint = $cp;
+    $cp->nextClause = $whom;
+    $cp->lastEnviron = $this->env;
+    $this->programCounter++;
   } // end of WAM.try_me_else(int)
 
-  private void proceed() {
-    programCounter = continuationPointer;
+  private function proceed() {
+    $this->programCounter = $this->continuationPointer;
   } // end of WAM.proceed()
 
-  private void is_bound(Variable v) {
-    v = v.deref();
-    if (v.tag == REF)
-      backtrack();
+  private function is_bound(Variable $v) {
+    $v = $v->deref();
+    if ($v->tag == self::REF)
+      $this->backtrack();
     else
-      programCounter++;
+      $this->programCounter++;
   } // end of WAM.is_bound(String)
 
-  private void allocate() {
-    Environment environment = new Environment(continuationPointer, env);
-    env = environment;
-    programCounter++;
+  private function allocate() {
+    $environment = new Environment($this->continuationPointer, $this->env);
+    $this->env = $environment;
+    $this->programCounter++;
   } // end of WAM.allocate()
 
-  private void deallocate() {
-    continuationPointer = env.returnAddress;
-    env = env.lastEnviron;
-    programCounter++;
+  private function deallocate() {
+    $this->continuationPointer = $this->env->returnAddress;
+    $this->env = $this->env->lastEnviron;
+    $this->programCounter++;
   } // end of WAM.deallocate()
 
-  private void call(int target) {
-    if (target >= 0) {
-      continuationPointer = programCounter + 1;
-      cutPoint = choicePoint;
-      programCounter = target;
+  private function call($target) {
+    if ($target >= 0) {
+      $this->continuationPointer = $this->programCounter + 1;
+      $this->cutPoint = $this->choicePoint;
+      $this->programCounter = $target;
     }
     else  // linenumbers < 0 indicate internal predicates, e.g. writeln
-      if (!internalPredicate(target))
-        backtrack();
+      if (!$this->internalPredicate($target))
+        $this->backtrack();
   } // end of WAM.call(int)
 
   // not_call performs a negated call by invoking a new WAM process
   // if the new process' execution fails, not_call is successful (backtrack, otherwise)
-  private void not_call(int target) {
-    if ((target <= -10) && (target >= -40)) {
-      backtrack();
+  private function not_call($target) {
+    if (($target <= -10) && ($target >= -40)) {
+      $this->backtrack();
       return;
     }
     // create a second WAM with the same code inside
-    WAM wam2 = new WAM(p);
-    wam2.programCounter = target;  // set programCounter the continuationPointer to their desired values
-    wam2.continuationPointer = p.getStatementCount();
+    $wam2 = new WAM($this->p);
+    $wam2->programCounter = $target;  // set programCounter the continuationPointer to their desired values
+    $wam2->continuationPointer = $this->p->getStatementCount();
     // add a halt statement, making wam2 return "true" upon success. this is necessary!
-    p.addStatement(new Statement("", "halt", ""));
-    wam2.arguments.clear();  // now, duplicate the argument vector
-    for (int i = 0; i < arguments.size(); i++)
-      wam2.arguments.addElement(new Variable((Variable)arguments.elementAt(i)));
+    $this->p->addStatement(new Statement("", "halt", ""));
+    $wam2->arguments = array();  // now, duplicate the argument vector
+    foreach ($this->arguments as $item)
+      $wam2->arguments[] = new Variable($item);
     // we don't need any benchmarking information from the child WAM
-    wam2.debugOn = debugOn;
-    wam2.benchmarkOn = 0;
-    wam2.run();
-    boolean wam2failed = wam2.failed;
-    while (wam2.choicePoint != null)
-      wam2.backtrack();
-    wam2.backtrack();
-    p.deleteFromLine(p.getStatementCount() - 1);  // remove the earlier added "halt" statement from p
-    opCount += wam2.opCount;
-    backtrackCount += wam2.backtrackCount;  // update benchmarking information
-    if (wam2failed) {  // if wam2 failed, return "success"
-      failed = false;
-      programCounter++;
+    $wam2->debugOn = $debugOn;
+    $wam2->benchmarkOn = 0;
+    $wam2->run();
+    $wam2failed = $wam2->failed;
+    while ($wam2->choicePoint != null)
+      $wam2->backtrack();
+    $wam2->backtrack();
+    $this->p->deleteFromLine($this->p->getStatementCount() - 1);  // remove the earlier added "halt" statement from p
+    $this->opCount += $wam2->opCount;
+    $this->backtrackCount += $wam2->backtrackCount;  // update benchmarking information
+    if ($wam2failed) {  // if wam2 failed, return "success"
+      $this->failed = false;
+      $this->programCounter++;
     }
     else // if it succeeded, consider this bad (since we are inside a not statement)
-      backtrack();
+      $this->backtrack();
   } // end of WAM.not_call(int)
 
-  private void cut(String Vn) {
-    Variable v = get_ref(Vn);
-    choicePoint = v.cutLevel;
-    programCounter++;
+  private function cut($Vn) {
+    $v = $this->get_ref($Vn);
+    $this->choicePoint = $v->cutLevel;
+    $this->programCounter++;
   } // end of WAM.cut(String)
 
-  private void get_level(String Vn) {
-    Variable v = get_ref(Vn);
-    v.cutLevel = cutPoint;
-    programCounter++;
+  private function get_level($Vn) {
+    $v = $this->get_ref($Vn);
+    $v->cutLevel = $this->cutPoint;
+    $this->programCounter++;
   } // of WAM.get_level(String)
 
 /******************** END WAM CODE OPERATIONS ********************/
 
   // called upon an unsuccessful binding operation or a call with non-existent target
-  private void backtrack() {
+  private function backtrack() {
     int i;
     if (debugOn > 0)
       writeLn("-> backtrack");
-    backtrackCount++;
-    failed = true;
-    if (choicePoint != null) {
-      continuationPointer = choicePoint.returnAddress;
-      programCounter = choicePoint.nextClause;
-      env = choicePoint.lastEnviron;
-      int tp = choicePoint.trailPointer;
-      for (i = trail.getLength() - 1; i >= tp; i--)
-        trail.undo(i);
-      trail.setLength(tp);
-      arguments = choicePoint.arguments;
-      cutPoint = choicePoint.cutPoint;
-      choicePoint = choicePoint.lastCP;
+    $this->backtrackCount++;
+    $this->failed = true;
+    if ($this->choicePoint != null) {
+      $this->continuationPointer = $this->choicePoint.returnAddress;
+      $this->programCounter = $this->choicePoint.nextClause;
+      env = $this->choicePoint.lastEnviron;
+      int tp = $this->choicePoint.trailPointer;
+      for (i = $this->trail.getLength() - 1; i >= tp; i--)
+        $this->trail.undo(i);
+      $this->trail.setLength(tp);
+      $this->arguments = $this->choicePoint.arguments;
+      $this->cutPoint = $this->choicePoint.cutPoint;
+      $this->choicePoint = $this->choicePoint.lastCP;
     }
     else {
-      for (i = trail.getLength() - 1; i >= 0; i--)
-        trail.undo(i);
-      programCounter = -1;
+      for (i = $this->trail.getLength() - 1; i >= 0; i--)
+        $this->trail.undo(i);
+      $this->programCounter = -1;
     }
   } // end of WAM.backtrack()
 
@@ -628,64 +631,64 @@ class WAM {
   // internalPredicate manages the execution of all built-in predicates, e.g. write, consult, isbound
   private boolean internalPredicate(int index) {
     boolean result = true;
-    Variable v = (Variable)arguments.elementAt(0);
+    Variable v = (Variable)$this->arguments->elementAt(0);
     if (index == callIsAtom)
-      isAtom(v.deref());
+      isAtom(v->deref());
     else if (index == callIsInteger)
       isInteger(v.toString());
     else if (index == callIsBound)
       is_bound(v);
     else if (index == callWrite) {
       write(v.toString());
-      programCounter++;
+      $this->programCounter++;
     }
     else if (index == callWriteLn) {
       writeLn(v.toString());
-      programCounter++;
+      $this->programCounter++;
     }
     else if (index == callNewLine) {
       writeLn("");
-      programCounter++;
+      $this->programCounter++;
     }
     else if (index == callAssert) {
-      assert(v.head.toString(), v.toString());
+      assert(v->head.toString(), v.toString());
       return true;
     }
     else if (index == callRetractOne) {
       if (retract(v.toString()))
-        programCounter++;
+        $this->programCounter++;
       else
-        backtrack();
+        $this->backtrack();
     }
     else if (index == callRetractAll)
       retractall(v.toString());
     else if (index == callCall) {  // internal predicate call(X)
-      Variable v2 = new Variable(v).deref();
+      Variable v2 = new Variable(v)->deref();
       Integer intg;
       int target = -1;
-      if (v2.tag == CON) {
-        intg = (Integer)p.labels.get(v2.value);
+      if (v2->tag == self::CON) {
+        intg = (Integer)p.labels.get(v2->value);
         if (intg != null)
           target = intg.intValue();
       }
-      else if (v2.tag == STR) {
-        intg = (Integer)p.labels.get(v2.head.value);
+      else if (v2->tag == self::STR) {
+        intg = (Integer)p.labels.get(v2->head->value);
         if (intg != null) {
           target = intg.intValue();
-          Variable tail = v2.tail;
+          Variable tail = v2->tail;
           int cnt = 0;
           while (tail != null) {
-            get_ref("A" + cnt).tag = REF;
-            get_ref("A" + cnt).reference = tail.head;
+            $this->get_ref("A" + cnt)->tag = self::REF;
+            $this->get_ref("A" + cnt)->reference = tail->head;
             cnt++;
-            tail = tail.tail;
+            tail = tail->tail;
           }
         }
       }
       if (target >= 0)
         call(target);
       else
-        backtrack();
+        $this->backtrack();
     }
     else if (index == callLoad)
       load(v.toString());
@@ -693,15 +696,15 @@ class WAM {
       consult(v.toString());
     else if (index == callReadLn) {
       Variable w = new Variable("", readLn());
-      unify_variable2(v.deref(), w);
-      programCounter++;
+      $this->unify_variable2(v->deref(), w);
+      $this->programCounter++;
     }
     else
       result = false;
     return result;
   } // end of WAM.internalPredicate(String)
 
-  private void load(String fileName) {
+  private function load(String fileName) {
     Program prog = CodeReader.readProgram(fileName);
     if (prog == null)
       if (fileName.indexOf(".wam") <= 0) {  // if compilation didn't work, try with different file extension
@@ -710,56 +713,56 @@ class WAM {
         prog = CodeReader.readProgram(fileName + ".wam");
       }
     if (prog == null)
-      backtrack();
+      $this->backtrack();
     else {
       p.addProgram(prog);
       p.updateLabels();
-      programCounter++;
+      $this->programCounter++;
     }
   } // end of WAM.load(String)
 
-  private void isAtom(Variable v) {
-    v = v.deref();
-    if ((v.tag == CON) || (v.tag == REF))
-      programCounter++;
+  private function isAtom(Variable v) {
+    v = v->deref();
+    if ((v->tag == self::CON) || (v->tag == self::REF))
+      $this->programCounter++;
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.isAtom(Variable)
 
   // checks if stuff contains an integer number
-  private void isInteger(String stuff) {
+  private function isInteger(String stuff) {
     try {
-      parseInt(stuff);
-      programCounter++;
+      $this->parseInt(stuff);
+      $this->programCounter++;
     }
     catch (Exception e) {
-      backtrack();
+      $this->backtrack();
     }
   } // end of WAM.isInteger(String)
 
   // assert asserts a new clause to the current program
-  private void assert(String label, String clause) {
+  private function assert(String label, String clause) {
     PrologCompiler pc = new PrologCompiler(this);
     Program prog = pc.compileSimpleClause(clause + ".");
     if (prog != null) {
       p.addClause(label, prog);
-      programCounter++;
+      $this->programCounter++;
       Variable v = new Variable("", label);
-      v.tag = ASSERT;
-      trail.addEntry(v);
+      v->tag = ASSERT;
+      $this->trail->addEntry(v);
     }
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.assert(String, String)
 
-  private void removeProgramLines(int fromLine) {
+  private function removeProgramLines(int fromLine) {
     int size = p.getStatementCount();
     int removed = p.deleteFromLine(fromLine);
-    if (programCounter >= fromLine) {
-      if (programCounter >= fromLine + removed)
-        programCounter -= removed;
+    if ($this->programCounter >= fromLine) {
+      if ($this->programCounter >= fromLine + removed)
+        $this->programCounter -= removed;
       else
-        backtrack();
+        $this->backtrack();
     }
   }
 
@@ -782,21 +785,21 @@ class WAM {
   }
 
   // calls retract(String) until it returns false
-  private void retractall(String clauseName) {
+  private function retractall(String clauseName) {
     boolean success = false;
-    failed = false;
+    $this->failed = false;
     while (retract(clauseName)) {
-      if (failed) return;
+      if ($this->failed) return;
       success = true;
     };
     if (success)
-      programCounter++;
+      $this->programCounter++;
     else
-      backtrack();
+      $this->backtrack();
   } // end of WAM.retractall(String)
 
   // consult compiles a prolog program and loads the resulting code into memory
-  private void consult(String fileName) {
+  private function consult(String fileName) {
     PrologCompiler pc = new PrologCompiler(this);
     Program prog = pc.compileFile(fileName);
     if (prog == null)
@@ -805,14 +808,14 @@ class WAM {
         prog = pc.compileFile(fileName + ".prolog");
       }
     if (prog == null)  // program could not be compiled/loaded for whatever reason
-      backtrack();
+      $this->backtrack();
     else {
       if (debugOn > 1)  // in case of debug mode, display the WAM code
         writeLn(prog.toString());
       p.owner = this;
       p.addProgram(prog);  // add program to that already in memory
       p.updateLabels();  // and don't forget to update the jump labels
-      programCounter++;
+      $this->programCounter++;
     }
   } // end of WAM.consult(String)
 
@@ -820,7 +823,7 @@ class WAM {
 
 
   // showHelp shows a list of the available commands
-  private void showHelp() {
+  private function showHelp() {
     writeLn("This is Stu's mighty WAM speaking. Need some help?");
     writeLn("");
     writeLn("Available commands:");
@@ -843,24 +846,24 @@ class WAM {
   } // end of WAM.showHelp()
 
   // run starts the actual execution of the program in memory
-  public void run() {
+  public function run() {
     // opCount and backtrackCount are used for benchmarking
-    opCount = 0;
-    backtrackCount = 0;
+    $this->opCount = 0;
+    $this->backtrackCount = 0;
 
-    failed = true;
+    $this->failed = true;
 
-    while (programCounter >= 0) {   // programCounter < 0 happens on jump error or backtrack without choicepoint
-      failed = false;
-      Statement s = p.getStatement(programCounter);  // get current WAM statement
+    while ($this->programCounter >= 0) {   // programCounter < 0 happens on jump error or backtrack without choicepoint
+      $this->failed = false;
+      Statement s = p.getStatement($this->programCounter);  // get current WAM statement
 
       if (debugOn > 0)  // display statement and line number information in case of debug mode
-        writeLn("(" + int2FormatStr(programCounter) + ")  " + s.toString());
+        writeLn("(" + int2FormatStr($this->programCounter) + ")  " + s.toString());
 
       // we have introduced an artificial stack overflow limit in order to prevent the WAM from infinite execution
-      if (opCount++ > maxOpCount) {
+      if ($this->opCount++ > maxOpCount) {
         writeLn("Maximum OpCount reached. Think of this as a stack overflow.");
-        failed = true;
+        $this->failed = true;
         break;
       }
 
@@ -880,10 +883,10 @@ class WAM {
       else if (op == opPutConstant) put_constant(s.arg1, s.arg2);
       else if (op == opUnifyList) unify_list(s.arg1, s.arg2, s.arg3);
       else if (op == opUnifyStruc) unify_struc(s.arg1, s.arg2, s.arg3);
-      else if (op == opUnifyVariable) unify_variable(s.arg1, s.arg2);
+      else if (op == opUnifyVariable) $this->unify_variable(s.arg1, s.arg2);
       else if (op == opRetryMeElse) try_me_else(s.jump);
       else if (op == opTryMeElse) try_me_else(s.jump);
-      else if (op == opTrustMe) programCounter++;
+      else if (op == opTrustMe) $this->programCounter++;
       else if (op == opProceed) proceed();
       else if (op == opBigger) bigger(s.arg1, s.arg2);
       else if (op == opBiggerEq) biggereq(s.arg1, s.arg2);
@@ -892,20 +895,20 @@ class WAM {
       else if (op == opUnequal) unequal(s.arg1, s.arg2);
       else if (op == opIs) is(s.arg1, s.arg2.charAt(0), s.arg3, (String)s.getArgs().elementAt(3));
       else if (op == opHalt) break;
-      else if (op == opNoOp) programCounter++;
+      else if (op == opNoOp) $this->programCounter++;
       else if (op == opCreateVariable) create_variable(s.arg1, s.arg2);
       else { // invalid command: backtrack!
-        writeLn("Invalid operation in line " + int2FormatStr(programCounter));
-        backtrack();
+        writeLn("Invalid operation in line " + int2FormatStr($this->programCounter));
+        $this->backtrack();
       }
     }; // end of while (programCounter >= 0)
-    if (failed) {
-      while (choicePoint != null) backtrack();
-      backtrack();
+    if ($this->failed) {
+      while ($this->choicePoint != null) $this->backtrack();
+      $this->backtrack();
     }
     if (benchmarkOn > 0) {
-      writeLn("# operations: " + opCount);
-      writeLn("# backtracks: " + backtrackCount);
+      writeLn("# operations: " + $this->opCount);
+      writeLn("# backtracks: " + $this->backtrackCount);
     }
   } // end of WAM.run()
 
@@ -998,7 +1001,7 @@ class WAM {
     }
 
     // reset the WAM's registers and jump to label "query$" (the current query, of course)
-    programCounter = p.getLabelIndex("query$");
+    $this->programCounter = p.getLabelIndex("query$");
     String answer = "";
     do {
       long ms = System.currentTimeMillis();
@@ -1008,29 +1011,29 @@ class WAM {
         writeLn("Total time elapsed: " + (System.currentTimeMillis() - ms) + " ms.");
       writeLn("");
 
-      if (failed) {  // if execution failed, just tell that
+      if ($this->failed) {  // if execution failed, just tell that
         writeLn("Failed.");
         break;
       }
 
       // if there are any query variables (e.g. in "start(X, Y)", X and Y would be such variables),
       // display their current values and ask the user if he/she wants to see more possible solutions
-      if (displayQCount > 0) {
+      if ($this->displayQCount > 0) {
         write("Success: ");
         int cnt = 0;
         for (int i = 0; i < 100; i++)  // yes, we do not allow more than 100 query variables!
-          if (displayQValue[i]) {
+          if ($this->displayQValue[i]) {
             cnt++;  // if Q[i] is to be displayed, just do that
-            write(((Variable)queryVariables.elementAt(i)).name + " = ");
-            write(((Variable)queryVariables.elementAt(i)).toString());
-            if (cnt < displayQCount) write(", ");
+            write(((Variable)$this->queryVariables.elementAt(i)).name + " = ");
+            write(((Variable)$this->queryVariables.elementAt(i)).toString());
+            if (cnt < $this->displayQCount) write(", ");
               else writeLn(".");
           }
       }
       else
         writeLn("Success.");
         // if there are any more choicepoints left, ask the user if they shall be tried
-        if (choicePoint != null) {
+        if ($this->choicePoint != null) {
           if (GUImode == 0) {
             write("More? ([y]es/[n]o) ");
             answer = readLn();
@@ -1050,14 +1053,14 @@ class WAM {
 //      }
       // if the users decided to see more, show him/her. otherwise: terminate
       if ((answer.compareTo("y") == 0) || (answer.compareTo("yes") == 0))
-        backtrack();
+        $this->backtrack();
     } while ((answer.compareTo("y") == 0) || (answer.compareTo("yes") == 0));
     reset();
     return true;
   } // end of WAM.runQuery(String)
 
   // the WAM's main loop
-  public static void main(String args[]) {
+  public static function main(String args[]) {
     System.out.println("\nWelcome to Stu's mighty WAM!");
     System.out.println("(December 2001 - February 2002 by Stefan Buettcher)\n");
     System.out.println("Type \"help\" to get some help.\n");
