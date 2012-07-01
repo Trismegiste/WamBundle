@@ -160,6 +160,14 @@ class Statement {
     public function getArgs() {
         return $this->args;
     }
+    
+    public function setArgAt($str, $idx) {
+        $this->args[$idx] = $str;
+    }
+    
+    public function getArgAt($idx) {
+        return $this->args[$idx];
+    }
 
 // end of Statement.getArgs()
     // for code dumping: print the statement: "label: operator op1 op2"

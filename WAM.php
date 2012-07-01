@@ -709,8 +709,8 @@ class WAM {
     $prog = CodeReader::readProgram($fileName);
     if ($prog == null)
       if (false === strpos($fileName, ".wam")) {  // if compilation didn't work, try with different file extension
-        $this->writeLn("File \"" + $fileName . "\" could not be opened.");
-        $this->writeLn("Trying \"" + $fileName . ".wam\" instead.");
+        $this->writeLn("File \"" . $fileName . "\" could not be opened.");
+        $this->writeLn("Trying \"" . $fileName . ".wam\" instead.");
         $prog = CodeReader::readProgram($fileName . ".wam");
       }
     if ($prog == null)
@@ -769,15 +769,15 @@ class WAM {
 
   // retract undoes an assert action
   private function retract($clauseName) {
-    int index1 = p.getLastClauseOf(clauseName);
-    int index2 = p.getLastClauseButOneOf(clauseName);
-    if (index1 >= 0) {
-      removeProgramLines(index1);
-      if (index2 >= 0) {
-        Statement s =  p.getStatement(index2);
-        s.setFunction("trust_me");
-        s.getArgs().setElementAt("", 0);
-        s.arg1 = "";
+    $index1 = $this->p->getLastClauseOf($clauseName);
+    $index2 = $this->p->getLastClauseButOneOf($clauseName);
+    if ($index1 >= 0) {
+      $this->removeProgramLines($index1);
+      if ($index2 >= 0) {
+        $s =  $this->p->getStatement($index2);
+        $s->setFunction("trust_me");
+        $s->setArgAt("", 0);
+        $s->arg1 = "";
       }
       return true;
     }
@@ -786,36 +786,36 @@ class WAM {
   }
 
   // calls retract(String) until it returns false
-  private function retractall(String clauseName) {
-    boolean success = false;
+  private function retractall($clauseName) {
+    $success = false;
     $this->failed = false;
-    while (retract(clauseName)) {
+    while ($this->retract($clauseName)) {
       if ($this->failed) return;
-      success = true;
+      $success = true;
     };
-    if (success)
+    if ($success)
       $this->programCounter++;
     else
       $this->backtrack();
   } // end of WAM.retractall(String)
 
   // consult compiles a prolog program and loads the resulting code into memory
-  private function consult(String fileName) {
-    PrologCompiler pc = new PrologCompiler(this);
-    Program prog = pc.compileFile(fileName);
-    if (prog == null)
-      if (fileName.indexOf(".pro") <= 0) {  // if compilation didn't work, try with different file extension
-        $this->writeLn("Trying \"" + fileName + ".prolog\" instead.");
-        prog = pc.compileFile(fileName + ".prolog");
+  private function consult($fileName) {
+    $pc = new PrologCompiler($this);
+    $prog = $pc->compileFile($fileName);
+    if ($prog == null)
+      if (false === strpos($fileName, ".pro")) {  // if compilation didn't work, try with different file extension
+        $this->writeLn("Trying \"" . $fileName . ".prolog\" instead.");
+        $prog = $pc->compileFile($fileName . ".prolog");
       }
-    if (prog == null)  // program could not be compiled/loaded for whatever reason
+    if ($prog == null)  // program could not be compiled/loaded for whatever reason
       $this->backtrack();
     else {
       if ($this->debugOn > 1)  // in case of debug mode, display the WAM code
-        $this->writeLn(prog->__toString());
-      p.owner = this;
-      p.addProgram(prog);  // add program to that already in memory
-      p.updateLabels();  // and don't forget to update the jump labels
+        $this->writeLn($prog->__toString());
+      $this->p->owner = $this;
+      $this->p->addProgram($prog);  // add program to that already in memory
+      $this->p->updateLabels();  // and don't forget to update the jump labels
       $this->programCounter++;
     }
   } // end of WAM.consult(String)
@@ -825,25 +825,25 @@ class WAM {
 
   // showHelp shows a list of the available commands
   private function showHelp() {
-    writeLn("This is Stu's mighty WAM speaking. Need some help?");
-    writeLn("");
-    writeLn("Available commands:");
-    writeLn("clear                   empties the output area (GUI mode only)");
-    writeLn("exit                    terminates the WAM");
-    writeLn("help                    displays this help");
-    writeLn("list                    lists the WAM program currently in memory");
-    writeLn("new                     removes all WAM code from memory");
-    writeLn("set [PARAM[=VALUE]]     displays all internal parameters (\"set\") or lets");
-    writeLn("                        the user set a parameter's new value, respectively");
-    writeLn("labels                  displays all labels that can be found in memory");
-    writeLn("procedures              displays the names of all procedures in memory");
-    writeLn("quit                    terminates the WAM");
-    writeLn("");
-    writeLn("Prolog programs can be compiled into memory by typing \"consult(filename).\",");
-    writeLn("e.g. \"consult('lists.pro').\". Existing WAM programs can be loaded into");
-    writeLn("memory by typing \"load(filename).\".");
-    writeLn("");
-    writeLn("" + p.getStatementCount() + " lines of code in memory.");
+    $this->writeLn("This is Stu's mighty WAM speaking. Need some help?");
+    $this->writeLn("");
+    $this->writeLn("Available commands:");
+    $this->writeLn("clear                   empties the output area (GUI mode only)");
+    $this->writeLn("exit                    terminates the WAM");
+    $this->writeLn("help                    displays this help");
+    $this->writeLn("list                    lists the WAM program currently in memory");
+    $this->writeLn("new                     removes all WAM code from memory");
+    $this->writeLn("set [PARAM[=VALUE]]     displays all internal parameters (\"set\") or lets");
+    $this->writeLn("                        the user set a parameter's new value, respectively");
+    $this->writeLn("labels                  displays all labels that can be found in memory");
+    $this->writeLn("procedures              displays the names of all procedures in memory");
+    $this->writeLn("quit                    terminates the WAM");
+    $this->writeLn("");
+    $this->writeLn("Prolog programs can be compiled into memory by typing \"consult(filename).\",");
+    $this->writeLn("e.g. \"consult('lists.pro').\". Existing WAM programs can be loaded into");
+    $this->writeLn("memory by typing \"load(filename).\".");
+    $this->writeLn("");
+    $this->writeLn("" . $this->p->getStatementCount() . " lines of code in memory.");
   } // end of WAM.showHelp()
 
   // run starts the actual execution of the program in memory
@@ -856,113 +856,112 @@ class WAM {
 
     while ($this->programCounter >= 0) {   // programCounter < 0 happens on jump error or backtrack without choicepoint
       $this->failed = false;
-      Statement s = p.getStatement($this->programCounter);  // get current WAM statement
+      $s = $this->p->getStatement($this->programCounter);  // get current WAM statement
 
       if ($this->debugOn > 0)  // display statement and line number information in case of debug mode
-        writeLn("(" + int2FormatStr($this->programCounter) + ")  " + s->__toString());
+        $this->writeLn("(" + $this->int2FormatStr($this->programCounter) + ")  " + $s->__toString());
 
       // we have introduced an artificial stack overflow limit in order to prevent the WAM from infinite execution
       if ($this->opCount++ > maxOpCount) {
-        writeLn("Maximum OpCount reached. Think of this as a stack overflow.");
+        $this->writeLn("Maximum OpCount reached. Think of this as a stack overflow.");
         $this->failed = true;
         break;
       }
 
       // select WAM command and execute the responsible method, e.g. "deallocate()"
-      int op = s.operator;
-           if (op == opAllocate) allocate();
-      else if (op == opCall) call(s.jump);
-      else if (op == opNotCall) not_call(s.jump);
-      else if (op == opCut) cut(s.arg1);
-      else if (op == opDeallocate) deallocate();
-      else if (op == opGetVariable) get_variable(s.arg1, s.arg2);
-      else if (op == opPutValue) put_value(s.arg1, s.arg2);
-      else if (op == opPutVariable) put_variable(s.arg1, s.arg2);
-      else if (op == opGetLevel) get_level(s.arg1);
-      else if (op == opGetConstant) get_constant(s.arg1, s.arg2);
-      else if (op == opGetValue) get_value(s.arg1, s.arg2);
-      else if (op == opPutConstant) put_constant(s.arg1, s.arg2);
-      else if (op == opUnifyList) unify_list(s.arg1, s.arg2, s.arg3);
-      else if (op == opUnifyStruc) unify_struc(s.arg1, s.arg2, s.arg3);
-      else if (op == opUnifyVariable) $this->unify_variable(s.arg1, s.arg2);
-      else if (op == opRetryMeElse) try_me_else(s.jump);
-      else if (op == opTryMeElse) try_me_else(s.jump);
-      else if (op == opTrustMe) $this->programCounter++;
-      else if (op == opProceed) proceed();
-      else if (op == opBigger) bigger(s.arg1, s.arg2);
-      else if (op == opBiggerEq) biggereq(s.arg1, s.arg2);
-      else if (op == opSmaller) smaller(s.arg1, s.arg2);
-      else if (op == opSmallerEq) smallereq(s.arg1, s.arg2);
-      else if (op == opUnequal) unequal(s.arg1, s.arg2);
-      else if (op == opIs) is(s.arg1, s.arg2.charAt(0), s.arg3, (String)s.getArgs().elementAt(3));
-      else if (op == opHalt) break;
-      else if (op == opNoOp) $this->programCounter++;
-      else if (op == opCreateVariable) create_variable(s.arg1, s.arg2);
+      $op = $s->operator;
+           if ($op == self::opAllocate) $this->allocate();
+      else if ($op == self::opCall) $this->call($s->jump);
+      else if ($op == self::opNotCall) $this->not_call($s->jump);
+      else if ($op == self::opCut) $this->cut($s->arg1);
+      else if ($op == self::opDeallocate) $this->deallocate();
+      else if ($op == self::opGetVariable) $this->get_variable($s->arg1, $s->arg2);
+      else if ($op == self::opPutValue) $this->put_value($s->arg1, $s->arg2);
+      else if ($op == self::opPutVariable) $this->put_variable($s->arg1, $s->arg2);
+      else if ($op == self::opGetLevel) $this->get_level($s->arg1);
+      else if ($op == self::opGetConstant) $this->get_constant($s->arg1, $s->arg2);
+      else if ($op == self::opGetValue) $this->get_value($s->arg1, $s->arg2);
+      else if ($op == self::opPutConstant) $this->put_constant($s->arg1, $s->arg2);
+      else if ($op == self::opUnifyList) $this->unify_list($s->arg1, $s->arg2, $s->arg3);
+      else if ($op == self::opUnifyStruc) $this->unify_struc($s->arg1, $s->arg2, $s->arg3);
+      else if ($op == self::opUnifyVariable) $this->unify_variable($s->arg1, $s->arg2);
+      else if ($op == self::opRetryMeElse) $this->try_me_else($s->jump);
+      else if ($op == self::opTryMeElse) $this->try_me_else($s->jump);
+      else if ($op == self::opTrustMe) $this->programCounter++;
+      else if ($op == self::opProceed) $this->proceed();
+      else if ($op == self::opBigger) $this->bigger($s->arg1, $s->arg2);
+      else if ($op == self::opBiggerEq) $this->biggereq($s->arg1, $s->arg2);
+      else if ($op == self::opSmaller) $this->smaller($s->arg1, $s->arg2);
+      else if ($op == self::opSmallerEq) $this->smallereq($s->arg1, $s->arg2);
+      else if ($op == self::opUnequal) $this->unequal($s->arg1, $s->arg2);
+      else if ($op == self::opIs) $this->is($s->arg1, $s->arg2[0], $s->arg3, (string)$s->getArgAt(3));
+      else if ($op == self::opHalt) break;
+      else if ($op == self::opNoOp) $this->programCounter++;
+      else if ($op == self::opCreateVariable) $this->create_variable($s->arg1, $s->arg2);
       else { // invalid command: backtrack!
-        writeLn("Invalid operation in line " + int2FormatStr($this->programCounter));
+        $this->writeLn("Invalid operation in line " . $this->int2FormatStr($this->programCounter));
         $this->backtrack();
       }
     }; // end of while (programCounter >= 0)
     if ($this->failed) {
-      while ($this->choicePoint != null) $this->backtrack();
+      while ($this->choicePoint !== null) $this->backtrack();
       $this->backtrack();
     }
-    if (benchmarkOn > 0) {
-      writeLn("# operations: " + $this->opCount);
-      writeLn("# backtracks: " + $this->backtrackCount);
+    if ($this->benchmarkOn > 0) {
+      $this->writeLn("# operations: " + $this->opCount);
+      $this->writeLn("# backtracks: " + $this->backtrackCount);
     }
   } // end of WAM.run()
 
   // runQuery compiles a query given by s into a WAM program, adds it to the program in memory
   // and jumps to the label "query$", starting the execution
-  public boolean runQuery(String s) {
-    QueryCompiler qc = new QueryCompiler(this);
-    reset();
-    p.deleteFrom("query$");
-    s = s.trim();
+  public function runQuery($s) {
+    $qc = new QueryCompiler($this);
+    $this->reset();
+    $this->p->deleteFrom("query$");
+    $s = trim($s);
 
     /*************** BEGIN SPECIAL COMMANDS ***************/
 
     // input "quit" or "exit" means: end the WAM now, dude!
-    if ((s.compareTo("quit") == 0) || (s.compareTo("exit") == 0))
+    if (in_array($s, array("quit", "exit")))
       return false;
-    if (s.compareTo("clear") == 0) {
-      if (GUImode == 0) writeLn("Not in GUI mode.");
-                   else response.setText("");
+    if ($s == "clear") {
+      $this->writeLn("Not in GUI mode.");
       return true;
     }
-    if (s.compareTo("help") == 0) {
-      showHelp();  // display some help information
+    if ($s == "help") {
+      $this->showHelp();  // display some help information
       return true;
     }
-    if (s.compareTo("set") == 0) {
+    if ($s == "set") { wesh  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       displayInternalVariables();  // show the states of the internal parameters
       return true;
     }
     if (s.compareTo("labels") == 0) {  // show all labels of the current program
-      for (int i = 0; i < p.getStatementCount(); i++) {
-        String m = p.getStatement(i).getLabel();
-        if (m.length() > 0) writeLn(m);
+      for (int i = 0; i < $this->p->getStatementCount(); i++) {
+        String m = $this->p->getStatement(i).getLabel();
+        if (m.length() > 0) $this->writeLn(m);
       }
       return true;
     }
     if (s.compareTo("procedures") == 0) {  // show all procedure names of the current program
-      for (int i = 0; i < p.getStatementCount(); i++) {
-        String m = p.getStatement(i).getLabel();
-        if ((m.length() > 0) && (m.indexOf('~') < 0)) writeLn(m);
+      for (int i = 0; i < $this->p->getStatementCount(); i++) {
+        String m = $this->p->getStatement(i).getLabel();
+        if ((m.length() > 0) && (m.indexOf('~') < 0)) $this->writeLn(m);
       }
       return true;
     }
     if (s.compareTo("list") == 0) {  // show the WAM code of the program currently in memory
-      if (p.getStatementCount() == 0)
-        writeLn("No program in memory.");
+      if ($this->p->getStatementCount() == 0)
+        $this->writeLn("No program in memory.");
       else
-        writeLn(p->__toString());
+        $this->writeLn(p->__toString());
       return true;
     }
     if (s.compareTo("new") == 0) {  // clear memory
       p = new Program(this);
-      writeLn("Memory cleared.");
+      $this->writeLn("Memory cleared.");
       return true;
     }
     if ((s.length() > 4) && (s.substring(0, 4).compareTo("set ") == 0)) {
@@ -988,32 +987,32 @@ class WAM {
     Program query = qc.compile(s);
 
     if (query == null) {  // query could not be compiled
-      writeLn("Illegal query.");
+      $this->writeLn("Illegal query.");
       return true;
     }
     else {
       if ($this->debugOn > 1) {  // if in debug mode, display query WAM code
-        writeLn("----- BEGIN QUERYCODE -----");
-        writeLn(query->__toString());
-        writeLn("------ END QUERYCODE ------");
+        $this->writeLn("----- BEGIN QUERYCODE -----");
+        $this->writeLn(query->__toString());
+        $this->writeLn("------ END QUERYCODE ------");
       }
-      p.addProgram(query);  // add query to program in memory and
-      p.updateLabels();  // update the labels for jumping hin und her
+      $this->p->addProgram(query);  // add query to program in memory and
+      $this->p->updateLabels();  // update the labels for jumping hin und her
     }
 
     // reset the WAM's registers and jump to label "query$" (the current query, of course)
-    $this->programCounter = p.getLabelIndex("query$");
+    $this->programCounter = $this->p->getLabelIndex("query$");
     String answer = "";
     do {
       long ms = System.currentTimeMillis();
       run();
 
       if (benchmarkOn > 0)  // sometimes, we need extra benchmark information
-        writeLn("Total time elapsed: " + (System.currentTimeMillis() - ms) + " ms.");
-      writeLn("");
+        $this->writeLn("Total time elapsed: " + (System.currentTimeMillis() - ms) + " ms.");
+      $this->writeLn("");
 
       if ($this->failed) {  // if execution failed, just tell that
-        writeLn("Failed.");
+        $this->writeLn("Failed.");
         break;
       }
 
@@ -1028,17 +1027,17 @@ class WAM {
             write(((Variable)$this->queryVariables.elementAt(i)).name + " = ");
             write(((Variable)$this->queryVariables.elementAt(i))->__toString());
             if (cnt < $this->displayQCount) write(", ");
-              else writeLn(".");
+              else $this->writeLn(".");
           }
       }
       else
-        writeLn("Success.");
+        $this->writeLn("Success.");
         // if there are any more choicepoints left, ask the user if they shall be tried
         if ($this->choicePoint != null) {
           if (GUImode == 0) {
             write("More? ([y]es/[n]o) ");
             answer = readLn();
-            writeLn("");
+            $this->writeLn("");
           }
           else {
             Dialog dlg = new Dialog(frame, "Decision", true);
