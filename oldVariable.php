@@ -9,7 +9,7 @@
  * management of variables as references or bound to lists or single constants.
  * **************************************************************************** */
 
-class Variable {
+class oldVariable {
     const REF = 0;  // variable contains reference, i.e. has been unified/bound
     const CON = 1;  // variable has been bound to a constant
     const LIS = 2;  // variable contains list
