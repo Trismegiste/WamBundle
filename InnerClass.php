@@ -190,7 +190,7 @@ class Trail {
         if ($length > count($this->contents))
             $this->contents = array_pad($this->contents, $length, null);
         else
-            throw new InvalidArgumentException("There is reduction");
+            throw new InvalidArgumentException("There is reduction to $length on " . count($this->contents));
     }
 
     public function addEntry(Variable $v) {

@@ -99,11 +99,15 @@ class Program
     {
         $result = 1;
         if ($lineNumber >= 0) {
-            unset($this->statements[$lineNumber]);
-            while ((count($this->statements) > $lineNumber) && (strlen($this->statements[$lineNumber]->getLabel()) == 0)) {
-                $result++;
-                unset($this->statements[$lineNumber]);
+            $ending = count($this->statements);
+            for($k = $lineNumber + 1; $k < $ending; $k++) {
+                if (strlen($this->statements[$k]->getLabel()) > 0) {
+                    $ending = $k;
+                    break;
+                }
             }
+            $result = $ending - $lineNumber;
+            array_splice($this->statements, $lineNumber, $result);
             $this->updateLabels();
         }
         return $result;
