@@ -122,7 +122,7 @@ abstract class Compiler {
         if ($this->isConstant($q0)) {
             $struc->type = CompilerStructure::CONSTANT;
             if ($q0[0] == '\'')
-                $struc->value = substr($q0, 1, strlen($q0) - 1);
+                $struc->value = substr($q0, 1, strlen($q0) - 2);
             else
                 $struc->value = $q0;
             array_shift($prog);
