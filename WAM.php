@@ -147,7 +147,7 @@ class WAM {
         writeLn(s);
   } // end of WAM.debug(String, int)
 */
-  
+
     public function debug($str, $lvl) {
         print_r($str);
         echo "\n";
@@ -156,7 +156,7 @@ class WAM {
     public function writeLn($str) {
         echo $str . "\n";
     }
-    
+
   // formats an integer to a string
   private function int2FormatStr($i) {
     $result = "";
@@ -744,7 +744,7 @@ class WAM {
   // assert asserts a new clause to the current program
   private function assert($label, $clause) {
     $pc = new PrologCompiler($this);
-    $prog = $pc->compileSimpleClause($clause + ".");
+    $prog = $pc->compileSimpleClause($clause . ".");
     if ($prog != null) {
       $p->addClause($label, $prog);
       $this->programCounter++;
@@ -908,8 +908,8 @@ class WAM {
       $this->backtrack();
     }
     if ($this->benchmarkOn > 0) {
-      $this->writeLn("# operations: " + $this->opCount);
-      $this->writeLn("# backtracks: " + $this->backtrackCount);
+      $this->writeLn("# operations: " . $this->opCount);
+      $this->writeLn("# backtracks: " . $this->backtrackCount);
     }
   } // end of WAM.run()
 
@@ -934,81 +934,81 @@ class WAM {
       $this->showHelp();  // display some help information
       return true;
     }
-    if ($s == "set") { wesh  <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      displayInternalVariables();  // show the states of the internal parameters
+    if ($s == "set") {
+      $this->displayInternalVariables();  // show the states of the internal parameters
       return true;
     }
-    if (s.compareTo("labels") == 0) {  // show all labels of the current program
-      for (int i = 0; i < $this->p->getStatementCount(); i++) {
-        String m = $this->p->getStatement(i).getLabel();
-        if (m.length() > 0) $this->writeLn(m);
+    if ($s == "labels") {  // show all labels of the current program
+      for ($i = 0; $i < $this->p->getStatementCount(); $i++) {
+        $m = $this->p->getStatement($i)->getLabel();
+        if (strlen($m) > 0) $this->writeLn($m);
       }
       return true;
     }
-    if (s.compareTo("procedures") == 0) {  // show all procedure names of the current program
-      for (int i = 0; i < $this->p->getStatementCount(); i++) {
-        String m = $this->p->getStatement(i).getLabel();
-        if ((m.length() > 0) && (m.indexOf('~') < 0)) $this->writeLn(m);
+    if ($s == "procedures") {  // show all procedure names of the current program
+      for ($i = 0; $i < $this->p->getStatementCount(); $i++) {
+        $m = $this->p->getStatement($i)->getLabel();
+        if ((strlen($m) > 0) && (false === strpos($m ,'~'))) $this->writeLn($m);
       }
       return true;
     }
-    if (s.compareTo("list") == 0) {  // show the WAM code of the program currently in memory
+    if ($s=="list") {  // show the WAM code of the program currently in memory
       if ($this->p->getStatementCount() == 0)
         $this->writeLn("No program in memory.");
       else
-        $this->writeLn(p->__toString());
+        $this->writeLn($this->p->__toString());
       return true;
     }
-    if (s.compareTo("new") == 0) {  // clear memory
-      p = new Program(this);
+    if ($s=="new") {  // clear memory
+      $this->p = new Program($this);
       $this->writeLn("Memory cleared.");
       return true;
     }
-    if ((s.length() > 4) && (s.substring(0, 4).compareTo("set ") == 0)) {
-      s = s.substring(4);  // set an internal parameter's new value
-      int i = s.indexOf(' ');
-      while (i >= 0) {
-        s = s.substring(0, i) + s.substring(i + 1);
-        i = s.indexOf(' ');
+    if ((strlen($s) > 4) && (substr($s, 0, 4) == "set ")) {  // TODO preg_match
+      $s = substr($s,4);  // set an internal parameter's new value
+      $i = strpos($s, ' ');
+      while ($i >= 0) {
+        $s = substr($s,0, $i) . substr($s, $i + 1);
+        $i = strpos($s,' ');
       }
-      i = s.indexOf('=');
-      if (i >= 0) {
-        String variable = s.substring(0, i);
-        String value = s.substring(i + 1);
-        setInternalVariable(variable, value);
+      $i = strpos($s, '=');
+      if ($i >= 0) {
+        $variable = substr($s,0, $i);
+        $value = substr($s,$i + 1);
+        $this->setInternalVariable($variable, $value);
       }
       else  // if no new value has been specified, display the current
-        getInternalVariable(s);
+        $this->getInternalVariable($s);
       return true;
     } // end of "set ..." command
 
     /*************** END SPECIAL COMMANDS ***************/
 
-    Program query = qc.compile(s);
+    $query = $qc->compile($s);
 
-    if (query == null) {  // query could not be compiled
+    if ($query == null) {  // query could not be compiled
       $this->writeLn("Illegal query.");
       return true;
     }
     else {
       if ($this->debugOn > 1) {  // if in debug mode, display query WAM code
         $this->writeLn("----- BEGIN QUERYCODE -----");
-        $this->writeLn(query->__toString());
+        $this->writeLn($query->__toString());
         $this->writeLn("------ END QUERYCODE ------");
       }
-      $this->p->addProgram(query);  // add query to program in memory and
+      $this->p->addProgram($query);  // add query to program in memory and
       $this->p->updateLabels();  // update the labels for jumping hin und her
     }
 
     // reset the WAM's registers and jump to label "query$" (the current query, of course)
     $this->programCounter = $this->p->getLabelIndex("query$");
-    String answer = "";
+    $answer = "";
     do {
-      long ms = System.currentTimeMillis();
-      run();
+      $ms = microtime(true);
+      $this->run();
 
-      if (benchmarkOn > 0)  // sometimes, we need extra benchmark information
-        $this->writeLn("Total time elapsed: " + (System.currentTimeMillis() - ms) + " ms.");
+      if ($this->benchmarkOn > 0)  // sometimes, we need extra benchmark information
+        $this->writeLn("Total time elapsed: " + (microtime(true) - $ms) + " ms.");
       $this->writeLn("");
 
       if ($this->failed) {  // if execution failed, just tell that
@@ -1019,14 +1019,14 @@ class WAM {
       // if there are any query variables (e.g. in "start(X, Y)", X and Y would be such variables),
       // display their current values and ask the user if he/she wants to see more possible solutions
       if ($this->displayQCount > 0) {
-        write("Success: ");
-        int cnt = 0;
-        for (int i = 0; i < 100; i++)  // yes, we do not allow more than 100 query variables!
-          if ($this->displayQValue[i]) {
-            cnt++;  // if Q[i] is to be displayed, just do that
-            write(((Variable)$this->queryVariables.elementAt(i)).name + " = ");
-            write(((Variable)$this->queryVariables.elementAt(i))->__toString());
-            if (cnt < $this->displayQCount) write(", ");
+        $this->write("Success: ");
+        $cnt = 0;
+        for ($i = 0; $i < 100; $i++)  // yes, we do not allow more than 100 query variables!
+          if ($this->displayQValue[$i]) {
+            $cnt++;  // if Q[i] is to be displayed, just do that
+            $this->write($this->queryVariables[$i]->name . " = ");
+            $this->write($this->queryVariables[$i]->__toString());
+            if ($cnt < $this->displayQCount) $this->write(", ");
               else $this->writeLn(".");
           }
       }
@@ -1034,15 +1034,11 @@ class WAM {
         $this->writeLn("Success.");
         // if there are any more choicepoints left, ask the user if they shall be tried
         if ($this->choicePoint != null) {
-          if (GUImode == 0) {
-            write("More? ([y]es/[n]o) ");
-            answer = readLn();
+
+            $this->write("More? ([y]es/[n]o) ");
+            $answer = $this->readLn();
             $this->writeLn("");
-          }
-          else {
-            Dialog dlg = new Dialog(frame, "Decision", true);
-            dlg.show();
-          }
+
         }
         else
           break;
@@ -1052,28 +1048,28 @@ class WAM {
 //        break;
 //      }
       // if the users decided to see more, show him/her. otherwise: terminate
-      if ((answer.compareTo("y") == 0) || (answer.compareTo("yes") == 0))
+      if (($answer=="y") || ($this->answer=="yes"))
         $this->backtrack();
-    } while ((answer.compareTo("y") == 0) || (answer.compareTo("yes") == 0));
-    reset();
+    } while (($answer=="y") || ($answer=="yes"));
+    $this->reset();
     return true;
   } // end of WAM.runQuery(String)
 
   // the WAM's main loop
-  public static function main(String args[]) {
-    System.out.println("\nWelcome to Stu's mighty WAM!");
-    System.out.println("(December 2001 - February 2002 by Stefan Buettcher)\n");
-    System.out.println("Type \"help\" to get some help.\n");
-    WAM wam = new WAM(new Program());
-    wam.p.owner = wam;
-    String s;
+  public static function main(array $args) {
+    echo"\nWelcome to Stu's mighty WAM!";
+    echo "(December 2001 - February 2002 by Stefan Buettcher)\n";
+    echo "Type \"help\" to get some help.\n";
+    $wam = new WAM(new Program());
+    $wam->p->owner = $wam;
+    $s = '';
     do {
-      wam.writeLn("");
-      wam.write("QUERY > ");
-      s = wam.readLn();
-      wam.writeLn("");
-    } while ((s != null) && (wam.runQuery(s)));
-    wam.writeLn("Goodbye!"); wam.writeLn("");
+      $wam->writeLn("");
+      $wam->write("QUERY > ");
+      $s = $wam->readLn();
+      $wam->writeLn("");
+    } while (($s != null) && ($wam->runQuery(s)));
+    $wam->writeLn("Goodbye!"); $wam->writeLn("");
   } // end of WAM.main(String[])
 
 } // end of class WAM
