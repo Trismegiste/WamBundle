@@ -1229,7 +1229,7 @@ class WAM
 //        break;
 //      }
             // if the users decided to see more, show him/her. otherwise: terminate
-            if (($answer == "y") || ($this->answer == "yes"))
+            if (($answer == "y") || ($answer == "yes"))
                 $this->backtrack();
         } while (($answer == "y") || ($answer == "yes"));
         $this->reset();
