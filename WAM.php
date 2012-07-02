@@ -102,7 +102,7 @@ class WAM
         $this->env = new Environment(999999999, null);  // empty environment
         $this->continuationPointer = -1;  // no continuation point
         $this->trail = new Trail();
-        $this->queryVariables = new Vector();
+        $this->queryVariables = array();
         $this->displayQCount = 0;
         $this->displayQValue = array_fill(0, 100, false);
         $this->choicePoint = null;
@@ -124,47 +124,34 @@ class WAM
         }
     }
 
-// end of WAM.readLn()
-    /*
-      // displays a string
-      public void write(String s) {
-      if (GUImode == 0)
-      System.out.print(s);
-      else
-      response.append(s);
-      } // end of WAM.write(String)
-
-      // displays a string followed by CRLF
-      public void writeLn(String s) {
-      if (GUImode == 0)
-      System.out.println(s);
-      else
-      response.append(s + "\n");
-      } // end of WAM.writeLn(String)
-
-      // displays a debug information line
-      public void debug(String s, int debugLevel) {
-      if (debugLevel < 0) {
-      if (benchmarkOn > 0)
-      writeLn(s);
-      }
-      else
-      if ($this->debugOn >= debugLevel)
-      writeLn(s);
-      } // end of WAM.debug(String, int)
-     */
-
-    public function debug($str, $lvl)
+    // end of WAM.readLn()
+    // displays a string
+    public function write($s)
     {
-        print_r($str);
-        echo "\n";
+        echo $s;
     }
 
-    public function writeLn($str)
+// end of WAM.write(String)
+    // displays a string followed by CRLF
+    public function writeLn($s)
     {
-        echo $str . "\n";
+        echo $s . "\n";
     }
 
+// end of WAM.writeLn(String)
+    // displays a debug information line
+    public function debug($s, $debugLevel)
+    {
+        if ($debugLevel < 0) {
+            if ($this->benchmarkOn > 0)
+                $this->writeLn($s);
+        }
+        else
+        if ($this->debugOn >= $debugLevel)
+            $this->writeLn($s);
+    }
+
+// end of WAM.debug(String, int)
     // formats an integer to a string
     private function int2FormatStr($i)
     {
@@ -260,9 +247,9 @@ class WAM
             $q->name = $name;
             // update displayQ-stuff
             $i = $this->parseInt(substr($v, 1));
-            if (!$this->displayQValue[i]) {
+            if (!$this->displayQValue[$i]) {
                 $this->displayQCount++;
-                $this->displayQValue[i] = true;
+                $this->displayQValue[$i] = true;
             }
         }
         $this->programCounter++;
@@ -273,8 +260,8 @@ class WAM
     private function comparison($s1, $s2, $comparator)
     {
         // comparator values: 1 = "<", 2 = "<=", 3 = ">=", 4 = ">", 5 = "!="
-        $v1 = $this->get_ref(s1)->deref();
-        $v2 = $this->get_ref(s2)->deref();
+        $v1 = $this->get_ref($s1)->deref();
+        $v2 = $this->get_ref($s2)->deref();
         if (($v1->tag == self::CON) && ($v2->tag == self::CON)) {
             //int compareValue;
             try {
@@ -571,7 +558,7 @@ class WAM
         $struc = $this->get_ref($s);
         $head = $this->get_ref($h);
         $tail = $this->get_ref($t);
-        if ($this->unify_struc2(struc, head, tail))
+        if ($this->unify_struc2($struc, $head, $tail))
             $this->programCounter++;
         else
             $this->backtrack();
@@ -832,9 +819,9 @@ class WAM
                 $this->backtrack();
         }
         else if ($index == self::callLoad)
-            load($v->__toString());
+            $this->load($v->__toString());
         else if ($index == self::callConsult)
-            consult($v->__toString());
+            $this->consult($v->__toString());
         else if ($index == self::callReadLn) {
             $w = new Variable("", $this->readLn());  // TODO foireux ?
             $this->unify_variable2($v->deref(), $w);
@@ -895,7 +882,7 @@ class WAM
         $pc = new PrologCompiler($this);
         $prog = $pc->compileSimpleClause($clause . ".");
         if ($prog != null) {
-            $p->addClause($label, $prog);
+            $this->p->addClause($label, $prog);
             $this->programCounter++;
             $v = new Variable("", $label);
             $v->tag = ASSERT;
@@ -1023,7 +1010,7 @@ class WAM
                 $this->writeLn("(" + $this->int2FormatStr($this->programCounter) + ")  " + $s->__toString());
 
             // we have introduced an artificial stack overflow limit in order to prevent the WAM from infinite execution
-            if ($this->opCount++ > maxOpCount) {
+            if ($this->opCount++ > $this->maxOpCount) {
                 $this->writeLn("Maximum OpCount reached. Think of this as a stack overflow.");
                 $this->failed = true;
                 break;
@@ -1264,7 +1251,7 @@ class WAM
             $wam->write("QUERY > ");
             $s = $wam->readLn();
             $wam->writeLn("");
-        } while (($s != null) && ($wam->runQuery(s)));
+        } while (($s != null) && ($wam->runQuery($s)));
         $wam->writeLn("Goodbye!");
         $wam->writeLn("");
     }
@@ -1273,4 +1260,13 @@ class WAM
 }
 
 // end of class WAM
+require_once('Program.php');
+require_once('Statement.php');
+require_once('CodeReader.php');
+require_once('CompilerStructure.php');
+require_once('Compiler.php');
+require_once('QueryCompiler.php');
+require_once('PrologCompiler.php');
+require_once('InnerClass.php');
 
+WAM::main($argv);
