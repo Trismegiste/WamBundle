@@ -211,6 +211,7 @@ class WAM
     }
 
     // returns the Variable pointer belonging to a string, e.g. "A3", "Y25"
+    // TODO preg_match all of this
     private function get_ref($name)
     {
         $anArray = array();
@@ -1017,6 +1018,7 @@ class WAM
             }
 
             // select WAM command and execute the responsible method, e.g. "deallocate()"
+            // TODO switch FFS !
             $op = $s->operator;
             if ($op == self::opAllocate)
                 $this->allocate();
