@@ -63,7 +63,7 @@ class WAM
     const callCall = -23;
 
     // internal parameters, accessible by using the "set" command
-    public $debugOn = 0;   // display debug information?
+    public $debugOn = 1;   // display debug information?
     private $benchmarkOn = 0;   // show benchmark information?
     private $maxOpCount = 50000000;  // artificial stack overflow limit
     public $opCount, $backtrackCount;
@@ -167,41 +167,46 @@ class WAM
     }
 
 // end of WAM.int2FormatStr(int)
-    /*
-      // displays the values of all internal parameters that can be modyfied using the "set" command
-      private function displayInternalVariables() {
-      $this->getInternalVariable("autostop");
-      getInternalVariable("benchmark");
-      getInternalVariable("debug");
-      } // end of WAM.displayInternalVariables()
+    // displays the values of all internal parameters that can be modyfied using the "set" command
+    private function displayInternalVariables()
+    {
+        $this->getInternalVariable("autostop");
+        $this->getInternalVariable("benchmark");
+        $this->getInternalVariable("debug");
+    }
 
-      // sets the internal parameter specified by variable to a new value
-      private void setInternalVariable(String variable, String value) {
-      try {
-      if (variable.compareToIgnoreCase("autostop") == 0)
-      maxOpCount = parseInt(value);
-      if (variable.compareToIgnoreCase("benchmark") == 0)
-      benchmarkOn = parseInt(value);
-      if (variable.compareToIgnoreCase("debug") == 0)
-      $this->debugOn = parseInt(value);
-      getInternalVariable(variable);
-      } catch (Exception e) {
-      writeLn("An error occurred. Illegal query.");
-      }
-      } // end of WAM.setInternalVariable(String, String)
+// end of WAM.displayInternalVariables()
+    // sets the internal parameter specified by variable to a new value
+    private function setInternalVariable($variable, $value)
+    {
+        try {
+            if ($variable === "autostop")
+                $this->maxOpCount = $this->parseInt($value);
+            if ($variable === "benchmark")
+                $this->benchmarkOn = $this->parseInt($value);
+            if ($variable === "debug")
+                $this->debugOn = $this->parseInt($value);
+            $this->getInternalVariable($variable);
+        } catch (Exception $e) {
+            $this->writeLn("An error occurred. Illegal query.");
+        }
+    }
 
-      // displays the value of the internal parameter specified by variable
-      private void getInternalVariable(String variable) {
-      if (variable.compareToIgnoreCase("autostop") == 0)
-      writeLn("Internal variable AUTOSTOP = " + maxOpCount);
-      else if (variable.compareToIgnoreCase("benchmark") == 0)
-      writeLn("Internal variable BENCHMARK = " + benchmarkOn);
-      else if (variable.compareToIgnoreCase("debug") == 0)
-      writeLn("Internal variable DEBUG = " + $this->debugOn);
-      else
-      writeLn("Unknown internal variable.");
-      } // end of WAM.getInternalVariable(String)
-     */
+// end of WAM.setInternalVariable(String, String)
+    // displays the value of the internal parameter specified by variable
+    private function getInternalVariable($variable)
+    {
+        if ($variable === "autostop")
+            $this->writeLn("Internal variable AUTOSTOP = " . $this->maxOpCount);
+        else if ($variable === "benchmark")
+            $this->writeLn("Internal variable BENCHMARK = " . $this->benchmarkOn);
+        else if ($variable === "debug")
+            $this->writeLn("Internal variable DEBUG = " . $this->debugOn);
+        else
+            $this->writeLn("Unknown internal variable.");
+    }
+
+// end of WAM.getInternalVariable(String)
 
     private function parseInt($number)
     {
@@ -1008,7 +1013,7 @@ class WAM
             $s = $this->p->getStatement($this->programCounter);  // get current WAM statement
 
             if ($this->debugOn > 0)  // display statement and line number information in case of debug mode
-                $this->writeLn("(" + $this->int2FormatStr($this->programCounter) + ")  " + $s->__toString());
+                $this->writeLn("(" + $this->int2FormatStr($this->programCounter) + ")  " . $s->__toString());
 
             // we have introduced an artificial stack overflow limit in order to prevent the WAM from infinite execution
             if ($this->opCount++ > $this->maxOpCount) {
