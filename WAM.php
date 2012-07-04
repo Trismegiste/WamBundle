@@ -63,7 +63,7 @@ class WAM
     const callCall = -23;
 
     // internal parameters, accessible by using the "set" command
-    public $debugOn = 1;   // display debug information?
+    public $debugOn = 0;   // display debug information?
     private $benchmarkOn = 0;   // show benchmark information?
     private $maxOpCount = 50000000;  // artificial stack overflow limit
     public $opCount, $backtrackCount;
@@ -1217,12 +1217,14 @@ class WAM
                             $this->write(", ");
                         else
                             $this->writeLn(".");
+                        $this->backtrack();
+                        $answer = 'y';
                     }
             }
             else
                 $this->writeLn("Success.");
             // if there are any more choicepoints left, ask the user if they shall be tried
-            if ($this->choicePoint != null) {
+      /*      if ($this->choicePoint != null) {
 
                 $this->write("More? ([y]es/[n]o) ");
                 $answer = $this->readLn();
@@ -1237,7 +1239,7 @@ class WAM
 //      }
             // if the users decided to see more, show him/her. otherwise: terminate
             if (($answer == "y") || ($answer == "yes"))
-                $this->backtrack();
+                $this->backtrack();*/
         } while (($answer == "y") || ($answer == "yes"));
         $this->reset();
         return true;
