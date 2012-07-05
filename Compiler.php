@@ -512,7 +512,7 @@ abstract class Compiler {
 // end of Compiler.stringToList(String)
 
     public function substituteVariable($variable) {
-        if ((strlen($variable) > 0) && ($variable !== "_"))
+        if ((strlen($variable) > 0) && (strcmp($variable, "_") != 0))
             foreach ($this->substitutionList as $item)
                 if ($variable === $item->key) {
                     $this->lastVar = $item->stringValue;
@@ -527,7 +527,7 @@ abstract class Compiler {
 // end of Compiler.substituteVariable(String)
 
     public function firstOccurrence($variable) {
-        if ((strlen($variable) > 0) && ($variable === "_"))
+        if ((strlen($variable) > 0) && (strcmp($variable, "_") != 0))
             foreach ($this->substitutionList as $item)
                 if ($variable === $item->key)
                     return false;
