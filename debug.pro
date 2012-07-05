@@ -17,3 +17,5 @@ parent(X, Y) :- pere(X, Y).
 parent(X, Y) :- mere(X, Y).
 
 frere(X, Y) :- parent(Z, X) , parent(Z, Y), X != Y.
+
+equal(X, X).

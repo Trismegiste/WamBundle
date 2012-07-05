@@ -694,7 +694,7 @@ class WAM
         foreach ($this->arguments as $item)
             $wam2->arguments[] = new Variable($item);
         // we don't need any benchmarking information from the child WAM
-        $wam2->debugOn = $$this->debugOn;
+        $wam2->debugOn = $this->debugOn;
         $wam2->benchmarkOn = 0;
         $wam2->run();
         $wam2failed = $wam2->failed;
