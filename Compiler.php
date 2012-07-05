@@ -60,7 +60,7 @@ abstract class Compiler {
 // end of Compiler.isPredicate()
 
     public function isVariable($s) {
-        if ($s === "_")
+        if (strcmp($s, "_") == 0)
             return true;
         $c = $s[0];
         if (($c >= 'A') && ($c <= 'Z')) {
@@ -514,7 +514,7 @@ abstract class Compiler {
     public function substituteVariable($variable) {
         if ((strlen($variable) > 0) && (strcmp($variable, "_") != 0))
             foreach ($this->substitutionList as $item)
-                if ($variable === $item->key) {
+                if (strcmp($variable, $item->key) == 0) {
                     $this->lastVar = $item->stringValue;
                     return $this->lastVar;
                 }
