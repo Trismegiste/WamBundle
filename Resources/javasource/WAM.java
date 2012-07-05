@@ -75,7 +75,7 @@ public class WAM {
     public Variable reference; // variable's content in case of REF
     public String name;        // name of variable, e.g. when it's a query variable
     public Variable head, tail;  // list/struc stuff
-    public ChoicePoint cutLevel;  // für the cut and get_level instructions
+    public ChoicePoint cutLevel;  // fï¿½r the cut and get_level instructions
 
     // constructor for creating a new, unbound variable without a name
     public Variable() {
@@ -543,6 +543,7 @@ public class WAM {
 
   private void get_constant(String c, String variable) {
     Variable v = get_ref(variable).deref();
+    writeLn(variable + " => " + v + " (" + c + ")");
     boolean fail = true;
     if (v.tag == REF) {
       trail.addEntry(v);

@@ -64,8 +64,8 @@ class Variable {
         $this->tag = $source->tag;
         if ($this->tag == WAM::REF)
             $this->reference = $source->reference;
-        else if ($this->tag == WAM::CON)
-            $this->value = $source->value;
+        elseif ($this->tag == WAM::CON)
+            $this->value = (string) $source->value;
         else {
             $this->head = $source->head;
             $this->tail = $source->tail;

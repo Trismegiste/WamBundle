@@ -436,6 +436,7 @@ class WAM
     private function get_constant($c, $variable)
     {
         $v = $this->get_ref($variable)->deref();
+        echo "$variable => $v ($c)\n";
         $fail = true;
         if ($v->tag == self::REF) {
             $this->trail->addEntry($v);
