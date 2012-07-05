@@ -248,7 +248,7 @@ class WAM
     // gives a name to a variable; usually used on Qxx variables that occur within the query
     private function create_variable($v, $name)
     {
-        if ($name !== "_") {  // keep "_" from being displayed as solution
+        if (strcmp($name, "_") != 0) {  // keep "_" from being displayed as solution
             $q = $this->get_ref($v);
             $q->name = $name;
             // update displayQ-stuff
