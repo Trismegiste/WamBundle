@@ -63,7 +63,7 @@ class WAM
     const callCall = -23;
 
     // internal parameters, accessible by using the "set" command
-    public $debugOn = 0;   // display debug information?
+    public $debugOn = 1;   // display debug information?
     private $benchmarkOn = 0;   // show benchmark information?
     private $maxOpCount = 50000000;  // artificial stack overflow limit
     public $opCount, $backtrackCount;
@@ -442,8 +442,8 @@ class WAM
             $v->tag = self::CON;
             $v->value = $c;
             $fail = false;
-        } else if ($v->tag == self::CON) {
-            if ($c === $v->value)
+        } elseif ($v->tag == self::CON) {
+            if (strcmp($c, $v->value) == 0)
                 $fail = false;
         }
         if ($fail)

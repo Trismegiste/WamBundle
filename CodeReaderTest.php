@@ -19,8 +19,8 @@ $p = $c->compile("pere(X, luke).");
 
 echo $p;*/
 
-$c = new PrologCompiler(new WAM());
-$p = $c->compileFile('fixtures_test.pro');
-//$p = $c->compile("female(X) :- not(male(X)).");
+$c = new PrologCompiler(new WAM(new Program()));
+$p = $c->compileFile('debug.pro');
+//$p = $c->compile("not(Call) :- call(Call), !, fail. not(Call).");
 
-echo $p;
+echo $p."\n";
