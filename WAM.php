@@ -1169,20 +1169,11 @@ class WAM
             return true;
         }
         if ((strlen($s) > 4) && (substr($s, 0, 4) == "set ")) {  // TODO preg_match
-            $s = substr($s, 4);  // set an internal parameter's new value
-            $i = strpos($s, ' ');
-            while ($i >= 0) {
-                $s = substr($s, 0, $i) . substr($s, $i + 1);
-                $i = strpos($s, ' ');
+            if (preg_match('#^set\s+([A-Za-z]+)=(.+)$#', $s, $match)) {
+                $this->setInternalVariable($match[1], $match[2]);
+            } elseif (preg_match('#^set\s+([A-Za-z]+)\s*$#', $s, $match)) {
+                $this->getInternalVariable($match[1]);
             }
-            $i = strpos($s, '=');
-            if ($i >= 0) {
-                $variable = substr($s, 0, $i);
-                $value = substr($s, $i + 1);
-                $this->setInternalVariable($variable, $value);
-            }
-            else  // if no new value has been specified, display the current
-                $this->getInternalVariable($s);
             return true;
         } // end of "set ..." command
 
