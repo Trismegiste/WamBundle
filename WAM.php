@@ -155,6 +155,7 @@ class WAM
     // formats an integer to a string
     private function int2FormatStr($i)
     {
+        return str_pad($i, 4, '0', STR_PAD_LEFT);
         $result = "";
         if ($i < 1000)
             $result .= "0";
@@ -436,7 +437,6 @@ class WAM
     private function get_constant($c, $variable)
     {
         $v = $this->get_ref($variable)->deref();
-        echo "$variable => $v ($c)\n";
         $fail = true;
         if ($v->tag == self::REF) {
             $this->trail->addEntry($v);
@@ -999,6 +999,23 @@ class WAM
         $this->writeLn("" . $this->p->getStatementCount() . " lines of code in memory.");
     }
 
+    public function traceOn()
+    {
+        $this->write("A=[");
+            foreach ($this->arguments as $v) {
+                $this->write($v->tag . "/");
+                $this->write($v->value);
+                $this->write("(".$v.") ");
+            }
+            $this->write("] V=[");
+            foreach ($this->env->variables as $v) {
+                $this->write($v->tag . "/");
+                $this->write($v->value);
+                $this->write("(".$v.") ");
+            }
+            $this->writeLn("]");
+    }
+
 // end of WAM.showHelp()
     // run starts the actual execution of the program in memory
     public function run()
@@ -1014,7 +1031,7 @@ class WAM
             $s = $this->p->getStatement($this->programCounter);  // get current WAM statement
 
             if ($this->debugOn > 0)  // display statement and line number information in case of debug mode
-                $this->writeLn("(" + $this->int2FormatStr($this->programCounter) + ")  " . $s->__toString());
+                $this->writeLn("(" . $this->int2FormatStr($this->programCounter) . ")  " . $s->__toString());
 
             // we have introduced an artificial stack overflow limit in order to prevent the WAM from infinite execution
             if ($this->opCount++ > $this->maxOpCount) {
@@ -1022,6 +1039,8 @@ class WAM
                 $this->failed = true;
                 break;
             }
+
+            $this->traceOn();
 
             // select WAM command and execute the responsible method, e.g. "deallocate()"
             // TODO switch FFS !
@@ -1086,6 +1105,9 @@ class WAM
                 $this->writeLn("Invalid operation in line " . $this->int2FormatStr($this->programCounter));
                 $this->backtrack();
             }
+
+            $this->traceOn();
+
         }; // end of while (programCounter >= 0)
         if ($this->failed) {
             while ($this->choicePoint !== null)

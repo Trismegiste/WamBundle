@@ -543,7 +543,7 @@ public class WAM {
 
   private void get_constant(String c, String variable) {
     Variable v = get_ref(variable).deref();
-    writeLn(variable + " => " + v + " (" + c + ")");
+    //writeLn(variable + " => " + v + " (" + c + ")");
     boolean fail = true;
     if (v.tag == REF) {
       trail.addEntry(v);
@@ -1029,6 +1029,25 @@ public class WAM {
     writeLn("" + p.getStatementCount() + " lines of code in memory.");
   } // end of WAM.showHelp()
 
+  protected void traceOn()
+  {
+      write("A=[");
+      for (int i = 0; i < arguments.size(); i++) {
+          Variable v = (Variable) arguments.elementAt(i);
+          write(v.tag + "/");
+          write(v.value);
+          write("("+v.toString()+") ");
+      }
+      write("] V=[");
+      for (int i = 0; i < env.variables.size(); i++) {
+          Variable v = (Variable) env.variables.elementAt(i);
+          write(v.tag + "/");
+          write(v.value);
+          write("("+v.toString()+") ");
+      }
+      writeLn("]");
+  }
+
   // run starts the actual execution of the program in memory
   public void run() {
     // opCount and backtrackCount are used for benchmarking
@@ -1050,6 +1069,8 @@ public class WAM {
         failed = true;
         break;
       }
+
+      traceOn();
 
       // select WAM command and execute the responsible method, e.g. "deallocate()"
       int op = s.operator;
@@ -1085,6 +1106,9 @@ public class WAM {
         writeLn("Invalid operation in line " + int2FormatStr(programCounter));
         backtrack();
       }
+
+      traceOn();
+
     }; // end of while (programCounter >= 0)
     if (failed) {
       while (choicePoint != null) backtrack();
