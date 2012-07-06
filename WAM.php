@@ -448,7 +448,7 @@ class WAM
 
     private function unify_variable2($v1, $v2)
     {
-        if (($v1 == null) || ($v2 == null))
+        if (($v1 === null) || ($v2 === null))
             return false;
         $v1 = $v1->deref();
         $v2 = $v2->deref();

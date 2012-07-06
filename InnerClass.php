@@ -87,7 +87,7 @@ class Variable {
 // end of Variable.deref()
     // returns a string in the form NAME = VALUE, representing the variable's value
     public function __toString() {
-        if (($this->tag == WAM::REF) && ($this->reference == $this))
+        if (($this->tag == WAM::REF) && ($this->reference === $this))
             return "_"; // "(unbound variable)";
         if ($this->tag == WAM::CON) {
 //        if (value.indexOf(' ') < 0) {
@@ -116,7 +116,7 @@ class Variable {
     public function toString2() {
         if ($this->tag == WAM::LIS) {
             $result = $this->head->__toString();
-            if (($this->tail != null) && ($this->tail->tag != WAM::CON))
+            if (($this->tail !== null) && ($this->tail->tag != WAM::CON))
                 $result .= ", " . $this->tail->toString2();
             return $result;
         }
