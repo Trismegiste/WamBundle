@@ -74,9 +74,9 @@ class Variable {
 
     // dereferencing: if this variable points to another var, then return that dereferenced
     public function deref() {
-        if (($this->tag == WAM::REF) && ($this->reference != $this)) {
+        if (($this->tag == WAM::REF) && ($this->reference !== $this)) {
             $result = $this->reference;
-            while (($result->tag == WAM::REF) && ($result->reference != $result))
+            while (($result->tag == WAM::REF) && ($result->reference !== $result))
                 $result = $result->reference;
             return $result;
         }
