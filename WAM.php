@@ -63,7 +63,7 @@ class WAM
     const callCall = -23;
 
     // internal parameters, accessible by using the "set" command
-    public $debugOn = 1;   // display debug information?
+    public $debugOn = 0;   // display debug information?
     private $benchmarkOn = 0;   // show benchmark information?
     private $maxOpCount = 50000000;  // artificial stack overflow limit
     public $opCount, $backtrackCount;
@@ -1031,7 +1031,8 @@ class WAM
                 break;
             }
 
-            $this->traceOn();
+            if ($this->debugOn > 1)
+                $this->traceOn();
 
             // select WAM command and execute the responsible method, e.g. "deallocate()"
             // TODO switch FFS !
@@ -1097,7 +1098,8 @@ class WAM
                 $this->backtrack();
             }
 
-            $this->traceOn();
+            if ($this->debugOn > 1)
+                $this->traceOn();
 
         }; // end of while (programCounter >= 0)
         if ($this->failed) {
@@ -1272,6 +1274,7 @@ class WAM
         do {
             $wam->writeLn("");
             $wam->write("QUERY > ");
+            //$s = "consult('debug.pro'), grandmere(shmi,K).";
             $s = $wam->readLn();
             $wam->writeLn("");
         } while (($s != null) && ($wam->runQuery($s)));
