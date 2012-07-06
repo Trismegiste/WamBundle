@@ -156,15 +156,6 @@ class WAM
     private function int2FormatStr($i)
     {
         return str_pad($i, 4, '0', STR_PAD_LEFT);
-        $result = "";
-        if ($i < 1000)
-            $result .= "0";
-        if ($i < 100)
-            $result .= "0";
-        if ($i < 10)
-            $result .= "0";
-        $result .= $i;
-        return $result;
     }
 
 // end of WAM.int2FormatStr(int)
