@@ -100,7 +100,7 @@ class WAM
         $this->arguments[] = new Variable();
         $this->env = new Environment(999999999, null);  // empty environment
         $this->continuationPointer = -1;  // no continuation point
-        $this->trail = new Trail();
+        $this->trail = new Trail();   // TODO adding $this in the constructor => typing with interface
         $this->queryVariables = array();
         $this->displayQCount = 0;
         $this->displayQValue = array_fill(0, 100, false);
@@ -171,7 +171,7 @@ class WAM
     private function setInternalVariable($variable, $value)
     {
         try {
-            if ($variable === "autostop")
+            if ($variable === "autostop")  // TODO switch FFS
                 $this->maxOpCount = $this->parseInt($value);
             if ($variable === "benchmark")
                 $this->benchmarkOn = $this->parseInt($value);
@@ -187,7 +187,7 @@ class WAM
     // displays the value of the internal parameter specified by variable
     private function getInternalVariable($variable)
     {
-        if ($variable === "autostop")
+        if ($variable === "autostop")  // TODO switch or array for refactoring
             $this->writeLn("Internal variable AUTOSTOP = " . $this->maxOpCount);
         else if ($variable === "benchmark")
             $this->writeLn("Internal variable BENCHMARK = " . $this->benchmarkOn);
@@ -669,7 +669,7 @@ class WAM
 // end of WAM.call(int)
     // not_call performs a negated call by invoking a new WAM process
     // if the new process' execution fails, not_call is successful (backtrack, otherwise)
-    private function not_call($target)
+    private function not_call($target)  // TODO untested => remove ?
     {
         if (($target <= -10) && ($target >= -40)) {
             $this->backtrack();
