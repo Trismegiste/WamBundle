@@ -180,8 +180,7 @@ class Program
                 $code->getStatement(0)->setLabel($newLabel);
                 // update the previous clause: trust_me -> try_me_else
                 $s->setFunction("try_me_else");
-                $tab = $s->getArgs();
-                $tab[$newLabel] = 0;
+                $s->setArgAt($newLabel, 0);
                 $s->arg1 = $newLabel;
                 $s->setJump(count($this->statements));
                 // update labels and program itself
@@ -220,8 +219,7 @@ class Program
         for ($i = 0; $i < $cnt; $i++) {
             $s = $this->statements[$i];
             if (in_array($s->getFunction(), array("call", "not_call", "try_me_else", "retry_me_else"))) {
-                $label = $s->getArgs();
-                $label = $label[0];
+                $label = $s->getArgAt(0);
                 $s->setJump(-1);
                 if (array_key_exists($label, $this->labels)) // label is a user-defined predicate
                     $s->setJump($this->labels[$label]);
