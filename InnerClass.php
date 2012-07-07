@@ -203,7 +203,7 @@ class Trail {
 
     public function undo($index) {
         $v = $this->contents[$index];
-        if ($v != null) {
+        if ($v !== null) {
             if ($v->tag == WAM::ASSERT)
                 retract($v->value);     // TODO => ptr vers WAM ?
             else {

@@ -12,7 +12,6 @@
 // class WAM is the core and contains the essential functions of the WAM
 class WAM
 {
-
     const UNB = 0;  // variable-related constants:
     const REF = 1;  // tag == REF means this variable is a reference
     const CON = 2;  // this one has been bound to an immediate constant
@@ -993,18 +992,18 @@ class WAM
     public function traceOn()
     {
         $this->write("A=[");
-            foreach ($this->arguments as $v) {
-                $this->write($v->tag . "/");
-                $this->write($v->value);
-                $this->write("(".$v.") ");
-            }
-            $this->write("] V=[");
-            foreach ($this->env->variables as $v) {
-                $this->write($v->tag . "/");
-                $this->write($v->value);
-                $this->write("(".$v.") ");
-            }
-            $this->writeLn("]");
+        foreach ($this->arguments as $v) {
+            $this->write($v->tag . "/");
+            $this->write($v->value);
+            $this->write("(" . $v . ") ");
+        }
+        $this->write("] V=[");
+        foreach ($this->env->variables as $v) {
+            $this->write($v->tag . "/");
+            $this->write($v->value);
+            $this->write("(" . $v . ") ");
+        }
+        $this->writeLn("]");
     }
 
 // end of WAM.showHelp()
@@ -1100,7 +1099,6 @@ class WAM
 
             if ($this->debugOn > 1)
                 $this->traceOn();
-
         }; // end of while (programCounter >= 0)
         if ($this->failed) {
             while ($this->choicePoint !== null)
@@ -1224,14 +1222,12 @@ class WAM
                             $this->write(", ");
                         else
                             $this->writeLn(".");
-                        $this->backtrack();
-                        $answer = 'y';
                     }
             }
             else
                 $this->writeLn("Success.");
             // if there are any more choicepoints left, ask the user if they shall be tried
-      /*      if ($this->choicePoint != null) {
+            if ($this->choicePoint != null) {
 
                 $this->write("More? ([y]es/[n]o) ");
                 $answer = $this->readLn();
@@ -1246,7 +1242,7 @@ class WAM
 //      }
             // if the users decided to see more, show him/her. otherwise: terminate
             if (($answer == "y") || ($answer == "yes"))
-                $this->backtrack();*/
+                $this->backtrack();
         } while (($answer == "y") || ($answer == "yes"));
         $this->reset();
         return true;
