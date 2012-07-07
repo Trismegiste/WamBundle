@@ -156,11 +156,13 @@ class Statement {
     }
 
 // end of Statement.setFunction
-    // returns the operand strings vector
-    public function getArgs() {
-        return $this->args;
-    }
-    
+
+    /**
+     * Set the argument of this statement with $str at position $idx
+     * (java-style setElementAt() )
+     * @param string $str
+     * @param int $idx 
+     */
     public function setArgAt($str, $idx) {
         $this->args[$idx] = $str;
     }
@@ -169,7 +171,6 @@ class Statement {
         return $this->args[$idx];
     }
 
-// end of Statement.getArgs()
     // for code dumping: print the statement: "label: operator op1 op2"
     public function __toString() {
         if ($this->label == ";")
