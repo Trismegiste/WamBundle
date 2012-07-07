@@ -882,7 +882,7 @@ class WAM
             $this->p->addClause($label, $prog);
             $this->programCounter++;
             $v = new Variable("", $label);
-            $v->tag = ASSERT;
+            $v->tag = self::ASSERT;
             $this->trail->addEntry($v);
         }
         else
