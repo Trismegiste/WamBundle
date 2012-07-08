@@ -2,16 +2,16 @@
 
 require_once('PrologContext.php');
 
-/* * *****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  * developed:   December 2001 until February 2002
  * 
- * Translated from Java to PHP 5.3 by Trismegiste http://github.com/Trismegiste
+ * Translated from Java to PHP 5.3 by Florent Genette (Trismegiste)
+ * http://github.com/Trismegiste/WamBundle  
+ * June to July 2012 (yes, 10 years after the original version !)
  *
  * WAM.java contains the actual WAM 
- * **************************************************************************** */
-
-// class WAM is the core and contains the essential functions of the WAM
+ */
 class WAM implements PrologContext
 {
     const UNB = 0;  // variable-related constants:

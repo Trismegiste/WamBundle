@@ -125,8 +125,9 @@ class Variable {
 // end of Variable.toString2()
 }
 
-// end of class Variable
-// class ChoicePoint implements the choice point concept, as presented by Ait-Kaci
+/** 
+ * class ChoicePoint implements the choice point concept, as presented by Ait-Kaci
+ */
 class ChoicePoint {
 
     public $arguments = array();             // the Ai variables
@@ -153,8 +154,9 @@ class ChoicePoint {
 // end of ChoicePoint.ChoicePoint
 }
 
-// end of class ChoicePoint
-// class Environment for storing local variables that must not be overridden
+/** 
+ * class Environment for storing local variables that must not be overridden
+ */
 class Environment {
 
     public $variables = array();
@@ -171,8 +173,9 @@ class Environment {
 // end of Environment.Environment(int, Environment)
 }
 
-// end of class Environment
-// Trail implements the WAM's trail (undo-list for bindings performed)
+/**
+ * Trail implements the WAM's trail (undo-list for bindings performed)
+ */
 class Trail {
 
     private $contents = array();
@@ -213,5 +216,3 @@ class Trail {
     }
 
 }
-
-// end of class Trail
