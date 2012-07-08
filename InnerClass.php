@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * This class is an Y(n) in the W.A.M
+ */
 class Variable {
 
     public $tag;            // UNB, REF, CON, LIS or STR
@@ -95,10 +98,6 @@ class Variable {
                 return substr($this->value, 0, strlen($this->value) - 2);
             else
                 return $this->value;
-
-//        }
-//        else
-//          return("'" + value + "'");
         }
         if ($this->tag == WAM::LIS)
             return "[" . $this->toString2() . "]";
