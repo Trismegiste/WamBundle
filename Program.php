@@ -218,7 +218,7 @@ class Program
         }
         for ($i = 0; $i < $cnt; $i++) {
             $s = $this->statements[$i];
-            if (in_array($s->getFunction(), array("call", "not_call", "try_me_else", "retry_me_else"))) {
+            if (in_array($s->getFunction(), array("call", "try_me_else", "retry_me_else"))) {
                 $label = $s->getArgAt(0);
                 $s->setJump(-1);
                 if (array_key_exists($label, $this->labels)) // label is a user-defined predicate

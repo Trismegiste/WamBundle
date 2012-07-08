@@ -28,7 +28,6 @@ class CompilerStructure {
     const BODY = +9;   // this is a PROCEDURE's body, i.e. a list of CONDITIONs
     const CALL = 10;   // this is a condition, e.g. "father(X, Y)", composed of the PREDICATE name
     // and a LIST of calling arguments
-    const NOT_CALL = 11;   // negated call, invokes a new process and returns true upon failure
     const UNIFICATION = 12;   // this is a unification of the form "X = Y" (args in head and tail).
     const ASSIGNMENT = 13;   // this is an assignment of the form "X = 1 + 3",
     // where X can be found in head, + in tail.value and 1 (3) in tail.head (tail.tail)
@@ -99,12 +98,6 @@ class CompilerStructure {
                 return $this->head->__toString();
             else
                 return $this->head->__toString() . "(" . $this->tail->__toString() . ")";
-        }
-        else if ($this->type == self::NOT_CALL) {
-            if ($this->tail == null)
-                return "not " . $this->head->__toString();
-            else
-                return "not " . $this->head->__toString() . "(" . $this->tail->__toString() . ")";
         }
         else if ($this->type == self::COMPARISON) {
             return $this->head->__toString() . " " . $this->value . " " . $this->tail->__toString();

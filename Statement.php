@@ -41,7 +41,6 @@ class Statement {
     const opUnifyVariable = 25;
     const opBiggerEq = 27;
     const opSmallerEq = 28;
-    const opNotCall = 29;
 
     const callWrite = -10;
     const callWriteLn = -11;
@@ -100,7 +99,6 @@ class Statement {
             "bigger" => self::opBigger,
             "biggereq" => self::opBiggerEq,
             "call" => self::opCall,
-            "not_call" => self::opNotCall,
             "create_variable" => self::opCreateVariable,
             "cut" => self::opCut,
             "deallocate" => self::opDeallocate,

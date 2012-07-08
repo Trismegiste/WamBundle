@@ -318,20 +318,6 @@ abstract class Compiler {
         }
 
         $prog = $oldProg;
-        if (($this->token($prog, "not")) && ($this->predicate($prog, $struc->head))) {
-            $struc->type = CompilerStructure::NOT_CALL;
-            if ($this->isNextToken($prog, "(")) {
-                $this->token($prog, "(");
-                if (($this->listx($prog, $struc->tail)) && ($this->token($prog, ")")))
-                    return true;
-            }
-            else {
-                $struc->tail = null;
-                return true;
-            }
-        }
-
-        $prog = $oldProg;
         if ($this->predicate($prog, $struc->head)) {
             $struc->type = CompilerStructure::CALL;
             if ($this->isNextToken($prog, "(")) {
@@ -549,7 +535,7 @@ abstract class Compiler {
             $result->addProgram($this->structureToCode($struc->head));
             $result->addProgram($this->structureToCode($struc->tail));
         } // end of case CompilerStructure::PROGRAM
-        else if (($struc->type == CompilerStructure::CALL) || ($struc->type == CompilerStructure::NOT_CALL)) {
+        else if ($struc->type == CompilerStructure::CALL) {
             $this->bodyCalls++;
             if ($struc->tail != null) {
                 $s = $struc->tail;
@@ -570,11 +556,8 @@ abstract class Compiler {
                     $s = $s->tail;
                 } while ($s != null);
             }
-            if ($struc->type == CompilerStructure::CALL)
-                $result->addStatement(new Statement("", "call", $struc->head->value));
-            else
-                $result->addStatement(new Statement("", "not_call", $struc->head->value));
-        } // end of case CompilerStructure::CALL / CompilerStructure::NOT_CALL
+            $result->addStatement(new Statement("", "call", $struc->head->value));
+        } // end of case CompilerStructure::CALL 
         else if ($struc->type == CompilerStructure::UNIFICATION) {
             $result->addProgram($this->structureToCode($struc->head));
             $headVar = $this->lastVar;

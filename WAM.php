@@ -47,7 +47,6 @@ class WAM implements PrologContext
     const opUnifyVariable = 25;
     const opBiggerEq = 27;
     const opSmallerEq = 28;
-    const opNotCall = 29;
     const callWrite = -10;
     const callWriteLn = -11;
     const callNewLine = -12;
@@ -669,43 +668,6 @@ class WAM implements PrologContext
     }
 
 // end of WAM.call(int)
-    // not_call performs a negated call by invoking a new WAM process
-    // if the new process' execution fails, not_call is successful (backtrack, otherwise)
-    private function not_call($target)  // TODO untested => remove ?
-    {
-        if (($target <= -10) && ($target >= -40)) {
-            $this->backtrack();
-            return;
-        }
-        // create a second WAM with the same code inside
-        $wam2 = new WAM($this->p);
-        $wam2->programCounter = $target;  // set programCounter the continuationPointer to their desired values
-        $wam2->continuationPointer = $this->p->getStatementCount();
-        // add a halt statement, making wam2 return "true" upon success. this is necessary!
-        $this->p->addStatement(new Statement("", "halt", ""));
-        $wam2->arguments = array();  // now, duplicate the argument vector
-        foreach ($this->arguments as $item)
-            $wam2->arguments[] = new Variable($item);
-        // we don't need any benchmarking information from the child WAM
-        $wam2->debugOn = $this->debugOn;
-        $wam2->benchmarkOn = 0;
-        $wam2->run();
-        $wam2failed = $wam2->failed;
-        while ($wam2->choicePoint != null)
-            $wam2->backtrack();
-        $wam2->backtrack();
-        $this->p->deleteFromLine($this->p->getStatementCount() - 1);  // remove the earlier added "halt" statement from p
-        $this->opCount += $wam2->opCount;
-        $this->backtrackCount += $wam2->backtrackCount;  // update benchmarking information
-        if ($wam2failed) {  // if wam2 failed, return "success"
-            $this->failed = false;
-            $this->programCounter++;
-        }
-        else // if it succeeded, consider this bad (since we are inside a not statement)
-            $this->backtrack();
-    }
-
-// end of WAM.not_call(int)
 
     private function cut($Vn)
     {
@@ -1042,8 +1004,6 @@ class WAM implements PrologContext
                 $this->allocate();
             else if ($op == self::opCall)
                 $this->call($s->jump);
-            else if ($op == self::opNotCall)
-                $this->not_call($s->jump);
             else if ($op == self::opCut)
                 $this->cut($s->arg1);
             else if ($op == self::opDeallocate)
