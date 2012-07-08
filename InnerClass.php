@@ -177,9 +177,11 @@ class Environment {
 class Trail {
 
     private $contents = array();
+    private $machine = null;
 
-    public function __construct() {
+    public function __construct(PrologContext $ctx) {
         $this->contents = array();
+        $this->machine = $ctx;
     }
 
     public function getLength() {
@@ -205,11 +207,9 @@ class Trail {
         $v = $this->contents[$index];
         if ($v !== null) {
             if ($v->tag == WAM::ASSERT)
-                retract($v->value);     // TODO => ptr vers WAM ?
-            else {
-                $v->tag = WAM::REF;
-                $v->reference = $v;
-            }
+                $this->machine->retract($v->value);
+            $v->tag = WAM::REF;
+            $v->reference = $v;
         }
     }
 

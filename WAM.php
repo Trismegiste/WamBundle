@@ -1,16 +1,18 @@
 <?php
 
+require_once('PrologContext.php');
+
 /* * *****************************************************************************
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
- *
  * developed:   December 2001 until February 2002
+ * 
+ * Translated from Java to PHP 5.3 by Trismegiste http://github.com/Trismegiste
  *
- * WAM.java contains the actual WAM and the additional structures ChoicePoint,
- * Environment and Trail
+ * WAM.java contains the actual WAM 
  * **************************************************************************** */
 
 // class WAM is the core and contains the essential functions of the WAM
-class WAM
+class WAM implements PrologContext
 {
     const UNB = 0;  // variable-related constants:
     const REF = 1;  // tag == REF means this variable is a reference
@@ -100,7 +102,7 @@ class WAM
         $this->arguments[] = new Variable();
         $this->env = new Environment(999999999, null);  // empty environment
         $this->continuationPointer = -1;  // no continuation point
-        $this->trail = new Trail();   // TODO adding $this in the constructor => typing with interface
+        $this->trail = new Trail($this);   // for undoing assert (see below)
         $this->queryVariables = array();
         $this->displayQCount = 0;
         $this->displayQValue = array_fill(0, 100, false);
@@ -904,7 +906,7 @@ class WAM
     }
 
     // retract undoes an assert action
-    private function retract($clauseName)
+    public function retract($clauseName)
     {
         $index1 = $this->p->getLastClauseOf($clauseName);
         $index2 = $this->p->getLastClauseButOneOf($clauseName);
