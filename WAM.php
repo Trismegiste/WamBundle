@@ -697,7 +697,7 @@ class WAM implements PrologContext
             $this->writeLn("-> backtrack");
         $this->backtrackCount++;
         $this->failed = true;
-        if ($this->choicePoint != null) {
+        if ($this->choicePoint !== null) {
             $this->continuationPointer = $this->choicePoint->returnAddress;
             $this->programCounter = $this->choicePoint->nextClause;
             $this->env = $this->choicePoint->lastEnviron;
@@ -766,7 +766,7 @@ class WAM implements PrologContext
                     $target = (int) $intg;   // TODO useless ?
                     $tail = $v2->tail;
                     $cnt = 0;
-                    while ($tail != null) {
+                    while ($tail !== null) {
                         $this->get_ref("A" . $cnt)->tag = self::REF;
                         $this->get_ref("A" . $cnt)->reference = $tail->head;
                         $cnt++;
@@ -1189,7 +1189,7 @@ class WAM implements PrologContext
             else
                 $this->writeLn("Success.");
             // if there are any more choicepoints left, ask the user if they shall be tried
-            if ($this->choicePoint != null) {
+            if ($this->choicePoint !== null) {
 
                 $this->write("More? ([y]es/[n]o) ");
                 $answer = $this->readLn();
