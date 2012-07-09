@@ -194,7 +194,7 @@ class Trail {
         if ($length > count($this->contents))
             $this->contents = array_pad($this->contents, $length, null);
         elseif ($length < count($this->contents))
-            array_splice($this->contents, 0, $length);
+            array_splice($this->contents, $length - count($this->contents));
     }
 
     public function addEntry(Variable $v) {

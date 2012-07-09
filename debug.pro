@@ -19,3 +19,9 @@ parent(X, Y) :- mere(X, Y).
 frere(X, Y) :- parent(Z, X) , parent(Z, Y), X != Y.
 
 equal(X, X).
+
+length([], 0).
+length([H|T], N) :- length(T, M), N is M + 1.
+
+refund(B, 5) :- length(B,N). 
+refund(B, 30).
