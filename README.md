@@ -17,15 +17,22 @@ expressed in terms of relations, represented as facts and rules. A computation
 is initiated by running a query over these relations.</p></blockquote>
 
 As you can see, Prolog has nearly no instructions nor loops nor ifs nor gotos.
-The only thing you have to do is to enounce absolute truths. 
+The only thing you have to do is to enounce absolute truths.
 At that point, Mr Spock says : "Fascinating"
 
-Stop the chatty chat, I recommand wikipedia and the excellent book by 
-HASSAN AÏT-KACI in the doc directory.
+Stop the chatty chat, I recommand wikipedia and the excellent book by
+Hassan Aït-Kaci in the doc directory.
 
 ## Is it usefull ?
-For example, to implement some business intelligence algorithms, you can avoid
-big boring sequences of if-else-switch or a big bunch of Chain of Responsability 
+Prolog has a very limited scope of usefulness but sometimes it can simplify some problem like :
+
+ * When you need a rule engine
+ * To implement some business intelligence algorithms, you can avoid
+big boring sequences of if-else-switch or a big bunch of Chain of Responsability
 in PHP with a limited (and readable) set of rules and predicates in Prolog.
-Then, if you have a lots of business rules and if they are changing every week,
-this can be VERY usefull unless you love debugging long lists of switch & if.
+ * Logic problem with non deterministic path
+
+
+## Can I haZ a sample ?
+Watch the file basket.pro : it's a set of marketing rules for gift and refund based on the
+content of a cart in e-commerce.
