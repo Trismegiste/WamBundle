@@ -1,7 +1,5 @@
 <?php
 
-require_once('PrologContext.php');
-
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  * developed:   December 2001 until February 2002
@@ -1232,15 +1230,3 @@ class WAM implements PrologContext
 
 // end of WAM.main(String[])
 }
-
-// end of class WAM
-require_once('Program.php');
-require_once('Statement.php');
-require_once('CodeReader.php');
-require_once('CompilerStructure.php');
-require_once('Compiler.php');
-require_once('QueryCompiler.php');
-require_once('PrologCompiler.php');
-require_once('InnerClass.php');
-
-WAM::main($argv);
