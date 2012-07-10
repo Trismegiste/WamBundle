@@ -45,7 +45,8 @@ Watch the file basket.pro : it's a set of marketing rules for gift and refund ba
 content of a cart in e-commerce.
 
 
-## Why port a nearly-forty-year language in PHP ? (from a ten-year release in Java  ?)
+## Why port a nearly-forty-year language in PHP ? 
+### (from a ten-year release in Java  ?)
 Well, first thing it is a matter of taste. Even with 3 hundreds years, JS Bach
 is still the best musician in the Multiverse. Second, I am not saying Prolog
 can solve anything, no. I think there is one language one can use for one
