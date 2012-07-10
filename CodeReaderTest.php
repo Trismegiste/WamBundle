@@ -16,10 +16,10 @@ require_once('InnerClass.php');
 require_once('PrologContext.php');
 require_once('WAM.php');
 
-class PrologTest extends PHPUnit_Framework_TestCase
+class CodeReaderTest extends PHPUnit_Framework_TestCase
 {
 
-    public function readingTest()
+    public function testReading()
     {
         $p = CodeReader::readProgram('fixtures_test.wam');
         echo $p;
