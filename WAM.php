@@ -1223,7 +1223,6 @@ class WAM implements PrologContext
         do {
             $wam->writeLn("");
             $wam->write("QUERY > ");
-            //$s = "consult('debug.pro'), grandmere(shmi,K).";
             $s = $wam->readLn();
             $wam->writeLn("");
         } while (($s != null) && ($wam->runQuery($s)));
