@@ -144,6 +144,72 @@ WAM;
             $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
     }
 
+    public function testClauseArithmetics()
+    {
+        $p = $this->compiler->compile('factorial(0, 1). factorial(N, X) :- N > 0, N1 is N - 1, factorial(N1, P), X is N * P.');
+        $wamCode = <<<WAM
+factorial:    try_me_else factorial~2
+              get_constant 0 A0
+              get_constant 1 A1
+              proceed
+factorial~2:  trust_me
+              allocate
+              get_variable Y0 A0
+              get_variable Y1 A1
+              put_constant 0 Y2
+              bigger Y0 Y2
+              put_constant 1 Y3
+              is Y4 - Y0 Y3
+              put_value Y4 A0
+              put_value Y5 A1
+              call factorial   
+              is Y1 * Y0 Y5
+              deallocate
+              proceed
+WAM;
+        $wamCode = explode("\n", $wamCode);
+        for ($k = 0; $k < $p->getStatementCount(); $k++)
+            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+    }
+
+    public function testClauseStructure()
+    {
+        $p = $this->compiler->compile('p(snm(determinant(X), nom(Y), G), X, Y) :- sn(X, Y), genre(X, G).');
+        $wamCode = <<<WAM
+p:            trust_me
+              allocate
+              get_variable Y0 A0
+              put_constant snm Y1
+              put_constant determinant Y2
+              put_constant [] Y4
+              unify_list Y5 Y3 Y4
+              unify_struc Y6 Y2 Y5
+              put_constant nom Y7
+              put_constant [] Y9
+              unify_list Y10 Y8 Y9
+              unify_struc Y11 Y7 Y10
+              put_constant [] Y13
+              unify_list Y14 Y12 Y13
+              unify_list Y15 Y11 Y14
+              unify_list Y16 Y6 Y15
+              unify_struc Y17 Y1 Y16
+              unify_variable Y0 Y17
+              get_value Y3 A1
+              get_value Y8 A2
+              put_value Y3 A0
+              put_value Y8 A1
+              call sn   
+              put_value Y3 A0
+              put_value Y12 A1
+              call genre   
+              deallocate
+              proceed
+WAM;
+        $wamCode = explode("\n", $wamCode);
+        for ($k = 0; $k < $p->getStatementCount(); $k++)
+            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+    }
+
 }
 
 ?>
