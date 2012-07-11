@@ -31,9 +31,14 @@ class PrologCompilerUnitTest extends PHPUnit_Framework_TestCase
         unset($this->compiler);
     }
 
-    public function testProgram() {        
-        
+    public function testProgram()
+    {
+        $programList = $this->compiler->stringToList("mother(shmi, X) :- equal(X, anakin).");
+        $struc = new CompilerStructure();
+        $this->compiler->program($programList, $struc);
+        echo $struc;
     }
+
 }
 
 ?>
