@@ -51,9 +51,9 @@ WAM;
 
     public function testClause2()
     {
-        $p = $this->compiler->compile('grandmother(X, Y) :- mother(X, Z) , mother(Z,Y). grandmother(X, Y) :- mother(X, Z) , father(Z,Y).');
+        $p = $this->compiler->compile('grandmother(X, Y) :- mother(X, Z), mother(Z,Y).');
         $wamCode = <<<WAM
-grandmother:  try_me_else grandmother~2
+grandmother:  trust_me
               allocate
               get_variable Y0 A0
               get_variable Y1 A1
@@ -63,18 +63,6 @@ grandmother:  try_me_else grandmother~2
               put_value Y2 A0
               put_value Y1 A1
               call mother  
-              deallocate
-              proceed
-grandmother~2: trust_me
-              allocate
-              get_variable Y0 A0
-              get_variable Y1 A1
-              put_value Y0 A0
-              put_value Y2 A1
-              call mother  
-              put_value Y2 A0
-              put_value Y1 A1
-              call father  
               deallocate
               proceed
 WAM;
