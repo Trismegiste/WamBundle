@@ -210,6 +210,20 @@ WAM;
             $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
     }
 
+    public function testSimpleClause()
+    {
+        $p = $this->compiler->compileSimpleClause('father(anakin, luke).');
+        $wamCode = <<<WAM
+father:       trust_me
+              get_constant anakin A0
+              get_constant luke A1
+              proceed
+WAM;
+        $wamCode = explode("\n", $wamCode);
+        for ($k = 0; $k < $p->getStatementCount(); $k++)
+            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+    }
+
 }
 
 ?>
