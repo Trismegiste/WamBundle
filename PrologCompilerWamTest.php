@@ -16,7 +16,7 @@ require_once('WAM.php');
  *
  * @author flo
  */
-class PrologCompilerTest extends PHPUnit_Framework_TestCase
+class PrologCompilerWamTest extends PHPUnit_Framework_TestCase
 {
 
     private $compiler = null;
