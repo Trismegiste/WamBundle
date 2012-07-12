@@ -26,6 +26,11 @@ class PrologCompilerTest extends PHPUnit_Framework_TestCase
         $this->compiler = new PrologCompiler(new WAM(new Program()));
     }
 
+    protected function assertEqualsNoSpacing($expected, $tested)
+    {
+        $this->assertEquals(0, strcmp(trim($expected), trim($tested)));
+    }
+
     protected function tearDown()
     {
         unset($this->compiler);
@@ -44,7 +49,7 @@ equal:        trust_me
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testClauseFacts()
@@ -62,7 +67,7 @@ mother~2:     trust_me
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testClauseHorn()
@@ -75,16 +80,16 @@ grandmother:  trust_me
               get_variable Y1 A1
               put_value Y0 A0
               put_value Y2 A1
-              call mother  
+              call mother
               put_value Y2 A0
               put_value Y1 A1
-              call mother  
+              call mother
               deallocate
               proceed
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testClauseNot()
@@ -109,7 +114,7 @@ not~2:        trust_me
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testClauseListAppend()
@@ -141,7 +146,7 @@ append~2:     trust_me
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testClauseArithmetics()
@@ -162,14 +167,14 @@ factorial~2:  trust_me
               is Y4 - Y0 Y3
               put_value Y4 A0
               put_value Y5 A1
-              call factorial   
+              call factorial
               is Y1 * Y0 Y5
               deallocate
               proceed
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testClauseStructure()
@@ -198,16 +203,16 @@ p:            trust_me
               get_value Y8 A2
               put_value Y3 A0
               put_value Y8 A1
-              call sn   
+              call sn
               put_value Y3 A0
               put_value Y12 A1
-              call genre   
+              call genre
               deallocate
               proceed
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
     public function testSimpleClause()
@@ -221,7 +226,7 @@ father:       trust_me
 WAM;
         $wamCode = explode("\n", $wamCode);
         for ($k = 0; $k < $p->getStatementCount(); $k++)
-            $this->assertEquals(0, strcmp(trim($p->getStatement($k)), trim($wamCode[$k])));
+            $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
 }
