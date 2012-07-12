@@ -33,11 +33,10 @@ Hassan Aït-Kaci in the doc directory.
 ## Is it usefull ?
 Prolog has a very limited scope of usefulness but sometimes it can simplify some problem like :
 
- * When you need a rule engine
- * To implement some business intelligence algorithms, you can avoid
-big boring sequences of if-else-switch or a big bunch of Chain of Responsability
-in PHP with a limited (and readable) set of rules and predicates in Prolog.
- * Logic problem with non deterministic path
+ * You need a rule engine
+ * You want to avoid big boring sequences of if-else-switch to implement some business intelligence
+ * You need a big bunch of Chain of Responsability which changes every week
+ * You face a logic problem with non deterministic path
 
 ## Can I haZ example ?
 Look at the file basket.pro : it's a set of marketing rules for gift and discount
@@ -56,5 +55,5 @@ It's not nostalgia, it's just recollection.
 
 ## Some notes about this translation
 I went through a lot a trouble thanks the "soft-typing" of PHP and the damned
-"===" but even if I still prefer Java and strong typing, the managing of 
+"===" but even if I still prefer Java and strong typing, the managing of
 strings and arrays in PHP is awsum.
