@@ -33,7 +33,7 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
 
     public function testProgram()
     {
-        $programList = $this->compiler->stringToList("human(X) :- mortal(X).");
+        $programList = $this->compiler->stringToList("mortal(X) :- human(X).");
         $struc = new CompilerStructure();
         $this->compiler->program($programList, $struc);
         $this->assertEquals(CompilerStructure::PROGRAM, $struc->type);
@@ -76,7 +76,7 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
     {
         $struc = $struc->head;
         $this->assertEquals(CompilerStructure::PREDICATE, $struc->type);
-        $this->assertEquals('human', $struc->value);
+        $this->assertEquals('mortal', $struc->value);
     }
 
     /**
@@ -109,7 +109,7 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(CompilerStructure::CALL, $struc->type);
         $struc = $struc->head;
         $this->assertEquals(CompilerStructure::PREDICATE, $struc->type);
-        $this->assertEquals('mortal', $struc->value);
+        $this->assertEquals('human', $struc->value);
         return $struc->tail;
     }
 
