@@ -16,7 +16,7 @@ require_once('WAM.php');
  *
  * @author flo
  */
-class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
+class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
 {
 
     private $compiler = null;
@@ -33,7 +33,7 @@ class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
 
     public function testProgram()
     {
-        $programList = $this->compiler->stringToList("mother(shmi, anakin).");
+        $programList = $this->compiler->stringToList("human(X) :- mortal(X).");
         $struc = new CompilerStructure();
         $this->compiler->program($programList, $struc);
         $this->assertEquals(CompilerStructure::PROGRAM, $struc->type);
@@ -46,8 +46,7 @@ class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
     public function testClause(CompilerStructure $struc)
     {
         $this->assertEquals(CompilerStructure::CLAUSE, $struc->type);
-        $this->assertNull($struc->tail);
-        return $struc->head;
+        return $struc;
     }
 
     /**
@@ -55,7 +54,18 @@ class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
      */
     public function testClauseHead(CompilerStructure $struc)
     {
+        $struc = $struc->head;
         $this->assertEquals(CompilerStructure::HEAD, $struc->type);
+        return $struc;
+    }
+
+    /**
+     * @depends testClause
+     */
+    public function testClauseBody(CompilerStructure $struc)
+    {
+        $struc = $struc->tail;
+        $this->assertEquals(CompilerStructure::BODY, $struc->type);
         return $struc;
     }
 
@@ -66,7 +76,7 @@ class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
     {
         $struc = $struc->head;
         $this->assertEquals(CompilerStructure::PREDICATE, $struc->type);
-        $this->assertEquals('mother', $struc->value);
+        $this->assertEquals('human', $struc->value);
     }
 
     /**
@@ -85,20 +95,33 @@ class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
     public function testTerm1(CompilerStructure $struc)
     {
         $struc = $struc->head;
-        $this->assertEquals(CompilerStructure::CONSTANT, $struc->type);
-        $this->assertEquals('shmi', $struc->value);
+        $this->assertEquals(CompilerStructure::VARIABLE, $struc->type);
+        $this->assertEquals('X', $struc->value);
     }
 
     /**
-     * @depends testList
+     * @depends testClauseBody
+     */
+    public function testBodyPredicate(CompilerStructure $struc)
+    {
+        $this->assertNull($struc->tail);
+        $struc = $struc->head;
+        $this->assertEquals(CompilerStructure::CALL, $struc->type);
+        $struc = $struc->head;
+        $this->assertEquals(CompilerStructure::PREDICATE, $struc->type);
+        $this->assertEquals('mortal', $struc->value);
+        return $struc->tail;
+    }
+
+    /**
+     * @depends testBodyPredicate
      */
     public function testTerm2(CompilerStructure $struc)
     {
-        $struc = $struc->tail;
         $this->assertEquals(CompilerStructure::LISTX, $struc->type);
         $struc = $struc->head;
-        $this->assertEquals(CompilerStructure::CONSTANT, $struc->type);
-        $this->assertEquals('anakin', $struc->value);
+        $this->assertEquals(CompilerStructure::VARIABLE, $struc->type);
+        $this->assertEquals('X', $struc->value);
     }
 
 }
