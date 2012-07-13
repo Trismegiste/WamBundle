@@ -11,8 +11,8 @@ class CodeReaderTest extends PHPUnit_Framework_TestCase
     public function testReading()
     {
         $p = CodeReader::readProgram('fixtures_test.wam');
-        echo $p;
-        echo "\n";
+     /*   echo $p;
+        echo "\n";*/
     }
 
 }
