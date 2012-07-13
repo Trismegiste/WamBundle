@@ -926,31 +926,6 @@ class WAM implements PrologContext
 // end of WAM.consult(String)
 
     /*     * ****************** END INTERNAL PREDICATES ******************* */
-
-    // showHelp shows a list of the available commands
-    protected function showHelp()
-    {
-        $this->writeLn("This is Stu's mighty WAM speaking. Need some help?");
-        $this->writeLn("");
-        $this->writeLn("Available commands:");
-        $this->writeLn("clear                   empties the output area (GUI mode only)");
-        $this->writeLn("exit                    terminates the WAM");
-        $this->writeLn("help                    displays this help");
-        $this->writeLn("list                    lists the WAM program currently in memory");
-        $this->writeLn("new                     removes all WAM code from memory");
-        $this->writeLn("set [PARAM[=VALUE]]     displays all internal parameters (\"set\") or lets");
-        $this->writeLn("                        the user set a parameter's new value, respectively");
-        $this->writeLn("labels                  displays all labels that can be found in memory");
-        $this->writeLn("procedures              displays the names of all procedures in memory");
-        $this->writeLn("quit                    terminates the WAM");
-        $this->writeLn("");
-        $this->writeLn("Prolog programs can be compiled into memory by typing \"consult(filename).\",");
-        $this->writeLn("e.g. \"consult('lists.pro').\". Existing WAM programs can be loaded into");
-        $this->writeLn("memory by typing \"load(filename).\".");
-        $this->writeLn("");
-        $this->writeLn("" . $this->p->getStatementCount() . " lines of code in memory.");
-    }
-
     public function traceOn()
     {
         $this->write("A=[");
@@ -968,7 +943,6 @@ class WAM implements PrologContext
         $this->writeLn("]");
     }
 
-// end of WAM.showHelp()
     // run starts the actual execution of the program in memory
     public function run()
     {
@@ -1209,24 +1183,5 @@ class WAM implements PrologContext
     }
 
 // end of WAM.runQuery(String)
-    // the WAM's main loop
-    public static function main(array $args)
-    {
-        echo"\nWelcome to Stu's mighty WAM!";
-        echo "(December 2001 - February 2002 by Stefan Buettcher)\n";
-        echo "Type \"help\" to get some help.\n";
-        $wam = new WAM(new Program());
-        $wam->p->owner = $wam;
-        $s = '';
-        do {
-            $wam->writeLn("");
-            $wam->write("QUERY > ");
-            $s = $wam->readLn();
-            $wam->writeLn("");
-        } while (($s != null) && ($wam->runQuery($s)));
-        $wam->writeLn("Goodbye!");
-        $wam->writeLn("");
-    }
 
-// end of WAM.main(String[])
 }

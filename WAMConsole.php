@@ -37,6 +37,30 @@ class WAMConsole extends WAM
         echo $s . "\n";
     }
 
+    // showHelp shows a list of the available commands
+    protected function showHelp()
+    {
+        $this->writeLn("This is Stu's mighty WAM speaking. Need some help?");
+        $this->writeLn("");
+        $this->writeLn("Available commands:");
+        $this->writeLn("clear                   empties the output area (GUI mode only)");
+        $this->writeLn("exit                    terminates the WAM");
+        $this->writeLn("help                    displays this help");
+        $this->writeLn("list                    lists the WAM program currently in memory");
+        $this->writeLn("new                     removes all WAM code from memory");
+        $this->writeLn("set [PARAM[=VALUE]]     displays all internal parameters (\"set\") or lets");
+        $this->writeLn("                        the user set a parameter's new value, respectively");
+        $this->writeLn("labels                  displays all labels that can be found in memory");
+        $this->writeLn("procedures              displays the names of all procedures in memory");
+        $this->writeLn("quit                    terminates the WAM");
+        $this->writeLn("");
+        $this->writeLn("Prolog programs can be compiled into memory by typing \"consult(filename).\",");
+        $this->writeLn("e.g. \"consult('lists.pro').\". Existing WAM programs can be loaded into");
+        $this->writeLn("memory by typing \"load(filename).\".");
+        $this->writeLn("");
+        $this->writeLn("" . $this->p->getStatementCount() . " lines of code in memory.");
+    }
+
     // runQuery compiles a query given by s into a WAM program, adds it to the program in memory
     // and jumps to the label "query$", starting the execution
     public function runQuery($s)
