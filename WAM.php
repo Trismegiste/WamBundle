@@ -3,12 +3,12 @@
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  * developed:   December 2001 until February 2002
- * 
+ *
  * Translated from Java to PHP 5.3 by Florent Genette (Trismegiste)
- * http://github.com/Trismegiste/WamBundle  
+ * http://github.com/Trismegiste/WamBundle
  * June to July 2012 (yes, 10 years after the original version !)
  *
- * WAM.java contains the actual WAM 
+ * WAM.java contains the actual WAM
  */
 class WAM implements PrologContext
 {
@@ -62,22 +62,22 @@ class WAM implements PrologContext
 
     // internal parameters, accessible by using the "set" command
     public $debugOn = 0;   // display debug information?
-    private $benchmarkOn = 0;   // show benchmark information?
-    private $maxOpCount = 50000000;  // artificial stack overflow limit
+    protected $benchmarkOn = 0;   // show benchmark information?
+    protected $maxOpCount = 50000000;  // artificial stack overflow limit
     public $opCount, $backtrackCount;
-    private /* Program */ $p;         // the program(s) loaded into memory
-    private /* Trail */ $trail;       // undo-list (WAM trail)
-    private $failed;    // set to true upon an unsuccessful binding operation
+    protected /* Program */ $p;         // the program(s) loaded into memory
+    protected /* Trail */ $trail;       // undo-list (WAM trail)
+    protected $failed;    // set to true upon an unsuccessful binding operation
     protected $displayQValue = array(); //new boolean[100];   // which Query-Variables do have to displayed upon success?
     protected $displayQCount = 0;     // how many of them?
     // the WAM's register set
-    private $queryVariables = array(); // query variables, to be accessed by Q1, Q2, and so on
-    private $programCounter = 0; // program counter
-    private $continuationPointer = 0; // continuation pointer
-    private $choicePoint = null; // last choicepoint on stack
-    private $cutPoint = null; // current choicepoint for cut instruction
-    private $env = null; // last environment on stack
-    private $arguments = array();      // argument registers
+    protected $queryVariables = array(); // query variables, to be accessed by Q1, Q2, and so on
+    protected $programCounter = 0; // program counter
+    protected $continuationPointer = 0; // continuation pointer
+    protected $choicePoint = null; // last choicepoint on stack
+    protected $cutPoint = null; // current choicepoint for cut instruction
+    protected $env = null; // last environment on stack
+    protected $arguments = array();      // argument registers
 
     // in case we want to use the WAM inside our GUI
     //public TextArea response = null;   // this is the memo box all the output is written into
@@ -93,7 +93,7 @@ class WAM implements PrologContext
 
 // end of WAM.WAM(Program)
     // resets sets all WAM parameters to their initial values
-    private function reset()
+    protected function reset()
     {
         $this->arguments = array();  // no argument registers so far
         $this->arguments[] = new Variable();
@@ -109,7 +109,7 @@ class WAM implements PrologContext
 
 // end of WAM.reset()
     // reads a String line from standard input
-    private function readLn()
+    protected function readLn()
     {
         try {
             $handle = fopen("php://stdin", "r");
@@ -151,14 +151,14 @@ class WAM implements PrologContext
 
 // end of WAM.debug(String, int)
     // formats an integer to a string
-    private function int2FormatStr($i)
+    protected function int2FormatStr($i)
     {
         return str_pad($i, 4, '0', STR_PAD_LEFT);
     }
 
 // end of WAM.int2FormatStr(int)
     // displays the values of all internal parameters that can be modyfied using the "set" command
-    private function displayInternalVariables()
+    protected function displayInternalVariables()
     {
         $this->getInternalVariable("autostop");
         $this->getInternalVariable("benchmark");
@@ -167,7 +167,7 @@ class WAM implements PrologContext
 
 // end of WAM.displayInternalVariables()
     // sets the internal parameter specified by variable to a new value
-    private function setInternalVariable($variable, $value)
+    protected function setInternalVariable($variable, $value)
     {
         try {
             if ($variable === "autostop")  // TODO switch FFS
@@ -184,7 +184,7 @@ class WAM implements PrologContext
 
 // end of WAM.setInternalVariable(String, String)
     // displays the value of the internal parameter specified by variable
-    private function getInternalVariable($variable)
+    protected function getInternalVariable($variable)
     {
         if ($variable === "autostop")  // TODO switch or array for refactoring
             $this->writeLn("Internal variable AUTOSTOP = " . $this->maxOpCount);
@@ -198,7 +198,7 @@ class WAM implements PrologContext
 
 // end of WAM.getInternalVariable(String)
 
-    private function parseInt($number)
+    protected function parseInt($number)
     {
         if (!preg_match('#^[0-9]+$#', $number))
             throw new Exception('NumberFormatException');
@@ -207,7 +207,7 @@ class WAM implements PrologContext
 
     // returns the Variable pointer belonging to a string, e.g. "A3", "Y25"
     // TODO preg_match all of this
-    private function get_ref($name)
+    protected function get_ref($name)
     {
         $anArray = array();
         switch ($name[0]) {
@@ -236,7 +236,7 @@ class WAM implements PrologContext
 
 // WAM code operations are described in Ait Kaci: Warren's Abstract Machine -- A Tutorial Reconstruction
     // gives a name to a variable; usually used on Qxx variables that occur within the query
-    private function create_variable($v, $name)
+    protected function create_variable($v, $name)
     {
         if (strcmp($name, "_") != 0) {  // keep "_" from being displayed as solution
             $q = $this->get_ref($v);
@@ -253,7 +253,7 @@ class WAM implements PrologContext
 
 // end of WAM.create_variable(String, String)
     // comparison manages "<", "<=", ">=", ">" and "!="
-    private function comparison($s1, $s2, $comparator)
+    protected function comparison($s1, $s2, $comparator)
     {
         // comparator values: 1 = "<", 2 = "<=", 3 = ">=", 4 = ">", 5 = "!="
         $v1 = $this->get_ref($s1)->deref();
@@ -300,42 +300,42 @@ class WAM implements PrologContext
 
 // end of WAM.comparison(String, String, String)
 
-    private function smaller($s1, $s2)
+    protected function smaller($s1, $s2)
     {
         $this->comparison($s1, $s2, 1);
     }
 
 // end of WAM.smaller(String, String)
 
-    private function smallereq($s1, $s2)
+    protected function smallereq($s1, $s2)
     {
         $this->comparison($s1, $s2, 2);
     }
 
 // end of WAM.smallereq(String, String)
 
-    private function biggereq($s1, $s2)
+    protected function biggereq($s1, $s2)
     {
         $this->comparison($s1, $s2, 3);
     }
 
 // end of WAM.biggereq(String, String)
 
-    private function bigger($s1, $s2)
+    protected function bigger($s1, $s2)
     {
         $this->comparison($s1, $s2, 4);
     }
 
 // end of WAM.bigger(String, String)
 
-    private function unequal($s1, $s2)
+    protected function unequal($s1, $s2)
     {
         $this->comparison($s1, $s2, 5);
     }
 
 // end of WAM.unequal(String, String)
     // is manages integer arithmetic (floating point may be added later)
-    private function is($target, $op, $s1, $s2)
+    protected function is($target, $op, $s1, $s2)
     {
         //Variable v1, v2, v3;
         //int z1, z2, z3;
@@ -406,7 +406,7 @@ class WAM implements PrologContext
 
 // end of WAM.is(String, String, String, String)
 
-    private function get_variable($s1, $s2)
+    protected function get_variable($s1, $s2)
     {
         $Vn = $this->get_ref($s1);
         $Ai = $this->get_ref($s2);
@@ -416,14 +416,14 @@ class WAM implements PrologContext
 
 // end of WAM.get_variable(String, String)
 
-    private function get_value($s1, $s2)
+    protected function get_value($s1, $s2)
     {
         $this->unify_variable($s2, $s1);
     }
 
 // end of WAM.get_value(String, String)
 
-    private function get_constant($c, $variable)
+    protected function get_constant($c, $variable)
     {
         $v = $this->get_ref($variable)->deref();
         $fail = true;
@@ -444,7 +444,7 @@ class WAM implements PrologContext
 
 // end of WAM.get_constant(String, String)
 
-    private function unify_variable2($v1, $v2)
+    protected function unify_variable2($v1, $v2)
     {
         if (($v1 === null) || ($v2 === null))
             return false;
@@ -480,7 +480,7 @@ class WAM implements PrologContext
 
 // end of WAM.unify_variable2(Variable, Variable)
 
-    private function unify_list2(Variable $liste, Variable $head, Variable $tail)
+    protected function unify_list2(Variable $liste, Variable $head, Variable $tail)
     {
 //    liste = list.deref();
 //    head = head.deref();
@@ -502,7 +502,7 @@ class WAM implements PrologContext
 
 // end of WAM.unify_list2(Variable, Variable, Variable)
 
-    private function unify_struc2(Variable $struc, Variable $head, Variable $tail)
+    protected function unify_struc2(Variable $struc, Variable $head, Variable $tail)
     {
 //    struc = struc.deref();
 //    head = head.deref();
@@ -524,7 +524,7 @@ class WAM implements PrologContext
 
 // end of WAM.unify_struc2(Variable, Variable, Variable)
 
-    private function unify_variable($s1, $s2)
+    protected function unify_variable($s1, $s2)
     {
         $v1 = $this->get_ref($s1);
         $v2 = $this->get_ref($s2);
@@ -536,7 +536,7 @@ class WAM implements PrologContext
 
 // end of WAM.unify_variable(String, String)
 
-    private function unify_list($l, $h, $t)
+    protected function unify_list($l, $h, $t)
     {
         $liste = $this->get_ref($l);
         $head = $this->get_ref($h);
@@ -549,7 +549,7 @@ class WAM implements PrologContext
 
 // end of WAM.unify_list(String, String, String)
 
-    private function unify_struc($s, $h, $t)
+    protected function unify_struc($s, $h, $t)
     {
         $struc = $this->get_ref($s);
         $head = $this->get_ref($h);
@@ -562,7 +562,7 @@ class WAM implements PrologContext
 
 // end of WAM.unify_struc(String, String, String)
 
-    private function put_constant($c, $a)
+    protected function put_constant($c, $a)
     {
         $Ai = $this->get_ref($a);
         $Ai->tag = self::CON;
@@ -572,7 +572,7 @@ class WAM implements PrologContext
 
 // end of WAM.put_constant(String, String)
 
-    private function put_list($h, $t, $a)
+    protected function put_list($h, $t, $a)
     {
         $Ai = $this->get_ref($a);
         $Ai->tag = self::LIS;
@@ -583,7 +583,7 @@ class WAM implements PrologContext
 
 // end of WAM.put_list(String, String, String);
 
-    private function put_value($s1, $s2)
+    protected function put_value($s1, $s2)
     {
         $Vi = $this->get_ref($s1);
         $An = $this->get_ref($s2);
@@ -593,7 +593,7 @@ class WAM implements PrologContext
 
 // end of WAM.put_value(String, String)
 
-    private function put_variable($s1, $s2)
+    protected function put_variable($s1, $s2)
     {
         $Vn = $this->get_ref($s1)->deref();
         $Ai = $this->get_ref($s2);
@@ -604,7 +604,7 @@ class WAM implements PrologContext
 
 // end of WAM.put_variable(String, String)
 
-    private function try_me_else($whom)
+    protected function try_me_else($whom)
     {
         //int i;
         $cp = new ChoicePoint($this->arguments, $this->trail->getLength(), $this->continuationPointer);
@@ -618,14 +618,14 @@ class WAM implements PrologContext
 
 // end of WAM.try_me_else(int)
 
-    private function proceed()
+    protected function proceed()
     {
         $this->programCounter = $this->continuationPointer;
     }
 
 // end of WAM.proceed()
 
-    private function is_bound(Variable $v)
+    protected function is_bound(Variable $v)
     {
         $v = $v->deref();
         if ($v->tag == self::REF)
@@ -636,7 +636,7 @@ class WAM implements PrologContext
 
 // end of WAM.is_bound(String)
 
-    private function allocate()
+    protected function allocate()
     {
         $environment = new Environment($this->continuationPointer, $this->env);
         $this->env = $environment;
@@ -645,7 +645,7 @@ class WAM implements PrologContext
 
 // end of WAM.allocate()
 
-    private function deallocate()
+    protected function deallocate()
     {
         $this->continuationPointer = $this->env->returnAddress;
         $this->env = $this->env->lastEnviron;
@@ -654,7 +654,7 @@ class WAM implements PrologContext
 
 // end of WAM.deallocate()
 
-    private function call($target)
+    protected function call($target)
     {
         if ($target >= 0) {
             $this->continuationPointer = $this->programCounter + 1;
@@ -667,7 +667,7 @@ class WAM implements PrologContext
 
 // end of WAM.call(int)
 
-    private function cut($Vn)
+    protected function cut($Vn)
     {
         $v = $this->get_ref($Vn);
         $this->choicePoint = $v->cutLevel;
@@ -676,7 +676,7 @@ class WAM implements PrologContext
 
 // end of WAM.cut(String)
 
-    private function get_level($Vn)
+    protected function get_level($Vn)
     {
         $v = $this->get_ref($Vn);
         $v->cutLevel = $this->cutPoint;
@@ -688,7 +688,7 @@ class WAM implements PrologContext
     /*     * ****************** END WAM CODE OPERATIONS ******************* */
 
     // called upon an unsuccessful binding operation or a call with non-existent target
-    private function backtrack()
+    protected function backtrack()
     {
         //int i;
         if ($this->debugOn > 0)
@@ -718,7 +718,7 @@ class WAM implements PrologContext
     /*     * ****************** BEGIN INTERNAL PREDICATES ******************* */
 
     // internalPredicate manages the execution of all built-in predicates, e.g. write, consult, isbound
-    private function internalPredicate($index)
+    protected function internalPredicate($index)
     {
         $result = true;
         $v = $this->arguments[0];
@@ -793,7 +793,7 @@ class WAM implements PrologContext
 
 // end of WAM.internalPredicate(String)
 
-    private function load($fileName)
+    protected function load($fileName)
     {
         $prog = CodeReader::readProgram($fileName);
         if ($prog == null)
@@ -813,7 +813,7 @@ class WAM implements PrologContext
 
 // end of WAM.load(String)
 
-    private function isAtom(Variable $v)
+    protected function isAtom(Variable $v)
     {
         $v = $v->deref();
         if (($v->tag == self::CON) || ($v->tag == self::REF))
@@ -824,7 +824,7 @@ class WAM implements PrologContext
 
 // end of WAM.isAtom(Variable)
     // checks if stuff contains an integer number
-    private function isInteger($stuff)
+    protected function isInteger($stuff)
     {
         try {
             $this->parseInt($stuff);
@@ -836,7 +836,7 @@ class WAM implements PrologContext
 
 // end of WAM.isInteger(String)
     // assert asserts a new clause to the current program
-    private function assert($label, $clause)
+    protected function assert($label, $clause)
     {
         $pc = new PrologCompiler($this);
         $prog = $pc->compileSimpleClause($clause . ".");
@@ -853,7 +853,7 @@ class WAM implements PrologContext
 
 // end of WAM.assert(String, String)
 
-    private function removeProgramLines($fromLine)
+    protected function removeProgramLines($fromLine)
     {
         $size = $this->p->getStatementCount();
         $removed = $this->p->deleteFromLine($fromLine);
@@ -885,7 +885,7 @@ class WAM implements PrologContext
     }
 
     // calls retract(String) until it returns false
-    private function retractall($clauseName)
+    protected function retractall($clauseName)
     {
         $success = false;
         $this->failed = false;
@@ -902,7 +902,7 @@ class WAM implements PrologContext
 
 // end of WAM.retractall(String)
     // consult compiles a prolog program and loads the resulting code into memory
-    private function consult($fileName)
+    protected function consult($fileName)
     {
         $pc = new PrologCompiler($this);
         $prog = $pc->compileFile($fileName);
@@ -928,7 +928,7 @@ class WAM implements PrologContext
     /*     * ****************** END INTERNAL PREDICATES ******************* */
 
     // showHelp shows a list of the available commands
-    private function showHelp()
+    protected function showHelp()
     {
         $this->writeLn("This is Stu's mighty WAM speaking. Need some help?");
         $this->writeLn("");
