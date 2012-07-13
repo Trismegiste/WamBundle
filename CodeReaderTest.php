@@ -1,9 +1,5 @@
 <?php
 
-spl_autoload_register(function ($class) {
-            include_once $class . '.php';
-        });
-
 /**
  * Unit test for solver : does some queries and checking no regression
  *
