@@ -8,11 +8,11 @@
 class WAMServiceTest extends PHPUnit_Framework_TestCase
 {
 
-    public function testDebug()
+    public function testFixtures1()
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('debug.pro').");
+        $solve = $wam->runQuery("consult('fixtures1.pro').");
         $this->assertCount(1, $solve);
         $this->assertTrue($solve[0]->succeed);
         
