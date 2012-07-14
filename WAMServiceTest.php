@@ -74,4 +74,29 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($solve[1]->succeed);
     }
 
+    /**
+     * @depends testFixtures2
+     */
+    public function testLists(WAMService $wam)
+    {
+        $tab = range(0, 13);
+        $hypothesisX = '[' . implode(', ', $tab) . ']';
+        $hypothesisR = '[' . implode(', ', array_reverse($tab)) . ']';
+        shuffle($tab);
+        $chaos = '[' . implode(', ', $tab) . ']';
+        $solve = $wam->runQuery("qsort($chaos, X).");
+        $this->assertCount(2, $solve);
+        $this->assertTrue($solve[0]->succeed);
+        $this->assertEquals($hypothesisX, $solve[0]->variable['X']);
+        $this->assertFalse($solve[1]->succeed);
+
+        $solve = $wam->runQuery("qsort($chaos, X), reverse(X, R), length(R, N).");
+        $this->assertCount(2, $solve);
+        $this->assertTrue($solve[0]->succeed);
+        $this->assertEquals($hypothesisX, $solve[0]->variable['X']);
+        $this->assertEquals($hypothesisR, $solve[0]->variable['R']);
+        $this->assertEquals(count($tab), $solve[0]->variable['N']);
+        $this->assertFalse($solve[1]->succeed);
+    }
+
 }
