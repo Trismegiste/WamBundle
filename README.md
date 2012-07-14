@@ -8,7 +8,7 @@ and Florent Genette (ported to PHP)
 A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
 Today, this thing would be called a "PVM" (Prolog Virtual Machine) but at
 the Old Ages, when one programmer can change the face of the (computer) world,
-it is named by its maker.
+it was named by its maker.
 
 
 David Warren wrote in "WAM - A tutorial reconstruction" :
@@ -31,7 +31,7 @@ Stop the chatty chat, I recommand wikipedia and the excellent book by
 Hassan Aït-Kaci in the doc directory.
 
 ## Is it usefull ?
-Prolog has a very limited scope of usefulness but sometimes it can simplify some problem like :
+Like any other SDL, Prolog has a very limited scope but sometimes it can simplify some problem like :
 
  * You need a rule engine
  * You want to avoid big boring sequences of if-else-switch to implement some business intelligence
@@ -51,9 +51,19 @@ specific coding problem.
 
 I also think, like any other language, we, programmers, have some responsability
 to keep this knowledge alive, and the best way is to port this WAM to PHP, now.
-It's not nostalgia, it's just recollection.
+It's not nostalgia, it's just recollection about these pioneers of computer 
+progamming like Von Neumann or Turing.
 
 ## Some notes about this translation
 I went through a lot a trouble thanks the "soft-typing" of PHP and the damned
 "===" but even if I still prefer Java and strong typing, the managing of
-strings and arrays in PHP is awsum.
+strings and arrays in PHP is awsum. There's probably much optimizations to do
+since the design was not thought for PHP. The good thing is my knowledge of PHP
+internals has improved.
+
+## TODO
+ * finish tests for fixtures2
+ * tests for basket => fixtures3
+ * see how to capture output and input in service
+ * refactor and optimize with switch, preg_match...
+ * namespacing and tree of bundle for symfony2
