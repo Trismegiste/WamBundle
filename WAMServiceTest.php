@@ -16,7 +16,7 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
 
     protected function checkOneValueSuccess($solve, $key, $value)
     {
-        $this->checkOneSolutionSuccess($solve, array($key=>$value));
+        $this->checkOneSolutionSuccess($solve, array($key => $value));
     }
 
     protected function checkOneSolutionSuccess($solve, array $expected)
@@ -109,5 +109,13 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
         $this->checkOneSolutionSuccess($solve, array('X' => $hypothesisX, 'R' => $hypothesisR, 'N' => count($tab)));
     }
 
-    // 'p(S,le,chat)' -> 'snm(determinant(le), nom(chat), masculin)'
+    /**
+     * @depends testFixtures2
+     */
+    public function testStructure(WAMService $wam)
+    {
+        $solve = $wam->runQuery('p(S,le,chat).');
+        $this->checkOneValueSuccess($solve, 'S', 'snm(determinant(le), nom(chat), masculin)');
+    }
+
 }
