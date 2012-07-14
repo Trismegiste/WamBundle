@@ -14,6 +14,23 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($solve[0]->succeed);
     }
 
+    protected function checkOneValueSuccess($solve, $key, $value)
+    {
+        $this->checkOneSolutionSuccess($solve, array($key=>$value));
+    }
+
+    protected function checkOneSolutionSuccess($solve, array $expected)
+    {
+        $this->assertCount(2, $solve);
+        $this->assertTrue($solve[0]->succeed);
+        $this->assertCount(count($expected), $solve[0]->variable);
+        foreach ($expected as $key => $value) {
+            $this->assertArrayHasKey($key, $solve[0]->variable);
+            $this->assertEquals($value, $solve[0]->variable[$key]);
+        }
+        $this->assertFalse($solve[1]->succeed);
+    }
+
     public function testFixtures1()
     {
         $wam = new WAMService(new Program());
@@ -71,10 +88,7 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
     public function testArithmetics(WAMService $wam)
     {
         $solve = $wam->runQuery("factorial(6, X).");
-        $this->assertCount(2, $solve);
-        $this->assertTrue($solve[0]->succeed);
-        $this->assertEquals(720, $solve[0]->variable['X']);
-        $this->assertFalse($solve[1]->succeed);
+        $this->checkOneValueSuccess($solve, 'X', 720);
     }
 
     /**
@@ -87,19 +101,12 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
         $hypothesisR = '[' . implode(', ', array_reverse($tab)) . ']';
         shuffle($tab);
         $chaos = '[' . implode(', ', $tab) . ']';
+
         $solve = $wam->runQuery("qsort($chaos, X).");
-        $this->assertCount(2, $solve);
-        $this->assertTrue($solve[0]->succeed);
-        $this->assertEquals($hypothesisX, $solve[0]->variable['X']);
-        $this->assertFalse($solve[1]->succeed);
+        $this->checkOneValueSuccess($solve, 'X', $hypothesisX);
 
         $solve = $wam->runQuery("qsort($chaos, X), reverse(X, R), length(R, N).");
-        $this->assertCount(2, $solve);
-        $this->assertTrue($solve[0]->succeed);
-        $this->assertEquals($hypothesisX, $solve[0]->variable['X']);
-        $this->assertEquals($hypothesisR, $solve[0]->variable['R']);
-        $this->assertEquals(count($tab), $solve[0]->variable['N']);
-        $this->assertFalse($solve[1]->succeed);
+        $this->checkOneSolutionSuccess($solve, array('X' => $hypothesisX, 'R' => $hypothesisR, 'N' => count($tab)));
     }
 
     // 'p(S,le,chat)' -> 'snm(determinant(le), nom(chat), masculin)'
