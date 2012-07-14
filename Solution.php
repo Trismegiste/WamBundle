@@ -7,5 +7,20 @@
  */
 class Solution
 {
-    //put your code here
+
+    public $succeed = false;
+    public $variable = array();
+    protected $output = array('');
+
+    public function writeLn($str)
+    {
+        $this->write($str);
+        $this->output[] = '';
+    }
+
+    public function write($str)
+    {
+        $this->output[count($this->output) - 1] .= $str;
+    }
+
 }

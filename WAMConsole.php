@@ -184,11 +184,7 @@ class WAMConsole extends WAM
             }
             else
                 break;
-//      }
-//      else {  // if there are no query variables at all, trying the remaining choicepoints seems senseless
-//        writeLn("Success.");
-//        break;
-//      }
+
             // if the users decided to see more, show him/her. otherwise: terminate
             if (($answer == "y") || ($answer == "yes"))
                 $this->backtrack();

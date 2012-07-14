@@ -10,7 +10,7 @@
  *
  * WAM.java contains the actual WAM
  */
-class WAM implements PrologContext
+abstract class WAM implements PrologContext
 {
     const UNB = 0;  // variable-related constants:
     const REF = 1;  // tag == REF means this variable is a reference
@@ -79,14 +79,15 @@ class WAM implements PrologContext
     protected $env = null; // last environment on stack
     protected $arguments = array();      // argument registers
 
-    // in case we want to use the WAM inside our GUI
-    //public TextArea response = null;   // this is the memo box all the output is written into
-    //public Frame frame = null;
-    //public int GUImode = 0;    // 0 means: text mode, 1 means: GUI mode
-    // creates a new WAM with program data initialized to aProgram
+    /**
+     * creates a new WAM with program data initialized to aProgram
+     * 
+     * @param Program $aProgram 
+     */
 
     public function __construct(Program $aProgram)
     {
+        $aProgram->owner = $this;
         $this->p = $aProgram;
         $this->reset();
     }
@@ -107,34 +108,14 @@ class WAM implements PrologContext
         $this->cutPoint = null;
     }
 
-// end of WAM.reset()
     // reads a String line from standard input
-    protected function readLn()
-    {
-        try {
-            $handle = fopen("php://stdin", "r");
-            $line = fgets($handle);
+    abstract protected function readLn();
 
-            return trim($line);
-        } catch (Exception $e) {
-
-            return "";
-        }
-    }
-
-    // end of WAM.readLn()
     // displays a string
-    public function write($s)
-    {
-        echo $s;
-    }
+    abstract public function write($s);
 
-// end of WAM.write(String)
     // displays a string followed by CRLF
-    public function writeLn($s)
-    {
-        echo $s . "\n";
-    }
+    abstract public function writeLn($s);
 
 // end of WAM.writeLn(String)
     // displays a debug information line
@@ -1044,144 +1025,5 @@ class WAM implements PrologContext
             $this->writeLn("# backtracks: " . $this->backtrackCount);
         }
     }
-
-// end of WAM.run()
-    // runQuery compiles a query given by s into a WAM program, adds it to the program in memory
-    // and jumps to the label "query$", starting the execution
-    public function runQuery($s)
-    {
-        $qc = new QueryCompiler($this);
-        $this->reset();
-        $this->p->deleteFrom("query$");
-        $s = trim($s);
-
-        /*         * ************* BEGIN SPECIAL COMMANDS ************** */
-
-        // input "quit" or "exit" means: end the WAM now, dude!
-        if (in_array($s, array("quit", "exit")))
-            return false;
-        if ($s == "clear") {
-            $this->writeLn("Not in GUI mode.");
-            return true;
-        }
-        if ($s == "help") {
-            $this->showHelp();  // display some help information
-            return true;
-        }
-        if ($s == "set") {
-            $this->displayInternalVariables();  // show the states of the internal parameters
-            return true;
-        }
-        if ($s == "labels") {  // show all labels of the current program
-            for ($i = 0; $i < $this->p->getStatementCount(); $i++) {
-                $m = $this->p->getStatement($i)->getLabel();
-                if (strlen($m) > 0)
-                    $this->writeLn($m);
-            }
-            return true;
-        }
-        if ($s == "procedures") {  // show all procedure names of the current program
-            for ($i = 0; $i < $this->p->getStatementCount(); $i++) {
-                $m = $this->p->getStatement($i)->getLabel();
-                if ((strlen($m) > 0) && (false === strpos($m, '~')))
-                    $this->writeLn($m);
-            }
-            return true;
-        }
-        if ($s == "list") {  // show the WAM code of the program currently in memory
-            if ($this->p->getStatementCount() == 0)
-                $this->writeLn("No program in memory.");
-            else
-                $this->writeLn($this->p->__toString());
-            return true;
-        }
-        if ($s == "new") {  // clear memory
-            $this->p = new Program($this);
-            $this->writeLn("Memory cleared.");
-            return true;
-        }
-        if ((strlen($s) > 4) && (substr($s, 0, 4) == "set ")) {  // TODO preg_match
-            if (preg_match('#^set\s+([A-Za-z]+)=(.+)$#', $s, $match)) {
-                $this->setInternalVariable($match[1], $match[2]);
-            } elseif (preg_match('#^set\s+([A-Za-z]+)\s*$#', $s, $match)) {
-                $this->getInternalVariable($match[1]);
-            }
-            return true;
-        } // end of "set ..." command
-
-        /*         * ************* END SPECIAL COMMANDS ************** */
-
-        $query = $qc->compile($s);
-
-        if ($query == null) {  // query could not be compiled
-            $this->writeLn("Illegal query.");
-            return true;
-        } else {
-            if ($this->debugOn > 1) {  // if in debug mode, display query WAM code
-                $this->writeLn("----- BEGIN QUERYCODE -----");
-                $this->writeLn($query->__toString());
-                $this->writeLn("------ END QUERYCODE ------");
-            }
-            $this->p->addProgram($query);  // add query to program in memory and
-            $this->p->updateLabels();  // update the labels for jumping hin und her
-        }
-
-        // reset the WAM's registers and jump to label "query$" (the current query, of course)
-        $this->programCounter = $this->p->getLabelIndex("query$");
-        $answer = "";
-        do {
-            $ms = microtime(true);
-            $this->run();
-
-            if ($this->benchmarkOn > 0)  // sometimes, we need extra benchmark information
-                $this->writeLn("Total time elapsed: " + (microtime(true) - $ms) + " ms.");
-            $this->writeLn("");
-
-            if ($this->failed) {  // if execution failed, just tell that
-                $this->writeLn("Failed.");
-                break;
-            }
-
-            // if there are any query variables (e.g. in "start(X, Y)", X and Y would be such variables),
-            // display their current values and ask the user if he/she wants to see more possible solutions
-            if ($this->displayQCount > 0) {
-                $this->write("Success: ");
-                $cnt = 0;
-                for ($i = 0; $i < 100; $i++)  // yes, we do not allow more than 100 query variables!
-                    if ($this->displayQValue[$i]) {
-                        $cnt++;  // if Q[i] is to be displayed, just do that
-                        $this->write($this->queryVariables[$i]->name . " = ");
-                        $this->write($this->queryVariables[$i]->__toString());
-                        if ($cnt < $this->displayQCount)
-                            $this->write(", ");
-                        else
-                            $this->writeLn(".");
-                    }
-            }
-            else
-                $this->writeLn("Success.");
-            // if there are any more choicepoints left, ask the user if they shall be tried
-            if ($this->choicePoint !== null) {
-
-                $this->write("More? ([y]es/[n]o) ");
-                $answer = $this->readLn();
-                $this->writeLn("");
-            }
-            else
-                break;
-//      }
-//      else {  // if there are no query variables at all, trying the remaining choicepoints seems senseless
-//        writeLn("Success.");
-//        break;
-//      }
-            // if the users decided to see more, show him/her. otherwise: terminate
-            if (($answer == "y") || ($answer == "yes"))
-                $this->backtrack();
-        } while (($answer == "y") || ($answer == "yes"));
-        $this->reset();
-        return true;
-    }
-
-// end of WAM.runQuery(String)
 
 }
