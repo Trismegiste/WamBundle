@@ -19,6 +19,3 @@ parent(X, Y) :- mere(X, Y).
 frere(X, Y) :- parent(Z, X) , parent(Z, Y), X != Y.
 
 equal(X, X).
-
-not(Call) :- call(Call), !, fail.
-not(Call).
