@@ -1,17 +1,10 @@
-male(john).
-male(thomas).
+male(luke).
+male(anakin).
 
 not(Call) :- call(Call), !, fail.
 not(Call).
 
 female(X) :- not(male(X)).
-
-concatenate([], X, X).
-concatenate([X|L1], L2, [X|L3]) :- concatenate(L1, L2, L3).
-
-faculty(X, 0) :- X < 0, !.
-
-dec(X, Y) :- Y is X - 1.
 
 determinant(la).
 determinant(le).
@@ -51,4 +44,3 @@ reverse([A|B], Z) :- reverse(B, Brev), append(Brev, [A], Z).
 
 length([], 0).
 length([H|T], N) :- length(T, M), N is M + 1.
-
