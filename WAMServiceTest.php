@@ -116,6 +116,18 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
     {
         $solve = $wam->runQuery('p(S,le,chat).');
         $this->checkOneValueSuccess($solve, 'S', 'snm(determinant(le), nom(chat), masculin)');
+        $solve = $wam->runQuery('p(S,X,blanche).');
+        $this->checkOneSolutionSuccess($solve, array(
+            'S' => 'snm(determinant(souris), nom(blanche), feminin)',
+            'X' => 'souris'));
+    }
+
+    /**
+     * @depends testFixtures2
+     */
+    public function testMetalogic(WAMService $wam)
+    {
+        $this->fail('not yet implemented');
     }
 
 }
