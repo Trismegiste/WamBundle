@@ -8,13 +8,18 @@
 class WAMServiceTest extends PHPUnit_Framework_TestCase
 {
 
+    protected function checkSuccess($solve)
+    {
+        $this->assertCount(1, $solve);
+        $this->assertTrue($solve[0]->succeed);
+    }
+
     public function testFixtures1()
     {
         $wam = new WAMService(new Program());
 
         $solve = $wam->runQuery("consult('fixtures1.pro').");
-        $this->assertCount(1, $solve);
-        $this->assertTrue($solve[0]->succeed);
+        $this->checkSuccess($solve);
 
         return $wam;
     }
@@ -25,8 +30,7 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
     public function testFamilyTree(WAMService $wam)
     {
         $solve = $wam->runQuery("equal(luke, luke).");
-        $this->assertCount(1, $solve);
-        $this->assertTrue($solve[0]->succeed);
+        $this->checkSuccess($solve);
 
         $solve = $wam->runQuery("grandmere(X, luke).");
         $this->assertCount(3, $solve);
@@ -56,8 +60,7 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
         $wam = new WAMService(new Program());
 
         $solve = $wam->runQuery("consult('fixtures2.pro').");
-        $this->assertCount(1, $solve);
-        $this->assertTrue($solve[0]->succeed);
+        $this->checkSuccess($solve);
 
         return $wam;
     }
@@ -99,4 +102,5 @@ class WAMServiceTest extends PHPUnit_Framework_TestCase
         $this->assertFalse($solve[1]->succeed);
     }
 
+    // 'p(S,le,chat)' -> 'snm(determinant(le), nom(chat), masculin)'
 }
