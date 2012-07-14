@@ -12,7 +12,7 @@ class PrologCompilerNotClauseTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->compiler = new PrologCompiler(new WAM(new Program()));
+        $this->compiler = new PrologCompiler(new WAMService(new Program()));
     }
 
     protected function tearDown()
