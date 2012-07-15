@@ -14,6 +14,12 @@ class WAM_TestCase extends PHPUnit_Framework_TestCase
         $this->assertTrue($solve[0]->succeed);
     }
 
+    protected function checkFailure($solve)
+    {
+        $this->assertCount(1, $solve);
+        $this->assertFalse($solve[0]->succeed);
+    }
+
     /**
      * Check solution of one variable with one success ending with failure or not
      *

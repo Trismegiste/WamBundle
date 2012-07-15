@@ -33,8 +33,7 @@ class WAMMetalogicTest extends WAM_TestCase
     public function testUnknownCall(WAMService $wam)
     {
         $solve = $wam->runQuery("call(foo).");
-        $this->assertCount(1, $solve);
-        $this->assertFalse($solve[0]->succeed);
+        $this->checkFailure($solve);
     }
 
     /**
@@ -43,8 +42,7 @@ class WAMMetalogicTest extends WAM_TestCase
     public function testUnknownCallSTR(WAMService $wam)
     {
         $solve = $wam->runQuery("call(foo(bar)).");
-        $this->assertCount(1, $solve);
-        $this->assertFalse($solve[0]->succeed);
+        $this->checkFailure($solve);
     }
 
 }
