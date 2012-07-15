@@ -1,18 +1,19 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Trismegiste
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
- * Program.java contains the WAM program management class Program. A Program
- * consists of an array of Statements (cf. Statement.java).
- * **************************************************************************** */
-
-// Program class manages WAM programs, consisting of list (vector) of statements
+ * Program contains the WAM program management class Program. A Program
+ * consists of an array of Statements (cf. Statement).
+ * 
+ * Program class manages WAM programs, consisting of list (vector) of statements
+ */
 class Program
 {
-
     const callWrite = -10;
     const callWriteLn = -11;
     const callNewLine = -12;
@@ -37,10 +38,8 @@ class Program
         $this->owner = $anOwner;
     }
 
-// end of Program.Program(WAM)
-
     // TODO Typing null ?
-    public function addProgram(/*Program*/ $p)
+    public function addProgram(/* Program */ $p)
     {
         if ($p == null)
             return;
@@ -63,14 +62,10 @@ class Program
         }
     }
 
-// end of Program.addProgram(Program)
-
     public function addStatement(Statement $s)
     {
         $this->statements[] = $s;
     }
-
-// end of Program.addStatement(Statement)
 
     public function addStatementAtPosition(Statement $s, $position)
     {
@@ -79,28 +74,22 @@ class Program
         $this->statements = array_merge($this->statements, $tmp);
     }
 
-// end of Program.addStatementAtPosition(Statement, int)
-
     public function getStatementCount()
     {
         return count($this->statements);
     }
-
-// end of Program.getStatementCount()
 
     public function getStatement($i)
     {
         return $this->statements[$i];
     }
 
-// end of Program.getStatement(int)
-
     public function deleteFromLine($lineNumber)
     {
         $result = 1;
         if ($lineNumber >= 0) {
             $ending = count($this->statements);
-            for($k = $lineNumber + 1; $k < $ending; $k++) {
+            for ($k = $lineNumber + 1; $k < $ending; $k++) {
                 if (strlen($this->statements[$k]->getLabel()) > 0) {
                     $ending = $k;
                     break;
@@ -113,14 +102,10 @@ class Program
         return $result;
     }
 
-// end of Program.deleteFromLine(int)
-
     public function deleteFrom($label)
     {
         return $this->deleteFromLine($this->getLabelIndex($label));
     }
-
-// end of Program.deleteFrom(String)
 
     public function getLastClauseOf($procedureName)
     {
@@ -138,8 +123,6 @@ class Program
         }
         return $line;
     }
-
-// end of Program.getLastClauseOfProcedure(String)
 
     public function getLastClauseButOneOf($procedureName)
     {
@@ -160,8 +143,6 @@ class Program
         }
         return $result;
     }
-
-// end of Program.getLastClauseButOneOf(String)
 
     public function addClause($label, Program $code)
     {
@@ -186,7 +167,7 @@ class Program
                 // update labels and program itself
                 $this->addProgram($code);
             } catch (Exception $e) {
-
+                // TODO maybe do something ?
             }
         } else {  // first label of that kind: just add to code and update jumpings
             $this->addProgram($code);
@@ -202,9 +183,10 @@ class Program
         return -1;
     }
 
-// end of Program.getLabelIndex(String)
-    // updateLabels converts String label names in call, try_me_else and retry_me_else statements
-    // to integer values. internal predicates (e.g. write, consult) are transformed to negative line numbers
+    /**
+     * updateLabels converts String label names in call, try_me_else and retry_me_else statements
+     * to integer values. internal predicates (e.g. write, consult) are transformed to negative line numbers
+     */
     public function updateLabels()
     {
         $this->labels = array();
@@ -257,8 +239,6 @@ class Program
         }
     }
 
-// end of Program.updateLabels()
-
     public function __toString()
     {
         $result = "";
@@ -278,7 +258,4 @@ class Program
         return $result;
     }
 
-// end of Program.toString()
 }
-
-// end of class Program

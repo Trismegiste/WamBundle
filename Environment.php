@@ -18,5 +18,4 @@ class Environment
         $this->variables = array();
     }
 
-// end of Environment.Environment(int, Environment)
 }
