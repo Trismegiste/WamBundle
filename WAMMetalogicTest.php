@@ -73,4 +73,39 @@ class WAMMetalogicTest extends WAM_TestCase
         $this->checkFailure($solve);
     }
 
+    /**
+     * @depends testFixtures3
+     */
+    public function testForUnif(WAMService $wam)
+    {
+        $solve = $wam->runQuery("unif1(male, X).");
+        $this->checkOneValueSuccess($solve, 'X', 'luke', false);
+    }
+
+    /**
+     * @depends testFixtures3
+     */
+    public function testForUnif2(WAMService $wam)
+    {
+        $solve = $wam->runQuery("unif2(father, anakin ,X).");
+        $this->checkOneValueSuccess($solve, 'X', 'luke', false);
+    }
+
+    /**
+     * @depends testFixtures3
+     */
+    public function testAssertBacktracked(WAMService $wam)
+    {
+        $solve = $wam->runQuery("retractall(robot).");
+        $solve = $wam->runQuery("assert(robot(c3po)).");
+        $solve = $wam->runQuery("assert(robot(ig88)).");
+        $solve = $wam->runQuery("donothing(robot(r2d2)).");
+        $solve = $wam->runQuery("robot(X).");
+        $this->assertCount(2, $solve);
+        foreach (array('c3po', 'ig88') as $k => $name) {
+            $this->assertTrue($solve[$k]->succeed);
+            $this->assertEquals($name, $solve[$k]->variable['X']);
+        }
+    }
+
 }

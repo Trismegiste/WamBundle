@@ -2,9 +2,8 @@ male(luke).
 female(leia).
 father(anakin, luke).
 
-potentiel(X) :- assert(X), fail.
+donothing(X) :- assert(X), fail.
 remove(X) :- retract(X), fail.
-potentiel(X).
 
-unif(F, P) :- call(F(P)).
-unif(F, P1, P2) :- call(F(P1, P2)).
+unif1(F, P) :- bound(F), call(F(P)).
+unif2(F, P1, P2) :- bound(F), call(F(P1, P2)).
