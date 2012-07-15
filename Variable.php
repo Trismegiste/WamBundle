@@ -3,7 +3,8 @@
 /**
  * This class is an Y(n) in the W.A.M
  */
-class Variable {
+class Variable
+{
 
     public $tag;            // UNB, REF, CON, LIS or STR
     public $value;       // variable's content in case of CON
@@ -12,7 +13,8 @@ class Variable {
     public /* Variable */ $head, $tail;  // list/struc stuff
     public /* ChoicePoint */ $cutLevel;  // f�r the cut and get_level instructions
 
-    public function __construct($param1 = null, $param2 = null) {
+    public function __construct($param1 = null, $param2 = null)
+    {
         if (is_null($param1) && is_null($param2)) {
             $this->constructVariable1();
         } elseif (($param1 instanceof Variable) && is_null($param2)) {
@@ -31,39 +33,45 @@ class Variable {
     }
 
     // constructor for creating a new, unbound variable without a name
-    protected function constructVariable1() {
+    protected function constructVariable1()
+    {
         $this->tag = WAM::REF;
         $this->reference = $this;
     }
 
     // constructor for creating a new, unbound variable with a name
-    protected function constructVariable2($aName) {
+    protected function constructVariable2($aName)
+    {
         $this->tag = WAM::REF;
         $this->reference = $this;
         $this->name = $aName;
     }
 
     // constructor for creating a new variable and binding it to a constant
-    protected function constructVariable3($aName, $s) {
+    protected function constructVariable3($aName, $s)
+    {
         $this->tag = WAM::CON;
         $this->value = $s;
         $this->name = $aName;
     }
 
     // constructor for creating a new variable and unifying it with another
-    protected function constructVariable4($aName, Variable $v) {
+    protected function constructVariable4($aName, Variable $v)
+    {
         $this->tag = WAM::REF;
         $this->reference = $v;
         $this->name = $aName;
     }
 
     // copyFrom-constructor
-    protected function constructVariable5(Variable $v) {
+    protected function constructVariable5(Variable $v)
+    {
         $this->copyFrom($v);
     }
 
     // sets internal components to that of source
-    public function copyFrom(Variable $source) {
+    public function copyFrom(Variable $source)
+    {
         $this->tag = $source->tag;
         if ($this->tag == WAM::REF)
             $this->reference = $source->reference;
@@ -76,7 +84,8 @@ class Variable {
     }
 
     // dereferencing: if this variable points to another var, then return that dereferenced
-    public function deref() {
+    public function deref()
+    {
         if (($this->tag == WAM::REF) && ($this->reference !== $this)) {
             $result = $this->reference;
             while (($result->tag == WAM::REF) && ($result->reference !== $result))
@@ -87,9 +96,9 @@ class Variable {
             return $this;
     }
 
-// end of Variable.deref()
     // returns a string in the form NAME = VALUE, representing the variable's value
-    public function __toString() {
+    public function __toString()
+    {
         if (($this->tag == WAM::REF) && ($this->reference === $this))
             return "_"; // "(unbound variable)";
         if ($this->tag == WAM::CON) {
@@ -110,9 +119,8 @@ class Variable {
         return "";
     }
 
-// end of Variable.toString()
-
-    public function toString2() {
+    public function toString2()
+    {
         if ($this->tag == WAM::LIS) {
             $result = $this->head->__toString();
             if (($this->tail !== null) && ($this->tail->tag != WAM::CON))
@@ -122,5 +130,4 @@ class Variable {
         return "";
     }
 
-// end of Variable.toString2()
 }

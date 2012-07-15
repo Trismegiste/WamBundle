@@ -1,9 +1,10 @@
 <?php
 
 /**
- * Description of WAMService
- *
- * @author flo
+ * WAMService is a WAM inteded to use in a framework 
+ * with oriented service architecture
+ * 
+ * @author Florent Genette
  */
 class WAMService extends WAM
 {

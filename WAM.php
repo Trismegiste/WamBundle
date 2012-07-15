@@ -8,7 +8,7 @@
  * http://github.com/Trismegiste/WamBundle
  * June to July 2012 (yes, 10 years after the original version !)
  *
- * WAM.java contains the actual WAM
+ * WAM.php contains the an abstract WAM without input or output
  */
 abstract class WAM implements PrologContext
 {
@@ -117,7 +117,6 @@ abstract class WAM implements PrologContext
     // displays a string followed by CRLF
     abstract public function writeLn($s);
 
-// end of WAM.writeLn(String)
     // displays a debug information line
     public function debug($s, $debugLevel)
     {

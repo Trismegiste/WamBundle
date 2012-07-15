@@ -8,7 +8,7 @@
  * http://github.com/Trismegiste/WamBundle
  * June to July 2012 (yes, 10 years after the original version !)
  *
- * WAM.java contains the actual WAM
+ * WAMConsole is a WAM for a CLI application
  */
 class WAMConsole extends WAM
 {
