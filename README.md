@@ -52,7 +52,7 @@ specific coding problem.
 I also think, like any other language, we, programmers, have some responsability
 to keep this knowledge alive, and the best way is to port this WAM to PHP, now.
 It's not nostalgia, it's just recollection about these pioneers of computer 
-progamming like Von Neumann or Turing.
+programming like Von Neumann or Turing.
 
 ## Some notes about this translation
 I went through a lot a trouble thanks the "soft-typing" of PHP and the damned
