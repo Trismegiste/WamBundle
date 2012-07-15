@@ -739,9 +739,8 @@ abstract class WAM implements PrologContext
                     $target = $this->p->labels[$v2->value];
             }
             else if ($v2->tag == self::STR) {
-                $intg = (int) $this->p->labels[$v2->head->value];  // TODO notice array_key ?
-                if ($intg !== null) {
-                    $target = (int) $intg;   // TODO useless ?
+                if (array_key_exists($v2->head->value, $this->p->labels)) {
+                    $target = $this->p->labels[$v2->head->value];  
                     $tail = $v2->tail;
                     $cnt = 0;
                     while ($tail !== null) {
