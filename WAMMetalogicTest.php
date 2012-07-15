@@ -25,6 +25,20 @@ class WAMMetalogicTest extends WAM_TestCase
         $solve = $wam->runQuery("robot(X).");
         // no backtrack then no ending with failure (a little odd : improvment to do ? don't know)
         $this->checkOneValueSuccess($solve, 'X', 'c3po', false);
+
+        return $wam;
+    }
+
+    /**
+     * @depends testAssert
+     */
+    public function testRetract(WAMService $wam)
+    {
+        $solve = $wam->runQuery("retract(robot).");
+        $solve = $wam->runQuery("assert(robot(ig88)).");
+        $solve = $wam->runQuery("robot(X).");
+        // no backtrack then no ending with failure (a little odd : improvment to do ? don't know)
+        $this->checkOneValueSuccess($solve, 'X', 'ig88', false);
     }
 
     /**
