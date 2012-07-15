@@ -21,7 +21,10 @@ class WAMMetalogicTest extends WAM_TestCase
      */
     public function testAssert(WAMService $wam)
     {
-        $this->fail('not yet implemented');
+        $solve = $wam->runQuery("assert(robot(c3po)).");
+        $solve = $wam->runQuery("robot(X).");
+        // no backtrack then no ending with failure (a little odd : improvment to do ? don't know)
+        $this->checkOneValueSuccess($solve, 'X', 'c3po', false);
     }
 
     /**

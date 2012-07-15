@@ -14,21 +14,37 @@ class WAM_TestCase extends PHPUnit_Framework_TestCase
         $this->assertTrue($solve[0]->succeed);
     }
 
-    protected function checkOneValueSuccess($solve, $key, $value)
+    /**
+     * Check solution of one variable with one success ending with failure or not
+     *
+     * @param array $solve
+     * @param string $key
+     * @param mixed $value
+     * @param type $withEndingFailure : Is backtracking creating a last entry with failure ?
+     */
+    protected function checkOneValueSuccess($solve, $key, $value, $withEndingFailure = true)
     {
-        $this->checkOneSolutionSuccess($solve, array($key => $value));
+        $this->checkOneSolutionSuccess($solve, array($key => $value), $withEndingFailure);
     }
 
-    protected function checkOneSolutionSuccess($solve, array $expected)
+    /**
+     * Check solution of variables array with one success ending with failure or not
+     *
+     * @param array $solve
+     * @param array $expected
+     * @param type $withEndingFailure : Is backtracking creating a last entry with failure ?
+     */
+    protected function checkOneSolutionSuccess($solve, array $expected, $withEndingFailure = true)
     {
-        $this->assertCount(2, $solve);
+        $this->assertCount(1 + ($withEndingFailure ? 1 : 0), $solve);
         $this->assertTrue($solve[0]->succeed);
         $this->assertCount(count($expected), $solve[0]->variable);
         foreach ($expected as $key => $value) {
             $this->assertArrayHasKey($key, $solve[0]->variable);
             $this->assertEquals($value, $solve[0]->variable[$key]);
         }
-        $this->assertFalse($solve[1]->succeed);
+        if ($withEndingFailure)
+            $this->assertFalse($solve[1]->succeed);
     }
 
 }
