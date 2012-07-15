@@ -1,7 +1,9 @@
 <?php
 
 /**
- * Description of PrologCompilerTest
+ * Test the generated instructions for Warren Abstract Machine
+ * An instruction is a Statement
+ * Comparisons are made with toString
  *
  * @author flo
  */
@@ -204,6 +206,10 @@ WAM;
             $this->assertEqualsNoSpacing($p->getStatement($k), $wamCode[$k]);
     }
 
+    /**
+     * Test for the prolog keyword assert
+     * @covers PrologCompiler::compileSimpleClause
+     */
     public function testSimpleClause()
     {
         $p = $this->compiler->compileSimpleClause('father(anakin, luke).');
@@ -219,5 +225,3 @@ WAM;
     }
 
 }
-
-?>

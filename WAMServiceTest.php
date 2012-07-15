@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Description of WAMServiceTest
+ * Test for the WAM itself
+ * Testing simple queries on starwars
  *
  * @author flo
  */

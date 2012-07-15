@@ -1,8 +1,9 @@
 <?php
 
 /**
- * Description of PrologCompilerTest
- *
+ * Test Prolog Compiler for standard not (negation by failure)
+ * Check the resulting CompilerStructure
+ * 
  * @author flo
  */
 class PrologCompilerNotClauseTest extends PHPUnit_Framework_TestCase
@@ -147,5 +148,3 @@ class PrologCompilerNotClauseTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

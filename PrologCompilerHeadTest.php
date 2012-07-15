@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Description of PrologCompilerTest
+ * Test Prolog Compiler for simple clauses
+ * Check the resulting CompilerStructure
  *
  * @author flo
  */
@@ -91,5 +92,3 @@ class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
     }
 
 }
-
-?>

@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Description of PrologCompilerTest
+ * Test Prolog Compiler for Horn clauses
+ * Check the resulting CompilerStructure
  *
  * @author flo
  */
