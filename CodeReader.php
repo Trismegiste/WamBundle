@@ -42,6 +42,7 @@ class CodeReader
                     }
                     $fonction = "";
                     $j = strpos($str, " ");
+                    // ce passage est tout buggé
                     if ($j > 0) {
                         $fonction = trim(substr($str, 0, $j));
                         $str = trim(substr($str, $j + 1));
@@ -64,5 +65,36 @@ class CodeReader
         }
     }
 
-// end of CodeReader.readProgram()
+    /**
+     * Write a program to a file
+     * 
+     * @param Program $prog
+     * @param string $filename
+     */
+    public static function writeProgram(Program $prog, $filename)
+    {
+        if ($handle = fopen($filename, 'w')) {
+            for ($k = 0; $k < $prog->getStatementCount(); $k++) {
+                fprintf($handle, "%s\n", $prog->getStatement($k)->dumpWamCode());
+            }
+            $handle = fclose($handle);
+        }
+
+        return $handle;
+    }
+
+    /**
+     * Compile a prolog file into a WAM file
+     * 
+     * @param string $prologFile
+     * @param string $wamFile 
+     */
+    public static function prologToWamCode($prologFile, $wamFile)
+    {
+        $compiler = new PrologCompiler(new WAMService(new Program()));
+        $p = $compiler->compileFile($prologFile);
+        if (!is_null($p))
+            self::writeProgram($p, $wamFile);
+    }
+
 }
