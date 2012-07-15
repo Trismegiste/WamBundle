@@ -32,4 +32,12 @@ class WAMMetalogicTest extends WAM_TestCase
         $solve = $wam->runQuery("call(foo).");
     }
 
+    /**
+     * @depends testFixtures3
+     */
+    public function testUnknownCallSTR(WAMService $wam)
+    {
+        $solve = $wam->runQuery("call(foo(bar)).");
+    }
+
 }
