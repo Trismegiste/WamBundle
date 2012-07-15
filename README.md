@@ -62,8 +62,7 @@ since the design was not thought for PHP. The good thing is my knowledge of PHP
 internals has improved.
 
 ## TODO
- * finish tests for fixtures2
- * tests for basket => fixtures3
+ * tests for basket => fixtures4
  * see how to capture output and input in service
  * refactor and optimize with switch, preg_match...
  * namespacing and tree of bundle for symfony2
