@@ -99,12 +99,4 @@ class WAMServiceTest extends WAM_TestCase
             'X' => 'souris'));
     }
 
-    /**
-     * @depends testFixtures2
-     */
-    public function testMetalogic(WAMService $wam)
-    {
-        $this->fail('not yet implemented');
-    }
-
 }
