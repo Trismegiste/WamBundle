@@ -6,20 +6,20 @@
 class WAMMetalogicTest extends WAM_TestCase
 {
 
-    public function testFixtures1()
+    public function testFixtures3()
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('fixtures1.pro').");
+        $solve = $wam->runQuery("consult('fixtures3.pro').");
         $this->checkSuccess($solve);
 
         return $wam;
     }
 
     /**
-     * @depends testFixtures1
+     * @depends testFixtures3
      */
-    public function testMetalogic(WAMService $wam)
+    public function testAssert(WAMService $wam)
     {
         $this->fail('not yet implemented');
     }
