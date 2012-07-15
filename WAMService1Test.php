@@ -31,6 +31,15 @@ class WAMService1Test extends WAM_TestCase
     /**
      * @depends testFixtures1
      */
+    public function testUnification(WAMService $wam)
+    {
+        $solve = $wam->runQuery("equal(luke, X).");
+        $this->checkOneValueSuccess($solve, 'X', 'luke', false);
+    }
+
+    /**
+     * @depends testFixtures1
+     */
     public function testFamilyTree1(WAMService $wam)
     {
         $solve = $wam->runQuery("grandmother(X, luke).");
