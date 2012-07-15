@@ -24,4 +24,12 @@ class WAMMetalogicTest extends WAM_TestCase
         $this->fail('not yet implemented');
     }
 
+    /**
+     * @depends testFixtures3
+     */
+    public function testUnknownCall(WAMService $wam)
+    {
+        $solve = $wam->runQuery("call(foo).");
+    }
+
 }
