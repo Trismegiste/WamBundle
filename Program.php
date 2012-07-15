@@ -243,14 +243,7 @@ class Program
     {
         $result = "";
         foreach ($this->statements as $i => $st) {
-            $line = "(";
-            if ($i < 1000)
-                $line .= "0";
-            if ($i < 100)
-                $line .= "0";
-            if ($i < 10)
-                $line .= "0";
-            $line .= $i . ")  ";
+            $line = "(" . str_pad($i, 4, '0', STR_PAD_LEFT) . ")  ";
             $result .= $line . $st;
             if ($i < (count($this->statements) - 1))
                 $result .= "\n";
