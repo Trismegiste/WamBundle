@@ -1,7 +1,7 @@
 <?php
 
 /**
- * WAMService is a WAM inteded to use in a framework 
+ * WAMService is a WAM intended to use in a framework 
  * with oriented service architecture
  * 
  * @author Florent Genette
@@ -16,13 +16,13 @@ class WAMService extends WAM
 
     public function write($s)
     {
-        
+        // TODO calling Solution->write : how ?
     }
 
     // displays a string followed by CRLF
     public function writeLn($s)
     {
-        
+        // TODO calling Solution->writeLn : how ?
     }
 
     // runQuery compiles a query given by s into a WAM program, adds it to the program in memory

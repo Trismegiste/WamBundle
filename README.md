@@ -2,7 +2,7 @@
 
 ## A Warren's Abstract Machine on PHP
 by Stefan Buettcher (original java version)
-and Florent Genette (ported to PHP)
+and Florent Genette (porting to PHP and adding new features)
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
