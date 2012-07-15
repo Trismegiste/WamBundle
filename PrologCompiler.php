@@ -1,24 +1,28 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Florent Genette
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
  * PrologCompiler.java contains the class PrologCompiler, which transforms
  * a Prolog program (given as a string or by its filename) into an equivalent
  * WAM program.
- * **************************************************************************** */
+ */
+class PrologCompiler extends Compiler
+{
 
-class PrologCompiler extends Compiler {
-
-    public function __construct(WAM $anOwner) {
+    public function __construct(WAM $anOwner)
+    {
         $this->owner = $anOwner;
         $this->errorString = "";
         $this->varPrefix = "Y";
     }
 
-    public function compile($programCode) {
+    public function compile($programCode)
+    {
         $ms = microtime(true);
         $this->owner->debug("Program Code:", 2);
         $this->owner->debug($programCode, 2);
@@ -45,9 +49,11 @@ class PrologCompiler extends Compiler {
         }
     }
 
-// end of PrologCompiler.compile(String)
-    // compileSimpleClause can be used in order to implement assert(...) operations
-    public function compileSimpleClause($programCode) {
+    /**
+     * compileSimpleClause can be used in order to implement assert(...) operations
+     */
+    public function compileSimpleClause($programCode)
+    {
         $programList = $this->stringToList($programCode);
         $struc = new CompilerStructure();
         if (($this->clause($programList, $struc)) && (count($programList) == 0)) {
@@ -61,9 +67,8 @@ class PrologCompiler extends Compiler {
             return null;
     }
 
-// end of PrologCompiler.compileSimpleClause(String)
-
-    public function compileFile($fileName) {
+    public function compileFile($fileName)
+    {
         $code = "";
         //String dummy;
         try {
@@ -85,24 +90,21 @@ class PrologCompiler extends Compiler {
         }
     }
 
-// end of PrologCompiler.compileFile(String)
-
-    private function getProcedureCount($name, array $list) {
+    private function getProcedureCount($name, array $list)
+    {
         if (array_key_exists($name, $list))
             return $list[$name];
         else
             return 0;
     }
 
-// end of PrologCompiler.getProcedureCount(String, Vector)
-
-    private function setProcedureCount($name, $count, array &$list) {
+    private function setProcedureCount($name, $count, array &$list)
+    {
         $list[$name] = $count;
     }
 
-// end of PrologCompiler.setProcedureCount(String, int, Vector)
-
-    private function updateNames(CompilerStructure $struc) {
+    private function updateNames(CompilerStructure $struc)
+    {
         $procedureCount = array();
         //CompilerStructure s, proc;
         $proc = $s = null;
@@ -129,8 +131,4 @@ class PrologCompiler extends Compiler {
         }
     }
 
-// end of PrologCompiler.updateNames(CompilerStructure)
 }
-
-// end of class PrologCompiler
-

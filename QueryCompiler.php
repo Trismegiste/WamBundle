@@ -1,26 +1,28 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Trismegiste
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
  * QueryCompiler.java contains the QueryCompiler class, a child-class of
  * the Compiler class. QueryCompiler compiles user-written queries into WAM
  * code for execution.
- * **************************************************************************** */
+ */
+class QueryCompiler extends Compiler
+{
 
-class QueryCompiler extends Compiler {
-
-    public function __construct(WAM $anOwner) {
+    public function __construct(WAM $anOwner)
+    {
         $this->owner = $anOwner;
         $this->errorString = "";
         $this->varPrefix = "Q";
     }
 
-// end of end of QueryCompiler.QueryCompiler(WAM)
-
-    private function query(array &$prog, CompilerStructure $struc) {
+    private function query(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::QUERY;
         $struc->head = new CompilerStructure();
@@ -38,9 +40,8 @@ class QueryCompiler extends Compiler {
         return false;
     }
 
-// end of QueryCompiler.query(Vector, CompilerStructure)
-
-    public function compile($aQuery) {
+    public function compile($aQuery)
+    {
         $queryList = $this->stringToList($aQuery);
         $struc = new CompilerStructure();
         $this->errorString = "";
@@ -60,7 +61,4 @@ class QueryCompiler extends Compiler {
         return null;
     }
 
-// end of QueryCompiler.compile(String)
 }
-
-// end of class QueryCompiler

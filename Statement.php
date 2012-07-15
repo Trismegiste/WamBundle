@@ -1,19 +1,22 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Trismegiste
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
- * Statement.java contains the class Statement, representing a single line of
+ * Statement contains the class Statement, representing a single line of
  * WAM code, e.g. "true: proceed".
- * **************************************************************************** */
-
-// Statement class implements WAM code statements
-// a statement looks like this:
-// [label:] operator operand1 [operand2 [operand3]]
-// label, op2 and op3 may be omitted. label is needed for jumps (calls)
-class Statement {
+ *
+ * Statement class implements WAM code statements
+ * a statement looks like this:
+ * [label:] operator operand1 [operand2 [operand3]]
+ * label, op2 and op3 may be omitted. label is needed for jumps (calls)
+ */
+class Statement
+{
     const opAllocate = 1;
     const opBigger = 2;
     const opCall = 3;
@@ -66,7 +69,8 @@ class Statement {
 
     // creates a new statement with one operand/argument
 
-    public function __construct($aLabel, $aFunction, $anArgument, $arg2 = '', $arg3 = '') {
+    public function __construct($aLabel, $aFunction, $anArgument, $arg2 = '', $arg3 = '')
+    {
         $this->label = trim($aLabel);
         $this->fonction = trim($aFunction);
         $this->args = array();
@@ -81,9 +85,8 @@ class Statement {
         $this->doCommonStuff();
     }
 
-// end of Statement.Statement(String, String, String)
-
-    private function doCommonStuff() {
+    private function doCommonStuff()
+    {
         $this->jump = -1;
         $this->operator = $this->functionToInt($this->fonction);
         $this->arg1 = $this->args[0];
@@ -91,9 +94,8 @@ class Statement {
         $this->arg3 = $this->args[2];
     }
 
-// end of Statement.doCommonStuff()
-
-    public function functionToInt($fonction) {
+    public function functionToInt($fonction)
+    {
         $mappingOp = array(
             "allocate" => self::opAllocate,
             "bigger" => self::opBigger,
@@ -128,32 +130,29 @@ class Statement {
         return array_key_exists($fonction, $mappingOp) ? $mappingOp[$fonction] : -1;
     }
 
-// end of Statement.functionToInt()
     // returns the label name of the statement
-    public function getLabel() {
+    public function getLabel()
+    {
         return $this->label;
     }
 
-// end of Statement.getLabel()
     // sets the label name to newLabel
-    public function setLabel($newLabel) {
+    public function setLabel($newLabel)
+    {
         $this->label = $newLabel;
     }
 
-// end of Statement.setLabel(String)
     // returns the operator string, e.g. "get_variable"
-    public function getFunction() {
+    public function getFunction()
+    {
         return $this->fonction;
     }
 
-// end of Statement.getFunction()
-
-    public function setFunction($newFunction) {
+    public function setFunction($newFunction)
+    {
         $this->fonction = $newFunction;
         $this->operator = $this->functionToInt($this->fonction);
     }
-
-// end of Statement.setFunction
 
     /**
      * Set the argument of this statement with $str at position $idx
@@ -161,16 +160,19 @@ class Statement {
      * @param string $str
      * @param int $idx 
      */
-    public function setArgAt($str, $idx) {
+    public function setArgAt($str, $idx)
+    {
         $this->args[$idx] = $str;
     }
-    
-    public function getArgAt($idx) {
+
+    public function getArgAt($idx)
+    {
         return $this->args[$idx];
     }
 
     // for code dumping: print the statement: "label: operator op1 op2"
-    public function __toString() {
+    public function __toString()
+    {
         if ($this->label == ";")
             return "; " . $this->fonction;
         // String result;
@@ -192,28 +194,25 @@ class Statement {
         return $result;
     }
 
-// end of Statement.toString()
-
-    public function toString2() {
+    public function toString2()
+    {
         $result = $this->fonction;
         foreach ($this->args as $item)
             $result .= " " . $item;
         return trim($result);
     }
 
-// end of Statement.toString2()
     // where do you have to go today?
-    public function setJump($anAddress) {
+    public function setJump($anAddress)
+    {
         $this->jump = $anAddress;
     }
 
-// end of Statement.setJump(int)
     // where do you want to go today?
-    public function getJump() {
+    public function getJump()
+    {
         return $this->jump;
     }
 
-// end of Statement.getJump()
 }
 
-// end of class Statement
