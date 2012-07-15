@@ -195,22 +195,12 @@ class Statement
     {
         if ($this->label == ";")
             return "; " . $this->fonction;
-        // String result;
-        if (strlen($this->label) > 0) {
-            $result = $this->label . ": ";
-            $result = str_pad($result, 14, ' ', STR_PAD_RIGHT);
-        }
-        else
-            $result = str_repeat(" ", 14);
-        $result .= $this->fonction;
-        foreach ($this->args as $a) {
-            if (false === strpos($a, ' '))
-                $result .= " " . $a;
-            else
-                $result .= " '$a'";
-        }
+
+        $result = $this->dumpWamCode();
+
         if ($this->jump >= 0)
             $result .= " (" . $this->jump . ")";
+
         return $result;
     }
 
