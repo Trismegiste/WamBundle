@@ -1,21 +1,21 @@
-pere(anakin, luke).
-pere(medichlorian, anakin).
-mere(shmi, anakin).
-mere(padme, luke).
-mere(ruwee, padme).
-pere(jobal, padme).
-mere(padme, leia).
-pere(anakin, leia).
+father(anakin, luke).
+father(medichlorian, anakin).
+mother(shmi, anakin).
+mother(padme, luke).
+mother(ruwee, padme).
+father(jobal, padme).
+mother(padme, leia).
+father(anakin, leia).
 
-grandpere(X, Y) :- pere(X, Z) , pere(Z,Y).
-grandpere(X, Y) :- pere(X, Z) , mere(Z,Y).
+grandfather(X, Y) :- father(X, Z) , father(Z,Y).
+grandfather(X, Y) :- father(X, Z) , mother(Z,Y).
 
-grandmere(X, Y) :- mere(X, Z) , mere(Z,Y).
-grandmere(X, Y) :- mere(X, Z) , pere(Z,Y).
+grandmother(X, Y) :- mother(X, Z) , mother(Z,Y).
+grandmother(X, Y) :- mother(X, Z) , father(Z,Y).
 
-parent(X, Y) :- pere(X, Y).
-parent(X, Y) :- mere(X, Y).
+parent(X, Y) :- father(X, Y).
+parent(X, Y) :- mother(X, Y).
 
-frere(X, Y) :- parent(Z, X) , parent(Z, Y), X != Y.
+brother(X, Y) :- parent(Z, X) , parent(Z, Y), X != Y.
 
 equal(X, X).

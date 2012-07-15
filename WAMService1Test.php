@@ -33,7 +33,7 @@ class WAMService1Test extends WAM_TestCase
      */
     public function testFamilyTree1(WAMService $wam)
     {
-        $solve = $wam->runQuery("grandmere(X, luke).");
+        $solve = $wam->runQuery("grandmother(X, luke).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
         $this->assertEquals('ruwee', $solve[0]->variable['X']);
@@ -47,7 +47,7 @@ class WAMService1Test extends WAM_TestCase
      */
     public function testFamilyTree2(WAMService $wam)
     {
-        $solve = $wam->runQuery("grandmere(shmi, X).");
+        $solve = $wam->runQuery("grandmother(shmi, X).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
         $this->assertEquals('luke', $solve[0]->variable['X']);
@@ -61,7 +61,7 @@ class WAMService1Test extends WAM_TestCase
      */
     public function testFamilyTree3(WAMService $wam)
     {
-        $solve = $wam->runQuery("frere(luke, leia).");
+        $solve = $wam->runQuery("brother(luke, leia).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
         $this->assertTrue($solve[1]->succeed);
