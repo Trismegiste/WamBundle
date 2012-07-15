@@ -22,11 +22,17 @@ class WAMService1Test extends WAM_TestCase
     /**
      * @depends testFixtures1
      */
-    public function testFamilyTree(WAMService $wam)
+    public function testIdentity(WAMService $wam)
     {
         $solve = $wam->runQuery("equal(luke, luke).");
         $this->checkSuccess($solve);
+    }
 
+    /**
+     * @depends testFixtures1
+     */
+    public function testFamilyTree1(WAMService $wam)
+    {
         $solve = $wam->runQuery("grandmere(X, luke).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
@@ -34,7 +40,13 @@ class WAMService1Test extends WAM_TestCase
         $this->assertTrue($solve[1]->succeed);
         $this->assertEquals('shmi', $solve[1]->variable['X']);
         $this->assertFalse($solve[2]->succeed);
+    }
 
+    /**
+     * @depends testFixtures1
+     */
+    public function testFamilyTree2(WAMService $wam)
+    {
         $solve = $wam->runQuery("grandmere(shmi, X).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
@@ -42,7 +54,13 @@ class WAMService1Test extends WAM_TestCase
         $this->assertTrue($solve[1]->succeed);
         $this->assertEquals('leia', $solve[1]->variable['X']);
         $this->assertFalse($solve[2]->succeed);
+    }
 
+    /**
+     * @depends testFixtures1
+     */
+    public function testFamilyTree3(WAMService $wam)
+    {
         $solve = $wam->runQuery("frere(luke, leia).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
