@@ -170,6 +170,26 @@ class Statement
         return $this->args[$idx];
     }
 
+    public function dumpWamCode()
+    {
+        if (strlen($this->label) > 0) {
+            $result = $this->label . ": ";
+            $result = str_pad($result, 14, ' ', STR_PAD_RIGHT);
+        }
+        else
+            $result = str_repeat(" ", 14);
+
+        $result .= $this->fonction;
+        foreach ($this->args as $a) {
+            if (false === strpos($a, ' '))
+                $result .= " " . $a;
+            else
+                $result .= " '$a'";
+        }
+
+        return $result;
+    }
+
     // for code dumping: print the statement: "label: operator op1 op2"
     public function __toString()
     {
