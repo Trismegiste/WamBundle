@@ -6,7 +6,7 @@
  *
  * @author flo
  */
-class WAMServiceTest extends WAM_TestCase
+class WAMService1Test extends WAM_TestCase
 {
 
     public function testFixtures1()
