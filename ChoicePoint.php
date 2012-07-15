@@ -28,5 +28,4 @@ class ChoicePoint
         $this->trailPointer = $trailPtr;
     }
 
-// end of ChoicePoint.ChoicePoint
 }

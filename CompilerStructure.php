@@ -1,19 +1,22 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Trismegiste
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
- * CompilerStructure.java contains the CompilerStructure class, which is needed
+ * CompilerStructure contains the CompilerStructure class, which is needed
  * for transforming the input vector (Prolog program) to the output Program
  * (WAM code) via a certain program structure graph.
- * **************************************************************************** */
-
-// Each instance of CompilerStructure represents a node in the program graph
-// of the original Prolog program. Every node is of a certain type (see constants
-// below).
-class CompilerStructure {
+ * 
+ * Each instance of CompilerStructure represents a node in the program graph
+ * of the original Prolog program. Every node is of a certain type (see constants
+ * below).
+ */
+class CompilerStructure
+{
     const NO_TYPE = -1;   // no type or unknown type
     const QUERY = +0;   // this is a query (list), composed of
     // a set of conditions
@@ -43,18 +46,23 @@ class CompilerStructure {
     public $tail; // sub-nodes in case of non-trivial nodes (lists, queries, ...)
     public $value;                 // the value, e.g. the variable's name in case of type == VARIABLE
 
-    // create a new structure of unknown type
-
-    public function __construct($aType = self::NO_TYPE, $aValue = '') {
+    /**
+     * create a new structure of unknown type
+     */
+    public function __construct($aType = self::NO_TYPE, $aValue = '')
+    {
         $this->type = $aType;
         $this->head = null;
         $this->tail = null;
         $this->value = $aValue;
     }
 
-// end of CompilerStructure.CompilerStructure()
-    // return the string that shall be used to display this node on the screen
-    public function __toString() {
+    /**
+     * return the string that shall be used to display this node on the screen
+     * TODO simple keyword are missing (example : cut)
+     */
+    public function __toString()
+    {
         if ($this->type == self::NO_TYPE)
             return "[no type]";
         else if (($this->type == self::TERM) || ($this->type == self::QUERY)) {

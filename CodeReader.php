@@ -1,20 +1,24 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Trismegiste
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
- * CodeReader.java contains the CodeReader class that transforms a WAM code
- * input file into a Program structure (cf. Program.java / Statement.java)
- * **************************************************************************** */
-
-class CodeReader {
+ * CodeReader class transforms a WAM code
+ * input file into a Program structure (cf. Program / Statement)
+ * 
+ */
+class CodeReader
+{
 
     /**
      * @return Program
      */
-    public static function readProgram($fileName) {
+    public static function readProgram($fileName)
+    {
         // BufferedReader b;
         try {
             $b = fopen($fileName, 'r');
@@ -62,5 +66,3 @@ class CodeReader {
 
 // end of CodeReader.readProgram()
 }
-
-// end of class CodeReader

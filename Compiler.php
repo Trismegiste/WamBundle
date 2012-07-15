@@ -1,17 +1,19 @@
 <?php
 
-/* * ****************************************************************************
+/**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+ *                            -  Ported to PHP by Trismegiste
  *
  * developed:   December 2001 until February 2002
+ * ported:      July 2012
  *
- * Compiler.java contains the base class Compiler, which both QueryCompiler and
+ * Compiler contains the base class Compiler, which both QueryCompiler and
  * PrologCompiler have been derived from. Additionally, it contains a class
  * KeyValue, which is used for implementing mappings from Prolog variable names
  * ("X", "A13", "Name", ...) to WAM variable names ("Y1", "Y2", ...).
- * **************************************************************************** */
-
-abstract class Compiler {
+ */
+abstract class Compiler
+{
 
     protected $owner;
     protected $errorString;
@@ -20,13 +22,15 @@ abstract class Compiler {
     private $lastVar;
     private $bodyCalls;
 
-    public function isPredicate($s) {
+    public function isPredicate($s)
+    {
         return ($this->isConstant($s) && (!$this->isNumber($s)));
     }
 
 // end of Compiler.isPredicate()
 
-    public function isVariable($s) {
+    public function isVariable($s)
+    {
         if (strcmp($s, "_") == 0)
             return true;
         $c = $s[0];
@@ -43,7 +47,8 @@ abstract class Compiler {
 
 // end of Compiler.isVariable()
 
-    public function isConstant($s) {
+    public function isConstant($s)
+    {
         $c = $s[0];
         if (($c >= 'a') && ($c <= 'z')) {
             $check = preg_match('#^[a-zA-Z0-9_]*$#', $s);
@@ -61,13 +66,15 @@ abstract class Compiler {
 
 // end of Compiler.isConstant(String)
 
-    public function isNumber($s) {
+    public function isNumber($s)
+    {
         return is_numeric($s);
     }
 
 // end of Compiler.isNumber(String)
 
-    public function predicate(array &$prog, CompilerStructure $struc) {
+    public function predicate(array &$prog, CompilerStructure $struc)
+    {
         if (count($prog) == 0)
             return false;
         $q0 = (string) $prog[0];
@@ -82,7 +89,8 @@ abstract class Compiler {
 
 // end of Compiler.predicate(Vector, CompilerStructure)
 
-    public function constant(array &$prog, CompilerStructure $struc) {
+    public function constant(array &$prog, CompilerStructure $struc)
+    {
         if (count($prog) == 0)
             return false;
         $q0 = (string) $prog[0];
@@ -107,7 +115,8 @@ abstract class Compiler {
 
 // end of Compiler.constant(Vector, CompilerStructure)
 
-    public function variable(array &$prog, CompilerStructure $struc) {
+    public function variable(array &$prog, CompilerStructure $struc)
+    {
         if (count($prog) == 0)
             return false;
         $q0 = (string) $prog[0];
@@ -122,7 +131,8 @@ abstract class Compiler {
 
 // end of Compiler.variable(Vector, CompilerStructure)
 
-    public function structure(array &$prog, CompilerStructure $struc) {
+    public function structure(array &$prog, CompilerStructure $struc)
+    {
         if (count($prog) == 0)
             return false;
         $oldProg = $prog;
@@ -144,7 +154,8 @@ abstract class Compiler {
 
 // end of Compiler.structure(Vector, CompilerStructure)
 
-    public function element(array &$prog, CompilerStructure $struc) {
+    public function element(array &$prog, CompilerStructure $struc)
+    {
         if (count($prog) == 0)
             return false;
         $oldProg = $prog;
@@ -162,7 +173,8 @@ abstract class Compiler {
 
 // end of Compiler.element(Vector, CompilerStructure)
 
-    public function isNextToken(array &$prog, $tok) {
+    public function isNextToken(array &$prog, $tok)
+    {
         if (count($prog) == 0)
             return false;
         if ($tok == $prog[0])
@@ -172,7 +184,8 @@ abstract class Compiler {
 
 // end of Compiler.isNextToken(Vector, String)
 
-    public function token(array &$prog, $tok) {
+    public function token(array &$prog, $tok)
+    {
         if (count($prog) == 0)
             return false;
         if ($tok == $prog[0]) {
@@ -184,7 +197,8 @@ abstract class Compiler {
 
 // end of Compiler.token(Vector, String)
 
-    public function atom(array &$prog, CompilerStructure $struc) {
+    public function atom(array &$prog, CompilerStructure $struc)
+    {
         if ($this->constant($prog, $struc))
             return true;
         if ($this->variable($prog, $struc))
@@ -194,7 +208,8 @@ abstract class Compiler {
 
 // end of Compiler.atom(Vector, CompilerStructure)
 
-    public function expression(array &$prog, CompilerStructure $struc) {
+    public function expression(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::EXPRESSION;
         $struc->head = new CompilerStructure();
@@ -226,7 +241,8 @@ abstract class Compiler {
 
 // end of Compiler.expression(Vector, CompilerStructure)
 
-    public function condition(array &$prog, CompilerStructure $struc) {
+    public function condition(array &$prog, CompilerStructure $struc)
+    {
         if ($prog == null)
             return false;
         $oldProg = $prog;
@@ -309,7 +325,8 @@ abstract class Compiler {
 
 // end of Compiler.condition(Vector, CompilerStructure)
 
-    public function body(array &$prog, CompilerStructure $struc) {
+    public function body(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::BODY;
         $struc->head = new CompilerStructure();
@@ -332,7 +349,8 @@ abstract class Compiler {
 
 // end of Compiler.body(Vector, CompilerStructure)
 
-    public function clause(array &$prog, CompilerStructure $struc) {
+    public function clause(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::CLAUSE;
         $struc->head = new CompilerStructure();
@@ -358,7 +376,8 @@ abstract class Compiler {
 
 // end of Compiler.clause(Vector, CompilerStructure)
 
-    public function program(array &$prog, CompilerStructure $struc) {
+    public function program(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::PROGRAM;
         $struc->head = new CompilerStructure();
@@ -374,7 +393,8 @@ abstract class Compiler {
 
 // end of Compiler.program(Vector, CompilerStructure)
 
-    public function head(array &$prog, CompilerStructure $struc) {
+    public function head(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::HEAD;
         $struc->head = new CompilerStructure();
@@ -395,7 +415,8 @@ abstract class Compiler {
 
 // end of Compiler.head(Vector, CompilerStructure)
 
-    public function listx(array &$prog, CompilerStructure $struc) {
+    public function listx(array &$prog, CompilerStructure $struc)
+    {
         $oldProg = $prog;
         $struc->type = CompilerStructure::LISTX;
         $struc->head = new CompilerStructure();
@@ -423,7 +444,8 @@ abstract class Compiler {
 
 // end of Compiler.list(Vector, CompilerStructure)
 
-    public function stringToList($text) {
+    public function stringToList($text)
+    {
         //int i;
         $result = array();
         $dummy = "";
@@ -464,7 +486,8 @@ abstract class Compiler {
 
 // end of Compiler.stringToList(String)
 
-    public function substituteVariable($variable) {
+    public function substituteVariable($variable)
+    {
         if ((strlen($variable) > 0) && (strcmp($variable, "_") != 0))
             foreach ($this->substitutionList as $item)
                 if (strcmp($variable, $item->key) == 0) {
@@ -479,7 +502,8 @@ abstract class Compiler {
 
 // end of Compiler.substituteVariable(String)
 
-    public function firstOccurrence($variable) {
+    public function firstOccurrence($variable)
+    {
         if ((strlen($variable) > 0) && (strcmp($variable, "_") != 0))
             foreach ($this->substitutionList as $item)
                 if ($variable === $item->key)
@@ -491,7 +515,8 @@ abstract class Compiler {
     // structureToCode takes a CompilerStructure, generated by the parser, and constructs
     // a WAM program from it, recursively
     // TODO Typing null ?
-    public function structureToCode(/* CompilerStructure */ $struc) {
+    public function structureToCode(/* CompilerStructure */ $struc)
+    {
         //print_r($struc);
         if ($struc == null)
             return null;
