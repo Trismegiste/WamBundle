@@ -3,8 +3,8 @@
 [![Build Status](https://secure.travis-ci.org/Trismegiste/WamBundle.png?branch=master)](http://travis-ci.org/Trismegiste/WamBundle)
 
 ## A Warren's Abstract Machine on PHP
-by Stefan Buettcher (original java version)
-and Florent Genette (porting to PHP and adding new features)
+by Stefan Büttcher (original java version)
+and Florent Genette (PHP port and debug / new features on CodeReader)
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
@@ -33,7 +33,8 @@ Stop the chatty chat, I recommand wikipedia and the excellent book by
 Hassan Aït-Kaci in the doc directory.
 
 ## Is it usefull ?
-Like any other SDL, Prolog has a very limited scope but sometimes it can simplify some problem like :
+Like any other <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>, 
+Prolog has a very limited scope but sometimes it can simplify some problem like :
 
  * You need a rule engine
  * You want to avoid big boring sequences of if-else-switch to implement some business intelligence
@@ -63,7 +64,7 @@ strings and arrays in PHP is awsum. There's probably much optimizations to do
 since the design was not thought for PHP. The good thing is my knowledge of PHP
 internals has improved.
 
-## TODO
+## TODO (unsorted)
  * see how to capture output and input in service
  * refactor and optimize with switch, preg_match...
  * namespacing and tree of bundle for symfony2
