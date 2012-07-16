@@ -9,7 +9,7 @@
  *
  * CodeReader class transforms a WAM code
  * input file into a Program structure (cf. Program / Statement)
- * 
+ *
  */
 class CodeReader
 {
@@ -42,15 +42,20 @@ class CodeReader
                     }
                     $fonction = "";
                     $j = strpos($str, " ");
-                    // ce passage est tout buggé
                     if ($j > 0) {
                         $fonction = trim(substr($str, 0, $j));
-                        $str = trim(substr($str, $j + 1));
-                        $j = strpos($str, " ");
-                        if ($j > 0)
-                            $s = new Statement($mark, $fonction, trim(substr($str, 0, $j)), trim(substr($str, $j + 1)));
-                        else
-                            $s = new Statement($mark, $fonction, $str);
+                        $str = trim(substr($str, $j + 1));   // We extract the string after the function
+                        $args = str_getcsv($str, " ", "'");
+                        switch (count($args)) {
+                            case 1 : $s = new Statement($mark, $fonction, $args[0]);
+                                break;
+                            case 2 : $s = new Statement($mark, $fonction, $args[0], $args[1]);
+                                break;
+                            case 3 : $s = new Statement($mark, $fonction, $args[0], $args[1], $args[2]);
+                                break;
+                            case 4 : $s = new Statement($mark, $fonction, $args[0], $args[1], $args[2] . ' ' . $args[3]);
+                                break;
+                        }
                     }
                     else
                         $s = new Statement($mark, $str, "");
@@ -67,7 +72,7 @@ class CodeReader
 
     /**
      * Write a program to a file
-     * 
+     *
      * @param Program $prog
      * @param string $filename
      */
@@ -85,9 +90,9 @@ class CodeReader
 
     /**
      * Compile a prolog file into a WAM file
-     * 
+     *
      * @param string $prologFile
-     * @param string $wamFile 
+     * @param string $wamFile
      */
     public static function prologToWamCode($prologFile, $wamFile)
     {
