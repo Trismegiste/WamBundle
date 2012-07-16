@@ -1,5 +1,7 @@
 # WamBundle
 
+[![Build Status](https://secure.travis-ci.org/Trismegiste/WamBundle.png?branch=master)](http://travis-ci.org/Trismegiste/WamBundle)
+
 ## A Warren's Abstract Machine on PHP
 by Stefan Buettcher (original java version)
 and Florent Genette (porting to PHP and adding new features)
@@ -51,7 +53,7 @@ specific coding problem.
 
 I also think, like any other language, we, programmers, have some responsability
 to keep this knowledge alive, and the best way is to port this WAM to PHP, now.
-It's not nostalgia, it's just recollection about these pioneers of computer 
+It's not nostalgia, it's just recollection about these pioneers of computer
 programming like Von Neumann or Turing.
 
 ## Some notes about this translation
