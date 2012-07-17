@@ -186,13 +186,12 @@ abstract class WAM implements PrologContext
     }
 
     // returns the Variable pointer belonging to a string, e.g. "A3", "Y25"
-    // TODO preg_match all of this
     protected function get_ref($name)
     {
         $anArray = array();
         switch ($name[0]) {
             case 'Y': $anArray = &$this->env->variables;
-                break;  // TODO passage par ref ok ?
+                break;
             case 'A': $anArray = &$this->arguments;
                 break;
             case 'Q': $anArray = &$this->queryVariables;
