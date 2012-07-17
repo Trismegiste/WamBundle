@@ -6,7 +6,7 @@
 class Trail
 {
 
-    private $contents = array();
+    private $contents;
     private $machine = null;
 
     public function __construct(PrologContext $ctx)
@@ -22,10 +22,11 @@ class Trail
 
     public function setLength($length)
     {
-        if ($length > count($this->contents))
+        $cnt = count($this->contents);
+        if ($length > $cnt)
             $this->contents = array_pad($this->contents, $length, null);
-        elseif ($length < count($this->contents))
-            array_splice($this->contents, $length - count($this->contents));
+        elseif ($length < $cnt)
+            array_splice($this->contents, $length - $cnt);
     }
 
     public function addEntry(Variable $v)

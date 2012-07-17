@@ -6,7 +6,7 @@
 class Environment
 {
 
-    public $variables = array();
+    public $variables;
     public /* Environment */ $lastEnviron;
     public $returnAddress;
 

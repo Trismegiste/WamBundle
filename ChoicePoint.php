@@ -6,7 +6,7 @@
 class ChoicePoint
 {
 
-    public $arguments = array();             // the Ai variables
+    public $arguments;             // the Ai variables
     public /* Environment */ $lastEnviron;      // current environment when creating the choicepoint
     public $returnAddress;            // current continuation pointer (cp)
     public /* ChoicePoint */ $lastCP;           // last ChoicePoint on stack
