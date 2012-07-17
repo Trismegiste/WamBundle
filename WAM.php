@@ -702,6 +702,7 @@ abstract class WAM implements PrologContext
     {
         $result = true;
         $v = $this->arguments[0];
+        // TODO switch FFS
         if ($index == self::callIsAtom)
             $this->isAtom($v->deref());
         else if ($index == self::callIsInteger)
@@ -739,7 +740,7 @@ abstract class WAM implements PrologContext
             }
             else if ($v2->tag == self::STR) {
                 if (array_key_exists($v2->head->value, $this->p->labels)) {
-                    $target = $this->p->labels[$v2->head->value];  
+                    $target = $this->p->labels[$v2->head->value];
                     $tail = $v2->tail;
                     $cnt = 0;
                     while ($tail !== null) {
@@ -950,68 +951,92 @@ abstract class WAM implements PrologContext
             // select WAM command and execute the responsible method, e.g. "deallocate()"
             // TODO switch FFS !
             $op = $s->operator;
-            if ($op == self::opAllocate)
-                $this->allocate();
-            else if ($op == self::opCall)
-                $this->call($s->jump);
-            else if ($op == self::opCut)
-                $this->cut($s->arg1);
-            else if ($op == self::opDeallocate)
-                $this->deallocate();
-            else if ($op == self::opGetVariable)
-                $this->get_variable($s->arg1, $s->arg2);
-            else if ($op == self::opPutValue)
-                $this->put_value($s->arg1, $s->arg2);
-            else if ($op == self::opPutVariable)
-                $this->put_variable($s->arg1, $s->arg2);
-            else if ($op == self::opGetLevel)
-                $this->get_level($s->arg1);
-            else if ($op == self::opGetConstant)
-                $this->get_constant($s->arg1, $s->arg2);
-            else if ($op == self::opGetValue)
-                $this->get_value($s->arg1, $s->arg2);
-            else if ($op == self::opPutConstant)
-                $this->put_constant($s->arg1, $s->arg2);
-            else if ($op == self::opUnifyList)
-                $this->unify_list($s->arg1, $s->arg2, $s->arg3);
-            else if ($op == self::opUnifyStruc)
-                $this->unify_struc($s->arg1, $s->arg2, $s->arg3);
-            else if ($op == self::opUnifyVariable)
-                $this->unify_variable($s->arg1, $s->arg2);
-            else if ($op == self::opRetryMeElse)
-                $this->try_me_else($s->jump);
-            else if ($op == self::opTryMeElse)
-                $this->try_me_else($s->jump);
-            else if ($op == self::opTrustMe)
-                $this->programCounter++;
-            else if ($op == self::opProceed)
-                $this->proceed();
-            else if ($op == self::opBigger)
-                $this->bigger($s->arg1, $s->arg2);
-            else if ($op == self::opBiggerEq)
-                $this->biggereq($s->arg1, $s->arg2);
-            else if ($op == self::opSmaller)
-                $this->smaller($s->arg1, $s->arg2);
-            else if ($op == self::opSmallerEq)
-                $this->smallereq($s->arg1, $s->arg2);
-            else if ($op == self::opUnequal)
-                $this->unequal($s->arg1, $s->arg2);
-            else if ($op == self::opIs)
-                $this->is($s->arg1, $s->arg2[0], $s->arg3, (string) $s->getArgAt(3));
-            else if ($op == self::opHalt)
+            if ($op == self::opHalt)
                 break;
-            else if ($op == self::opNoOp)
-                $this->programCounter++;
-            else if ($op == self::opCreateVariable)
-                $this->create_variable($s->arg1, $s->arg2);
-            else { // invalid command: backtrack!
-                $this->writeLn("Invalid operation in line " . $this->int2FormatStr($this->programCounter));
-                $this->backtrack();
+            switch ($op) {
+                case self::opAllocate : $this->allocate();
+                    break;
+                case self::opCall : $this->call($s->jump);
+                    break;
+                case self::opCut : $this->cut($s->arg1);
+                    break;
+                case self::opDeallocate :
+                    $this->deallocate();
+                    break;
+                case self::opGetVariable :
+                    $this->get_variable($s->arg1, $s->arg2);
+                    break;
+                case self::opPutValue :
+                    $this->put_value($s->arg1, $s->arg2);
+                    break;
+                case self::opPutVariable :
+                    $this->put_variable($s->arg1, $s->arg2);
+                    break;
+                case self::opGetLevel :
+                    $this->get_level($s->arg1);
+                    break;
+                case self::opGetConstant :
+                    $this->get_constant($s->arg1, $s->arg2);
+                    break;
+                case self::opGetValue :
+                    $this->get_value($s->arg1, $s->arg2);
+                    break;
+                case self::opPutConstant :
+                    $this->put_constant($s->arg1, $s->arg2);
+                    break;
+                case self::opUnifyList :
+                    $this->unify_list($s->arg1, $s->arg2, $s->arg3);
+                    break;
+                case self::opUnifyStruc :
+                    $this->unify_struc($s->arg1, $s->arg2, $s->arg3);
+                    break;
+                case self::opUnifyVariable :
+                    $this->unify_variable($s->arg1, $s->arg2);
+                    break;
+                case self::opRetryMeElse :
+                    $this->try_me_else($s->jump);
+                    break;
+                case self::opTryMeElse :
+                    $this->try_me_else($s->jump);
+                    break;
+                case self::opTrustMe :
+                    $this->programCounter++;
+                    break;
+                case self::opProceed :
+                    $this->proceed();
+                    break;
+                case self::opBigger :
+                    $this->bigger($s->arg1, $s->arg2);
+                    break;
+                case self::opBiggerEq :
+                    $this->biggereq($s->arg1, $s->arg2);
+                    break;
+                case self::opSmaller :
+                    $this->smaller($s->arg1, $s->arg2);
+                    break;
+                case self::opSmallerEq :
+                    $this->smallereq($s->arg1, $s->arg2);
+                    break;
+                case self::opUnequal :
+                    $this->unequal($s->arg1, $s->arg2);
+                    break;
+                case self::opIs :
+                    $this->is($s->arg1, $s->arg2[0], $s->arg3, (string) $s->getArgAt(3));
+                    break;
+                case self::opNoOp :
+                    $this->programCounter++;
+                    break;
+                case self::opCreateVariable :
+                    $this->create_variable($s->arg1, $s->arg2);
+                    break;
+                default: // invalid command: backtrack!
+                    $this->writeLn("Invalid operation in line " . $this->int2FormatStr($this->programCounter));
+                    $this->backtrack();
             }
 
             if ($this->debugOn > 1)
                 $this->traceOn();
-        }; // end of while (programCounter >= 0)
+        } // end of while (programCounter >= 0)
         if ($this->failed) {
             while ($this->choicePoint !== null)
                 $this->backtrack();
