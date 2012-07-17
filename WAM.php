@@ -188,7 +188,7 @@ abstract class WAM implements PrologContext
     // returns the Variable pointer belonging to a string, e.g. "A3", "Y25"
     protected function get_ref($name)
     {
-        $anArray = array();
+        $anArray = null;
         switch ($name[0]) {
             case 'Y': $anArray = &$this->env->variables;
                 break;
