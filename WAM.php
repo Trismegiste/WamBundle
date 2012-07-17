@@ -697,71 +697,82 @@ abstract class WAM implements PrologContext
     {
         $result = true;
         $v = $this->arguments[0];
-        // TODO switch FFS
-        if ($index == self::callIsAtom)
-            $this->isAtom($v->deref());
-        else if ($index == self::callIsInteger)
-            $this->isInteger($v->__toString());
-        else if ($index == self::callIsBound)
-            $this->is_bound($v);
-        else if ($index == self::callWrite) {
-            $this->write($v->__toString());
-            $this->programCounter++;
-        } else if ($index == self::callWriteLn) {
-            $this->writeLn($v->__toString());
-            $this->programCounter++;
-        } else if ($index == self::callNewLine) {
-            $this->writeLn("");
-            $this->programCounter++;
-        } else if ($index == self::callAssert) {
-            $this->assert($v->head->__toString(), $v->__toString());
-            return true;
-        } else if ($index == self::callRetractOne) {
-            if ($this->retract($v->__toString()))
-                $this->programCounter++;
-            else
-                $this->backtrack();
-        }
-        else if ($index == self::callRetractAll)
-            $this->retractall($v->__toString());
-        else if ($index == self::callCall) {  // internal predicate call(X)
-            $v2tmp = new Variable($v);
-            $v2 = $v2tmp->deref();
-            $intg = null;
-            $target = -1;
-            if ($v2->tag == self::CON) {
-                if (array_key_exists($v2->value, $this->p->labels))
-                    $target = $this->p->labels[$v2->value];
-            }
-            else if ($v2->tag == self::STR) {
-                if (array_key_exists($v2->head->value, $this->p->labels)) {
-                    $target = $this->p->labels[$v2->head->value];
-                    $tail = $v2->tail;
-                    $cnt = 0;
-                    while ($tail !== null) {
-                        $this->get_ref("A" . $cnt)->tag = self::REF;
-                        $this->get_ref("A" . $cnt)->reference = $tail->head;
-                        $cnt++;
-                        $tail = $tail->tail;
+        switch ($index) {
+            case self::callCall:  // internal predicate call(X)
+                $v2tmp = new Variable($v);
+                $v2 = $v2tmp->deref();
+                $intg = null;
+                $target = -1;
+                if ($v2->tag == self::CON) {
+                    if (array_key_exists($v2->value, $this->p->labels))
+                        $target = $this->p->labels[$v2->value];
+                }
+                else if ($v2->tag == self::STR) {
+                    if (array_key_exists($v2->head->value, $this->p->labels)) {
+                        $target = $this->p->labels[$v2->head->value];
+                        $tail = $v2->tail;
+                        $cnt = 0;
+                        while ($tail !== null) {
+                            $this->get_ref("A" . $cnt)->tag = self::REF;
+                            $this->get_ref("A" . $cnt)->reference = $tail->head;
+                            $cnt++;
+                            $tail = $tail->tail;
+                        }
                     }
                 }
-            }
-            if ($target >= 0)
-                $this->call($target);
-            else
-                $this->backtrack();
+                if ($target >= 0)
+                    $this->call($target);
+                else
+                    $this->backtrack();
+                break;
+            case self::callIsAtom :
+                $this->isAtom($v->deref());
+                break;
+            case self::callIsInteger :
+                $this->isInteger($v->__toString());
+                break;
+            case self::callIsBound :
+                $this->is_bound($v);
+                break;
+            case self::callWrite :
+                $this->write($v->__toString());
+                $this->programCounter++;
+                break;
+            case self::callWriteLn :
+                $this->writeLn($v->__toString());
+                $this->programCounter++;
+                break;
+            case self::callNewLine :
+                $this->writeLn("");
+                $this->programCounter++;
+                break;
+            case self::callAssert :
+                $this->assert($v->head->__toString(), $v->__toString());
+                return true;
+                break;
+            case self::callRetractOne :
+                if ($this->retract($v->__toString()))
+                    $this->programCounter++;
+                else
+                    $this->backtrack();
+                break;
+            case self::callRetractAll :
+                $this->retractall($v->__toString());
+                break;
+            case self::callLoad :
+                $this->load($v->__toString());
+                break;
+            case self::callConsult :
+                $this->consult($v->__toString());
+                break;
+            case self::callReadLn :
+                $w = new Variable("", $this->readLn());  // TODO foireux ?
+                $this->unify_variable2($v->deref(), $w);
+                $this->programCounter++;
+                break;
+            default :
+                $result = false;
         }
-        else if ($index == self::callLoad)
-            $this->load($v->__toString());
-        else if ($index == self::callConsult)
-            $this->consult($v->__toString());
-        else if ($index == self::callReadLn) {
-            $w = new Variable("", $this->readLn());  // TODO foireux ?
-            $this->unify_variable2($v->deref(), $w);
-            $this->programCounter++;
-        }
-        else
-            $result = false;
         return $result;
     }
 
