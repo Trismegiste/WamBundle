@@ -199,11 +199,7 @@ abstract class WAM implements PrologContext
                 break;
             default: return null;
         }
-        $len = strlen($name);
-        $cnt = 0;
-        $index = 0;
-        while (++$cnt < $len)
-            $index = $index * 10 + ($name[$cnt] - '0');
+        $index = (int) substr($name, 1);
         $cnt = count($anArray);
         while ($cnt++ < ($index + 1))
             $anArray[] = new Variable();
@@ -949,7 +945,6 @@ abstract class WAM implements PrologContext
                 $this->traceOn();
 
             // select WAM command and execute the responsible method, e.g. "deallocate()"
-            // TODO switch FFS !
             $op = $s->operator;
             if ($op == self::opHalt)
                 break;
