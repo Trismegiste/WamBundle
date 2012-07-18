@@ -59,8 +59,10 @@ class WAMService extends WAM
             $this->run();
 
             $result = new Solution();
-            if ($this->benchmarkOn > 0)  // sometimes, we need extra benchmark information
-                $this->writeLn("Total time elapsed: " + (microtime(true) - $ms) + " ms.");
+            $result->elapsedTime = microtime(true) - $ms;
+            $result->opCount = $this->opCount;
+            $result->backtrackCount = $this->backtrackCount;
+
             $this->writeLn("");
 
             if ($this->failed) {  // if execution failed, just tell that

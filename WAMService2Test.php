@@ -26,6 +26,9 @@ class WAMService2Test extends WAM_TestCase
     {
         $solve = $wam->runQuery("factorial(6, X).");
         $this->checkOneValueSuccess($solve, 'X', 720);
+        $this->assertEquals(6, $solve[0]->backtrackCount);
+        $this->assertGreaterThan(0, $solve[0]->opCount);
+        $this->assertGreaterThan(0, $solve[0]->elapsedTime);
     }
 
     /**

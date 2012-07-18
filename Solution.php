@@ -11,6 +11,9 @@ class Solution
     public $succeed = false;
     public $variable = array();
     protected $output = array('');
+    public $elapsedTime = 0;
+    public $opCount = 0;
+    public $backtrackCount = 0;
 
     /**
      * Close a line and start a new one

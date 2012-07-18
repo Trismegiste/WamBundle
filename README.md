@@ -66,5 +66,4 @@ internals has improved.
 
 ## TODO (unsorted)
  * see how to capture output and input in service
- * refactor and optimize with switch, preg_match...
  * namespacing and tree of bundle for symfony2
