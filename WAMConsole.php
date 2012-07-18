@@ -115,7 +115,7 @@ class WAMConsole extends WAM
             $this->writeLn("Memory cleared.");
             return true;
         }
-        if ((strlen($s) > 4) && (substr($s, 0, 4) == "set ")) {  // TODO preg_match
+        if ((strlen($s) > 4) && (substr($s, 0, 4) == "set ")) {
             if (preg_match('#^set\s+([A-Za-z]+)=(.+)$#', $s, $match)) {
                 $this->setInternalVariable($match[1], $match[2]);
             } elseif (preg_match('#^set\s+([A-Za-z]+)\s*$#', $s, $match)) {

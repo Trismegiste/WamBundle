@@ -150,33 +150,40 @@ abstract class WAM implements PrologContext
     protected function setInternalVariable($variable, $value)
     {
         try {
-            if ($variable === "autostop")  // TODO switch FFS
-                $this->maxOpCount = $this->parseInt($value);
-            if ($variable === "benchmark")
-                $this->benchmarkOn = $this->parseInt($value);
-            if ($variable === "debug")
-                $this->debugOn = $this->parseInt($value);
+            switch ($variable) {
+                case "autostop":
+                    $this->maxOpCount = $this->parseInt($value);
+                    break;
+                case "benchmark":
+                    $this->benchmarkOn = $this->parseInt($value);
+                    break;
+                case "debug" :
+                    $this->debugOn = $this->parseInt($value);
+                    break;
+            }
             $this->getInternalVariable($variable);
         } catch (Exception $e) {
             $this->writeLn("An error occurred. Illegal query.");
         }
     }
 
-// end of WAM.setInternalVariable(String, String)
     // displays the value of the internal parameter specified by variable
     protected function getInternalVariable($variable)
     {
-        if ($variable === "autostop")  // TODO switch or array for refactoring
-            $this->writeLn("Internal variable AUTOSTOP = " . $this->maxOpCount);
-        else if ($variable === "benchmark")
-            $this->writeLn("Internal variable BENCHMARK = " . $this->benchmarkOn);
-        else if ($variable === "debug")
-            $this->writeLn("Internal variable DEBUG = " . $this->debugOn);
-        else
-            $this->writeLn("Unknown internal variable.");
+        switch ($variable) {
+            case "autostop" :
+                $this->writeLn("Internal variable AUTOSTOP = " . $this->maxOpCount);
+                break;
+            case "benchmark":
+                $this->writeLn("Internal variable BENCHMARK = " . $this->benchmarkOn);
+                break;
+            case "debug" :
+                $this->writeLn("Internal variable DEBUG = " . $this->debugOn);
+                break;
+            default:
+                $this->writeLn("Unknown internal variable.");
+        }
     }
-
-// end of WAM.getInternalVariable(String)
 
     protected function parseInt($number)
     {
@@ -217,7 +224,7 @@ abstract class WAM implements PrologContext
             $q = $this->get_ref($v);
             $q->name = $name;
             // update displayQ-stuff
-            $i = $this->parseInt(substr($v, 1));   // TODO preg_match
+            $i = $this->parseInt(substr($v, 1));
             if (!$this->displayQValue[$i]) {
                 $this->displayQCount++;
                 $this->displayQValue[$i] = true;
@@ -756,7 +763,7 @@ abstract class WAM implements PrologContext
                 $this->consult($v->__toString());
                 break;
             case self::callReadLn :
-                $w = new Variable("", $this->readLn());  // TODO foireux ?
+                $w = new Variable("", $this->readLn());  // TODO untested
                 $this->unify_variable2($v->deref(), $w);
                 $this->programCounter++;
                 break;
