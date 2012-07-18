@@ -2,7 +2,6 @@
 
 /**
  * Test for WAMService : example of classical non deterministic problem
- * for e-commerce
  */
 class WAMEightQueensTest extends WAM_TestCase
 {
