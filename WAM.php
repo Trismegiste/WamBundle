@@ -180,7 +180,7 @@ abstract class WAM implements PrologContext
 
     protected function parseInt($number)
     {
-        if (!preg_match('#^[0-9]+$#', $number))
+        if (!is_numeric($number))
             throw new Exception('NumberFormatException');
         return (int) $number;
     }
@@ -235,9 +235,9 @@ abstract class WAM implements PrologContext
         $v2 = $this->get_ref($s2)->deref();
         if (($v1->tag == self::CON) && ($v2->tag == self::CON)) {
             //int compareValue;
-            try {
-                $compareValue = $this->parseInt($v1->value) - $this->parseInt($v2->value);
-            } catch (Exception $e) {
+            if (is_numeric($v1->value) && is_numeric($v2->value)) {
+                $compareValue = $v1->value - $v2->value;
+            } else {
                 $compareValue = strcmp($v1->value, $v2->value);
             }
             switch ($comparator) {
@@ -315,36 +315,26 @@ abstract class WAM implements PrologContext
         //Variable v1, v2, v3;
         //int z1, z2, z3;
         // convert s1 or the value of the variable referenced by s1 to int value
-        try {
-            $z1 = $this->parseInt($s1);
-        } catch (Exception $e) {
+        if (is_numeric($s1)) {
+            $z1 = $s1;
+        } else {
             $v1 = $this->get_ref($s1)->deref();
-            if ($v1->tag != self::CON) {
+            if (($v1->tag != self::CON) || !is_numeric($v1->value)) {
                 $this->backtrack();
                 return;
             }
-            try {
-                $z1 = $this->parseInt($v1->value);
-            } catch (Exception $e2) {
-                $this->backtrack();
-                return;
-            }
+            $z1 = $v1->value;
         }
         // convert s2 or the value of the variable referenced by s2 to int value
-        try {
-            $z2 = $this->parseInt($s2);
-        } catch (Exception $e) {
+        if (is_numeric($s2)) {
+            $z2 = $s2;
+        } else {
             $v2 = $this->get_ref($s2)->deref();
-            if ($v2->tag != self::CON) {
+            if (($v2->tag != self::CON) || !is_numeric($v2->value)) {
                 $this->backtrack();
                 return;
             }
-            try {
-                $z2 = $this->parseInt($v2->value);
-            } catch (Exception $e2) {
-                $this->backtrack();
-                return;
-            }
+            $z2 = $v2->value;
         }
         // check which variable is referenced by target
         $v3 = $this->get_ref($target)->deref();
