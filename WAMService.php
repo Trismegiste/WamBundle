@@ -9,6 +9,8 @@
 class WAMService extends WAM
 {
 
+    protected $stringBuffer;
+
     protected function readLn()
     {
         return "";
@@ -16,13 +18,13 @@ class WAMService extends WAM
 
     public function write($s)
     {
-        // TODO calling Solution->write : how ?
+        $this->stringBuffer->write($s);
     }
 
     // displays a string followed by CRLF
     public function writeLn($s)
     {
-        // TODO calling Solution->writeLn : how ?
+        $this->stringBuffer->writeLn($s);
     }
 
     // runQuery compiles a query given by s into a WAM program, adds it to the program in memory
@@ -55,10 +57,11 @@ class WAMService extends WAM
         $stackResult = array();
         $getOut = false;
         do {
+            $result = new Solution();
+            $this->stringBuffer = $result;
             $ms = microtime(true);
             $this->run();
 
-            $result = new Solution();
             $result->elapsedTime = microtime(true) - $ms;
             $result->opCount = $this->opCount;
             $result->backtrackCount = $this->backtrackCount;

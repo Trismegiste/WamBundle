@@ -5,7 +5,7 @@
  *
  * @author florent
  */
-class Solution
+class Solution implements OutputInterface
 {
 
     public $succeed = false;
