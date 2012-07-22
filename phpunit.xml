@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="test_bootstrap.php">
+<phpunit bootstrap="Tests/bootstrap.php">
     <testsuites>
         <testsuite name="WAMBundle">
-            <directory>.</directory>
+            <directory>./Tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

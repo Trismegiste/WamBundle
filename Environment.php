@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * class Environment for storing local variables that must not be overridden
  */

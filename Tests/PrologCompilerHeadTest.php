@@ -1,12 +1,17 @@
 <?php
 
+use Trismegiste\WAMBundle\PrologCompiler;
+use Trismegiste\WAMBundle\CompilerStructure;
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
- * Test Prolog Compiler for Horn clauses
+ * Test Prolog Compiler for simple clauses
  * Check the resulting CompilerStructure
  *
  * @author flo
  */
-class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
+class PrologCompilerHeadTest extends PHPUnit_Framework_TestCase
 {
 
     private $compiler = null;
@@ -23,7 +28,7 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
 
     public function testProgram()
     {
-        $programList = $this->compiler->stringToList("mortal(X) :- human(X).");
+        $programList = $this->compiler->stringToList("mother(shmi, anakin).");
         $struc = new CompilerStructure();
         $this->compiler->program($programList, $struc);
         $this->assertEquals(CompilerStructure::PROGRAM, $struc->type);
@@ -36,7 +41,8 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
     public function testClause(CompilerStructure $struc)
     {
         $this->assertEquals(CompilerStructure::CLAUSE, $struc->type);
-        return $struc;
+        $this->assertNull($struc->tail);
+        return $struc->head;
     }
 
     /**
@@ -44,18 +50,7 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
      */
     public function testClauseHead(CompilerStructure $struc)
     {
-        $struc = $struc->head;
         $this->assertEquals(CompilerStructure::HEAD, $struc->type);
-        return $struc;
-    }
-
-    /**
-     * @depends testClause
-     */
-    public function testClauseBody(CompilerStructure $struc)
-    {
-        $struc = $struc->tail;
-        $this->assertEquals(CompilerStructure::BODY, $struc->type);
         return $struc;
     }
 
@@ -66,7 +61,7 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
     {
         $struc = $struc->head;
         $this->assertEquals(CompilerStructure::PREDICATE, $struc->type);
-        $this->assertEquals('mortal', $struc->value);
+        $this->assertEquals('mother', $struc->value);
     }
 
     /**
@@ -85,35 +80,20 @@ class PrologCompilerHornTest extends PHPUnit_Framework_TestCase
     public function testTerm1(CompilerStructure $struc)
     {
         $struc = $struc->head;
-        $this->assertEquals(CompilerStructure::VARIABLE, $struc->type);
-        $this->assertEquals('X', $struc->value);
+        $this->assertEquals(CompilerStructure::CONSTANT, $struc->type);
+        $this->assertEquals('shmi', $struc->value);
     }
 
     /**
-     * @depends testClauseBody
-     */
-    public function testBodyPredicate(CompilerStructure $struc)
-    {
-        $this->assertNull($struc->tail);
-        $struc = $struc->head;
-        $this->assertEquals(CompilerStructure::CALL, $struc->type);
-        $struc = $struc->head;
-        $this->assertEquals(CompilerStructure::PREDICATE, $struc->type);
-        $this->assertEquals('human', $struc->value);
-        return $struc->tail;
-    }
-
-    /**
-     * @depends testBodyPredicate
+     * @depends testList
      */
     public function testTerm2(CompilerStructure $struc)
     {
+        $struc = $struc->tail;
         $this->assertEquals(CompilerStructure::LISTX, $struc->type);
         $struc = $struc->head;
-        $this->assertEquals(CompilerStructure::VARIABLE, $struc->type);
-        $this->assertEquals('X', $struc->value);
+        $this->assertEquals(CompilerStructure::CONSTANT, $struc->type);
+        $this->assertEquals('anakin', $struc->value);
     }
 
 }
-
-?>

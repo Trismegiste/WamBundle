@@ -1,5 +1,7 @@
 <?php
 
+use Trismegiste\WAMBundle\CodeReader;
+
 /**
  * Test for CodeReader and writer
  *
@@ -11,7 +13,7 @@ class CodeReaderTest extends PHPUnit_Framework_TestCase
     public function testCompile()
     {
         $tempFile = tempnam('.', 'wam');
-        CodeReader::prologToWamCode('basket.pro', $tempFile);
+        CodeReader::prologToWamCode(FIXTURES_DIR . 'basket.pro', $tempFile);
         return $tempFile;
     }
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * This class is an Y(n) in the W.A.M
  */

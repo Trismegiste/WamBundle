@@ -1,5 +1,10 @@
 <?php
 
+use Trismegiste\WAMBundle\PrologCompiler;
+use Trismegiste\WAMBundle\CompilerStructure;
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test for WAMService : example of classical non deterministic problem
  */
@@ -10,7 +15,7 @@ class WAMEightQueensTest extends WAM_TestCase
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('eightqueens.pro').");
+        $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "eightqueens.pro').");
         $this->checkSuccess($solve);
 
         return $wam;

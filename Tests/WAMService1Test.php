@@ -1,5 +1,8 @@
 <?php
 
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test for the WAM itself
  * Testing simple queries on starwars
@@ -13,7 +16,7 @@ class WAMService1Test extends WAM_TestCase
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('fixtures1.pro').");
+        $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "fixtures1.pro').");
         $this->checkSuccess($solve);
 
         return $wam;

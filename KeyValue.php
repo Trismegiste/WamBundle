@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * class KeyValue helps implementing mappings "A=B" (key/value pairs)
  */

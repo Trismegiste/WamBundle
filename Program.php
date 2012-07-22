@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  *                            -  Ported to PHP by Trismegiste

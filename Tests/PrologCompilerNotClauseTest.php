@@ -1,5 +1,10 @@
 <?php
 
+use Trismegiste\WAMBundle\PrologCompiler;
+use Trismegiste\WAMBundle\CompilerStructure;
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test Prolog Compiler for standard not (negation by failure)
  * Check the resulting CompilerStructure

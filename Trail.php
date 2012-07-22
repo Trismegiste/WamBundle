@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * Trail implements the WAM's trail (undo-list for bindings performed)
  */

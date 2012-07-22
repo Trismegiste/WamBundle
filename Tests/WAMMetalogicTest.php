@@ -1,5 +1,8 @@
 <?php
 
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test for WAMService : metalogic : call, cut, assert, retract
  */
@@ -10,7 +13,7 @@ class WAMMetalogicTest extends WAM_TestCase
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('fixtures3.pro').");
+        $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "fixtures3.pro').");
         $this->checkSuccess($solve);
 
         return $wam;

@@ -1,5 +1,10 @@
 <?php
 
+use Trismegiste\WAMBundle\PrologCompiler;
+use Trismegiste\WAMBundle\CompilerStructure;
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test for WAMService : example of business rules
  * for e-commerce
@@ -11,7 +16,7 @@ class WAMBasketTest extends WAM_TestCase
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('basket.pro').");
+        $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "basket.pro').");
         $this->checkSuccess($solve);
 
         return $wam;

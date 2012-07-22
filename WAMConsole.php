@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  * developed:   December 2001 until February 2002

@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * class ChoicePoint implements the choice point concept, as presented by Ait-Kaci
  */

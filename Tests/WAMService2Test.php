@@ -1,5 +1,8 @@
 <?php
 
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test for the WAMService itself
  * Testing arithmetic, list, structure and comparison
@@ -13,7 +16,7 @@ class WAMService2Test extends WAM_TestCase
     {
         $wam = new WAMService(new Program());
 
-        $solve = $wam->runQuery("consult('fixtures2.pro').");
+        $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "fixtures2.pro').");
         $this->checkSuccess($solve);
 
         return $wam;

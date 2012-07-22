@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * WAMService is a WAM intended to use in a framework 
  * with oriented service architecture

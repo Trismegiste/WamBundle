@@ -1,5 +1,10 @@
 <?php
 
+use Trismegiste\WAMBundle\PrologCompiler;
+use Trismegiste\WAMBundle\CompilerStructure;
+use Trismegiste\WAMBundle\WAMService;
+use Trismegiste\WAMBundle\Program;
+
 /**
  * Test the generated instructions for Warren Abstract Machine
  * An instruction is a Statement

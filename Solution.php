@@ -1,5 +1,7 @@
 <?php
 
+namespace Trismegiste\WAMBundle;
+
 /**
  * This class contains one result for a submitted query against the WAMService
  *
