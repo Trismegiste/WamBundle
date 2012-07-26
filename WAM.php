@@ -14,7 +14,7 @@ namespace Trismegiste\WAMBundle;
  * WAM code operations are described in Ait Kaci:
  * Warren's Abstract Machine -- A Tutorial Reconstruction
  */
-abstract class WAM implements PrologContext
+abstract class WAM extends PrologContext
 {
 
     const UNB = 0;  // variable-related constants:

@@ -7,13 +7,47 @@ namespace Trismegiste\WAMBundle;
  *
  * Needs improvement : some methods from WAMService could be
  * there here
- * 
+ *
  * @author flo
  */
-interface PrologContext
+abstract class PrologContext
 {
 
-    function retract($v);
-}
+    /**
+     * Run a query
+     *
+     * @param string $s the query
+     * @return mixed
+     */
+    abstract public function runQuery($s);
 
-?>
+    /**
+     * Retract the last clause identified by its predicate
+     */
+    abstract public function retract($v);
+
+    /**
+     * Assert a simple clause
+     */
+    public function assertClause($s)
+    {
+        return $this->runQuery("assert($s).");
+    }
+
+    /**
+     * Load a WAM code in context
+     */
+    public function loadWam($filename)
+    {
+        return $this->runQuery("load('$filename').");
+    }
+
+    /**
+     * Load a Prolog program in context
+     */
+    public function loadProlog($filename)
+    {
+        return $this->runQuery("consult('$filename').");
+    }
+
+}
