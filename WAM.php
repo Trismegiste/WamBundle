@@ -10,10 +10,13 @@ namespace Trismegiste\WAMBundle;
  * http://github.com/Trismegiste/WamBundle
  * June to July 2012 (yes, 10 years after the original version !)
  *
- * WAM.php contains the an abstract WAM without input or output
+ * WAM.php contains an abstract WAM without input or output
+ * WAM code operations are described in Ait Kaci:
+ * Warren's Abstract Machine -- A Tutorial Reconstruction
  */
 abstract class WAM implements PrologContext
 {
+
     const UNB = 0;  // variable-related constants:
     const REF = 1;  // tag == REF means this variable is a reference
     const CON = 2;  // this one has been bound to an immediate constant
@@ -83,8 +86,8 @@ abstract class WAM implements PrologContext
 
     /**
      * creates a new WAM with program data initialized to aProgram
-     * 
-     * @param Program $aProgram 
+     *
+     * @param Program $aProgram
      */
 
     public function __construct(Program $aProgram)
@@ -94,8 +97,9 @@ abstract class WAM implements PrologContext
         $this->reset();
     }
 
-// end of WAM.WAM(Program)
-    // resets sets all WAM parameters to their initial values
+    /**
+     * resets sets all WAM parameters to their initial values
+     */
     protected function reset()
     {
         $this->arguments = array();  // no argument registers so far
@@ -110,16 +114,27 @@ abstract class WAM implements PrologContext
         $this->cutPoint = null;
     }
 
-    // reads a String line from standard input
+    /**
+     * reads a String line from standard input
+     */
     abstract protected function readLn();
 
-    // displays a string
+    /**
+     * displays a string
+     */
     abstract public function write($s);
 
-    // displays a string followed by CRLF
+    /**
+     * displays a string followed by CRLF
+     */
     abstract public function writeLn($s);
 
-    // displays a debug information line
+    /**
+     * displays a debug information line
+     *
+     * @param string $s
+     * @param int $debugLevel
+     */
     public function debug($s, $debugLevel)
     {
         if ($debugLevel < 0) {
@@ -131,15 +146,21 @@ abstract class WAM implements PrologContext
             $this->writeLn($s);
     }
 
-// end of WAM.debug(String, int)
-    // formats an integer to a string
+    /**
+     * formats an integer to a string
+     *
+     * @param integer $i
+     * @return string
+     */
     protected function int2FormatStr($i)
     {
         return str_pad($i, 4, '0', STR_PAD_LEFT);
     }
 
-// end of WAM.int2FormatStr(int)
-    // displays the values of all internal parameters that can be modyfied using the "set" command
+    /**
+     * displays the values of all internal parameters that can be modyfied
+     * using the "set" command
+     */
     protected function displayInternalVariables()
     {
         $this->getInternalVariable("autostop");
@@ -147,7 +168,6 @@ abstract class WAM implements PrologContext
         $this->getInternalVariable("debug");
     }
 
-// end of WAM.displayInternalVariables()
     // sets the internal parameter specified by variable to a new value
     protected function setInternalVariable($variable, $value)
     {
@@ -214,11 +234,6 @@ abstract class WAM implements PrologContext
         return $anArray[$index];
     }
 
-// end of WAM.get_ref(String)
-
-    /*     * ****************** BEGIN WAM CODE OPERATIONS ******************* */
-
-// WAM code operations are described in Ait Kaci: Warren's Abstract Machine -- A Tutorial Reconstruction
     // gives a name to a variable; usually used on Qxx variables that occur within the query
     protected function create_variable($v, $name)
     {
@@ -687,11 +702,13 @@ abstract class WAM implements PrologContext
         }
     }
 
-// end of WAM.backtrack()
-
-    /*     * ****************** BEGIN INTERNAL PREDICATES ******************* */
-
-    // internalPredicate manages the execution of all built-in predicates, e.g. write, consult, isbound
+    /**
+     * internalPredicate manages the execution of all built-in predicates,
+     * e.g. write, consult, isbound
+     *
+     * @param integer $index
+     * @return boolean
+     */
     protected function internalPredicate($index)
     {
         $result = true;
@@ -775,8 +792,11 @@ abstract class WAM implements PrologContext
         return $result;
     }
 
-// end of WAM.internalPredicate(String)
-
+    /**
+     * Load WAM Code
+     *
+     * @param string $fileName
+     */
     protected function load($fileName)
     {
         $prog = CodeReader::readProgram($fileName);
@@ -795,8 +815,6 @@ abstract class WAM implements PrologContext
         }
     }
 
-// end of WAM.load(String)
-
     protected function isAtom(Variable $v)
     {
         $v = $v->deref();
@@ -806,7 +824,6 @@ abstract class WAM implements PrologContext
             $this->backtrack();
     }
 
-// end of WAM.isAtom(Variable)
     // checks if stuff contains an integer number
     protected function isInteger($stuff)
     {
@@ -818,7 +835,6 @@ abstract class WAM implements PrologContext
         }
     }
 
-// end of WAM.isInteger(String)
     // assert asserts a new clause to the current program
     protected function assert($label, $clause)
     {
@@ -834,8 +850,6 @@ abstract class WAM implements PrologContext
         else
             $this->backtrack();
     }
-
-// end of WAM.assert(String, String)
 
     protected function removeProgramLines($fromLine)
     {
@@ -884,7 +898,6 @@ abstract class WAM implements PrologContext
             $this->backtrack();
     }
 
-// end of WAM.retractall(String)
     // consult compiles a prolog program and loads the resulting code into memory
     protected function consult($fileName)
     {
