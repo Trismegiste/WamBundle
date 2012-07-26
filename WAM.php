@@ -920,9 +920,7 @@ abstract class WAM implements PrologContext
         }
     }
 
-// end of WAM.consult(String)
-
-    /*     * ****************** END INTERNAL PREDICATES ******************* */
+    /** Dump Query and Local Variables */
     public function traceOn()
     {
         $this->write("A=[");
@@ -940,7 +938,9 @@ abstract class WAM implements PrologContext
         $this->writeLn("]");
     }
 
-    // run starts the actual execution of the program in memory
+    /**
+     * run starts the actual execution of the program in memory
+     */
     public function run()
     {
         // opCount and backtrackCount are used for benchmarking
