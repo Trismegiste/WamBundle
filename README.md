@@ -65,5 +65,5 @@ since the design was not thought for PHP. The good thing is my knowledge of PHP
 internals has improved.
 
 ## TODO (unsorted)
- * see how to capture output and input in service
- * namespacing and tree of bundle for symfony2
+ * see how to capture input in service (event ?)
+ * namespacing and tree of bundle for symfony2 : currently in progress
