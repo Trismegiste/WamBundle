@@ -1,6 +1,9 @@
 <?php
 
-namespace Trismegiste\WamBundle\Prolog;
+namespace Trismegiste\WamBundle\Prolog\Inner;
+
+use Trismegiste\WamBundle\Prolog\PrologContext;
+use Trismegiste\WamBundle\Prolog\WAM;
 
 /**
  * Trail implements the WAM's trail (undo-list for bindings performed)
@@ -45,7 +48,7 @@ class Trail
     {
         $v = $this->contents[$index];
         if ($v !== null) {
-            if ($v->tag == WAM::ASSERT)
+            if ($v->tag == WAM::ASSERT)  // @todo Illogical: I use both Interface PrologContext and subclass WAM
                 $this->machine->retract($v->value);
             $v->tag = WAM::REF;
             $v->reference = $v;

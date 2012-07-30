@@ -2,6 +2,8 @@
 
 namespace Trismegiste\WamBundle\Prolog;
 
+use Trismegiste\WamBundle\Prolog\Inner\KeyValue;
+
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  *                            -  Ported to PHP by Trismegiste

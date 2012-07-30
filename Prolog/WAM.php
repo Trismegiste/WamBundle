@@ -2,6 +2,12 @@
 
 namespace Trismegiste\WamBundle\Prolog;
 
+use Trismegiste\WamBundle\Prolog\Inner\ChoicePoint;
+use Trismegiste\WamBundle\Prolog\Inner\Environment;
+use Trismegiste\WamBundle\Prolog\Inner\KeyValue;
+use Trismegiste\WamBundle\Prolog\Inner\Trail;
+use Trismegiste\WamBundle\Prolog\Inner\Variable;
+
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
  * developed:   December 2001 until February 2002

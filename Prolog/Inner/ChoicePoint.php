@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WamBundle\Prolog;
+namespace Trismegiste\WamBundle\Prolog\Inner;
 
 /**
  * class ChoicePoint implements the choice point concept, as presented by Ait-Kaci
