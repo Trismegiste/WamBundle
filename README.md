@@ -33,7 +33,7 @@ Stop the chatty chat, I recommand wikipedia and the excellent book by
 Hassan Aït-Kaci in the doc directory.
 
 ## Is it usefull ?
-Like any other <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>, 
+Like any other <a href="http://en.wikipedia.org/wiki/Domain-specific_language">DSL</a>,
 Prolog has a very limited scope but sometimes it can simplify some problem like :
 
  * You need a rule engine
@@ -65,5 +65,6 @@ since the design was not thought for PHP. The good thing is my knowledge of PHP
 internals has improved.
 
 ## TODO (unsorted)
- * see how to capture input in service (event ?)
  * namespacing and tree of bundle for symfony2 : currently in progress
+ * create a symfony2 Command instead of console.php
+ * see how to capture input in service (event ?)
