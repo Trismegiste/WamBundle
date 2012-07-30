@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle\Prolog;
+namespace Trismegiste\WamBundle\Prolog;
 
 /**
  * This class is an Y(n) in the W.A.M

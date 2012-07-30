@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle\Prolog;
+namespace Trismegiste\WamBundle\Prolog;
 
 /**
  * class KeyValue helps implementing mappings "A=B" (key/value pairs)

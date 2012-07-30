@@ -13,7 +13,7 @@ class PrologContextTest extends WAM_TestCase
 
     public function testAssertClause()
     {
-        $ctx = $this->getMockForAbstractClass('Trismegiste\WamBundle\PrologContext');
+        $ctx = $this->getMockForAbstractClass('Trismegiste\WamBundle\Prolog\PrologContext');
         $ctx->expects($this->once())
                 ->method('runQuery')
                 ->with($this->equalTo('assert(father(anakin, luke)).'));
@@ -22,7 +22,7 @@ class PrologContextTest extends WAM_TestCase
 
     public function testLoadProlog()
     {
-        $ctx = $this->getMockForAbstractClass('Trismegiste\WamBundle\PrologContext');
+        $ctx = $this->getMockForAbstractClass('Trismegiste\WamBundle\Prolog\PrologContext');
         $ctx->expects($this->once())
                 ->method('runQuery')
                 ->with($this->equalTo("consult('nihil.pro')."));
@@ -31,7 +31,7 @@ class PrologContextTest extends WAM_TestCase
 
     public function testLoadWam()
     {
-        $ctx = $this->getMockForAbstractClass('Trismegiste\WamBundle\PrologContext');
+        $ctx = $this->getMockForAbstractClass('Trismegiste\WamBundle\Prolog\PrologContext');
         $ctx->expects($this->once())
                 ->method('runQuery')
                 ->with($this->equalTo("load('nihil.wam')."));

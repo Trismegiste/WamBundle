@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle\Prolog;
+namespace Trismegiste\WamBundle\Prolog;
 
 /**
  * This class contains one result for a submitted query against the WAMService

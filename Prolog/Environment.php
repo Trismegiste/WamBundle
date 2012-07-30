@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle\Prolog;
+namespace Trismegiste\WamBundle\Prolog;
 
 /**
  * class Environment for storing local variables that must not be overridden
