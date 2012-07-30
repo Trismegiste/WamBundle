@@ -1,7 +1,7 @@
 <?php
 
-use Trismegiste\WAMBundle\WAMService;
-use Trismegiste\WAMBundle\Program;
+use Trismegiste\WamBundle\Prolog\WAMService;
+use Trismegiste\WamBundle\Prolog\Program;
 
 /**
  * Test for the WAM itself

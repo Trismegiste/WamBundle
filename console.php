@@ -1,6 +1,6 @@
 <?php
 
-use Trismegiste\WAMBundle\WAMConsole;
+use Trismegiste\WamBundle\Prolog\WAMConsole;
 
 /**
  * Example of using WAMConsole

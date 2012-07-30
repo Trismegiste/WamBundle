@@ -1,6 +1,6 @@
 <?php
 
-use Trismegiste\WAMBundle\CodeReader;
+use Trismegiste\WamBundle\Prolog\CodeReader;
 
 /**
  * Test for CodeReader and writer

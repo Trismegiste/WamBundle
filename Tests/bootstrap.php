@@ -5,6 +5,8 @@ define('FIXTURES_DIR', __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SE
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'WAM_TestCase.php';
 
 spl_autoload_register(function ($class) {
-            preg_match('#([^\\\\]+)$#', $class, $ret);
-            require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $ret[1] . '.php';
+            $found = preg_match('#^Trismegiste\\\\WamBundle\\\\(.+)$#', $class, $ret);
+            if (!$found) trigger_error ("Class $class not autoloaded.");
+            $relPath = str_replace('\\', DIRECTORY_SEPARATOR, $ret[1]);
+            require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $relPath . '.php';
         });

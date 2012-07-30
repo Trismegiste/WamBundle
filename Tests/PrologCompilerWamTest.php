@@ -1,9 +1,9 @@
 <?php
 
-use Trismegiste\WAMBundle\PrologCompiler;
-use Trismegiste\WAMBundle\CompilerStructure;
-use Trismegiste\WAMBundle\WAMService;
-use Trismegiste\WAMBundle\Program;
+use Trismegiste\WamBundle\Prolog\PrologCompiler;
+use Trismegiste\WamBundle\Prolog\CompilerStructure;
+use Trismegiste\WamBundle\Prolog\WAMService;
+use Trismegiste\WamBundle\Prolog\Program;
 
 /**
  * Test the generated instructions for Warren Abstract Machine
