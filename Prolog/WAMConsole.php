@@ -190,12 +190,12 @@ class WAMConsole extends WAM
         return true;
     }
 
-// end of WAM.runQuery(String)
     // the WAM's main loop
     public static function main(array $args)
     {
-        echo"\nWelcome to Stu's mighty WAM!";
+        echo"\nWelcome to Stu's mighty WAM!\n";
         echo "(December 2001 - February 2002 by Stefan Buettcher)\n";
+        echo "(July 2012 - ported to PHP by Florent Genette)\n";
         echo "Type \"help\" to get some help.\n";
         $wam = new WAMConsole(new Program());
         $wam->p->owner = $wam;

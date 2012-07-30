@@ -4,7 +4,7 @@
 
 ## A Warren's Abstract Machine on PHP
 by Stefan Büttcher (original java version)
-and Florent Genette (PHP port and debug / new features on CodeReader)
+and Florent Genette (PHP port and debug / new features and Bundle for Symfony2)
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
@@ -57,14 +57,26 @@ to keep this knowledge alive, and the best way is to port this WAM to PHP, now.
 It's not nostalgia, it's just recollection about these pioneers of computer
 programming like Von Neumann or Turing.
 
-## Some notes about this translation
+## Some notes about this port
 I went through a lot a trouble thanks the "soft-typing" of PHP and the damned
 "===" but even if I still prefer Java and strong typing, the managing of
 strings and arrays in PHP is awsum. There's probably much optimizations to do
 since the design was not thought for PHP. The good thing is my knowledge of PHP
 internals has improved.
 
+## Some notes about perfs
+Yes, this WAM is slow compared to SWI-Prolog. If you need a lot of recursions
+or a big set of datas, I don't think this piece of software is for you.
+As I wrote, this is for specific problems where the imperative programing paradigm
+is irrelevant. This is not the only paradigm : Think declarative programing !
+And if you like this and want to go further, look at the Clojure language.
+
+## Special thanks
+ * Johann Sebastian Bach
+ * William Gibson
+ * Gene Roddenberry
+
 ## TODO (unsorted)
- * namespacing and tree of bundle for symfony2 : currently in progress
+ * bundle for symfony2 : currently in progress
  * create a symfony2 Command instead of console.php
  * see how to capture input in service (event ?)
