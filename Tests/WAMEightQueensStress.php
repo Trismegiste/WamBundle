@@ -8,7 +8,7 @@ use Trismegiste\WamBundle\Prolog\Program;
 /**
  * Test for WAMService : example of classical non deterministic problem
  */
-class WAMEightQueensTest extends WAM_TestCase
+class WAMEightQueensStress extends WAM_TestCase
 {
 
     public function testFixtures()

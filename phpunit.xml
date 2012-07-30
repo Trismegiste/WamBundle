@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="Tests/bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="WAMBundle">
+        <testsuite name="WAM unit and func tests">
             <directory>./Tests</directory>
+        </testsuite>
+        <testsuite name="WAM stress test">
+            <file>./Tests/WAMEightQueensStress.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
