@@ -45,7 +45,6 @@ class WAMConsole extends WAM
         $this->writeLn("This is Stu's mighty WAM speaking. Need some help?");
         $this->writeLn("");
         $this->writeLn("Available commands:");
-        $this->writeLn("clear                   empties the output area (GUI mode only)");
         $this->writeLn("exit                    terminates the WAM");
         $this->writeLn("help                    displays this help");
         $this->writeLn("list                    lists the WAM program currently in memory");
@@ -77,10 +76,6 @@ class WAMConsole extends WAM
         // input "quit" or "exit" means: end the WAM now, dude!
         if (in_array($s, array("quit", "exit")))
             return false;
-        if ($s == "clear") {
-            $this->writeLn("Not in GUI mode.");
-            return true;
-        }
         if ($s == "help") {
             $this->showHelp();  // display some help information
             return true;
