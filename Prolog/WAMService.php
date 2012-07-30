@@ -1,11 +1,11 @@
 <?php
 
-namespace Trismegiste\WAMBundle;
+namespace Trismegiste\WAMBundle\Prolog;
 
 /**
- * WAMService is a WAM intended to use in a framework 
+ * WAMService is a WAM intended to use in a framework
  * with oriented service architecture
- * 
+ *
  * @author Florent Genette
  */
 class WAMService extends WAM

@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle;
+namespace Trismegiste\WAMBundle\Prolog;
 
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
@@ -160,7 +160,7 @@ class Statement
      * Set the argument of this statement with $str at position $idx
      * (java-style setElementAt() )
      * @param string $str
-     * @param int $idx 
+     * @param int $idx
      */
     public function setArgAt($str, $idx)
     {

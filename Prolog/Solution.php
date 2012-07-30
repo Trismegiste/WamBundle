@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle;
+namespace Trismegiste\WAMBundle\Prolog;
 
 /**
  * This class contains one result for a submitted query against the WAMService
@@ -19,7 +19,7 @@ class Solution implements OutputInterface
 
     /**
      * Close a line and start a new one
-     * @param string $str 
+     * @param string $str
      */
     public function writeLn($str)
     {
@@ -29,7 +29,7 @@ class Solution implements OutputInterface
 
     /**
      * Continue a line with a string
-     * @param string $str 
+     * @param string $str
      */
     public function write($str)
     {

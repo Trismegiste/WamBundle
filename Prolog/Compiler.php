@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle;
+namespace Trismegiste\WAMBundle\Prolog;
 
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
@@ -551,7 +551,7 @@ abstract class Compiler
                 } while ($s != null);
             }
             $result->addStatement(new Statement("", "call", $struc->head->value));
-        } // end of case CompilerStructure::CALL 
+        } // end of case CompilerStructure::CALL
         else if ($struc->type == CompilerStructure::UNIFICATION) {
             $result->addProgram($this->structureToCode($struc->head));
             $headVar = $this->lastVar;

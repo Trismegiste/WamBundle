@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle;
+namespace Trismegiste\WAMBundle\Prolog;
 
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
@@ -11,7 +11,7 @@ namespace Trismegiste\WAMBundle;
  *
  * Program contains the WAM program management class Program. A Program
  * consists of an array of Statements (cf. Statement).
- * 
+ *
  * Program class manages WAM programs, consisting of list (vector) of statements
  */
 class Program

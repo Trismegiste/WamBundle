@@ -1,6 +1,6 @@
 <?php
 
-namespace Trismegiste\WAMBundle;
+namespace Trismegiste\WAMBundle\Prolog;
 
 /**
  * Warren's Abstract Machine  -  Implementation by Stefan Buettcher
@@ -12,7 +12,7 @@ namespace Trismegiste\WAMBundle;
  * CompilerStructure contains the CompilerStructure class, which is needed
  * for transforming the input vector (Prolog program) to the output Program
  * (WAM code) via a certain program structure graph.
- * 
+ *
  * Each instance of CompilerStructure represents a node in the program graph
  * of the original Prolog program. Every node is of a certain type (see constants
  * below).
