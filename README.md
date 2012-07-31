@@ -67,8 +67,8 @@ internals has improved.
 ## Some notes about perfs
 Yes, this WAM is slow compared to SWI-Prolog. If you need a lot of recursions
 or a big set of datas, I don't think this piece of software is for you.
-As I wrote, this is for specific problems where the imperative programing paradigm
-is irrelevant. This is not the only paradigm : Think declarative programing !
+As I wrote, this is for specific problems where the imperative programming paradigm
+is irrelevant. This is not the only paradigm : Think declarative programming !
 And if you like this and want to go further, look at the Clojure language.
 
 ## Special thanks
