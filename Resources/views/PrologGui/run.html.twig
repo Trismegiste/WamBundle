@@ -1,0 +1,25 @@
+{% extends 'TrismegisteWamBundle::layout.html.twig' %}
+
+{% block title %}{{ parent() }} - run{% endblock %}
+
+{% block content %}
+
+<h1>Inference</h1>
+
+<div class="block-demo">
+
+    <div class="program-block">
+        {{ prog }}
+    </div>
+
+    <div class="query-block">
+        {{ query }}
+    </div>
+
+    <div class="output-block">
+        {{ output }}
+    </div>
+
+</div>
+
+{% endblock %}
