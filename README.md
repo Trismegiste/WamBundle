@@ -2,9 +2,9 @@
 
 [![Build Status](https://secure.travis-ci.org/Trismegiste/WamBundle.png?branch=master)](http://travis-ci.org/Trismegiste/WamBundle)
 
-## A Warren's Abstract Machine on PHP
+## A Warren's Abstract Machine for Symfony2.1
 by Stefan Büttcher (original java version)
-and Florent Genette (PHP port and debug / new features and Bundle for Symfony2)
+and Florent Genette (PHP port and debug / new features and Bundle for Symfony2.1 )
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
