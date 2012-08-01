@@ -19,7 +19,7 @@ class PrologCompilerWamTest extends PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->compiler = new PrologCompiler(new WAMService(new Program()));
+        $this->compiler = new PrologCompiler(new WAMService());
     }
 
     protected function assertEqualsNoSpacing($expected, $tested)

@@ -98,7 +98,7 @@ class CodeReader
      */
     public static function prologToWamCode($prologFile, $wamFile)
     {
-        $compiler = new PrologCompiler(new WAMService(new Program()));
+        $compiler = new PrologCompiler(new WAMService());
         $p = $compiler->compileFile($prologFile);
         if (!is_null($p))
             self::writeProgram($p, $wamFile);

@@ -13,7 +13,7 @@ class WAMEightQueensStress extends WAM_TestCase
 
     public function testFixtures()
     {
-        $wam = new WAMService(new Program());
+        $wam = new WAMService();
 
         $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "eightqueens.pro').");
         $this->checkSuccess($solve);

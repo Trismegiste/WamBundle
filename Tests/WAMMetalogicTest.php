@@ -11,7 +11,7 @@ class WAMMetalogicTest extends WAM_TestCase
 
     public function testFixtures3()
     {
-        $wam = new WAMService(new Program());
+        $wam = new WAMService();
 
         $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "fixtures3.pro').");
         $this->checkSuccess($solve);

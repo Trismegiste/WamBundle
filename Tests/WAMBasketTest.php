@@ -14,7 +14,7 @@ class WAMBasketTest extends WAM_TestCase
 
     public function testFixtures()
     {
-        $wam = new WAMService(new Program());
+        $wam = new WAMService();
 
         $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "basket.pro').");
         $this->checkSuccess($solve);

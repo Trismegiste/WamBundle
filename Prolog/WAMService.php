@@ -6,10 +6,15 @@ namespace Trismegiste\WamBundle\Prolog;
  * WAMService is a WAM intended to use in a framework
  * with oriented service architecture
  *
- * @author Florent Genette
+ * @author Florent Genette <florent.g@allopneus.com>
  */
 class WAMService extends WAM
 {
+
+    public function __construct()
+    {
+        parent::__construct(new Program());
+    }
 
     protected $stringBuffer;
 

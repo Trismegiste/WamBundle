@@ -13,7 +13,7 @@ class WAMHanoiTest extends WAM_TestCase
 
     public function testFixtures()
     {
-        $wam = new WAMService(new Program());
+        $wam = new WAMService();
 
         $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "hanoi.pro').");
         $this->checkSuccess($solve);

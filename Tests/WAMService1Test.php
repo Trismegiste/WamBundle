@@ -14,7 +14,7 @@ class WAMService1Test extends WAM_TestCase
 
     public function testFixtures1()
     {
-        $wam = new WAMService(new Program());
+        $wam = new WAMService();
 
         $solve = $wam->runQuery("consult('" . FIXTURES_DIR . "fixtures1.pro').");
         $this->checkSuccess($solve);
