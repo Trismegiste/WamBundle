@@ -1,0 +1,21 @@
+{
+    "name": "TrismegisteWamBundle",
+    "description": "Warren Abstract Machine for symfony2.1",
+    "type": "symfony-bundle",
+    "keywords": ["inference", "engine", "prolog", "symfony2.1"],
+    "authors": [
+    {
+        "name": "Trismegiste",
+        "email": "florent.g@allopneus.com"
+    }
+    ],
+    "require": {
+
+    },
+    "autoload": {
+        "psr-0": {
+            "Trismegiste\\WamBundle": ""
+        }
+    },
+    "target-dir": "Trismegiste/WamBundle"
+}
