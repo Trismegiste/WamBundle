@@ -3,8 +3,8 @@
 [![Build Status](https://secure.travis-ci.org/Trismegiste/WamBundle.png?branch=master)](http://travis-ci.org/Trismegiste/WamBundle)
 
 ## A Warren's Abstract Machine for Symfony2.1
-by Stefan Büttcher (original java version)
-and Florent Genette (PHP port and debug / new features and Bundle for Symfony2.1 )
+Original java version by Stefan Büttcher.
+PHP port and bundle for Symfony2.1 by Florent Genette.
 Version 1.0 beta
 
 ## What ?
@@ -53,7 +53,9 @@ most advanced framework for PHP today
 
 ## Can I haZ example ?
 Look at the file basket.pro : it's a set of marketing rules for gift and discount
-based on the content of a cart.
+based on the content of a cart. For functional tests, I have also added many
+programs like list operations (see 'append', it is very fun), family trees,
+eight queen problem and hanoi problem.
 
 ## Why port a nearly-forty-year language in PHP ?
 ### (from a ten-year release in Java  ?)
@@ -63,7 +65,7 @@ can solve anything, no. I think there is one language one can use for one
 specific coding problem.
 
 I also think, like any other language, we, programmers, have some responsability
-to keep this knowledge alive, and the best way is to port this WAM to PHP, now.
+to keep this knowledge alive, and today the best way is to port this WAM to PHP.
 It's not nostalgia, it's just recollection about these pioneers of computer
 programming like Von Neumann or Turing.
 
