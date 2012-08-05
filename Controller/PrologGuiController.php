@@ -17,15 +17,26 @@ class PrologGuiController extends Controller
      */
     public function runAction()
     {
-        $prog = "father(anakin, luke).";
-        $query = "father(X, luke).";
-        $machine = $this->get('prolog.wam');
+        $form = $this->createForm(new \Trismegiste\WamBundle\Form\PrologConsole());
+        $request = $this->getRequest();
+        $result = '';
 
-        $compiler = new Prolog\PrologCompiler($machine);
-        $compiler->compile($prog);
-        $result = $machine->runQuery($query);
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+            if ($form->isValid()) {
+                $data = $form->getData();
+                var_dump($data);
+                $machine = $this->get('prolog.wam');
+                $compiler = new Prolog\PrologCompiler($machine);
+                $prog = $compiler->compile($data['program']);
+                $machine->addProgram($prog);
+                $result = $machine->runQuery($data['query']);
+                
+                var_dump($result);
+            }
+        }
 
-        return array('prog' => $prog, 'query' => $query, 'output' => $result);
+        return array('form' => $form->createView(), 'output' => $result);
     }
 
 }

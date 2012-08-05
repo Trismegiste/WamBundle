@@ -8,12 +8,16 @@
 
 <div class="block-demo">
 
-    <div class="program-block">
-        {{ prog }}
-    </div>
+   <div class="console">
+   <form action="{{ path('_wam') }}" method="POST" id="console_form">
+        {{ form_errors(form) }}
 
-    <div class="query-block">
-        {{ query }}
+        {{ form_row(form.program) }}
+        {{ form_row(form.query) }}
+
+        {{ form_rest(form) }}
+        <input type="submit" value="Query" class="symfony-button-grey" />
+    </form>
     </div>
 
     <div class="output-block">

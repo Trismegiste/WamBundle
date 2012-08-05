@@ -34,6 +34,21 @@ class WAMService extends WAM
         $this->stringBuffer->writeLn($s);
     }
 
+    /**
+     * Add a pre-compiled program
+     * @param Program $prog 
+     * 
+     * @todo Moving to PrologContext ?
+     * @todo Duplicate code in consult
+     * @todo refactor the loading and compiling in WAMService 
+     */
+    public function addProgram(Program $prog)
+    {
+        $this->p->owner = $this;
+        $this->p->addProgram($prog);  // add program to that already in memory
+        $this->p->updateLabels();  // and don't forget to update the jump labels   
+    }
+
     // runQuery compiles a query given by s into a WAM program, adds it to the program in memory
     // and jumps to the label "query$", starting the execution
     public function runQuery($s)
@@ -117,3 +132,4 @@ class WAMService extends WAM
     }
 
 }
+
