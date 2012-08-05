@@ -22,15 +22,16 @@
 
     <div class="output-block">
         <table>
+        <tr><th>?</th><th>op</th><th>back</th><th>ms</th><th>var</th></tr>
         {% for row in output %}
         <tr>
-            <td>{% if row.succeed %}success{% endif %}</td>
+            <td>{% if row.succeed %}success{% else %}fail{% endif %}</td>
+            <td>{{ row.opCount }}</td>
+            <td>{{ row.backtrackCount }}</td>
+            <td>{{ (1000 * row.elapsedTime)|number_format(0) }}</td>
             {% for key, val in row.variable %}
                 <td>{{ key }} = {{ val }}</td>
             {% endfor %}
-            <td>{{ row.opCount }}</td>
-            <td>{{ row.backtrackCount }}</td>
-            <td>{{ 1000 * row.elapsedTime }}</td>
         </tr>
         {% endfor %}
         <table>
