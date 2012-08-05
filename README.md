@@ -44,10 +44,11 @@ Prolog has a very limited scope but sometimes it can simplify some problem like 
 ## Is there a releaase for ZF/CodeIgniter/FatFreeFramework instead of Symfony 2.1 ?
 Yes : this library can be included in whatever you want.
 For example : the console can be run as far as you have PHP 5.3.8 and 
-phpunit don't need any framework to be run (and also TravisCI) 
+PhpUnit and TravisCI don't need any framework to be run
 
 But for convinience, there is also service for symfony 2.1 because it is the
-most advanced framework for PHP today ( AOP capabilities if you want proof )
+most advanced framework for PHP today 
+(I mean with features like namespace, ORM, DDD, DI, AOP to name few )
 
 ## Can I haZ example ?
 Look at the file basket.pro : it's a set of marketing rules for gift and discount
