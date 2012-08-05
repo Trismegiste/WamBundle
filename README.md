@@ -5,6 +5,7 @@
 ## A Warren's Abstract Machine for Symfony2.1
 by Stefan Büttcher (original java version)
 and Florent Genette (PHP port and debug / new features and Bundle for Symfony2.1 )
+Version 1.0 beta
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
@@ -42,13 +43,13 @@ Prolog has a very limited scope but sometimes it can simplify some problem like 
  * You face a logic problem with non deterministic path
 
 ## Is there a releaase for ZF/CodeIgniter/FatFreeFramework instead of Symfony 2.1 ?
-Yes : this library can be included in whatever you want.
-For example : the console can be run as far as you have PHP 5.3.8 and 
-PhpUnit and TravisCI don't need any framework to be run
+Yes U can: this library can be included in whatever you want.
+For example : the console can be run as far as you have PHP 5.3.8. 
+PhpUnit and TravisCI don't need any framework to be ran.
 
 But for convinience, there is also service for symfony 2.1 because it is the
 most advanced framework for PHP today 
-(I mean with features like namespace, ORM, DDD, DI, AOP to name few )
+(I mean with features like namespace, ORM, DDD, DI, AOP to name a few )
 
 ## Can I haZ example ?
 Look at the file basket.pro : it's a set of marketing rules for gift and discount
@@ -84,7 +85,3 @@ And if you like this and want to go further, look at the Clojure language.
  * Johann Sebastian Bach
  * William Gibson
  * Gene Roddenberry
-
-## TODO (unsorted)
- * create a symfony2 Command instead of console.php
- * see how to capture input in service (event ?)
