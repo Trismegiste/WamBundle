@@ -4,7 +4,7 @@
 
 ## A Warren's Abstract Machine for Symfony2.1
 Original java version by Stefan Büttcher.
-PHP port and bundle for Symfony2.1 by Florent Genette.
+PHP port, PhpUnit tests and bundle for Symfony2.1 by Florent Genette.
 Version 1.0 beta
 
 ## What ?
@@ -82,6 +82,26 @@ or a big set of datas, I don't think this piece of software is for you.
 As I wrote, this is for specific problems where the imperative programming paradigm
 is irrelevant. This is not the only paradigm : Think declarative programming !
 And if you like this and want to go further, look at the Clojure language.
+
+## I want to fork, can I ?
+Yes you can ! But don't forget to test new features or changes !
+Today, this library has 421 assertions, it took me a lot of time but it
+was mandatory before refactoring this to make it as a modern PHP bundle for
+Symfony2. There is still a lot to do : a CLI compiler, a better (abstract) filesystem,
+updating the metalogic clause known as 'retract', adding features like 'bagof' and
+'findall' but don't forget the tests and documentations because I'll never merge
+a PR for new features if it's not tested and commented.
+
+## I found a bug, what can I do ?
+ * Fork it with Github ! 
+ * Write a new test in the class IFoundABugTest to show the bug
+ * Make a Pull Request for the faulty test
+ * I merge the new test
+ * Someone (you, me, anyone) fix it and make a Pull Request for the fix
+ * Eventually I'll refactor IFoundABugTest class to move the test in the right place
+
+I like TDD for debugging. Sometimes it's annoying but it is always
+for the best, specially accross the net.
 
 ## Special thanks
  * Johann Sebastian Bach
