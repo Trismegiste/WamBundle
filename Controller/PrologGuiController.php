@@ -25,14 +25,12 @@ class PrologGuiController extends Controller
             $form->bindRequest($request);
             if ($form->isValid()) {
                 $data = $form->getData();
-                var_dump($data);
                 $machine = $this->get('prolog.wam');
                 $compiler = new Prolog\PrologCompiler($machine);
-                $prog = $compiler->compile($data['program']);
+                $prog = str_replace(array("\r", "\n"), '', $data['program']);
+                $prog = $compiler->compile($prog);
                 $machine->addProgram($prog);
                 $result = $machine->runQuery($data['query']);
-                
-                var_dump($result);
             }
         }
 

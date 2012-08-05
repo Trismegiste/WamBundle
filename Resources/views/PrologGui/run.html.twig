@@ -21,7 +21,19 @@
     </div>
 
     <div class="output-block">
-        {{ output }}
+        <table>
+        {% for row in output %}
+        <tr>
+            <td>{% if row.succeed %}success{% endif %}</td>
+            {% for key, val in row.variable %}
+                <td>{{ key }} = {{ val }}</td>
+            {% endfor %}
+            <td>{{ row.opCount }}</td>
+            <td>{{ row.backtrackCount }}</td>
+            <td>{{ 1000 * row.elapsedTime }}</td>
+        </tr>
+        {% endfor %}
+        <table>
     </div>
 
 </div>
