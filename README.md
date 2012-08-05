@@ -101,7 +101,8 @@ a PR for new features if it's not tested and commented.
  * Eventually I'll refactor IFoundABugTest class to move the test in the right place
 
 I like TDD for debugging. Sometimes it's annoying but it is always
-for the best, specially accross the net.
+for the best, specially accross the net. With the help of TravisCI, tracking bugs
+is a piece of cake.
 
 ## Special thanks
  * Johann Sebastian Bach
