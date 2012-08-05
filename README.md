@@ -41,6 +41,14 @@ Prolog has a very limited scope but sometimes it can simplify some problem like 
  * You need a big bunch of Chain of Responsability which changes every week
  * You face a logic problem with non deterministic path
 
+## Is there a releaase for ZF/CodeIgniter/FatFreeFramework instead of Symfony 2.1 ?
+Yes : this library can be included in whatever you want.
+For example : the console can be run as far as you have PHP 5.3.8 and 
+phpunit don't need any framework to be run (and also TravisCI) 
+
+But for convinience, there is also service for symfony 2.1 because it is the
+most advanced framework for PHP today ( AOP capabilities if you want proof )
+
 ## Can I haZ example ?
 Look at the file basket.pro : it's a set of marketing rules for gift and discount
 based on the content of a cart.
@@ -77,6 +85,5 @@ And if you like this and want to go further, look at the Clojure language.
  * Gene Roddenberry
 
 ## TODO (unsorted)
- * bundle for symfony2 : currently in progress
  * create a symfony2 Command instead of console.php
  * see how to capture input in service (event ?)
