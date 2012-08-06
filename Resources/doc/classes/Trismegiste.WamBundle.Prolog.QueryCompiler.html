@@ -1,0 +1,753 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Trismegiste\WamBundle\Prolog\QueryCompiler</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Trismegiste.html"><i class="icon-th"></i> Trismegiste</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">237</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: "><span class="description">__construct()
+        </span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#atom" title="atom :: "><span class="description">atom()
+        </span><pre>atom()</pre></a></li>
+<li class="method public inherited"><a href="#body" title="body :: "><span class="description">body()
+        </span><pre>body()</pre></a></li>
+<li class="method public inherited"><a href="#clause" title="clause :: "><span class="description">clause()
+        </span><pre>clause()</pre></a></li>
+<li class="method public "><a href="#compile" title="compile :: "><span class="description">compile()
+        </span><pre>compile()</pre></a></li>
+<li class="method public inherited"><a href="#condition" title="condition :: "><span class="description">condition()
+        </span><pre>condition()</pre></a></li>
+<li class="method public inherited"><a href="#constant" title="constant :: "><span class="description">constant()
+        </span><pre>constant()</pre></a></li>
+<li class="method public inherited"><a href="#element" title="element :: "><span class="description">element()
+        </span><pre>element()</pre></a></li>
+<li class="method public inherited"><a href="#expression" title="expression :: "><span class="description">expression()
+        </span><pre>expression()</pre></a></li>
+<li class="method public inherited"><a href="#firstOccurrence" title="firstOccurrence :: "><span class="description">firstOccurrence()
+        </span><pre>firstOccurrence()</pre></a></li>
+<li class="method public inherited"><a href="#head" title="head :: "><span class="description">head()
+        </span><pre>head()</pre></a></li>
+<li class="method public inherited"><a href="#isConstant" title="isConstant :: "><span class="description">isConstant()
+        </span><pre>isConstant()</pre></a></li>
+<li class="method public inherited"><a href="#isNextToken" title="isNextToken :: "><span class="description">isNextToken()
+        </span><pre>isNextToken()</pre></a></li>
+<li class="method public inherited"><a href="#isNumber" title="isNumber :: "><span class="description">isNumber()
+        </span><pre>isNumber()</pre></a></li>
+<li class="method public inherited"><a href="#isPredicate" title="isPredicate :: "><span class="description">isPredicate()
+        </span><pre>isPredicate()</pre></a></li>
+<li class="method public inherited"><a href="#isVariable" title="isVariable :: "><span class="description">isVariable()
+        </span><pre>isVariable()</pre></a></li>
+<li class="method public inherited"><a href="#listx" title="listx :: "><span class="description">listx()
+        </span><pre>listx()</pre></a></li>
+<li class="method public inherited"><a href="#predicate" title="predicate :: "><span class="description">predicate()
+        </span><pre>predicate()</pre></a></li>
+<li class="method public inherited"><a href="#program" title="program :: "><span class="description">program()
+        </span><pre>program()</pre></a></li>
+<li class="method public inherited"><a href="#stringToList" title="stringToList :: "><span class="description">stringToList()
+        </span><pre>stringToList()</pre></a></li>
+<li class="method public inherited"><a href="#structure" title="structure :: "><span class="description">structure()
+        </span><pre>structure()</pre></a></li>
+<li class="method public inherited"><a href="#structureToCode" title="structureToCode :: "><span class="description">structureToCode()
+        </span><pre>structureToCode()</pre></a></li>
+<li class="method public inherited"><a href="#substituteVariable" title="substituteVariable :: "><span class="description">substituteVariable()
+        </span><pre>substituteVariable()</pre></a></li>
+<li class="method public inherited"><a href="#token" title="token :: "><span class="description">token()
+        </span><pre>token()</pre></a></li>
+<li class="method public inherited"><a href="#variable" title="variable :: "><span class="description">variable()
+        </span><pre>variable()</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="method private "><a href="#query" title="query :: "><span class="description">query()
+        </span><pre>query()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected inherited"><a href="#%24errorString" title="$errorString :: "><span class="description">$errorString</span><pre>$errorString</pre></a></li>
+<li class="property protected inherited"><a href="#%24owner" title="$owner :: "><span class="description">$owner</span><pre>$owner</pre></a></li>
+<li class="property protected inherited"><a href="#%24substitutionList" title="$substitutionList :: "><span class="description">$substitutionList</span><pre>$substitutionList</pre></a></li>
+<li class="property protected inherited"><a href="#%24varPrefix" title="$varPrefix :: "><span class="description">$varPrefix</span><pre>$varPrefix</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private inherited"><a href="#%24bodyCalls" title="$bodyCalls :: "><span class="description">$bodyCalls</span><pre>$bodyCalls</pre></a></li>
+<li class="property private inherited"><a href="#%24lastVar" title="$lastVar :: "><span class="description">$lastVar</span><pre>$lastVar</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CTrismegiste%5CWamBundle%5CProlog%5CQueryCompiler" id="\Trismegiste\WamBundle\Prolog\QueryCompiler"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Trismegiste.html">Trismegiste</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Trismegiste.WamBundle.html">WamBundle</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Trismegiste.WamBundle.Prolog.html">Prolog</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Trismegiste.WamBundle.Prolog.QueryCompiler.html">QueryCompiler</a>
+</li>
+</ul>
+<div href="../classes/Trismegiste.WamBundle.Prolog.QueryCompiler.html" class="element class">
+<p class="short_description">Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste</p>
+<div class="details">
+<p class="long_description"><p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>QueryCompiler.java contains the QueryCompiler class, a child-class of
+the Compiler class. QueryCompiler compiles user-written queries into WAM
+code for execution.</p></p>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>__construct()
+        </h2>
+<pre>__construct(\Trismegiste\WamBundle\Prolog\WAM $anOwner) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$anOwner</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="atom" id="atom"></a><div class="element clickable method public atom" data-toggle="collapse" data-target=".atom .collapse">
+<h2>atom()
+        </h2>
+<pre>atom(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::atom()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="body" id="body"></a><div class="element clickable method public body" data-toggle="collapse" data-target=".body .collapse">
+<h2>body()
+        </h2>
+<pre>body(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::body()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="clause" id="clause"></a><div class="element clickable method public clause" data-toggle="collapse" data-target=".clause .collapse">
+<h2>clause()
+        </h2>
+<pre>clause(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::clause()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="compile" id="compile"></a><div class="element clickable method public compile" data-toggle="collapse" data-target=".compile .collapse">
+<h2>compile()
+        </h2>
+<pre>compile($aQuery) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$aQuery</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="condition" id="condition"></a><div class="element clickable method public condition" data-toggle="collapse" data-target=".condition .collapse">
+<h2>condition()
+        </h2>
+<pre>condition(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::condition()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="constant" id="constant"></a><div class="element clickable method public constant" data-toggle="collapse" data-target=".constant .collapse">
+<h2>constant()
+        </h2>
+<pre>constant(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::constant()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="element" id="element"></a><div class="element clickable method public element" data-toggle="collapse" data-target=".element .collapse">
+<h2>element()
+        </h2>
+<pre>element(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::element()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="expression" id="expression"></a><div class="element clickable method public expression" data-toggle="collapse" data-target=".expression .collapse">
+<h2>expression()
+        </h2>
+<pre>expression(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::expression()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="firstOccurrence" id="firstOccurrence"></a><div class="element clickable method public firstOccurrence" data-toggle="collapse" data-target=".firstOccurrence .collapse">
+<h2>firstOccurrence()
+        </h2>
+<pre>firstOccurrence($variable) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::firstOccurrence()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$variable</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="head" id="head"></a><div class="element clickable method public head" data-toggle="collapse" data-target=".head .collapse">
+<h2>head()
+        </h2>
+<pre>head(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::head()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isConstant" id="isConstant"></a><div class="element clickable method public isConstant" data-toggle="collapse" data-target=".isConstant .collapse">
+<h2>isConstant()
+        </h2>
+<pre>isConstant($s) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::isConstant()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isNextToken" id="isNextToken"></a><div class="element clickable method public isNextToken" data-toggle="collapse" data-target=".isNextToken .collapse">
+<h2>isNextToken()
+        </h2>
+<pre>isNextToken(array $prog, $tok) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::isNextToken()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$tok</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isNumber" id="isNumber"></a><div class="element clickable method public isNumber" data-toggle="collapse" data-target=".isNumber .collapse">
+<h2>isNumber()
+        </h2>
+<pre>isNumber($s) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::isNumber()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isPredicate" id="isPredicate"></a><div class="element clickable method public isPredicate" data-toggle="collapse" data-target=".isPredicate .collapse">
+<h2>isPredicate()
+        </h2>
+<pre>isPredicate($s) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::isPredicate()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isVariable" id="isVariable"></a><div class="element clickable method public isVariable" data-toggle="collapse" data-target=".isVariable .collapse">
+<h2>isVariable()
+        </h2>
+<pre>isVariable($s) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::isVariable()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="listx" id="listx"></a><div class="element clickable method public listx" data-toggle="collapse" data-target=".listx .collapse">
+<h2>listx()
+        </h2>
+<pre>listx(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::listx()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="predicate" id="predicate"></a><div class="element clickable method public predicate" data-toggle="collapse" data-target=".predicate .collapse">
+<h2>predicate()
+        </h2>
+<pre>predicate(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::predicate()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="program" id="program"></a><div class="element clickable method public program" data-toggle="collapse" data-target=".program .collapse">
+<h2>program()
+        </h2>
+<pre>program(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::program()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="stringToList" id="stringToList"></a><div class="element clickable method public stringToList" data-toggle="collapse" data-target=".stringToList .collapse">
+<h2>stringToList()
+        </h2>
+<pre>stringToList($text) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::stringToList()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$text</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="structure" id="structure"></a><div class="element clickable method public structure" data-toggle="collapse" data-target=".structure .collapse">
+<h2>structure()
+        </h2>
+<pre>structure(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::structure()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="structureToCode" id="structureToCode"></a><div class="element clickable method public structureToCode" data-toggle="collapse" data-target=".structureToCode .collapse">
+<h2>structureToCode()
+        </h2>
+<pre>structureToCode($struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::structureToCode()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="substituteVariable" id="substituteVariable"></a><div class="element clickable method public substituteVariable" data-toggle="collapse" data-target=".substituteVariable .collapse">
+<h2>substituteVariable()
+        </h2>
+<pre>substituteVariable($variable) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::substituteVariable()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$variable</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="token" id="token"></a><div class="element clickable method public token" data-toggle="collapse" data-target=".token .collapse">
+<h2>token()
+        </h2>
+<pre>token(array $prog, $tok) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::token()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$tok</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="variable" id="variable"></a><div class="element clickable method public variable" data-toggle="collapse" data-target=".variable .collapse">
+<h2>variable()
+        </h2>
+<pre>variable(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::variable()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="query" id="query"></a><div class="element clickable method private query" data-toggle="collapse" data-target=".query .collapse">
+<h2>query()
+        </h2>
+<pre>query(array $prog, \Trismegiste\WamBundle\Prolog\CompilerStructure $struc) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$prog</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24errorString" id="$errorString"> </a><div class="element clickable property protected $errorString" data-toggle="collapse" data-target=".$errorString .collapse">
+<h2>$errorString</h2>
+<pre>$errorString </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::$$errorString</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24owner" id="$owner"> </a><div class="element clickable property protected $owner" data-toggle="collapse" data-target=".$owner .collapse">
+<h2>$owner</h2>
+<pre>$owner </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::$$owner</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24substitutionList" id="$substitutionList"> </a><div class="element clickable property protected $substitutionList" data-toggle="collapse" data-target=".$substitutionList .collapse">
+<h2>$substitutionList</h2>
+<pre>$substitutionList </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::$$substitutionList</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24varPrefix" id="$varPrefix"> </a><div class="element clickable property protected $varPrefix" data-toggle="collapse" data-target=".$varPrefix .collapse">
+<h2>$varPrefix</h2>
+<pre>$varPrefix </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::$$varPrefix</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24bodyCalls" id="$bodyCalls"> </a><div class="element clickable property private $bodyCalls" data-toggle="collapse" data-target=".$bodyCalls .collapse">
+<h2>$bodyCalls</h2>
+<pre>$bodyCalls </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::$$bodyCalls</td>
+</tr></table>
+</div></div>
+</div>
+<a name="%24lastVar" id="$lastVar"> </a><div class="element clickable property private $lastVar" data-toggle="collapse" data-target=".$lastVar .collapse">
+<h2>$lastVar</h2>
+<pre>$lastVar </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\Compiler::$$lastVar</td>
+</tr></table>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-08-06T09:08:21+02:00.<br></footer></div>
+</div>
+</body>
+</html>

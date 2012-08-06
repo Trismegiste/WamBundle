@@ -1,0 +1,3395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a8" title="">
+  <file path="console.php" hash="846b4055ca272ec4c30c906028650a2f" package="Default">
+    <namespace-alias name="WAMConsole">Trismegiste\WamBundle\Prolog\WAMConsole</namespace-alias>
+    <include line="11" type="Require Once" package="Default">
+      <name/>
+    </include>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file console.php</error>
+    </parse_markers>
+  </file>
+  <file path="TrismegisteWamBundle.php" hash="124b1a9a35ac888ff93880e18784bafb" package="Default">
+    <namespace-alias name="Bundle">Symfony\Component\HttpKernel\Bundle\Bundle</namespace-alias>
+    <namespace-alias name="ContainerBuilder">Symfony\Component\DependencyInjection\ContainerBuilder</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle" line="8" package="Default">
+      <extends>\Symfony\Component\HttpKernel\Bundle\Bundle</extends>
+      <name>TrismegisteWamBundle</name>
+      <full_name>\Trismegiste\WamBundle\TrismegisteWamBundle</full_name>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle" line="11" package="Default">
+        <name>build</name>
+        <full_name>build</full_name>
+        <argument line="11">
+          <name>$container</name>
+          <default><![CDATA[]]></default>
+          <type>\Symfony\Component\DependencyInjection\ContainerBuilder</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file TrismegisteWamBundle.php</error>
+      <error line="8" code="50000">No DocBlock was found for \Trismegiste\WamBundle\TrismegisteWamBundle</error>
+      <error line="11" code="50010">No DocBlock was found for method build()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/QueryCompiler.php" hash="002aa2f3d74688d32498a9869c0e054d" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="16" package="Default">
+      <extends>\Trismegiste\WamBundle\Prolog\Compiler</extends>
+      <name>QueryCompiler</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\QueryCompiler</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>QueryCompiler.java contains the QueryCompiler class, a child-class of
+the Compiler class. QueryCompiler compiles user-written queries into WAM
+code for execution.</p>]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="19" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="19">
+          <name>$anOwner</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\WAM</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>query</name>
+        <full_name>query</full_name>
+        <argument line="26">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="26">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="45" package="Default">
+        <name>compile</name>
+        <full_name>compile</full_name>
+        <argument line="45">
+          <name>$aQuery</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/QueryCompiler.php</error>
+      <error line="19" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="26" code="50010">No DocBlock was found for method query()</error>
+      <error line="45" code="50010">No DocBlock was found for method compile()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/WAM.php" hash="88f032aefce58e25d2864e819fd59c8f" package="Default">
+    <namespace-alias name="ChoicePoint">Trismegiste\WamBundle\Prolog\Inner\ChoicePoint</namespace-alias>
+    <namespace-alias name="Environment">Trismegiste\WamBundle\Prolog\Inner\Environment</namespace-alias>
+    <namespace-alias name="KeyValue">Trismegiste\WamBundle\Prolog\Inner\KeyValue</namespace-alias>
+    <namespace-alias name="Trail">Trismegiste\WamBundle\Prolog\Inner\Trail</namespace-alias>
+    <namespace-alias name="Variable">Trismegiste\WamBundle\Prolog\Inner\Variable</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="23" package="Default">
+      <extends>\Trismegiste\WamBundle\Prolog\PrologContext</extends>
+      <name>WAM</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\WAM</full_name>
+      <docblock line="11">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+developed:   December 2001 until February 2002]]></description>
+        <long-description><![CDATA[<p>Translated from Java to PHP 5.3 by Florent Genette (Trismegiste)
+http://github.com/Trismegiste/WamBundle
+June to July 2012 (yes, 10 years after the original version !)</p>
+
+<p>WAM.php contains an abstract WAM without input or output
+WAM code operations are described in Ait Kaci:
+Warren's Abstract Machine -- A Tutorial Reconstruction</p>]]></long-description>
+      </docblock>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>UNB</name>
+        <full_name>UNB</full_name>
+        <value><![CDATA[0]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="27" package="Default">
+        <name>REF</name>
+        <full_name>REF</full_name>
+        <value><![CDATA[1]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="28" package="Default">
+        <name>CON</name>
+        <full_name>CON</full_name>
+        <value><![CDATA[2]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="29" package="Default">
+        <name>LIS</name>
+        <full_name>LIS</full_name>
+        <value><![CDATA[3]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="30" package="Default">
+        <name>STR</name>
+        <full_name>STR</full_name>
+        <value><![CDATA[4]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="31" package="Default">
+        <name>ASSERT</name>
+        <full_name>ASSERT</full_name>
+        <value><![CDATA[9]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="32" package="Default">
+        <name>opAllocate</name>
+        <full_name>opAllocate</full_name>
+        <value><![CDATA[1]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="33" package="Default">
+        <name>opBigger</name>
+        <full_name>opBigger</full_name>
+        <value><![CDATA[2]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="34" package="Default">
+        <name>opCall</name>
+        <full_name>opCall</full_name>
+        <value><![CDATA[3]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="35" package="Default">
+        <name>opCreateVariable</name>
+        <full_name>opCreateVariable</full_name>
+        <value><![CDATA[4]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="36" package="Default">
+        <name>opCut</name>
+        <full_name>opCut</full_name>
+        <value><![CDATA[5]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="37" package="Default">
+        <name>opDeallocate</name>
+        <full_name>opDeallocate</full_name>
+        <value><![CDATA[6]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="38" package="Default">
+        <name>opGetConstant</name>
+        <full_name>opGetConstant</full_name>
+        <value><![CDATA[7]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="39" package="Default">
+        <name>opGetValue</name>
+        <full_name>opGetValue</full_name>
+        <value><![CDATA[8]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="40" package="Default">
+        <name>opGetVariable</name>
+        <full_name>opGetVariable</full_name>
+        <value><![CDATA[9]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="41" package="Default">
+        <name>opHalt</name>
+        <full_name>opHalt</full_name>
+        <value><![CDATA[10]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="42" package="Default">
+        <name>opIs</name>
+        <full_name>opIs</full_name>
+        <value><![CDATA[11]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="43" package="Default">
+        <name>opGetLevel</name>
+        <full_name>opGetLevel</full_name>
+        <value><![CDATA[12]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="44" package="Default">
+        <name>opNoOp</name>
+        <full_name>opNoOp</full_name>
+        <value><![CDATA[13]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="45" package="Default">
+        <name>opProceed</name>
+        <full_name>opProceed</full_name>
+        <value><![CDATA[14]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="46" package="Default">
+        <name>opPutConstant</name>
+        <full_name>opPutConstant</full_name>
+        <value><![CDATA[15]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="47" package="Default">
+        <name>opPutValue</name>
+        <full_name>opPutValue</full_name>
+        <value><![CDATA[16]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="48" package="Default">
+        <name>opPutVariable</name>
+        <full_name>opPutVariable</full_name>
+        <value><![CDATA[17]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="49" package="Default">
+        <name>opRetryMeElse</name>
+        <full_name>opRetryMeElse</full_name>
+        <value><![CDATA[18]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="50" package="Default">
+        <name>opSmaller</name>
+        <full_name>opSmaller</full_name>
+        <value><![CDATA[19]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="51" package="Default">
+        <name>opTrustMe</name>
+        <full_name>opTrustMe</full_name>
+        <value><![CDATA[20]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="52" package="Default">
+        <name>opTryMeElse</name>
+        <full_name>opTryMeElse</full_name>
+        <value><![CDATA[21]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="53" package="Default">
+        <name>opUnifyList</name>
+        <full_name>opUnifyList</full_name>
+        <value><![CDATA[22]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="54" package="Default">
+        <name>opUnifyStruc</name>
+        <full_name>opUnifyStruc</full_name>
+        <value><![CDATA[23]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="55" package="Default">
+        <name>opUnequal</name>
+        <full_name>opUnequal</full_name>
+        <value><![CDATA[24]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="56" package="Default">
+        <name>opUnifyVariable</name>
+        <full_name>opUnifyVariable</full_name>
+        <value><![CDATA[25]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="57" package="Default">
+        <name>opBiggerEq</name>
+        <full_name>opBiggerEq</full_name>
+        <value><![CDATA[27]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="58" package="Default">
+        <name>opSmallerEq</name>
+        <full_name>opSmallerEq</full_name>
+        <value><![CDATA[28]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="59" package="Default">
+        <name>callWrite</name>
+        <full_name>callWrite</full_name>
+        <value><![CDATA[-10]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="60" package="Default">
+        <name>callWriteLn</name>
+        <full_name>callWriteLn</full_name>
+        <value><![CDATA[-11]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="61" package="Default">
+        <name>callNewLine</name>
+        <full_name>callNewLine</full_name>
+        <value><![CDATA[-12]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="62" package="Default">
+        <name>callConsult</name>
+        <full_name>callConsult</full_name>
+        <value><![CDATA[-13]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="63" package="Default">
+        <name>callReconsult</name>
+        <full_name>callReconsult</full_name>
+        <value><![CDATA[-14]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="64" package="Default">
+        <name>callLoad</name>
+        <full_name>callLoad</full_name>
+        <value><![CDATA[-15]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="65" package="Default">
+        <name>callAssert</name>
+        <full_name>callAssert</full_name>
+        <value><![CDATA[-16]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="66" package="Default">
+        <name>callRetractOne</name>
+        <full_name>callRetractOne</full_name>
+        <value><![CDATA[-17]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="67" package="Default">
+        <name>callRetractAll</name>
+        <full_name>callRetractAll</full_name>
+        <value><![CDATA[-18]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="68" package="Default">
+        <name>callIsInteger</name>
+        <full_name>callIsInteger</full_name>
+        <value><![CDATA[-19]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="69" package="Default">
+        <name>callIsAtom</name>
+        <full_name>callIsAtom</full_name>
+        <value><![CDATA[-20]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="70" package="Default">
+        <name>callIsBound</name>
+        <full_name>callIsBound</full_name>
+        <value><![CDATA[-21]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="71" package="Default">
+        <name>callReadLn</name>
+        <full_name>callReadLn</full_name>
+        <value><![CDATA[-22]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="72" package="Default">
+        <name>callCall</name>
+        <full_name>callCall</full_name>
+        <value><![CDATA[-23]]></value>
+      </constant>
+      <property final="false" static="false" visibility="public" line="75" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$debugOn</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="76" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$benchmarkOn</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="77" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$maxOpCount</name>
+        <default><![CDATA[50000000]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="78" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$opCount</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="78" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$backtrackCount</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="79" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$p</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="80" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$trail</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="81" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$failed</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="82" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$displayQValue</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="83" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$displayQCount</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="85" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$queryVariables</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="86" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$programCounter</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="87" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$continuationPointer</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="88" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$choicePoint</name>
+        <default><![CDATA[null]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="89" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$cutPoint</name>
+        <default><![CDATA[null]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="90" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$env</name>
+        <default><![CDATA[null]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="91" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$arguments</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="99" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="93">
+          <description><![CDATA[creates a new WAM with program data initialized to aProgram]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="93" name="param" description="" type="\Trismegiste\WamBundle\Prolog\Program" variable="$aProgram">
+            <type by_reference="false">\Trismegiste\WamBundle\Prolog\Program</type>
+          </tag>
+        </docblock>
+        <argument line="99">
+          <name>$aProgram</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Program</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="109" package="Default">
+        <name>reset</name>
+        <full_name>reset</full_name>
+        <docblock line="106">
+          <description><![CDATA[resets sets all WAM parameters to their initial values]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="126" package="Default">
+        <name>readLn</name>
+        <full_name>readLn</full_name>
+        <docblock line="123">
+          <description><![CDATA[reads a String line from standard input]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="131" package="Default">
+        <name>write</name>
+        <full_name>write</full_name>
+        <docblock line="128">
+          <description><![CDATA[displays a string]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="131">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="136" package="Default">
+        <name>writeLn</name>
+        <full_name>writeLn</full_name>
+        <docblock line="133">
+          <description><![CDATA[displays a string followed by CRLF]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="136">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="144" package="Default">
+        <name>debug</name>
+        <full_name>debug</full_name>
+        <docblock line="138">
+          <description><![CDATA[displays a debug information line]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="138" name="param" description="" type="string" variable="$s">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="138" name="param" description="" type="int" variable="$debugLevel">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="144">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="144">
+          <name>$debugLevel</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="161" package="Default">
+        <name>int2FormatStr</name>
+        <full_name>int2FormatStr</full_name>
+        <docblock line="155">
+          <description><![CDATA[formats an integer to a string]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="155" name="param" description="" type="integer" variable="$i">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="155" name="return" description="" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="161">
+          <name>$i</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="170" package="Default">
+        <name>displayInternalVariables</name>
+        <full_name>displayInternalVariables</full_name>
+        <docblock line="166">
+          <description><![CDATA[displays the values of all internal parameters that can be modyfied
+using the "set" command]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="178" package="Default">
+        <name>setInternalVariable</name>
+        <full_name>setInternalVariable</full_name>
+        <argument line="178">
+          <name>$variable</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="178">
+          <name>$value</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="199" package="Default">
+        <name>getInternalVariable</name>
+        <full_name>getInternalVariable</full_name>
+        <argument line="199">
+          <name>$variable</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="216" package="Default">
+        <name>parseInt</name>
+        <full_name>parseInt</full_name>
+        <argument line="216">
+          <name>$number</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="224" package="Default">
+        <name>get_ref</name>
+        <full_name>get_ref</full_name>
+        <argument line="224">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="244" package="Default">
+        <name>create_variable</name>
+        <full_name>create_variable</full_name>
+        <argument line="244">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="244">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="261" package="Default">
+        <name>comparison</name>
+        <full_name>comparison</full_name>
+        <argument line="261">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="261">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="261">
+          <name>$comparator</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="308" package="Default">
+        <name>smaller</name>
+        <full_name>smaller</full_name>
+        <argument line="308">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="308">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="315" package="Default">
+        <name>smallereq</name>
+        <full_name>smallereq</full_name>
+        <argument line="315">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="315">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="322" package="Default">
+        <name>biggereq</name>
+        <full_name>biggereq</full_name>
+        <argument line="322">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="322">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="329" package="Default">
+        <name>bigger</name>
+        <full_name>bigger</full_name>
+        <argument line="329">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="329">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="336" package="Default">
+        <name>unequal</name>
+        <full_name>unequal</full_name>
+        <argument line="336">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="336">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="343" package="Default">
+        <name>is</name>
+        <full_name>is</full_name>
+        <argument line="343">
+          <name>$target</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="343">
+          <name>$op</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="343">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="343">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="404" package="Default">
+        <name>get_variable</name>
+        <full_name>get_variable</full_name>
+        <argument line="404">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="404">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="414" package="Default">
+        <name>get_value</name>
+        <full_name>get_value</full_name>
+        <argument line="414">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="414">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="421" package="Default">
+        <name>get_constant</name>
+        <full_name>get_constant</full_name>
+        <argument line="421">
+          <name>$c</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="421">
+          <name>$variable</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="442" package="Default">
+        <name>unify_variable2</name>
+        <full_name>unify_variable2</full_name>
+        <argument line="442">
+          <name>$v1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="442">
+          <name>$v2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="478" package="Default">
+        <name>unify_list2</name>
+        <full_name>unify_list2</full_name>
+        <argument line="478">
+          <name>$liste</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+        <argument line="478">
+          <name>$head</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+        <argument line="478">
+          <name>$tail</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="500" package="Default">
+        <name>unify_struc2</name>
+        <full_name>unify_struc2</full_name>
+        <argument line="500">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+        <argument line="500">
+          <name>$head</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+        <argument line="500">
+          <name>$tail</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="522" package="Default">
+        <name>unify_variable</name>
+        <full_name>unify_variable</full_name>
+        <argument line="522">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="522">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="534" package="Default">
+        <name>unify_list</name>
+        <full_name>unify_list</full_name>
+        <argument line="534">
+          <name>$l</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="534">
+          <name>$h</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="534">
+          <name>$t</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="547" package="Default">
+        <name>unify_struc</name>
+        <full_name>unify_struc</full_name>
+        <argument line="547">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="547">
+          <name>$h</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="547">
+          <name>$t</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="560" package="Default">
+        <name>put_constant</name>
+        <full_name>put_constant</full_name>
+        <argument line="560">
+          <name>$c</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="560">
+          <name>$a</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="570" package="Default">
+        <name>put_list</name>
+        <full_name>put_list</full_name>
+        <argument line="570">
+          <name>$h</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="570">
+          <name>$t</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="570">
+          <name>$a</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="581" package="Default">
+        <name>put_value</name>
+        <full_name>put_value</full_name>
+        <argument line="581">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="581">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="591" package="Default">
+        <name>put_variable</name>
+        <full_name>put_variable</full_name>
+        <argument line="591">
+          <name>$s1</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="591">
+          <name>$s2</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="602" package="Default">
+        <name>try_me_else</name>
+        <full_name>try_me_else</full_name>
+        <argument line="602">
+          <name>$whom</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="616" package="Default">
+        <name>proceed</name>
+        <full_name>proceed</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="623" package="Default">
+        <name>is_bound</name>
+        <full_name>is_bound</full_name>
+        <argument line="623">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="634" package="Default">
+        <name>allocate</name>
+        <full_name>allocate</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="643" package="Default">
+        <name>deallocate</name>
+        <full_name>deallocate</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="652" package="Default">
+        <name>call</name>
+        <full_name>call</full_name>
+        <argument line="652">
+          <name>$target</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="665" package="Default">
+        <name>cut</name>
+        <full_name>cut</full_name>
+        <argument line="665">
+          <name>$Vn</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="674" package="Default">
+        <name>get_level</name>
+        <full_name>get_level</full_name>
+        <argument line="674">
+          <name>$Vn</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="686" package="Default">
+        <name>backtrack</name>
+        <full_name>backtrack</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="718" package="Default">
+        <name>internalPredicate</name>
+        <full_name>internalPredicate</full_name>
+        <docblock line="711">
+          <description><![CDATA[internalPredicate manages the execution of all built-in predicates,
+e.g.]]></description>
+          <long-description><![CDATA[<p>write, consult, isbound</p>]]></long-description>
+          <tag line="711" name="param" description="" type="integer" variable="$index">
+            <type by_reference="false">integer</type>
+          </tag>
+          <tag line="711" name="return" description="" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="718">
+          <name>$index</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="806" package="Default">
+        <name>load</name>
+        <full_name>load</full_name>
+        <docblock line="801">
+          <description><![CDATA[Load WAM Code]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="801" name="param" description="" type="string" variable="$fileName">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="806">
+          <name>$fileName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="824" package="Default">
+        <name>isAtom</name>
+        <full_name>isAtom</full_name>
+        <argument line="824">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="834" package="Default">
+        <name>isInteger</name>
+        <full_name>isInteger</full_name>
+        <argument line="834">
+          <name>$stuff</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="845" package="Default">
+        <name>assert</name>
+        <full_name>assert</full_name>
+        <argument line="845">
+          <name>$label</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="845">
+          <name>$clause</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="860" package="Default">
+        <name>removeProgramLines</name>
+        <full_name>removeProgramLines</full_name>
+        <argument line="860">
+          <name>$fromLine</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="873" package="Default">
+        <name>retract</name>
+        <full_name>retract</full_name>
+        <argument line="873">
+          <name>$clauseName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="892" package="Default">
+        <name>retractall</name>
+        <full_name>retractall</full_name>
+        <argument line="892">
+          <name>$clauseName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="908" package="Default">
+        <name>consult</name>
+        <full_name>consult</full_name>
+        <argument line="908">
+          <name>$fileName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="930" package="Default">
+        <name>traceOn</name>
+        <full_name>traceOn</full_name>
+        <docblock line="929">
+          <description><![CDATA[Dump Query and Local Variables]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="950" package="Default">
+        <name>run</name>
+        <full_name>run</full_name>
+        <docblock line="947">
+          <description><![CDATA[run starts the actual execution of the program in memory]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+    </class>
+    <markers>
+      <todo line="791">untested</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/WAM.php</error>
+      <error line="75" code="50018">No DocBlock was found for property $debugOn</error>
+      <error line="76" code="50018">No DocBlock was found for property $benchmarkOn</error>
+      <error line="77" code="50018">No DocBlock was found for property $maxOpCount</error>
+      <error line="78" code="50018">No DocBlock was found for property $opCount</error>
+      <error line="78" code="50018">No DocBlock was found for property $backtrackCount</error>
+      <error line="79" code="50018">No DocBlock was found for property $p</error>
+      <error line="80" code="50018">No DocBlock was found for property $trail</error>
+      <error line="81" code="50018">No DocBlock was found for property $failed</error>
+      <error line="82" code="50018">No DocBlock was found for property $displayQValue</error>
+      <error line="83" code="50018">No DocBlock was found for property $displayQCount</error>
+      <error line="85" code="50018">No DocBlock was found for property $queryVariables</error>
+      <error line="86" code="50018">No DocBlock was found for property $programCounter</error>
+      <error line="87" code="50018">No DocBlock was found for property $continuationPointer</error>
+      <error line="88" code="50018">No DocBlock was found for property $choicePoint</error>
+      <error line="89" code="50018">No DocBlock was found for property $cutPoint</error>
+      <error line="90" code="50018">No DocBlock was found for property $env</error>
+      <error line="91" code="50018">No DocBlock was found for property $arguments</error>
+      <error line="128" code="50015">Argument $s is missing from the Docblock of write()</error>
+      <error line="133" code="50015">Argument $s is missing from the Docblock of writeLn()</error>
+      <error line="178" code="50010">No DocBlock was found for method setInternalVariable()</error>
+      <error line="199" code="50010">No DocBlock was found for method getInternalVariable()</error>
+      <error line="216" code="50010">No DocBlock was found for method parseInt()</error>
+      <error line="224" code="50010">No DocBlock was found for method get_ref()</error>
+      <error line="244" code="50010">No DocBlock was found for method create_variable()</error>
+      <error line="261" code="50010">No DocBlock was found for method comparison()</error>
+      <error line="308" code="50010">No DocBlock was found for method smaller()</error>
+      <error line="315" code="50010">No DocBlock was found for method smallereq()</error>
+      <error line="322" code="50010">No DocBlock was found for method biggereq()</error>
+      <error line="329" code="50010">No DocBlock was found for method bigger()</error>
+      <error line="336" code="50010">No DocBlock was found for method unequal()</error>
+      <error line="343" code="50010">No DocBlock was found for method is()</error>
+      <error line="404" code="50010">No DocBlock was found for method get_variable()</error>
+      <error line="414" code="50010">No DocBlock was found for method get_value()</error>
+      <error line="421" code="50010">No DocBlock was found for method get_constant()</error>
+      <error line="442" code="50010">No DocBlock was found for method unify_variable2()</error>
+      <error line="478" code="50010">No DocBlock was found for method unify_list2()</error>
+      <error line="500" code="50010">No DocBlock was found for method unify_struc2()</error>
+      <error line="522" code="50010">No DocBlock was found for method unify_variable()</error>
+      <error line="534" code="50010">No DocBlock was found for method unify_list()</error>
+      <error line="547" code="50010">No DocBlock was found for method unify_struc()</error>
+      <error line="560" code="50010">No DocBlock was found for method put_constant()</error>
+      <error line="570" code="50010">No DocBlock was found for method put_list()</error>
+      <error line="581" code="50010">No DocBlock was found for method put_value()</error>
+      <error line="591" code="50010">No DocBlock was found for method put_variable()</error>
+      <error line="602" code="50010">No DocBlock was found for method try_me_else()</error>
+      <error line="616" code="50010">No DocBlock was found for method proceed()</error>
+      <error line="623" code="50010">No DocBlock was found for method is_bound()</error>
+      <error line="634" code="50010">No DocBlock was found for method allocate()</error>
+      <error line="643" code="50010">No DocBlock was found for method deallocate()</error>
+      <error line="652" code="50010">No DocBlock was found for method call()</error>
+      <error line="665" code="50010">No DocBlock was found for method cut()</error>
+      <error line="674" code="50010">No DocBlock was found for method get_level()</error>
+      <error line="686" code="50010">No DocBlock was found for method backtrack()</error>
+      <error line="824" code="50010">No DocBlock was found for method isAtom()</error>
+      <error line="834" code="50010">No DocBlock was found for method isInteger()</error>
+      <error line="845" code="50010">No DocBlock was found for method assert()</error>
+      <error line="860" code="50010">No DocBlock was found for method removeProgramLines()</error>
+      <error line="873" code="50010">No DocBlock was found for method retract()</error>
+      <error line="892" code="50010">No DocBlock was found for method retractall()</error>
+      <error line="908" code="50010">No DocBlock was found for method consult()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/CompilerStructure.php" hash="d934b623574382231c8c4c9b31e55238" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="20" package="Default">
+      <extends/>
+      <name>CompilerStructure</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\CompilerStructure</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>CompilerStructure contains the CompilerStructure class, which is needed
+for transforming the input vector (Prolog program) to the output Program
+(WAM code) via a certain program structure graph.</p>
+
+<p>Each instance of CompilerStructure represents a node in the program graph
+of the original Prolog program. Every node is of a certain type (see constants
+below).</p>]]></long-description>
+      </docblock>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="22" package="Default">
+        <name>NO_TYPE</name>
+        <full_name>NO_TYPE</full_name>
+        <value><![CDATA[-1]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="23" package="Default">
+        <name>QUERY</name>
+        <full_name>QUERY</full_name>
+        <value><![CDATA[+0]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="25" package="Default">
+        <name>TERM</name>
+        <full_name>TERM</full_name>
+        <value><![CDATA[+1]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>LISTX</name>
+        <full_name>LISTX</full_name>
+        <value><![CDATA[+2]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="27" package="Default">
+        <name>CONSTANT</name>
+        <full_name>CONSTANT</full_name>
+        <value><![CDATA[+3]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="28" package="Default">
+        <name>VARIABLE</name>
+        <full_name>VARIABLE</full_name>
+        <value><![CDATA[+4]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="29" package="Default">
+        <name>PREDICATE</name>
+        <full_name>PREDICATE</full_name>
+        <value><![CDATA[+5]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="30" package="Default">
+        <name>CLAUSE</name>
+        <full_name>CLAUSE</full_name>
+        <value><![CDATA[+6]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="31" package="Default">
+        <name>PROGRAM</name>
+        <full_name>PROGRAM</full_name>
+        <value><![CDATA[+7]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="32" package="Default">
+        <name>HEAD</name>
+        <full_name>HEAD</full_name>
+        <value><![CDATA[+8]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="33" package="Default">
+        <name>BODY</name>
+        <full_name>BODY</full_name>
+        <value><![CDATA[+9]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="34" package="Default">
+        <name>CALL</name>
+        <full_name>CALL</full_name>
+        <value><![CDATA[10]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="36" package="Default">
+        <name>UNIFICATION</name>
+        <full_name>UNIFICATION</full_name>
+        <value><![CDATA[12]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="37" package="Default">
+        <name>ASSIGNMENT</name>
+        <full_name>ASSIGNMENT</full_name>
+        <value><![CDATA[13]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="39" package="Default">
+        <name>EXPRESSION</name>
+        <full_name>EXPRESSION</full_name>
+        <value><![CDATA[14]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="42" package="Default">
+        <name>COMPARISON</name>
+        <full_name>COMPARISON</full_name>
+        <value><![CDATA[15]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="43" package="Default">
+        <name>STRUCTURE</name>
+        <full_name>STRUCTURE</full_name>
+        <value><![CDATA[16]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="44" package="Default">
+        <name>CUT</name>
+        <full_name>CUT</full_name>
+        <value><![CDATA[17]]></value>
+      </constant>
+      <property final="false" static="false" visibility="public" line="46" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$type</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="47" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$head</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="48" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$tail</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="49" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$value</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="54" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="51">
+          <description><![CDATA[create a new structure of unknown type]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="54">
+          <name>$aType</name>
+          <default><![CDATA[self::NO_TYPE]]></default>
+          <type/>
+        </argument>
+        <argument line="54">
+          <name>$aValue</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="66" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="62">
+          <description><![CDATA[return the string that shall be used to display this node on the screen
+TODO simple keyword are missing (example : cut)]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/CompilerStructure.php</error>
+      <error line="46" code="50018">No DocBlock was found for property $type</error>
+      <error line="47" code="50018">No DocBlock was found for property $head</error>
+      <error line="48" code="50018">No DocBlock was found for property $tail</error>
+      <error line="49" code="50018">No DocBlock was found for property $value</error>
+      <error line="51" code="50015">Argument $aType is missing from the Docblock of __construct()</error>
+      <error line="51" code="50015">Argument $aValue is missing from the Docblock of __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Solution.php" hash="d1fe195d59d5f539edbf4a590063aab0" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="10" package="Default">
+      <extends/>
+      <implements>\Trismegiste\WamBundle\Prolog\OutputInterface</implements>
+      <name>Solution</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Solution</full_name>
+      <docblock line="5">
+        <description><![CDATA[This class contains one result for a submitted query against the WAMService]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="5" name="author" description="florent"/>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="13" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$succeed</name>
+        <default><![CDATA[false]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="14" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$variable</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="15" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$output</name>
+        <default><![CDATA[array('')]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="16" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$elapsedTime</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="17" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$opCount</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="18" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$backtrackCount</name>
+        <default><![CDATA[0]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="24" package="Default">
+        <name>writeLn</name>
+        <full_name>writeLn</full_name>
+        <docblock line="20">
+          <description><![CDATA[Close a line and start a new one]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="20" name="param" description="" type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="24">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="34" package="Default">
+        <name>write</name>
+        <full_name>write</full_name>
+        <docblock line="30">
+          <description><![CDATA[Continue a line with a string]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="30" name="param" description="" type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Solution.php</error>
+      <error line="13" code="50018">No DocBlock was found for property $succeed</error>
+      <error line="14" code="50018">No DocBlock was found for property $variable</error>
+      <error line="15" code="50018">No DocBlock was found for property $output</error>
+      <error line="16" code="50018">No DocBlock was found for property $elapsedTime</error>
+      <error line="17" code="50018">No DocBlock was found for property $opCount</error>
+      <error line="18" code="50018">No DocBlock was found for property $backtrackCount</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Compiler.php" hash="86f0ef7b7c2a2a1b1ee8f52d0e4b9230" package="Default">
+    <namespace-alias name="KeyValue">Trismegiste\WamBundle\Prolog\Inner\KeyValue</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="19" package="Default">
+      <extends/>
+      <name>Compiler</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Compiler</full_name>
+      <docblock line="7">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>Compiler contains the base class Compiler, which both QueryCompiler and
+PrologCompiler have been derived from. Additionally, it contains a class
+KeyValue, which is used for implementing mappings from Prolog variable names
+("X", "A13", "Name", ...) to WAM variable names ("Y1", "Y2", ...).</p>]]></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="22" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$owner</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="23" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$errorString</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="24" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$varPrefix</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="protected" line="25" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$substitutionList</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="26" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$lastVar</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="27" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$bodyCalls</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="29" package="Default">
+        <name>isPredicate</name>
+        <full_name>isPredicate</full_name>
+        <argument line="29">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="36" package="Default">
+        <name>isVariable</name>
+        <full_name>isVariable</full_name>
+        <argument line="36">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="54" package="Default">
+        <name>isConstant</name>
+        <full_name>isConstant</full_name>
+        <argument line="54">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="73" package="Default">
+        <name>isNumber</name>
+        <full_name>isNumber</full_name>
+        <argument line="73">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="80" package="Default">
+        <name>predicate</name>
+        <full_name>predicate</full_name>
+        <argument line="80">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="80">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="96" package="Default">
+        <name>constant</name>
+        <full_name>constant</full_name>
+        <argument line="96">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="96">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="122" package="Default">
+        <name>variable</name>
+        <full_name>variable</full_name>
+        <argument line="122">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="122">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="138" package="Default">
+        <name>structure</name>
+        <full_name>structure</full_name>
+        <argument line="138">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="138">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="161" package="Default">
+        <name>element</name>
+        <full_name>element</full_name>
+        <argument line="161">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="161">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="180" package="Default">
+        <name>isNextToken</name>
+        <full_name>isNextToken</full_name>
+        <argument line="180">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="180">
+          <name>$tok</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="191" package="Default">
+        <name>token</name>
+        <full_name>token</full_name>
+        <argument line="191">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="191">
+          <name>$tok</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="204" package="Default">
+        <name>atom</name>
+        <full_name>atom</full_name>
+        <argument line="204">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="204">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="215" package="Default">
+        <name>expression</name>
+        <full_name>expression</full_name>
+        <argument line="215">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="215">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="248" package="Default">
+        <name>condition</name>
+        <full_name>condition</full_name>
+        <argument line="248">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="248">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="332" package="Default">
+        <name>body</name>
+        <full_name>body</full_name>
+        <argument line="332">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="332">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="356" package="Default">
+        <name>clause</name>
+        <full_name>clause</full_name>
+        <argument line="356">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="356">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="383" package="Default">
+        <name>program</name>
+        <full_name>program</full_name>
+        <argument line="383">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="383">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="400" package="Default">
+        <name>head</name>
+        <full_name>head</full_name>
+        <argument line="400">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="400">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="422" package="Default">
+        <name>listx</name>
+        <full_name>listx</full_name>
+        <argument line="422">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+        <argument line="422">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="451" package="Default">
+        <name>stringToList</name>
+        <full_name>stringToList</full_name>
+        <argument line="451">
+          <name>$text</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="493" package="Default">
+        <name>substituteVariable</name>
+        <full_name>substituteVariable</full_name>
+        <argument line="493">
+          <name>$variable</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="509" package="Default">
+        <name>firstOccurrence</name>
+        <full_name>firstOccurrence</full_name>
+        <argument line="509">
+          <name>$variable</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="522" package="Default">
+        <name>structureToCode</name>
+        <full_name>structureToCode</full_name>
+        <argument line="522">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <markers>
+      <todo line="521">Typing null ?</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Compiler.php</error>
+      <error line="22" code="50018">No DocBlock was found for property $owner</error>
+      <error line="23" code="50018">No DocBlock was found for property $errorString</error>
+      <error line="24" code="50018">No DocBlock was found for property $varPrefix</error>
+      <error line="25" code="50018">No DocBlock was found for property $substitutionList</error>
+      <error line="26" code="50018">No DocBlock was found for property $lastVar</error>
+      <error line="27" code="50018">No DocBlock was found for property $bodyCalls</error>
+      <error line="29" code="50010">No DocBlock was found for method isPredicate()</error>
+      <error line="36" code="50010">No DocBlock was found for method isVariable()</error>
+      <error line="54" code="50010">No DocBlock was found for method isConstant()</error>
+      <error line="73" code="50010">No DocBlock was found for method isNumber()</error>
+      <error line="80" code="50010">No DocBlock was found for method predicate()</error>
+      <error line="96" code="50010">No DocBlock was found for method constant()</error>
+      <error line="122" code="50010">No DocBlock was found for method variable()</error>
+      <error line="138" code="50010">No DocBlock was found for method structure()</error>
+      <error line="161" code="50010">No DocBlock was found for method element()</error>
+      <error line="180" code="50010">No DocBlock was found for method isNextToken()</error>
+      <error line="191" code="50010">No DocBlock was found for method token()</error>
+      <error line="204" code="50010">No DocBlock was found for method atom()</error>
+      <error line="215" code="50010">No DocBlock was found for method expression()</error>
+      <error line="248" code="50010">No DocBlock was found for method condition()</error>
+      <error line="332" code="50010">No DocBlock was found for method body()</error>
+      <error line="356" code="50010">No DocBlock was found for method clause()</error>
+      <error line="383" code="50010">No DocBlock was found for method program()</error>
+      <error line="400" code="50010">No DocBlock was found for method head()</error>
+      <error line="422" code="50010">No DocBlock was found for method listx()</error>
+      <error line="451" code="50010">No DocBlock was found for method stringToList()</error>
+      <error line="493" code="50010">No DocBlock was found for method substituteVariable()</error>
+      <error line="509" code="50010">No DocBlock was found for method firstOccurrence()</error>
+      <error line="522" code="50010">No DocBlock was found for method structureToCode()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/WAMConsole.php" hash="1238982b7f2008a1ce6dc201eb27910d" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="15" package="Default">
+      <extends>\Trismegiste\WamBundle\Prolog\WAM</extends>
+      <name>WAMConsole</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\WAMConsole</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+developed:   December 2001 until February 2002]]></description>
+        <long-description><![CDATA[<p>Translated from Java to PHP 5.3 by Florent Genette (Trismegiste)
+http://github.com/Trismegiste/WamBundle
+June to July 2012 (yes, 10 years after the original version !)</p>
+
+<p>WAMConsole is a WAM for a CLI application</p>]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="18" package="Default">
+        <name>readLn</name>
+        <full_name>readLn</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="31" package="Default">
+        <name>write</name>
+        <full_name>write</full_name>
+        <argument line="31">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="37" package="Default">
+        <name>writeLn</name>
+        <full_name>writeLn</full_name>
+        <argument line="37">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="43" package="Default">
+        <name>showHelp</name>
+        <full_name>showHelp</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="67" package="Default">
+        <name>runQuery</name>
+        <full_name>runQuery</full_name>
+        <argument line="67">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="194" package="Default">
+        <name>main</name>
+        <full_name>main</full_name>
+        <argument line="194">
+          <name>$args</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/WAMConsole.php</error>
+      <error line="18" code="50010">No DocBlock was found for method readLn()</error>
+      <error line="31" code="50010">No DocBlock was found for method write()</error>
+      <error line="37" code="50010">No DocBlock was found for method writeLn()</error>
+      <error line="43" code="50010">No DocBlock was found for method showHelp()</error>
+      <error line="67" code="50010">No DocBlock was found for method runQuery()</error>
+      <error line="194" code="50010">No DocBlock was found for method main()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Program.php" hash="785b26c08640dd800952156ab2f12409" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="17" package="Default">
+      <extends/>
+      <name>Program</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Program</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>Program contains the WAM program management class Program. A Program
+consists of an array of Statements (cf. Statement).</p>
+
+<p>Program class manages WAM programs, consisting of list (vector) of statements</p>]]></long-description>
+      </docblock>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="19" package="Default">
+        <name>callWrite</name>
+        <full_name>callWrite</full_name>
+        <value><![CDATA[-10]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="20" package="Default">
+        <name>callWriteLn</name>
+        <full_name>callWriteLn</full_name>
+        <value><![CDATA[-11]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="21" package="Default">
+        <name>callNewLine</name>
+        <full_name>callNewLine</full_name>
+        <value><![CDATA[-12]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="22" package="Default">
+        <name>callConsult</name>
+        <full_name>callConsult</full_name>
+        <value><![CDATA[-13]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="23" package="Default">
+        <name>callReconsult</name>
+        <full_name>callReconsult</full_name>
+        <value><![CDATA[-14]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="24" package="Default">
+        <name>callLoad</name>
+        <full_name>callLoad</full_name>
+        <value><![CDATA[-15]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="25" package="Default">
+        <name>callAssert</name>
+        <full_name>callAssert</full_name>
+        <value><![CDATA[-16]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>callRetractOne</name>
+        <full_name>callRetractOne</full_name>
+        <value><![CDATA[-17]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="27" package="Default">
+        <name>callRetractAll</name>
+        <full_name>callRetractAll</full_name>
+        <value><![CDATA[-18]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="28" package="Default">
+        <name>callIsInteger</name>
+        <full_name>callIsInteger</full_name>
+        <value><![CDATA[-19]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="29" package="Default">
+        <name>callIsAtom</name>
+        <full_name>callIsAtom</full_name>
+        <value><![CDATA[-20]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="30" package="Default">
+        <name>callIsBound</name>
+        <full_name>callIsBound</full_name>
+        <value><![CDATA[-21]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="31" package="Default">
+        <name>callReadLn</name>
+        <full_name>callReadLn</full_name>
+        <value><![CDATA[-22]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="32" package="Default">
+        <name>callCall</name>
+        <full_name>callCall</full_name>
+        <value><![CDATA[-23]]></value>
+      </constant>
+      <property final="false" static="false" visibility="private" line="34" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$statements</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="35" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$labels</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="36" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$owner</name>
+        <default><![CDATA[null]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="38" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="38">
+          <name>$anOwner</name>
+          <default><![CDATA[null]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\WAM</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="44" package="Default">
+        <name>addProgram</name>
+        <full_name>addProgram</full_name>
+        <argument line="44">
+          <name>$p</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="67" package="Default">
+        <name>addStatement</name>
+        <full_name>addStatement</full_name>
+        <argument line="67">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Statement</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="72" package="Default">
+        <name>addStatementAtPosition</name>
+        <full_name>addStatementAtPosition</full_name>
+        <argument line="72">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Statement</type>
+        </argument>
+        <argument line="72">
+          <name>$position</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="79" package="Default">
+        <name>getStatementCount</name>
+        <full_name>getStatementCount</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="84" package="Default">
+        <name>getStatement</name>
+        <full_name>getStatement</full_name>
+        <argument line="84">
+          <name>$i</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="89" package="Default">
+        <name>deleteFromLine</name>
+        <full_name>deleteFromLine</full_name>
+        <argument line="89">
+          <name>$lineNumber</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="107" package="Default">
+        <name>deleteFrom</name>
+        <full_name>deleteFrom</full_name>
+        <argument line="107">
+          <name>$label</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="112" package="Default">
+        <name>getLastClauseOf</name>
+        <full_name>getLastClauseOf</full_name>
+        <argument line="112">
+          <name>$procedureName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="129" package="Default">
+        <name>getLastClauseButOneOf</name>
+        <full_name>getLastClauseButOneOf</full_name>
+        <argument line="129">
+          <name>$procedureName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="149" package="Default">
+        <name>addClause</name>
+        <full_name>addClause</full_name>
+        <argument line="149">
+          <name>$label</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="149">
+          <name>$code</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Program</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="180" package="Default">
+        <name>getLabelIndex</name>
+        <full_name>getLabelIndex</full_name>
+        <argument line="180">
+          <name>$label</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="192" package="Default">
+        <name>updateLabels</name>
+        <full_name>updateLabels</full_name>
+        <docblock line="188">
+          <description><![CDATA[updateLabels converts String label names in call, try_me_else and retry_me_else statements
+to integer values.]]></description>
+          <long-description><![CDATA[<p>internal predicates (e.g. write, consult) are transformed to negative line numbers</p>]]></long-description>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="244" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+      </method>
+    </class>
+    <markers>
+      <todo line="43">Typing null ?</todo>
+      <todo line="172">maybe do something ?</todo>
+    </markers>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Program.php</error>
+      <error line="34" code="50018">No DocBlock was found for property $statements</error>
+      <error line="35" code="50018">No DocBlock was found for property $labels</error>
+      <error line="36" code="50018">No DocBlock was found for property $owner</error>
+      <error line="38" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="44" code="50010">No DocBlock was found for method addProgram()</error>
+      <error line="67" code="50010">No DocBlock was found for method addStatement()</error>
+      <error line="72" code="50010">No DocBlock was found for method addStatementAtPosition()</error>
+      <error line="79" code="50010">No DocBlock was found for method getStatementCount()</error>
+      <error line="84" code="50010">No DocBlock was found for method getStatement()</error>
+      <error line="89" code="50010">No DocBlock was found for method deleteFromLine()</error>
+      <error line="107" code="50010">No DocBlock was found for method deleteFrom()</error>
+      <error line="112" code="50010">No DocBlock was found for method getLastClauseOf()</error>
+      <error line="129" code="50010">No DocBlock was found for method getLastClauseButOneOf()</error>
+      <error line="149" code="50010">No DocBlock was found for method addClause()</error>
+      <error line="180" code="50010">No DocBlock was found for method getLabelIndex()</error>
+      <error line="244" code="50010">No DocBlock was found for method __toString()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/PrologContext.php" hash="a422ec9736c40be18cac1f2fc0efcd34" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="13" package="Default">
+      <extends/>
+      <name>PrologContext</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\PrologContext</full_name>
+      <docblock line="5">
+        <description><![CDATA[Contract for an environment of Prolog Machine]]></description>
+        <long-description><![CDATA[<p>Needs improvement : some methods from WAMService could be
+there here</p>]]></long-description>
+        <tag line="5" name="author" description="flo"/>
+      </docblock>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="22" package="Default">
+        <name>runQuery</name>
+        <full_name>runQuery</full_name>
+        <docblock line="16">
+          <description><![CDATA[Run a query]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="16" name="param" description="the query" type="string" variable="$s">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="16" name="return" description="" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="22">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="true" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="27" package="Default">
+        <name>retract</name>
+        <full_name>retract</full_name>
+        <docblock line="24">
+          <description><![CDATA[Retract the last clause identified by its predicate]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="27">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="32" package="Default">
+        <name>assertClause</name>
+        <full_name>assertClause</full_name>
+        <docblock line="29">
+          <description><![CDATA[Assert a simple clause]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="32">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="40" package="Default">
+        <name>loadWam</name>
+        <full_name>loadWam</full_name>
+        <docblock line="37">
+          <description><![CDATA[Load a WAM code in context]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="40">
+          <name>$filename</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="48" package="Default">
+        <name>loadProlog</name>
+        <full_name>loadProlog</full_name>
+        <docblock line="45">
+          <description><![CDATA[Load a Prolog program in context]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+        <argument line="48">
+          <name>$filename</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/PrologContext.php</error>
+      <error line="24" code="50015">Argument $v is missing from the Docblock of retract()</error>
+      <error line="29" code="50015">Argument $s is missing from the Docblock of assertClause()</error>
+      <error line="37" code="50015">Argument $filename is missing from the Docblock of loadWam()</error>
+      <error line="45" code="50015">Argument $filename is missing from the Docblock of loadProlog()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/PrologCompiler.php" hash="4edf614385967f8e508902a3794bbc3c" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="16" package="Default">
+      <extends>\Trismegiste\WamBundle\Prolog\Compiler</extends>
+      <name>PrologCompiler</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\PrologCompiler</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Florent Genette]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>PrologCompiler.java contains the class PrologCompiler, which transforms
+a Prolog program (given as a string or by its filename) into an equivalent
+WAM program.</p>]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="19" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="19">
+          <name>$anOwner</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\WAM</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>compile</name>
+        <full_name>compile</full_name>
+        <argument line="26">
+          <name>$programCode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="57" package="Default">
+        <name>compileSimpleClause</name>
+        <full_name>compileSimpleClause</full_name>
+        <docblock line="54">
+          <description><![CDATA[compileSimpleClause can be used in order to implement assert(.]]></description>
+          <long-description><![CDATA[<p>..) operations</p>]]></long-description>
+        </docblock>
+        <argument line="57">
+          <name>$programCode</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="72" package="Default">
+        <name>compileFile</name>
+        <full_name>compileFile</full_name>
+        <argument line="72">
+          <name>$fileName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Trismegiste\WamBundle\Prolog" line="95" package="Default">
+        <name>getProcedureCount</name>
+        <full_name>getProcedureCount</full_name>
+        <argument line="95">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="95">
+          <name>$list</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Trismegiste\WamBundle\Prolog" line="103" package="Default">
+        <name>setProcedureCount</name>
+        <full_name>setProcedureCount</full_name>
+        <argument line="103">
+          <name>$name</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="103">
+          <name>$count</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="103">
+          <name>$list</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Trismegiste\WamBundle\Prolog" line="108" package="Default">
+        <name>updateNames</name>
+        <full_name>updateNames</full_name>
+        <argument line="108">
+          <name>$struc</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\CompilerStructure</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/PrologCompiler.php</error>
+      <error line="19" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="26" code="50010">No DocBlock was found for method compile()</error>
+      <error line="54" code="50015">Argument $programCode is missing from the Docblock of compileSimpleClause()</error>
+      <error line="72" code="50010">No DocBlock was found for method compileFile()</error>
+      <error line="95" code="50010">No DocBlock was found for method getProcedureCount()</error>
+      <error line="103" code="50010">No DocBlock was found for method setProcedureCount()</error>
+      <error line="108" code="50010">No DocBlock was found for method updateNames()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/OutputInterface.php" hash="172818477cda155100cc8f629b880c87" package="Default">
+    <interface namespace="Trismegiste\WamBundle\Prolog" line="9" package="Default">
+      <name>OutputInterface</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\OutputInterface</full_name>
+      <docblock line="5">
+        <description><![CDATA[Interface for output a string]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="5" name="author" description="flo"/>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="16" package="Default">
+        <name>writeLn</name>
+        <full_name>writeLn</full_name>
+        <docblock line="12">
+          <description><![CDATA[Close a line and start a new one]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="12" name="param" description="" type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="16">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="22" package="Default">
+        <name>write</name>
+        <full_name>write</full_name>
+        <docblock line="18">
+          <description><![CDATA[Continue a line with a string]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="18" name="param" description="" type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="22">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </interface>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/OutputInterface.php</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Inner/Trail.php" hash="e3daf4adfbfeee4ba5d716468d3862df" package="Default">
+    <namespace-alias name="PrologContext">Trismegiste\WamBundle\Prolog\PrologContext</namespace-alias>
+    <namespace-alias name="WAM">Trismegiste\WamBundle\Prolog\WAM</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog\Inner" line="11" package="Default">
+      <extends/>
+      <name>Trail</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Inner\Trail</full_name>
+      <docblock line="8">
+        <description><![CDATA[Trail implements the WAM's trail (undo-list for bindings performed)]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="14" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$contents</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="15" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$machine</name>
+        <default><![CDATA[null]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="17" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="17">
+          <name>$ctx</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\PrologContext</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="23" package="Default">
+        <name>getLength</name>
+        <full_name>getLength</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="28" package="Default">
+        <name>setLength</name>
+        <full_name>setLength</full_name>
+        <argument line="28">
+          <name>$length</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="37" package="Default">
+        <name>addEntry</name>
+        <full_name>addEntry</full_name>
+        <argument line="37">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="42" package="Default">
+        <name>getEntry</name>
+        <full_name>getEntry</full_name>
+        <argument line="42">
+          <name>$index</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="47" package="Default">
+        <name>undo</name>
+        <full_name>undo</full_name>
+        <argument line="47">
+          <name>$index</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Inner/Trail.php</error>
+      <error line="14" code="50018">No DocBlock was found for property $contents</error>
+      <error line="15" code="50018">No DocBlock was found for property $machine</error>
+      <error line="17" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="23" code="50010">No DocBlock was found for method getLength()</error>
+      <error line="28" code="50010">No DocBlock was found for method setLength()</error>
+      <error line="37" code="50010">No DocBlock was found for method addEntry()</error>
+      <error line="42" code="50010">No DocBlock was found for method getEntry()</error>
+      <error line="47" code="50010">No DocBlock was found for method undo()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Inner/ChoicePoint.php" hash="ef0478713d508c0ae7328a71f68e4f6a" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog\Inner" line="8" package="Default">
+      <extends/>
+      <name>ChoicePoint</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Inner\ChoicePoint</full_name>
+      <docblock line="5">
+        <description><![CDATA[class ChoicePoint implements the choice point concept, as presented by Ait-Kaci]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="11" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$arguments</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="12" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$lastEnviron</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="13" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$returnAddress</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="14" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$lastCP</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="15" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$cutPoint</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="16" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$nextClause</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="17" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$trailPointer</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="22" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="22">
+          <name>$a</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="22">
+          <name>$trailPtr</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="22">
+          <name>$anAddress</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Inner/ChoicePoint.php</error>
+      <error line="11" code="50018">No DocBlock was found for property $arguments</error>
+      <error line="12" code="50018">No DocBlock was found for property $lastEnviron</error>
+      <error line="13" code="50018">No DocBlock was found for property $returnAddress</error>
+      <error line="14" code="50018">No DocBlock was found for property $lastCP</error>
+      <error line="15" code="50018">No DocBlock was found for property $cutPoint</error>
+      <error line="16" code="50018">No DocBlock was found for property $nextClause</error>
+      <error line="17" code="50018">No DocBlock was found for property $trailPointer</error>
+      <error line="22" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Inner/KeyValue.php" hash="6d488a0b5cbc20268eb99b4e6c2609d4" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog\Inner" line="8" package="Default">
+      <extends/>
+      <name>KeyValue</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Inner\KeyValue</full_name>
+      <docblock line="5">
+        <description><![CDATA[class KeyValue helps implementing mappings "A=B" (key/value pairs)]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="11" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$key</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="12" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$stringValue</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="13" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$intValue</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="16" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="16">
+          <name>$k</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="16">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="31" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+        <docblock line="28">
+          <description><![CDATA[in order to display the mapping on the screen (for debug purposes only)]]></description>
+          <long-description><![CDATA[]]></long-description>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Inner/KeyValue.php</error>
+      <error line="11" code="50018">No DocBlock was found for property $key</error>
+      <error line="12" code="50018">No DocBlock was found for property $stringValue</error>
+      <error line="13" code="50018">No DocBlock was found for property $intValue</error>
+      <error line="16" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Inner/Environment.php" hash="a919d711866671eeba4174549916b29b" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog\Inner" line="8" package="Default">
+      <extends/>
+      <name>Environment</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Inner\Environment</full_name>
+      <docblock line="5">
+        <description><![CDATA[class Environment for storing local variables that must not be overridden]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="11" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$variables</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="12" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$lastEnviron</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="13" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$returnAddress</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="16" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="16">
+          <name>$anAddress</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="16">
+          <name>$anEnv</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Inner/Environment.php</error>
+      <error line="11" code="50018">No DocBlock was found for property $variables</error>
+      <error line="12" code="50018">No DocBlock was found for property $lastEnviron</error>
+      <error line="13" code="50018">No DocBlock was found for property $returnAddress</error>
+      <error line="16" code="50010">No DocBlock was found for method __construct()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Inner/Variable.php" hash="1e7b6a984f8e0fcad0af54c7746f0969" package="Default">
+    <namespace-alias name="WAM">Trismegiste\WamBundle\Prolog\WAM</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog\Inner" line="10" package="Default">
+      <extends/>
+      <name>Variable</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Inner\Variable</full_name>
+      <docblock line="7">
+        <description><![CDATA[This class is an Y(n) in the W.A.M]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <property final="false" static="false" visibility="public" line="13" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$tag</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="14" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$value</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="15" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$reference</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="16" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$name</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="17" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$head</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="17" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$tail</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="18" namespace="Trismegiste\WamBundle\Prolog\Inner" package="Default">
+        <name>$cutLevel</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="20" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="20">
+          <name>$param1</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+        <argument line="20">
+          <name>$param2</name>
+          <default><![CDATA[null]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog\Inner" line="40" package="Default">
+        <name>constructVariable1</name>
+        <full_name>constructVariable1</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog\Inner" line="47" package="Default">
+        <name>constructVariable2</name>
+        <full_name>constructVariable2</full_name>
+        <argument line="47">
+          <name>$aName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog\Inner" line="55" package="Default">
+        <name>constructVariable3</name>
+        <full_name>constructVariable3</full_name>
+        <argument line="55">
+          <name>$aName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="55">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog\Inner" line="63" package="Default">
+        <name>constructVariable4</name>
+        <full_name>constructVariable4</full_name>
+        <argument line="63">
+          <name>$aName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="63">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog\Inner" line="71" package="Default">
+        <name>constructVariable5</name>
+        <full_name>constructVariable5</full_name>
+        <argument line="71">
+          <name>$v</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="77" package="Default">
+        <name>copyFrom</name>
+        <full_name>copyFrom</full_name>
+        <argument line="77">
+          <name>$source</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Inner\Variable</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="91" package="Default">
+        <name>deref</name>
+        <full_name>deref</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="104" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog\Inner" line="126" package="Default">
+        <name>toString2</name>
+        <full_name>toString2</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Inner/Variable.php</error>
+      <error line="13" code="50018">No DocBlock was found for property $tag</error>
+      <error line="14" code="50018">No DocBlock was found for property $value</error>
+      <error line="15" code="50018">No DocBlock was found for property $reference</error>
+      <error line="16" code="50018">No DocBlock was found for property $name</error>
+      <error line="17" code="50018">No DocBlock was found for property $head</error>
+      <error line="17" code="50018">No DocBlock was found for property $tail</error>
+      <error line="18" code="50018">No DocBlock was found for property $cutLevel</error>
+      <error line="20" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="40" code="50010">No DocBlock was found for method constructVariable1()</error>
+      <error line="47" code="50010">No DocBlock was found for method constructVariable2()</error>
+      <error line="55" code="50010">No DocBlock was found for method constructVariable3()</error>
+      <error line="63" code="50010">No DocBlock was found for method constructVariable4()</error>
+      <error line="71" code="50010">No DocBlock was found for method constructVariable5()</error>
+      <error line="77" code="50010">No DocBlock was found for method copyFrom()</error>
+      <error line="91" code="50010">No DocBlock was found for method deref()</error>
+      <error line="104" code="50010">No DocBlock was found for method __toString()</error>
+      <error line="126" code="50010">No DocBlock was found for method toString2()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/CodeReader.php" hash="8a728b5759336819291a81f36e668f54" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="16" package="Default">
+      <extends/>
+      <name>CodeReader</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\CodeReader</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>CodeReader class transforms a WAM code
+input file into a Program structure (cf. Program / Statement)</p>]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="22" package="Default">
+        <name>readProgram</name>
+        <full_name>readProgram</full_name>
+        <docblock line="19">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="19" name="return" description="" type="\Trismegiste\WamBundle\Prolog\Program">
+            <type by_reference="false">\Trismegiste\WamBundle\Prolog\Program</type>
+          </tag>
+        </docblock>
+        <argument line="22">
+          <name>$fileName</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="81" package="Default">
+        <name>writeProgram</name>
+        <full_name>writeProgram</full_name>
+        <docblock line="75">
+          <description><![CDATA[Write a program to a file]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="75" name="param" description="" type="\Trismegiste\WamBundle\Prolog\Program" variable="$prog">
+            <type by_reference="false">\Trismegiste\WamBundle\Prolog\Program</type>
+          </tag>
+          <tag line="75" name="param" description="" type="string" variable="$filename">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="81">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Program</type>
+        </argument>
+        <argument line="81">
+          <name>$filename</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="true" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="99" package="Default">
+        <name>prologToWamCode</name>
+        <full_name>prologToWamCode</full_name>
+        <docblock line="93">
+          <description><![CDATA[Compile a prolog file into a WAM file]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="93" name="param" description="" type="string" variable="$prologFile">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="93" name="param" description="" type="string" variable="$wamFile">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="99">
+          <name>$prologFile</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="99">
+          <name>$wamFile</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/CodeReader.php</error>
+      <error line="19" code="50012">No short description for method readProgram()</error>
+      <error line="19" code="50015">Argument $fileName is missing from the Docblock of readProgram()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/Statement.php" hash="8ff95358b57d853cecbb8b7d7a8b2463" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="20" package="Default">
+      <extends/>
+      <name>Statement</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\Statement</full_name>
+      <docblock line="5">
+        <description><![CDATA[Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste]]></description>
+        <long-description><![CDATA[<p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>Statement contains the class Statement, representing a single line of
+WAM code, e.g. "true: proceed".</p>
+
+<p>Statement class implements WAM code statements
+a statement looks like this:
+[label:] operator operand1 [operand2 [operand3]]
+label, op2 and op3 may be omitted. label is needed for jumps (calls)</p>]]></long-description>
+      </docblock>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="22" package="Default">
+        <name>opAllocate</name>
+        <full_name>opAllocate</full_name>
+        <value><![CDATA[1]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="23" package="Default">
+        <name>opBigger</name>
+        <full_name>opBigger</full_name>
+        <value><![CDATA[2]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="24" package="Default">
+        <name>opCall</name>
+        <full_name>opCall</full_name>
+        <value><![CDATA[3]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="25" package="Default">
+        <name>opCreateVariable</name>
+        <full_name>opCreateVariable</full_name>
+        <value><![CDATA[4]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>opCut</name>
+        <full_name>opCut</full_name>
+        <value><![CDATA[5]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="27" package="Default">
+        <name>opDeallocate</name>
+        <full_name>opDeallocate</full_name>
+        <value><![CDATA[6]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="28" package="Default">
+        <name>opGetConstant</name>
+        <full_name>opGetConstant</full_name>
+        <value><![CDATA[7]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="29" package="Default">
+        <name>opGetValue</name>
+        <full_name>opGetValue</full_name>
+        <value><![CDATA[8]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="30" package="Default">
+        <name>opGetVariable</name>
+        <full_name>opGetVariable</full_name>
+        <value><![CDATA[9]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="31" package="Default">
+        <name>opHalt</name>
+        <full_name>opHalt</full_name>
+        <value><![CDATA[10]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="32" package="Default">
+        <name>opIs</name>
+        <full_name>opIs</full_name>
+        <value><![CDATA[11]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="33" package="Default">
+        <name>opGetLevel</name>
+        <full_name>opGetLevel</full_name>
+        <value><![CDATA[12]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="34" package="Default">
+        <name>opNoOp</name>
+        <full_name>opNoOp</full_name>
+        <value><![CDATA[13]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="35" package="Default">
+        <name>opProceed</name>
+        <full_name>opProceed</full_name>
+        <value><![CDATA[14]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="36" package="Default">
+        <name>opPutConstant</name>
+        <full_name>opPutConstant</full_name>
+        <value><![CDATA[15]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="37" package="Default">
+        <name>opPutValue</name>
+        <full_name>opPutValue</full_name>
+        <value><![CDATA[16]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="38" package="Default">
+        <name>opPutVariable</name>
+        <full_name>opPutVariable</full_name>
+        <value><![CDATA[17]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="39" package="Default">
+        <name>opRetryMeElse</name>
+        <full_name>opRetryMeElse</full_name>
+        <value><![CDATA[18]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="40" package="Default">
+        <name>opSmaller</name>
+        <full_name>opSmaller</full_name>
+        <value><![CDATA[19]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="41" package="Default">
+        <name>opTrustMe</name>
+        <full_name>opTrustMe</full_name>
+        <value><![CDATA[20]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="42" package="Default">
+        <name>opTryMeElse</name>
+        <full_name>opTryMeElse</full_name>
+        <value><![CDATA[21]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="43" package="Default">
+        <name>opUnifyList</name>
+        <full_name>opUnifyList</full_name>
+        <value><![CDATA[22]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="44" package="Default">
+        <name>opUnifyStruc</name>
+        <full_name>opUnifyStruc</full_name>
+        <value><![CDATA[23]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="45" package="Default">
+        <name>opUnequal</name>
+        <full_name>opUnequal</full_name>
+        <value><![CDATA[24]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="46" package="Default">
+        <name>opUnifyVariable</name>
+        <full_name>opUnifyVariable</full_name>
+        <value><![CDATA[25]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="47" package="Default">
+        <name>opBiggerEq</name>
+        <full_name>opBiggerEq</full_name>
+        <value><![CDATA[27]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="48" package="Default">
+        <name>opSmallerEq</name>
+        <full_name>opSmallerEq</full_name>
+        <value><![CDATA[28]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="50" package="Default">
+        <name>callWrite</name>
+        <full_name>callWrite</full_name>
+        <value><![CDATA[-10]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="51" package="Default">
+        <name>callWriteLn</name>
+        <full_name>callWriteLn</full_name>
+        <value><![CDATA[-11]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="52" package="Default">
+        <name>callNewLine</name>
+        <full_name>callNewLine</full_name>
+        <value><![CDATA[-12]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="53" package="Default">
+        <name>callConsult</name>
+        <full_name>callConsult</full_name>
+        <value><![CDATA[-13]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="54" package="Default">
+        <name>callReconsult</name>
+        <full_name>callReconsult</full_name>
+        <value><![CDATA[-14]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="55" package="Default">
+        <name>callLoad</name>
+        <full_name>callLoad</full_name>
+        <value><![CDATA[-15]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="56" package="Default">
+        <name>callAssert</name>
+        <full_name>callAssert</full_name>
+        <value><![CDATA[-16]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="57" package="Default">
+        <name>callRetractOne</name>
+        <full_name>callRetractOne</full_name>
+        <value><![CDATA[-17]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="58" package="Default">
+        <name>callRetractAll</name>
+        <full_name>callRetractAll</full_name>
+        <value><![CDATA[-18]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="59" package="Default">
+        <name>callIsInteger</name>
+        <full_name>callIsInteger</full_name>
+        <value><![CDATA[-19]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="60" package="Default">
+        <name>callIsAtom</name>
+        <full_name>callIsAtom</full_name>
+        <value><![CDATA[-20]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="61" package="Default">
+        <name>callIsBound</name>
+        <full_name>callIsBound</full_name>
+        <value><![CDATA[-21]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="62" package="Default">
+        <name>callReadLn</name>
+        <full_name>callReadLn</full_name>
+        <value><![CDATA[-22]]></value>
+      </constant>
+      <constant namespace="Trismegiste\WamBundle\Prolog" line="63" package="Default">
+        <name>callCall</name>
+        <full_name>callCall</full_name>
+        <value><![CDATA[-23]]></value>
+      </constant>
+      <property final="false" static="false" visibility="private" line="65" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$label</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="66" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$fonction</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="private" line="67" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$args</name>
+        <default><![CDATA[array()]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="68" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$operator</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="69" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$jump</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="70" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$arg1</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="70" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$arg2</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <property final="false" static="false" visibility="public" line="70" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$arg3</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="74" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <argument line="74">
+          <name>$aLabel</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$aFunction</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$anArgument</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$arg2</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+        <argument line="74">
+          <name>$arg3</name>
+          <default><![CDATA['']]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="Trismegiste\WamBundle\Prolog" line="90" package="Default">
+        <name>doCommonStuff</name>
+        <full_name>doCommonStuff</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="99" package="Default">
+        <name>functionToInt</name>
+        <full_name>functionToInt</full_name>
+        <argument line="99">
+          <name>$fonction</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="136" package="Default">
+        <name>getLabel</name>
+        <full_name>getLabel</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="142" package="Default">
+        <name>setLabel</name>
+        <full_name>setLabel</full_name>
+        <argument line="142">
+          <name>$newLabel</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="148" package="Default">
+        <name>getFunction</name>
+        <full_name>getFunction</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="153" package="Default">
+        <name>setFunction</name>
+        <full_name>setFunction</full_name>
+        <argument line="153">
+          <name>$newFunction</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="165" package="Default">
+        <name>setArgAt</name>
+        <full_name>setArgAt</full_name>
+        <docblock line="159">
+          <description><![CDATA[Set the argument of this statement with $str at position $idx
+(java-style setElementAt() )]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="159" name="param" description="" type="string" variable="$str">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="159" name="param" description="" type="int" variable="$idx">
+            <type by_reference="false">int</type>
+          </tag>
+        </docblock>
+        <argument line="165">
+          <name>$str</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+        <argument line="165">
+          <name>$idx</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="170" package="Default">
+        <name>getArgAt</name>
+        <full_name>getArgAt</full_name>
+        <argument line="170">
+          <name>$idx</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="175" package="Default">
+        <name>dumpWamCode</name>
+        <full_name>dumpWamCode</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="196" package="Default">
+        <name>__toString</name>
+        <full_name>__toString</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="209" package="Default">
+        <name>toString2</name>
+        <full_name>toString2</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="218" package="Default">
+        <name>setJump</name>
+        <full_name>setJump</full_name>
+        <argument line="218">
+          <name>$anAddress</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="224" package="Default">
+        <name>getJump</name>
+        <full_name>getJump</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/Statement.php</error>
+      <error line="65" code="50018">No DocBlock was found for property $label</error>
+      <error line="66" code="50018">No DocBlock was found for property $fonction</error>
+      <error line="67" code="50018">No DocBlock was found for property $args</error>
+      <error line="68" code="50018">No DocBlock was found for property $operator</error>
+      <error line="69" code="50018">No DocBlock was found for property $jump</error>
+      <error line="70" code="50018">No DocBlock was found for property $arg1</error>
+      <error line="70" code="50018">No DocBlock was found for property $arg2</error>
+      <error line="70" code="50018">No DocBlock was found for property $arg3</error>
+      <error line="74" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="90" code="50010">No DocBlock was found for method doCommonStuff()</error>
+      <error line="99" code="50010">No DocBlock was found for method functionToInt()</error>
+      <error line="136" code="50010">No DocBlock was found for method getLabel()</error>
+      <error line="142" code="50010">No DocBlock was found for method setLabel()</error>
+      <error line="148" code="50010">No DocBlock was found for method getFunction()</error>
+      <error line="153" code="50010">No DocBlock was found for method setFunction()</error>
+      <error line="170" code="50010">No DocBlock was found for method getArgAt()</error>
+      <error line="175" code="50010">No DocBlock was found for method dumpWamCode()</error>
+      <error line="196" code="50010">No DocBlock was found for method __toString()</error>
+      <error line="209" code="50010">No DocBlock was found for method toString2()</error>
+      <error line="218" code="50010">No DocBlock was found for method setJump()</error>
+      <error line="224" code="50010">No DocBlock was found for method getJump()</error>
+    </parse_markers>
+  </file>
+  <file path="Prolog/WAMService.php" hash="bbd40408d42292410896d71effac4d62" package="Default">
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Prolog" line="11" package="Default">
+      <extends>\Trismegiste\WamBundle\Prolog\WAM</extends>
+      <name>WAMService</name>
+      <full_name>\Trismegiste\WamBundle\Prolog\WAMService</full_name>
+      <docblock line="5">
+        <description><![CDATA[WAMService is a WAM intended to use in a framework
+with oriented service architecture]]></description>
+        <long-description><![CDATA[]]></long-description>
+        <tag line="5" name="author" description="Florent Genette &lt;florent.g@allopneus.com&gt;"/>
+      </docblock>
+      <property final="false" static="false" visibility="protected" line="19" namespace="Trismegiste\WamBundle\Prolog" package="Default">
+        <name>$stringBuffer</name>
+        <default><![CDATA[]]></default>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="14" package="Default">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Prolog" line="21" package="Default">
+        <name>readLn</name>
+        <full_name>readLn</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="26" package="Default">
+        <name>write</name>
+        <full_name>write</full_name>
+        <argument line="26">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="32" package="Default">
+        <name>writeLn</name>
+        <full_name>writeLn</full_name>
+        <argument line="32">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="45" package="Default">
+        <name>addProgram</name>
+        <full_name>addProgram</full_name>
+        <docblock line="37">
+          <description><![CDATA[Add a pre-compiled program]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="37" name="param" description="" type="\Trismegiste\WamBundle\Prolog\Program" variable="$prog">
+            <type by_reference="false">\Trismegiste\WamBundle\Prolog\Program</type>
+          </tag>
+          <tag line="37" name="todo" description="Moving to PrologContext ?"/>
+          <tag line="37" name="todo" description="Duplicate code in consult"/>
+          <tag line="37" name="todo" description="refactor the loading and compiling in WAMService"/>
+        </docblock>
+        <argument line="45">
+          <name>$prog</name>
+          <default><![CDATA[]]></default>
+          <type>\Trismegiste\WamBundle\Prolog\Program</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Prolog" line="54" package="Default">
+        <name>runQuery</name>
+        <full_name>runQuery</full_name>
+        <argument line="54">
+          <name>$s</name>
+          <default><![CDATA[]]></default>
+          <type/>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Prolog/WAMService.php</error>
+      <error line="19" code="50018">No DocBlock was found for property $stringBuffer</error>
+      <error line="14" code="50010">No DocBlock was found for method __construct()</error>
+      <error line="21" code="50010">No DocBlock was found for method readLn()</error>
+      <error line="26" code="50010">No DocBlock was found for method write()</error>
+      <error line="32" code="50010">No DocBlock was found for method writeLn()</error>
+      <error line="54" code="50010">No DocBlock was found for method runQuery()</error>
+    </parse_markers>
+  </file>
+  <file path="Form/PrologConsole.php" hash="6fb147e77d98290eb2f454c913e4d2d9" package="Default">
+    <namespace-alias name="FormBuilderInterface">Symfony\Component\Form\FormBuilderInterface</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Form" line="10" package="Default">
+      <extends>\Symfony\Component\Form\AbstractType</extends>
+      <name>PrologConsole</name>
+      <full_name>\Trismegiste\WamBundle\Form\PrologConsole</full_name>
+      <docblock line="7">
+        <description><![CDATA[Input for Prolog]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Form" line="13" package="Default">
+        <name>buildForm</name>
+        <full_name>buildForm</full_name>
+        <argument line="13">
+          <name>$builder</name>
+          <default><![CDATA[]]></default>
+          <type>\Symfony\Component\Form\FormBuilderInterface</type>
+        </argument>
+        <argument line="13">
+          <name>$options</name>
+          <default><![CDATA[]]></default>
+          <type>array</type>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Form" line="19" package="Default">
+        <name>getName</name>
+        <full_name>getName</full_name>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Form/PrologConsole.php</error>
+      <error line="13" code="50010">No DocBlock was found for method buildForm()</error>
+      <error line="19" code="50010">No DocBlock was found for method getName()</error>
+    </parse_markers>
+  </file>
+  <file path="Controller/PrologGuiController.php" hash="cbb56d085a457a9963707fad4ac70a1a" package="Default">
+    <namespace-alias name="Prolog">Trismegiste\WamBundle\Prolog</namespace-alias>
+    <namespace-alias name="Controller">Symfony\Bundle\FrameworkBundle\Controller\Controller</namespace-alias>
+    <namespace-alias name="Template">Sensio\Bundle\FrameworkExtraBundle\Configuration\Template</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Controller" line="12" package="Default">
+      <extends>\Symfony\Bundle\FrameworkBundle\Controller\Controller</extends>
+      <name>PrologGuiController</name>
+      <full_name>\Trismegiste\WamBundle\Controller\PrologGuiController</full_name>
+      <docblock line="9">
+        <description><![CDATA[Description of PrologGuiController]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="Trismegiste\WamBundle\Controller" line="18" package="Default">
+        <name>runAction</name>
+        <full_name>runAction</full_name>
+        <docblock line="15">
+          <description><![CDATA[]]></description>
+          <long-description><![CDATA[]]></long-description>
+          <tag line="15" name="Template" description="()"/>
+        </docblock>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Controller/PrologGuiController.php</error>
+      <error line="15" code="50012">No short description for method runAction()</error>
+    </parse_markers>
+  </file>
+  <file path="Command/WAMCommand.php" hash="394551e1316fcd1072a90f44ce296d27" package="Default">
+    <namespace-alias name="ContainerAwareCommand">Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand</namespace-alias>
+    <namespace-alias name="InputArgument">Symfony\Component\Console\Input\InputArgument</namespace-alias>
+    <namespace-alias name="InputOption">Symfony\Component\Console\Input\InputOption</namespace-alias>
+    <namespace-alias name="InputInterface">Symfony\Component\Console\Input\InputInterface</namespace-alias>
+    <namespace-alias name="OutputInterface">Symfony\Component\Console\Output\OutputInterface</namespace-alias>
+    <namespace-alias name="Output">Symfony\Component\Console\Output\Output</namespace-alias>
+    <namespace-alias name="WAMConsole">Trismegiste\WamBundle\Prolog\WAMConsole</namespace-alias>
+    <class final="false" abstract="false" namespace="Trismegiste\WamBundle\Command" line="16" package="Default">
+      <extends>\Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand</extends>
+      <name>WAMCommand</name>
+      <full_name>\Trismegiste\WamBundle\Command\WAMCommand</full_name>
+      <docblock line="13">
+        <description><![CDATA[Wrapper for WAMConsole]]></description>
+        <long-description><![CDATA[]]></long-description>
+      </docblock>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Command" line="19" package="Default">
+        <name>configure</name>
+        <full_name>configure</full_name>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="Trismegiste\WamBundle\Command" line="30" package="Default">
+        <name>execute</name>
+        <full_name>execute</full_name>
+        <argument line="30">
+          <name>$input</name>
+          <default><![CDATA[]]></default>
+          <type>\Symfony\Component\Console\Input\InputInterface</type>
+        </argument>
+        <argument line="30">
+          <name>$output</name>
+          <default><![CDATA[]]></default>
+          <type>\Symfony\Component\Console\Output\OutputInterface</type>
+        </argument>
+      </method>
+    </class>
+    <parse_markers>
+      <error line="0" code="50007">No page-level DocBlock was found in file Command/WAMCommand.php</error>
+      <error line="19" code="50010">No DocBlock was found for method configure()</error>
+      <error line="30" code="50010">No DocBlock was found for method execute()</error>
+    </parse_markers>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <namespace name="Trismegiste" full_name="Trismegiste">
+    <namespace name="WamBundle" full_name="Trismegiste\WamBundle">
+      <namespace name="Command" full_name="Trismegiste\WamBundle\Command"/>
+      <namespace name="Controller" full_name="Trismegiste\WamBundle\Controller"/>
+      <namespace name="Form" full_name="Trismegiste\WamBundle\Form"/>
+      <namespace name="Prolog" full_name="Trismegiste\WamBundle\Prolog">
+        <namespace name="Inner" full_name="Trismegiste\WamBundle\Prolog\Inner"/>
+      </namespace>
+    </namespace>
+  </namespace>
+  <marker count="7">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

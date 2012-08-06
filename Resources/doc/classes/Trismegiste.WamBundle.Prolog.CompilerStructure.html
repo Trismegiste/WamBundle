@@ -1,0 +1,290 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Trismegiste\WamBundle\Prolog\CompilerStructure</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Trismegiste.html"><i class="icon-th"></i> Trismegiste</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">237</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: create a new structure of unknown type"><span class="description">create a new structure of unknown type</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#__toString" title="__toString :: return the string that shall be used to display this node on the screen
+TODO simple keyword are missing (example : cut)"><span class="description">return the string that shall be used to display this node on the screen
+TODO simple keyword are missing (example : cut)</span><pre>__toString()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="property public "><a href="#%24head" title="$head :: "><span class="description">$head</span><pre>$head</pre></a></li>
+<li class="property public "><a href="#%24tail" title="$tail :: "><span class="description">$tail</span><pre>$tail</pre></a></li>
+<li class="property public "><a href="#%24type" title="$type :: "><span class="description">$type</span><pre>$type</pre></a></li>
+<li class="property public "><a href="#%24value" title="$value :: "><span class="description">$value</span><pre>$value</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#ASSIGNMENT" title="ASSIGNMENT :: "><span class="description">ASSIGNMENT</span><pre>ASSIGNMENT</pre></a></li>
+<li class="constant  "><a href="#BODY" title="BODY :: "><span class="description">BODY</span><pre>BODY</pre></a></li>
+<li class="constant  "><a href="#CALL" title="CALL :: "><span class="description">CALL</span><pre>CALL</pre></a></li>
+<li class="constant  "><a href="#CLAUSE" title="CLAUSE :: "><span class="description">CLAUSE</span><pre>CLAUSE</pre></a></li>
+<li class="constant  "><a href="#COMPARISON" title="COMPARISON :: "><span class="description">COMPARISON</span><pre>COMPARISON</pre></a></li>
+<li class="constant  "><a href="#CONSTANT" title="CONSTANT :: "><span class="description">CONSTANT</span><pre>CONSTANT</pre></a></li>
+<li class="constant  "><a href="#CUT" title="CUT :: "><span class="description">CUT</span><pre>CUT</pre></a></li>
+<li class="constant  "><a href="#EXPRESSION" title="EXPRESSION :: "><span class="description">EXPRESSION</span><pre>EXPRESSION</pre></a></li>
+<li class="constant  "><a href="#HEAD" title="HEAD :: "><span class="description">HEAD</span><pre>HEAD</pre></a></li>
+<li class="constant  "><a href="#LISTX" title="LISTX :: "><span class="description">LISTX</span><pre>LISTX</pre></a></li>
+<li class="constant  "><a href="#NO_TYPE" title="NO_TYPE :: "><span class="description">NO_TYPE</span><pre>NO_TYPE</pre></a></li>
+<li class="constant  "><a href="#PREDICATE" title="PREDICATE :: "><span class="description">PREDICATE</span><pre>PREDICATE</pre></a></li>
+<li class="constant  "><a href="#PROGRAM" title="PROGRAM :: "><span class="description">PROGRAM</span><pre>PROGRAM</pre></a></li>
+<li class="constant  "><a href="#QUERY" title="QUERY :: "><span class="description">QUERY</span><pre>QUERY</pre></a></li>
+<li class="constant  "><a href="#STRUCTURE" title="STRUCTURE :: "><span class="description">STRUCTURE</span><pre>STRUCTURE</pre></a></li>
+<li class="constant  "><a href="#TERM" title="TERM :: "><span class="description">TERM</span><pre>TERM</pre></a></li>
+<li class="constant  "><a href="#UNIFICATION" title="UNIFICATION :: "><span class="description">UNIFICATION</span><pre>UNIFICATION</pre></a></li>
+<li class="constant  "><a href="#VARIABLE" title="VARIABLE :: "><span class="description">VARIABLE</span><pre>VARIABLE</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CTrismegiste%5CWamBundle%5CProlog%5CCompilerStructure" id="\Trismegiste\WamBundle\Prolog\CompilerStructure"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Trismegiste.html">Trismegiste</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Trismegiste.WamBundle.html">WamBundle</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Trismegiste.WamBundle.Prolog.html">Prolog</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Trismegiste.WamBundle.Prolog.CompilerStructure.html">CompilerStructure</a>
+</li>
+</ul>
+<div href="../classes/Trismegiste.WamBundle.Prolog.CompilerStructure.html" class="element class">
+<p class="short_description">Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+                           -  Ported to PHP by Trismegiste</p>
+<div class="details">
+<p class="long_description"><p>developed:   December 2001 until February 2002
+ported:      July 2012</p>
+
+<p>CompilerStructure contains the CompilerStructure class, which is needed
+for transforming the input vector (Prolog program) to the output Program
+(WAM code) via a certain program structure graph.</p>
+
+<p>Each instance of CompilerStructure represents a node in the program graph
+of the original Prolog program. Every node is of a certain type (see constants
+below).</p></p>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>create a new structure of unknown type</h2>
+<pre>__construct($aType, $aValue) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$aType</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$aValue</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="__toString" id="__toString"></a><div class="element clickable method public __toString" data-toggle="collapse" data-target=".__toString .collapse">
+<h2>return the string that shall be used to display this node on the screen
+TODO simple keyword are missing (example : cut)</h2>
+<pre>__toString() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24head" id="$head"> </a><div class="element clickable property public $head" data-toggle="collapse" data-target=".$head .collapse">
+<h2>$head</h2>
+<pre>$head </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24tail" id="$tail"> </a><div class="element clickable property public $tail" data-toggle="collapse" data-target=".$tail .collapse">
+<h2>$tail</h2>
+<pre>$tail </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24type" id="$type"> </a><div class="element clickable property public $type" data-toggle="collapse" data-target=".$type .collapse">
+<h2>$type</h2>
+<pre>$type </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24value" id="$value"> </a><div class="element clickable property public $value" data-toggle="collapse" data-target=".$value .collapse">
+<h2>$value</h2>
+<pre>$value </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="ASSIGNMENT" id="ASSIGNMENT"> </a><div class="element clickable constant  ASSIGNMENT" data-toggle="collapse" data-target=".ASSIGNMENT .collapse">
+<h2>ASSIGNMENT</h2>
+<pre>ASSIGNMENT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="BODY" id="BODY"> </a><div class="element clickable constant  BODY" data-toggle="collapse" data-target=".BODY .collapse">
+<h2>BODY</h2>
+<pre>BODY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="CALL" id="CALL"> </a><div class="element clickable constant  CALL" data-toggle="collapse" data-target=".CALL .collapse">
+<h2>CALL</h2>
+<pre>CALL </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="CLAUSE" id="CLAUSE"> </a><div class="element clickable constant  CLAUSE" data-toggle="collapse" data-target=".CLAUSE .collapse">
+<h2>CLAUSE</h2>
+<pre>CLAUSE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="COMPARISON" id="COMPARISON"> </a><div class="element clickable constant  COMPARISON" data-toggle="collapse" data-target=".COMPARISON .collapse">
+<h2>COMPARISON</h2>
+<pre>COMPARISON </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="CONSTANT" id="CONSTANT"> </a><div class="element clickable constant  CONSTANT" data-toggle="collapse" data-target=".CONSTANT .collapse">
+<h2>CONSTANT</h2>
+<pre>CONSTANT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="CUT" id="CUT"> </a><div class="element clickable constant  CUT" data-toggle="collapse" data-target=".CUT .collapse">
+<h2>CUT</h2>
+<pre>CUT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="EXPRESSION" id="EXPRESSION"> </a><div class="element clickable constant  EXPRESSION" data-toggle="collapse" data-target=".EXPRESSION .collapse">
+<h2>EXPRESSION</h2>
+<pre>EXPRESSION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="HEAD" id="HEAD"> </a><div class="element clickable constant  HEAD" data-toggle="collapse" data-target=".HEAD .collapse">
+<h2>HEAD</h2>
+<pre>HEAD </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="LISTX" id="LISTX"> </a><div class="element clickable constant  LISTX" data-toggle="collapse" data-target=".LISTX .collapse">
+<h2>LISTX</h2>
+<pre>LISTX </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="NO_TYPE" id="NO_TYPE"> </a><div class="element clickable constant  NO_TYPE" data-toggle="collapse" data-target=".NO_TYPE .collapse">
+<h2>NO_TYPE</h2>
+<pre>NO_TYPE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="PREDICATE" id="PREDICATE"> </a><div class="element clickable constant  PREDICATE" data-toggle="collapse" data-target=".PREDICATE .collapse">
+<h2>PREDICATE</h2>
+<pre>PREDICATE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="PROGRAM" id="PROGRAM"> </a><div class="element clickable constant  PROGRAM" data-toggle="collapse" data-target=".PROGRAM .collapse">
+<h2>PROGRAM</h2>
+<pre>PROGRAM </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="QUERY" id="QUERY"> </a><div class="element clickable constant  QUERY" data-toggle="collapse" data-target=".QUERY .collapse">
+<h2>QUERY</h2>
+<pre>QUERY </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="STRUCTURE" id="STRUCTURE"> </a><div class="element clickable constant  STRUCTURE" data-toggle="collapse" data-target=".STRUCTURE .collapse">
+<h2>STRUCTURE</h2>
+<pre>STRUCTURE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="TERM" id="TERM"> </a><div class="element clickable constant  TERM" data-toggle="collapse" data-target=".TERM .collapse">
+<h2>TERM</h2>
+<pre>TERM </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="UNIFICATION" id="UNIFICATION"> </a><div class="element clickable constant  UNIFICATION" data-toggle="collapse" data-target=".UNIFICATION .collapse">
+<h2>UNIFICATION</h2>
+<pre>UNIFICATION </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="VARIABLE" id="VARIABLE"> </a><div class="element clickable constant  VARIABLE" data-toggle="collapse" data-target=".VARIABLE .collapse">
+<h2>VARIABLE</h2>
+<pre>VARIABLE </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-08-06T09:08:21+02:00.<br></footer></div>
+</div>
+</body>
+</html>

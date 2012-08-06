@@ -1,0 +1,1529 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor » \Trismegiste\WamBundle\Prolog\WAM</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="../namespaces/Trismegiste.html"><i class="icon-th"></i> Trismegiste</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">237</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: creates a new WAM with program data initialized to aProgram"><span class="description">creates a new WAM with program data initialized to aProgram</span><pre>__construct()</pre></a></li>
+<li class="method public inherited"><a href="#assertClause" title="assertClause :: Assert a simple clause"><span class="description">Assert a simple clause</span><pre>assertClause()</pre></a></li>
+<li class="method public "><a href="#debug" title="debug :: displays a debug information line"><span class="description">displays a debug information line</span><pre>debug()</pre></a></li>
+<li class="method public inherited"><a href="#loadProlog" title="loadProlog :: Load a Prolog program in context"><span class="description">Load a Prolog program in context</span><pre>loadProlog()</pre></a></li>
+<li class="method public inherited"><a href="#loadWam" title="loadWam :: Load a WAM code in context"><span class="description">Load a WAM code in context</span><pre>loadWam()</pre></a></li>
+<li class="method public "><a href="#retract" title="retract :: Retract the last clause identified by its predicate"><span class="description">Retract the last clause identified by its predicate</span><pre>retract()</pre></a></li>
+<li class="method public "><a href="#run" title="run :: run starts the actual execution of the program in memory"><span class="description">run starts the actual execution of the program in memory</span><pre>run()</pre></a></li>
+<li class="method public inherited"><a href="#runQuery" title="runQuery :: Run a query"><span class="description">Run a query</span><pre>runQuery()</pre></a></li>
+<li class="method public "><a href="#traceOn" title="traceOn :: Dump Query and Local Variables"><span class="description">Dump Query and Local Variables</span><pre>traceOn()</pre></a></li>
+<li class="method public "><a href="#write" title="write :: displays a string"><span class="description">displays a string</span><pre>write()</pre></a></li>
+<li class="method public "><a href="#writeLn" title="writeLn :: displays a string followed by CRLF"><span class="description">displays a string followed by CRLF</span><pre>writeLn()</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="method protected "><a href="#allocate" title="allocate :: "><span class="description">allocate()
+        </span><pre>allocate()</pre></a></li>
+<li class="method protected "><a href="#assert" title="assert :: "><span class="description">assert()
+        </span><pre>assert()</pre></a></li>
+<li class="method protected "><a href="#backtrack" title="backtrack :: "><span class="description">backtrack()
+        </span><pre>backtrack()</pre></a></li>
+<li class="method protected "><a href="#bigger" title="bigger :: "><span class="description">bigger()
+        </span><pre>bigger()</pre></a></li>
+<li class="method protected "><a href="#biggereq" title="biggereq :: "><span class="description">biggereq()
+        </span><pre>biggereq()</pre></a></li>
+<li class="method protected "><a href="#call" title="call :: "><span class="description">call()
+        </span><pre>call()</pre></a></li>
+<li class="method protected "><a href="#comparison" title="comparison :: "><span class="description">comparison()
+        </span><pre>comparison()</pre></a></li>
+<li class="method protected "><a href="#consult" title="consult :: "><span class="description">consult()
+        </span><pre>consult()</pre></a></li>
+<li class="method protected "><a href="#create_variable" title="create_variable :: "><span class="description">create_variable()
+        </span><pre>create_variable()</pre></a></li>
+<li class="method protected "><a href="#cut" title="cut :: "><span class="description">cut()
+        </span><pre>cut()</pre></a></li>
+<li class="method protected "><a href="#deallocate" title="deallocate :: "><span class="description">deallocate()
+        </span><pre>deallocate()</pre></a></li>
+<li class="method protected "><a href="#displayInternalVariables" title='displayInternalVariables :: displays the values of all internal parameters that can be modyfied
+using the "set" command'><span class="description">displays the values of all internal parameters that can be modyfied
+using the "set" command</span><pre>displayInternalVariables()</pre></a></li>
+<li class="method protected "><a href="#getInternalVariable" title="getInternalVariable :: "><span class="description">getInternalVariable()
+        </span><pre>getInternalVariable()</pre></a></li>
+<li class="method protected "><a href="#get_constant" title="get_constant :: "><span class="description">get_constant()
+        </span><pre>get_constant()</pre></a></li>
+<li class="method protected "><a href="#get_level" title="get_level :: "><span class="description">get_level()
+        </span><pre>get_level()</pre></a></li>
+<li class="method protected "><a href="#get_ref" title="get_ref :: "><span class="description">get_ref()
+        </span><pre>get_ref()</pre></a></li>
+<li class="method protected "><a href="#get_value" title="get_value :: "><span class="description">get_value()
+        </span><pre>get_value()</pre></a></li>
+<li class="method protected "><a href="#get_variable" title="get_variable :: "><span class="description">get_variable()
+        </span><pre>get_variable()</pre></a></li>
+<li class="method protected "><a href="#int2FormatStr" title="int2FormatStr :: formats an integer to a string"><span class="description">formats an integer to a string</span><pre>int2FormatStr()</pre></a></li>
+<li class="method protected "><a href="#internalPredicate" title="internalPredicate :: internalPredicate manages the execution of all built-in predicates,
+e.g."><span class="description">internalPredicate manages the execution of all built-in predicates,
+e.g.</span><pre>internalPredicate()</pre></a></li>
+<li class="method protected "><a href="#is" title="is :: "><span class="description">is()
+        </span><pre>is()</pre></a></li>
+<li class="method protected "><a href="#isAtom" title="isAtom :: "><span class="description">isAtom()
+        </span><pre>isAtom()</pre></a></li>
+<li class="method protected "><a href="#isInteger" title="isInteger :: "><span class="description">isInteger()
+        </span><pre>isInteger()</pre></a></li>
+<li class="method protected "><a href="#is_bound" title="is_bound :: "><span class="description">is_bound()
+        </span><pre>is_bound()</pre></a></li>
+<li class="method protected "><a href="#load" title="load :: Load WAM Code"><span class="description">Load WAM Code</span><pre>load()</pre></a></li>
+<li class="method protected "><a href="#parseInt" title="parseInt :: "><span class="description">parseInt()
+        </span><pre>parseInt()</pre></a></li>
+<li class="method protected "><a href="#proceed" title="proceed :: "><span class="description">proceed()
+        </span><pre>proceed()</pre></a></li>
+<li class="method protected "><a href="#put_constant" title="put_constant :: "><span class="description">put_constant()
+        </span><pre>put_constant()</pre></a></li>
+<li class="method protected "><a href="#put_list" title="put_list :: "><span class="description">put_list()
+        </span><pre>put_list()</pre></a></li>
+<li class="method protected "><a href="#put_value" title="put_value :: "><span class="description">put_value()
+        </span><pre>put_value()</pre></a></li>
+<li class="method protected "><a href="#put_variable" title="put_variable :: "><span class="description">put_variable()
+        </span><pre>put_variable()</pre></a></li>
+<li class="method protected "><a href="#readLn" title="readLn :: reads a String line from standard input"><span class="description">reads a String line from standard input</span><pre>readLn()</pre></a></li>
+<li class="method protected "><a href="#removeProgramLines" title="removeProgramLines :: "><span class="description">removeProgramLines()
+        </span><pre>removeProgramLines()</pre></a></li>
+<li class="method protected "><a href="#reset" title="reset :: resets sets all WAM parameters to their initial values"><span class="description">resets sets all WAM parameters to their initial values</span><pre>reset()</pre></a></li>
+<li class="method protected "><a href="#retractall" title="retractall :: "><span class="description">retractall()
+        </span><pre>retractall()</pre></a></li>
+<li class="method protected "><a href="#setInternalVariable" title="setInternalVariable :: "><span class="description">setInternalVariable()
+        </span><pre>setInternalVariable()</pre></a></li>
+<li class="method protected "><a href="#smaller" title="smaller :: "><span class="description">smaller()
+        </span><pre>smaller()</pre></a></li>
+<li class="method protected "><a href="#smallereq" title="smallereq :: "><span class="description">smallereq()
+        </span><pre>smallereq()</pre></a></li>
+<li class="method protected "><a href="#try_me_else" title="try_me_else :: "><span class="description">try_me_else()
+        </span><pre>try_me_else()</pre></a></li>
+<li class="method protected "><a href="#unequal" title="unequal :: "><span class="description">unequal()
+        </span><pre>unequal()</pre></a></li>
+<li class="method protected "><a href="#unify_list" title="unify_list :: "><span class="description">unify_list()
+        </span><pre>unify_list()</pre></a></li>
+<li class="method protected "><a href="#unify_list2" title="unify_list2 :: "><span class="description">unify_list2()
+        </span><pre>unify_list2()</pre></a></li>
+<li class="method protected "><a href="#unify_struc" title="unify_struc :: "><span class="description">unify_struc()
+        </span><pre>unify_struc()</pre></a></li>
+<li class="method protected "><a href="#unify_struc2" title="unify_struc2 :: "><span class="description">unify_struc2()
+        </span><pre>unify_struc2()</pre></a></li>
+<li class="method protected "><a href="#unify_variable" title="unify_variable :: "><span class="description">unify_variable()
+        </span><pre>unify_variable()</pre></a></li>
+<li class="method protected "><a href="#unify_variable2" title="unify_variable2 :: "><span class="description">unify_variable2()
+        </span><pre>unify_variable2()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="property public "><a href="#%24backtrackCount" title="$backtrackCount :: "><span class="description">$backtrackCount</span><pre>$backtrackCount</pre></a></li>
+<li class="property public "><a href="#%24debugOn" title="$debugOn :: "><span class="description">$debugOn</span><pre>$debugOn</pre></a></li>
+<li class="property public "><a href="#%24opCount" title="$opCount :: "><span class="description">$opCount</span><pre>$opCount</pre></a></li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24arguments" title="$arguments :: "><span class="description">$arguments</span><pre>$arguments</pre></a></li>
+<li class="property protected "><a href="#%24benchmarkOn" title="$benchmarkOn :: "><span class="description">$benchmarkOn</span><pre>$benchmarkOn</pre></a></li>
+<li class="property protected "><a href="#%24choicePoint" title="$choicePoint :: "><span class="description">$choicePoint</span><pre>$choicePoint</pre></a></li>
+<li class="property protected "><a href="#%24continuationPointer" title="$continuationPointer :: "><span class="description">$continuationPointer</span><pre>$continuationPointer</pre></a></li>
+<li class="property protected "><a href="#%24cutPoint" title="$cutPoint :: "><span class="description">$cutPoint</span><pre>$cutPoint</pre></a></li>
+<li class="property protected "><a href="#%24displayQCount" title="$displayQCount :: "><span class="description">$displayQCount</span><pre>$displayQCount</pre></a></li>
+<li class="property protected "><a href="#%24displayQValue" title="$displayQValue :: "><span class="description">$displayQValue</span><pre>$displayQValue</pre></a></li>
+<li class="property protected "><a href="#%24env" title="$env :: "><span class="description">$env</span><pre>$env</pre></a></li>
+<li class="property protected "><a href="#%24failed" title="$failed :: "><span class="description">$failed</span><pre>$failed</pre></a></li>
+<li class="property protected "><a href="#%24maxOpCount" title="$maxOpCount :: "><span class="description">$maxOpCount</span><pre>$maxOpCount</pre></a></li>
+<li class="property protected "><a href="#%24p" title="$p :: "><span class="description">$p</span><pre>$p</pre></a></li>
+<li class="property protected "><a href="#%24programCounter" title="$programCounter :: "><span class="description">$programCounter</span><pre>$programCounter</pre></a></li>
+<li class="property protected "><a href="#%24queryVariables" title="$queryVariables :: "><span class="description">$queryVariables</span><pre>$queryVariables</pre></a></li>
+<li class="property protected "><a href="#%24trail" title="$trail :: "><span class="description">$trail</span><pre>$trail</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#ASSERT" title="ASSERT :: "><span class="description">ASSERT</span><pre>ASSERT</pre></a></li>
+<li class="constant  "><a href="#CON" title="CON :: "><span class="description">CON</span><pre>CON</pre></a></li>
+<li class="constant  "><a href="#LIS" title="LIS :: "><span class="description">LIS</span><pre>LIS</pre></a></li>
+<li class="constant  "><a href="#REF" title="REF :: "><span class="description">REF</span><pre>REF</pre></a></li>
+<li class="constant  "><a href="#STR" title="STR :: "><span class="description">STR</span><pre>STR</pre></a></li>
+<li class="constant  "><a href="#UNB" title="UNB :: "><span class="description">UNB</span><pre>UNB</pre></a></li>
+<li class="constant  "><a href="#callAssert" title="callAssert :: "><span class="description">callAssert</span><pre>callAssert</pre></a></li>
+<li class="constant  "><a href="#callCall" title="callCall :: "><span class="description">callCall</span><pre>callCall</pre></a></li>
+<li class="constant  "><a href="#callConsult" title="callConsult :: "><span class="description">callConsult</span><pre>callConsult</pre></a></li>
+<li class="constant  "><a href="#callIsAtom" title="callIsAtom :: "><span class="description">callIsAtom</span><pre>callIsAtom</pre></a></li>
+<li class="constant  "><a href="#callIsBound" title="callIsBound :: "><span class="description">callIsBound</span><pre>callIsBound</pre></a></li>
+<li class="constant  "><a href="#callIsInteger" title="callIsInteger :: "><span class="description">callIsInteger</span><pre>callIsInteger</pre></a></li>
+<li class="constant  "><a href="#callLoad" title="callLoad :: "><span class="description">callLoad</span><pre>callLoad</pre></a></li>
+<li class="constant  "><a href="#callNewLine" title="callNewLine :: "><span class="description">callNewLine</span><pre>callNewLine</pre></a></li>
+<li class="constant  "><a href="#callReadLn" title="callReadLn :: "><span class="description">callReadLn</span><pre>callReadLn</pre></a></li>
+<li class="constant  "><a href="#callReconsult" title="callReconsult :: "><span class="description">callReconsult</span><pre>callReconsult</pre></a></li>
+<li class="constant  "><a href="#callRetractAll" title="callRetractAll :: "><span class="description">callRetractAll</span><pre>callRetractAll</pre></a></li>
+<li class="constant  "><a href="#callRetractOne" title="callRetractOne :: "><span class="description">callRetractOne</span><pre>callRetractOne</pre></a></li>
+<li class="constant  "><a href="#callWrite" title="callWrite :: "><span class="description">callWrite</span><pre>callWrite</pre></a></li>
+<li class="constant  "><a href="#callWriteLn" title="callWriteLn :: "><span class="description">callWriteLn</span><pre>callWriteLn</pre></a></li>
+<li class="constant  "><a href="#opAllocate" title="opAllocate :: "><span class="description">opAllocate</span><pre>opAllocate</pre></a></li>
+<li class="constant  "><a href="#opBigger" title="opBigger :: "><span class="description">opBigger</span><pre>opBigger</pre></a></li>
+<li class="constant  "><a href="#opBiggerEq" title="opBiggerEq :: "><span class="description">opBiggerEq</span><pre>opBiggerEq</pre></a></li>
+<li class="constant  "><a href="#opCall" title="opCall :: "><span class="description">opCall</span><pre>opCall</pre></a></li>
+<li class="constant  "><a href="#opCreateVariable" title="opCreateVariable :: "><span class="description">opCreateVariable</span><pre>opCreateVariable</pre></a></li>
+<li class="constant  "><a href="#opCut" title="opCut :: "><span class="description">opCut</span><pre>opCut</pre></a></li>
+<li class="constant  "><a href="#opDeallocate" title="opDeallocate :: "><span class="description">opDeallocate</span><pre>opDeallocate</pre></a></li>
+<li class="constant  "><a href="#opGetConstant" title="opGetConstant :: "><span class="description">opGetConstant</span><pre>opGetConstant</pre></a></li>
+<li class="constant  "><a href="#opGetLevel" title="opGetLevel :: "><span class="description">opGetLevel</span><pre>opGetLevel</pre></a></li>
+<li class="constant  "><a href="#opGetValue" title="opGetValue :: "><span class="description">opGetValue</span><pre>opGetValue</pre></a></li>
+<li class="constant  "><a href="#opGetVariable" title="opGetVariable :: "><span class="description">opGetVariable</span><pre>opGetVariable</pre></a></li>
+<li class="constant  "><a href="#opHalt" title="opHalt :: "><span class="description">opHalt</span><pre>opHalt</pre></a></li>
+<li class="constant  "><a href="#opIs" title="opIs :: "><span class="description">opIs</span><pre>opIs</pre></a></li>
+<li class="constant  "><a href="#opNoOp" title="opNoOp :: "><span class="description">opNoOp</span><pre>opNoOp</pre></a></li>
+<li class="constant  "><a href="#opProceed" title="opProceed :: "><span class="description">opProceed</span><pre>opProceed</pre></a></li>
+<li class="constant  "><a href="#opPutConstant" title="opPutConstant :: "><span class="description">opPutConstant</span><pre>opPutConstant</pre></a></li>
+<li class="constant  "><a href="#opPutValue" title="opPutValue :: "><span class="description">opPutValue</span><pre>opPutValue</pre></a></li>
+<li class="constant  "><a href="#opPutVariable" title="opPutVariable :: "><span class="description">opPutVariable</span><pre>opPutVariable</pre></a></li>
+<li class="constant  "><a href="#opRetryMeElse" title="opRetryMeElse :: "><span class="description">opRetryMeElse</span><pre>opRetryMeElse</pre></a></li>
+<li class="constant  "><a href="#opSmaller" title="opSmaller :: "><span class="description">opSmaller</span><pre>opSmaller</pre></a></li>
+<li class="constant  "><a href="#opSmallerEq" title="opSmallerEq :: "><span class="description">opSmallerEq</span><pre>opSmallerEq</pre></a></li>
+<li class="constant  "><a href="#opTrustMe" title="opTrustMe :: "><span class="description">opTrustMe</span><pre>opTrustMe</pre></a></li>
+<li class="constant  "><a href="#opTryMeElse" title="opTryMeElse :: "><span class="description">opTryMeElse</span><pre>opTryMeElse</pre></a></li>
+<li class="constant  "><a href="#opUnequal" title="opUnequal :: "><span class="description">opUnequal</span><pre>opUnequal</pre></a></li>
+<li class="constant  "><a href="#opUnifyList" title="opUnifyList :: "><span class="description">opUnifyList</span><pre>opUnifyList</pre></a></li>
+<li class="constant  "><a href="#opUnifyStruc" title="opUnifyStruc :: "><span class="description">opUnifyStruc</span><pre>opUnifyStruc</pre></a></li>
+<li class="constant  "><a href="#opUnifyVariable" title="opUnifyVariable :: "><span class="description">opUnifyVariable</span><pre>opUnifyVariable</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5CTrismegiste%5CWamBundle%5CProlog%5CWAM" id="\Trismegiste\WamBundle\Prolog\WAM"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/Trismegiste.html">Trismegiste</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Trismegiste.WamBundle.html">WamBundle</a></li>
+<span class="divider">\</span><li><a href="../namespaces/Trismegiste.WamBundle.Prolog.html">Prolog</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/Trismegiste.WamBundle.Prolog.WAM.html">WAM</a>
+</li>
+</ul>
+<div href="../classes/Trismegiste.WamBundle.Prolog.WAM.html" class="element class">
+<p class="short_description">Warren's Abstract Machine  -  Implementation by Stefan Buettcher
+developed:   December 2001 until February 2002</p>
+<div class="details">
+<p class="long_description"><p>Translated from Java to PHP 5.3 by Florent Genette (Trismegiste)
+http://github.com/Trismegiste/WamBundle
+June to July 2012 (yes, 10 years after the original version !)</p>
+
+<p>WAM.php contains an abstract WAM without input or output
+WAM code operations are described in Ait Kaci:
+Warren's Abstract Machine -- A Tutorial Reconstruction</p></p>
+<table class="table table-bordered"><tr>
+<th>author</th>
+<td><a href="">flo</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>creates a new WAM with program data initialized to aProgram</h2>
+<pre>__construct(\Trismegiste\WamBundle\Prolog\Program $aProgram) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$aProgram</h4>
+<code><a href="../classes/Trismegiste.WamBundle.Prolog.Program.html">\Trismegiste\WamBundle\Prolog\Program</a></code>
+</div>
+</div></div>
+</div>
+<a name="assertClause" id="assertClause"></a><div class="element clickable method public assertClause" data-toggle="collapse" data-target=".assertClause .collapse">
+<h2>Assert a simple clause</h2>
+<pre>assertClause($s) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\PrologContext::assertClause()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="debug" id="debug"></a><div class="element clickable method public debug" data-toggle="collapse" data-target=".debug .collapse">
+<h2>displays a debug information line</h2>
+<pre>debug(string $s, int $debugLevel) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code>string</code>
+</div>
+<div class="subelement argument">
+<h4>$debugLevel</h4>
+<code>int</code>
+</div>
+</div></div>
+</div>
+<a name="loadProlog" id="loadProlog"></a><div class="element clickable method public loadProlog" data-toggle="collapse" data-target=".loadProlog .collapse">
+<h2>Load a Prolog program in context</h2>
+<pre>loadProlog($filename) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\PrologContext::loadProlog()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filename</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="loadWam" id="loadWam"></a><div class="element clickable method public loadWam" data-toggle="collapse" data-target=".loadWam .collapse">
+<h2>Load a WAM code in context</h2>
+<pre>loadWam($filename) </pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\PrologContext::loadWam()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$filename</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="retract" id="retract"></a><div class="element clickable method public retract" data-toggle="collapse" data-target=".retract .collapse">
+<h2>Retract the last clause identified by its predicate</h2>
+<pre>retract($clauseName) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clauseName</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="run" id="run"></a><div class="element clickable method public run" data-toggle="collapse" data-target=".run .collapse">
+<h2>run starts the actual execution of the program in memory</h2>
+<pre>run() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="runQuery" id="runQuery"></a><div class="element clickable method public runQuery" data-toggle="collapse" data-target=".runQuery .collapse">
+<h2>Run a query</h2>
+<pre>runQuery(string $s) : mixed</pre>
+<div class="labels"><span class="label">Inherited</span></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>inherited_from</th>
+<td>\Trismegiste\WamBundle\Prolog\PrologContext::runQuery()</td>
+</tr></table>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code>string</code><p>the query</p></div>
+<h3>Returns</h3>
+<div class="subelement response"><code>mixed</code></div>
+</div></div>
+</div>
+<a name="traceOn" id="traceOn"></a><div class="element clickable method public traceOn" data-toggle="collapse" data-target=".traceOn .collapse">
+<h2>Dump Query and Local Variables</h2>
+<pre>traceOn() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="write" id="write"></a><div class="element clickable method public write" data-toggle="collapse" data-target=".write .collapse">
+<h2>displays a string</h2>
+<pre>write($s) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="writeLn" id="writeLn"></a><div class="element clickable method public writeLn" data-toggle="collapse" data-target=".writeLn .collapse">
+<h2>displays a string followed by CRLF</h2>
+<pre>writeLn($s) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="allocate" id="allocate"></a><div class="element clickable method protected allocate" data-toggle="collapse" data-target=".allocate .collapse">
+<h2>allocate()
+        </h2>
+<pre>allocate() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="assert" id="assert"></a><div class="element clickable method protected assert" data-toggle="collapse" data-target=".assert .collapse">
+<h2>assert()
+        </h2>
+<pre>assert($label, $clause) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$label</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$clause</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="backtrack" id="backtrack"></a><div class="element clickable method protected backtrack" data-toggle="collapse" data-target=".backtrack .collapse">
+<h2>backtrack()
+        </h2>
+<pre>backtrack() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="bigger" id="bigger"></a><div class="element clickable method protected bigger" data-toggle="collapse" data-target=".bigger .collapse">
+<h2>bigger()
+        </h2>
+<pre>bigger($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="biggereq" id="biggereq"></a><div class="element clickable method protected biggereq" data-toggle="collapse" data-target=".biggereq .collapse">
+<h2>biggereq()
+        </h2>
+<pre>biggereq($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="call" id="call"></a><div class="element clickable method protected call" data-toggle="collapse" data-target=".call .collapse">
+<h2>call()
+        </h2>
+<pre>call($target) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$target</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="comparison" id="comparison"></a><div class="element clickable method protected comparison" data-toggle="collapse" data-target=".comparison .collapse">
+<h2>comparison()
+        </h2>
+<pre>comparison($s1, $s2, $comparator) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$comparator</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="consult" id="consult"></a><div class="element clickable method protected consult" data-toggle="collapse" data-target=".consult .collapse">
+<h2>consult()
+        </h2>
+<pre>consult($fileName) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$fileName</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="create_variable" id="create_variable"></a><div class="element clickable method protected create_variable" data-toggle="collapse" data-target=".create_variable .collapse">
+<h2>create_variable()
+        </h2>
+<pre>create_variable($v, $name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$v</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$name</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="cut" id="cut"></a><div class="element clickable method protected cut" data-toggle="collapse" data-target=".cut .collapse">
+<h2>cut()
+        </h2>
+<pre>cut($Vn) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$Vn</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="deallocate" id="deallocate"></a><div class="element clickable method protected deallocate" data-toggle="collapse" data-target=".deallocate .collapse">
+<h2>deallocate()
+        </h2>
+<pre>deallocate() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="displayInternalVariables" id="displayInternalVariables"></a><div class="element clickable method protected displayInternalVariables" data-toggle="collapse" data-target=".displayInternalVariables .collapse">
+<h2>displays the values of all internal parameters that can be modyfied
+using the "set" command</h2>
+<pre>displayInternalVariables() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="getInternalVariable" id="getInternalVariable"></a><div class="element clickable method protected getInternalVariable" data-toggle="collapse" data-target=".getInternalVariable .collapse">
+<h2>getInternalVariable()
+        </h2>
+<pre>getInternalVariable($variable) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$variable</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="get_constant" id="get_constant"></a><div class="element clickable method protected get_constant" data-toggle="collapse" data-target=".get_constant .collapse">
+<h2>get_constant()
+        </h2>
+<pre>get_constant($c, $variable) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$c</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$variable</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="get_level" id="get_level"></a><div class="element clickable method protected get_level" data-toggle="collapse" data-target=".get_level .collapse">
+<h2>get_level()
+        </h2>
+<pre>get_level($Vn) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$Vn</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="get_ref" id="get_ref"></a><div class="element clickable method protected get_ref" data-toggle="collapse" data-target=".get_ref .collapse">
+<h2>get_ref()
+        </h2>
+<pre>get_ref($name) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$name</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="get_value" id="get_value"></a><div class="element clickable method protected get_value" data-toggle="collapse" data-target=".get_value .collapse">
+<h2>get_value()
+        </h2>
+<pre>get_value($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="get_variable" id="get_variable"></a><div class="element clickable method protected get_variable" data-toggle="collapse" data-target=".get_variable .collapse">
+<h2>get_variable()
+        </h2>
+<pre>get_variable($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="int2FormatStr" id="int2FormatStr"></a><div class="element clickable method protected int2FormatStr" data-toggle="collapse" data-target=".int2FormatStr .collapse">
+<h2>formats an integer to a string</h2>
+<pre>int2FormatStr(integer $i) : string</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$i</h4>
+<code>integer</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>string</code></div>
+</div></div>
+</div>
+<a name="internalPredicate" id="internalPredicate"></a><div class="element clickable method protected internalPredicate" data-toggle="collapse" data-target=".internalPredicate .collapse">
+<h2>internalPredicate manages the execution of all built-in predicates,
+e.g.</h2>
+<pre>internalPredicate(integer $index) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"><p>write, consult, isbound</p></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$index</h4>
+<code>integer</code>
+</div>
+<h3>Returns</h3>
+<div class="subelement response"><code>boolean</code></div>
+</div></div>
+</div>
+<a name="is" id="is"></a><div class="element clickable method protected is" data-toggle="collapse" data-target=".is .collapse">
+<h2>is()
+        </h2>
+<pre>is($target, $op, $s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$target</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$op</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isAtom" id="isAtom"></a><div class="element clickable method protected isAtom" data-toggle="collapse" data-target=".isAtom .collapse">
+<h2>isAtom()
+        </h2>
+<pre>isAtom(\Trismegiste\WamBundle\Prolog\Inner\Variable $v) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$v</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="isInteger" id="isInteger"></a><div class="element clickable method protected isInteger" data-toggle="collapse" data-target=".isInteger .collapse">
+<h2>isInteger()
+        </h2>
+<pre>isInteger($stuff) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$stuff</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="is_bound" id="is_bound"></a><div class="element clickable method protected is_bound" data-toggle="collapse" data-target=".is_bound .collapse">
+<h2>is_bound()
+        </h2>
+<pre>is_bound(\Trismegiste\WamBundle\Prolog\Inner\Variable $v) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$v</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="load" id="load"></a><div class="element clickable method protected load" data-toggle="collapse" data-target=".load .collapse">
+<h2>Load WAM Code</h2>
+<pre>load(string $fileName) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$fileName</h4>
+<code>string</code>
+</div>
+</div></div>
+</div>
+<a name="parseInt" id="parseInt"></a><div class="element clickable method protected parseInt" data-toggle="collapse" data-target=".parseInt .collapse">
+<h2>parseInt()
+        </h2>
+<pre>parseInt($number) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$number</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="proceed" id="proceed"></a><div class="element clickable method protected proceed" data-toggle="collapse" data-target=".proceed .collapse">
+<h2>proceed()
+        </h2>
+<pre>proceed() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="put_constant" id="put_constant"></a><div class="element clickable method protected put_constant" data-toggle="collapse" data-target=".put_constant .collapse">
+<h2>put_constant()
+        </h2>
+<pre>put_constant($c, $a) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$c</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$a</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="put_list" id="put_list"></a><div class="element clickable method protected put_list" data-toggle="collapse" data-target=".put_list .collapse">
+<h2>put_list()
+        </h2>
+<pre>put_list($h, $t, $a) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$h</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$t</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$a</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="put_value" id="put_value"></a><div class="element clickable method protected put_value" data-toggle="collapse" data-target=".put_value .collapse">
+<h2>put_value()
+        </h2>
+<pre>put_value($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="put_variable" id="put_variable"></a><div class="element clickable method protected put_variable" data-toggle="collapse" data-target=".put_variable .collapse">
+<h2>put_variable()
+        </h2>
+<pre>put_variable($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="readLn" id="readLn"></a><div class="element clickable method protected readLn" data-toggle="collapse" data-target=".readLn .collapse">
+<h2>reads a String line from standard input</h2>
+<pre>readLn() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="removeProgramLines" id="removeProgramLines"></a><div class="element clickable method protected removeProgramLines" data-toggle="collapse" data-target=".removeProgramLines .collapse">
+<h2>removeProgramLines()
+        </h2>
+<pre>removeProgramLines($fromLine) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$fromLine</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="reset" id="reset"></a><div class="element clickable method protected reset" data-toggle="collapse" data-target=".reset .collapse">
+<h2>resets sets all WAM parameters to their initial values</h2>
+<pre>reset() </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="retractall" id="retractall"></a><div class="element clickable method protected retractall" data-toggle="collapse" data-target=".retractall .collapse">
+<h2>retractall()
+        </h2>
+<pre>retractall($clauseName) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$clauseName</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="setInternalVariable" id="setInternalVariable"></a><div class="element clickable method protected setInternalVariable" data-toggle="collapse" data-target=".setInternalVariable .collapse">
+<h2>setInternalVariable()
+        </h2>
+<pre>setInternalVariable($variable, $value) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$variable</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$value</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="smaller" id="smaller"></a><div class="element clickable method protected smaller" data-toggle="collapse" data-target=".smaller .collapse">
+<h2>smaller()
+        </h2>
+<pre>smaller($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="smallereq" id="smallereq"></a><div class="element clickable method protected smallereq" data-toggle="collapse" data-target=".smallereq .collapse">
+<h2>smallereq()
+        </h2>
+<pre>smallereq($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="try_me_else" id="try_me_else"></a><div class="element clickable method protected try_me_else" data-toggle="collapse" data-target=".try_me_else .collapse">
+<h2>try_me_else()
+        </h2>
+<pre>try_me_else($whom) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$whom</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unequal" id="unequal"></a><div class="element clickable method protected unequal" data-toggle="collapse" data-target=".unequal .collapse">
+<h2>unequal()
+        </h2>
+<pre>unequal($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unify_list" id="unify_list"></a><div class="element clickable method protected unify_list" data-toggle="collapse" data-target=".unify_list .collapse">
+<h2>unify_list()
+        </h2>
+<pre>unify_list($l, $h, $t) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$l</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$h</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$t</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unify_list2" id="unify_list2"></a><div class="element clickable method protected unify_list2" data-toggle="collapse" data-target=".unify_list2 .collapse">
+<h2>unify_list2()
+        </h2>
+<pre>unify_list2(\Trismegiste\WamBundle\Prolog\Inner\Variable $liste, \Trismegiste\WamBundle\Prolog\Inner\Variable $head, \Trismegiste\WamBundle\Prolog\Inner\Variable $tail) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$liste</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$head</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$tail</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unify_struc" id="unify_struc"></a><div class="element clickable method protected unify_struc" data-toggle="collapse" data-target=".unify_struc .collapse">
+<h2>unify_struc()
+        </h2>
+<pre>unify_struc($s, $h, $t) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$h</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$t</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unify_struc2" id="unify_struc2"></a><div class="element clickable method protected unify_struc2" data-toggle="collapse" data-target=".unify_struc2 .collapse">
+<h2>unify_struc2()
+        </h2>
+<pre>unify_struc2(\Trismegiste\WamBundle\Prolog\Inner\Variable $struc, \Trismegiste\WamBundle\Prolog\Inner\Variable $head, \Trismegiste\WamBundle\Prolog\Inner\Variable $tail) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$struc</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$head</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$tail</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unify_variable" id="unify_variable"></a><div class="element clickable method protected unify_variable" data-toggle="collapse" data-target=".unify_variable .collapse">
+<h2>unify_variable()
+        </h2>
+<pre>unify_variable($s1, $s2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$s1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$s2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<a name="unify_variable2" id="unify_variable2"></a><div class="element clickable method protected unify_variable2" data-toggle="collapse" data-target=".unify_variable2 .collapse">
+<h2>unify_variable2()
+        </h2>
+<pre>unify_variable2($v1, $v2) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$v1</h4>
+<code></code>
+</div>
+<div class="subelement argument">
+<h4>$v2</h4>
+<code></code>
+</div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24backtrackCount" id="$backtrackCount"> </a><div class="element clickable property public $backtrackCount" data-toggle="collapse" data-target=".$backtrackCount .collapse">
+<h2>$backtrackCount</h2>
+<pre>$backtrackCount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24debugOn" id="$debugOn"> </a><div class="element clickable property public $debugOn" data-toggle="collapse" data-target=".$debugOn .collapse">
+<h2>$debugOn</h2>
+<pre>$debugOn </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24opCount" id="$opCount"> </a><div class="element clickable property public $opCount" data-toggle="collapse" data-target=".$opCount .collapse">
+<h2>$opCount</h2>
+<pre>$opCount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24arguments" id="$arguments"> </a><div class="element clickable property protected $arguments" data-toggle="collapse" data-target=".$arguments .collapse">
+<h2>$arguments</h2>
+<pre>$arguments </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24benchmarkOn" id="$benchmarkOn"> </a><div class="element clickable property protected $benchmarkOn" data-toggle="collapse" data-target=".$benchmarkOn .collapse">
+<h2>$benchmarkOn</h2>
+<pre>$benchmarkOn </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24choicePoint" id="$choicePoint"> </a><div class="element clickable property protected $choicePoint" data-toggle="collapse" data-target=".$choicePoint .collapse">
+<h2>$choicePoint</h2>
+<pre>$choicePoint </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24continuationPointer" id="$continuationPointer"> </a><div class="element clickable property protected $continuationPointer" data-toggle="collapse" data-target=".$continuationPointer .collapse">
+<h2>$continuationPointer</h2>
+<pre>$continuationPointer </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24cutPoint" id="$cutPoint"> </a><div class="element clickable property protected $cutPoint" data-toggle="collapse" data-target=".$cutPoint .collapse">
+<h2>$cutPoint</h2>
+<pre>$cutPoint </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24displayQCount" id="$displayQCount"> </a><div class="element clickable property protected $displayQCount" data-toggle="collapse" data-target=".$displayQCount .collapse">
+<h2>$displayQCount</h2>
+<pre>$displayQCount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24displayQValue" id="$displayQValue"> </a><div class="element clickable property protected $displayQValue" data-toggle="collapse" data-target=".$displayQValue .collapse">
+<h2>$displayQValue</h2>
+<pre>$displayQValue </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24env" id="$env"> </a><div class="element clickable property protected $env" data-toggle="collapse" data-target=".$env .collapse">
+<h2>$env</h2>
+<pre>$env </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24failed" id="$failed"> </a><div class="element clickable property protected $failed" data-toggle="collapse" data-target=".$failed .collapse">
+<h2>$failed</h2>
+<pre>$failed </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24maxOpCount" id="$maxOpCount"> </a><div class="element clickable property protected $maxOpCount" data-toggle="collapse" data-target=".$maxOpCount .collapse">
+<h2>$maxOpCount</h2>
+<pre>$maxOpCount </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24p" id="$p"> </a><div class="element clickable property protected $p" data-toggle="collapse" data-target=".$p .collapse">
+<h2>$p</h2>
+<pre>$p </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24programCounter" id="$programCounter"> </a><div class="element clickable property protected $programCounter" data-toggle="collapse" data-target=".$programCounter .collapse">
+<h2>$programCounter</h2>
+<pre>$programCounter </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24queryVariables" id="$queryVariables"> </a><div class="element clickable property protected $queryVariables" data-toggle="collapse" data-target=".$queryVariables .collapse">
+<h2>$queryVariables</h2>
+<pre>$queryVariables </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24trail" id="$trail"> </a><div class="element clickable property protected $trail" data-toggle="collapse" data-target=".$trail .collapse">
+<h2>$trail</h2>
+<pre>$trail </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="ASSERT" id="ASSERT"> </a><div class="element clickable constant  ASSERT" data-toggle="collapse" data-target=".ASSERT .collapse">
+<h2>ASSERT</h2>
+<pre>ASSERT </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="CON" id="CON"> </a><div class="element clickable constant  CON" data-toggle="collapse" data-target=".CON .collapse">
+<h2>CON</h2>
+<pre>CON </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="LIS" id="LIS"> </a><div class="element clickable constant  LIS" data-toggle="collapse" data-target=".LIS .collapse">
+<h2>LIS</h2>
+<pre>LIS </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="REF" id="REF"> </a><div class="element clickable constant  REF" data-toggle="collapse" data-target=".REF .collapse">
+<h2>REF</h2>
+<pre>REF </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="STR" id="STR"> </a><div class="element clickable constant  STR" data-toggle="collapse" data-target=".STR .collapse">
+<h2>STR</h2>
+<pre>STR </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="UNB" id="UNB"> </a><div class="element clickable constant  UNB" data-toggle="collapse" data-target=".UNB .collapse">
+<h2>UNB</h2>
+<pre>UNB </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callAssert" id="callAssert"> </a><div class="element clickable constant  callAssert" data-toggle="collapse" data-target=".callAssert .collapse">
+<h2>callAssert</h2>
+<pre>callAssert </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callCall" id="callCall"> </a><div class="element clickable constant  callCall" data-toggle="collapse" data-target=".callCall .collapse">
+<h2>callCall</h2>
+<pre>callCall </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callConsult" id="callConsult"> </a><div class="element clickable constant  callConsult" data-toggle="collapse" data-target=".callConsult .collapse">
+<h2>callConsult</h2>
+<pre>callConsult </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callIsAtom" id="callIsAtom"> </a><div class="element clickable constant  callIsAtom" data-toggle="collapse" data-target=".callIsAtom .collapse">
+<h2>callIsAtom</h2>
+<pre>callIsAtom </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callIsBound" id="callIsBound"> </a><div class="element clickable constant  callIsBound" data-toggle="collapse" data-target=".callIsBound .collapse">
+<h2>callIsBound</h2>
+<pre>callIsBound </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callIsInteger" id="callIsInteger"> </a><div class="element clickable constant  callIsInteger" data-toggle="collapse" data-target=".callIsInteger .collapse">
+<h2>callIsInteger</h2>
+<pre>callIsInteger </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callLoad" id="callLoad"> </a><div class="element clickable constant  callLoad" data-toggle="collapse" data-target=".callLoad .collapse">
+<h2>callLoad</h2>
+<pre>callLoad </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callNewLine" id="callNewLine"> </a><div class="element clickable constant  callNewLine" data-toggle="collapse" data-target=".callNewLine .collapse">
+<h2>callNewLine</h2>
+<pre>callNewLine </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callReadLn" id="callReadLn"> </a><div class="element clickable constant  callReadLn" data-toggle="collapse" data-target=".callReadLn .collapse">
+<h2>callReadLn</h2>
+<pre>callReadLn </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callReconsult" id="callReconsult"> </a><div class="element clickable constant  callReconsult" data-toggle="collapse" data-target=".callReconsult .collapse">
+<h2>callReconsult</h2>
+<pre>callReconsult </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callRetractAll" id="callRetractAll"> </a><div class="element clickable constant  callRetractAll" data-toggle="collapse" data-target=".callRetractAll .collapse">
+<h2>callRetractAll</h2>
+<pre>callRetractAll </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callRetractOne" id="callRetractOne"> </a><div class="element clickable constant  callRetractOne" data-toggle="collapse" data-target=".callRetractOne .collapse">
+<h2>callRetractOne</h2>
+<pre>callRetractOne </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callWrite" id="callWrite"> </a><div class="element clickable constant  callWrite" data-toggle="collapse" data-target=".callWrite .collapse">
+<h2>callWrite</h2>
+<pre>callWrite </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="callWriteLn" id="callWriteLn"> </a><div class="element clickable constant  callWriteLn" data-toggle="collapse" data-target=".callWriteLn .collapse">
+<h2>callWriteLn</h2>
+<pre>callWriteLn </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opAllocate" id="opAllocate"> </a><div class="element clickable constant  opAllocate" data-toggle="collapse" data-target=".opAllocate .collapse">
+<h2>opAllocate</h2>
+<pre>opAllocate </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opBigger" id="opBigger"> </a><div class="element clickable constant  opBigger" data-toggle="collapse" data-target=".opBigger .collapse">
+<h2>opBigger</h2>
+<pre>opBigger </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opBiggerEq" id="opBiggerEq"> </a><div class="element clickable constant  opBiggerEq" data-toggle="collapse" data-target=".opBiggerEq .collapse">
+<h2>opBiggerEq</h2>
+<pre>opBiggerEq </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opCall" id="opCall"> </a><div class="element clickable constant  opCall" data-toggle="collapse" data-target=".opCall .collapse">
+<h2>opCall</h2>
+<pre>opCall </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opCreateVariable" id="opCreateVariable"> </a><div class="element clickable constant  opCreateVariable" data-toggle="collapse" data-target=".opCreateVariable .collapse">
+<h2>opCreateVariable</h2>
+<pre>opCreateVariable </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opCut" id="opCut"> </a><div class="element clickable constant  opCut" data-toggle="collapse" data-target=".opCut .collapse">
+<h2>opCut</h2>
+<pre>opCut </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opDeallocate" id="opDeallocate"> </a><div class="element clickable constant  opDeallocate" data-toggle="collapse" data-target=".opDeallocate .collapse">
+<h2>opDeallocate</h2>
+<pre>opDeallocate </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opGetConstant" id="opGetConstant"> </a><div class="element clickable constant  opGetConstant" data-toggle="collapse" data-target=".opGetConstant .collapse">
+<h2>opGetConstant</h2>
+<pre>opGetConstant </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opGetLevel" id="opGetLevel"> </a><div class="element clickable constant  opGetLevel" data-toggle="collapse" data-target=".opGetLevel .collapse">
+<h2>opGetLevel</h2>
+<pre>opGetLevel </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opGetValue" id="opGetValue"> </a><div class="element clickable constant  opGetValue" data-toggle="collapse" data-target=".opGetValue .collapse">
+<h2>opGetValue</h2>
+<pre>opGetValue </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opGetVariable" id="opGetVariable"> </a><div class="element clickable constant  opGetVariable" data-toggle="collapse" data-target=".opGetVariable .collapse">
+<h2>opGetVariable</h2>
+<pre>opGetVariable </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opHalt" id="opHalt"> </a><div class="element clickable constant  opHalt" data-toggle="collapse" data-target=".opHalt .collapse">
+<h2>opHalt</h2>
+<pre>opHalt </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opIs" id="opIs"> </a><div class="element clickable constant  opIs" data-toggle="collapse" data-target=".opIs .collapse">
+<h2>opIs</h2>
+<pre>opIs </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opNoOp" id="opNoOp"> </a><div class="element clickable constant  opNoOp" data-toggle="collapse" data-target=".opNoOp .collapse">
+<h2>opNoOp</h2>
+<pre>opNoOp </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opProceed" id="opProceed"> </a><div class="element clickable constant  opProceed" data-toggle="collapse" data-target=".opProceed .collapse">
+<h2>opProceed</h2>
+<pre>opProceed </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opPutConstant" id="opPutConstant"> </a><div class="element clickable constant  opPutConstant" data-toggle="collapse" data-target=".opPutConstant .collapse">
+<h2>opPutConstant</h2>
+<pre>opPutConstant </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opPutValue" id="opPutValue"> </a><div class="element clickable constant  opPutValue" data-toggle="collapse" data-target=".opPutValue .collapse">
+<h2>opPutValue</h2>
+<pre>opPutValue </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opPutVariable" id="opPutVariable"> </a><div class="element clickable constant  opPutVariable" data-toggle="collapse" data-target=".opPutVariable .collapse">
+<h2>opPutVariable</h2>
+<pre>opPutVariable </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opRetryMeElse" id="opRetryMeElse"> </a><div class="element clickable constant  opRetryMeElse" data-toggle="collapse" data-target=".opRetryMeElse .collapse">
+<h2>opRetryMeElse</h2>
+<pre>opRetryMeElse </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opSmaller" id="opSmaller"> </a><div class="element clickable constant  opSmaller" data-toggle="collapse" data-target=".opSmaller .collapse">
+<h2>opSmaller</h2>
+<pre>opSmaller </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opSmallerEq" id="opSmallerEq"> </a><div class="element clickable constant  opSmallerEq" data-toggle="collapse" data-target=".opSmallerEq .collapse">
+<h2>opSmallerEq</h2>
+<pre>opSmallerEq </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opTrustMe" id="opTrustMe"> </a><div class="element clickable constant  opTrustMe" data-toggle="collapse" data-target=".opTrustMe .collapse">
+<h2>opTrustMe</h2>
+<pre>opTrustMe </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opTryMeElse" id="opTryMeElse"> </a><div class="element clickable constant  opTryMeElse" data-toggle="collapse" data-target=".opTryMeElse .collapse">
+<h2>opTryMeElse</h2>
+<pre>opTryMeElse </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opUnequal" id="opUnequal"> </a><div class="element clickable constant  opUnequal" data-toggle="collapse" data-target=".opUnequal .collapse">
+<h2>opUnequal</h2>
+<pre>opUnequal </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opUnifyList" id="opUnifyList"> </a><div class="element clickable constant  opUnifyList" data-toggle="collapse" data-target=".opUnifyList .collapse">
+<h2>opUnifyList</h2>
+<pre>opUnifyList </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opUnifyStruc" id="opUnifyStruc"> </a><div class="element clickable constant  opUnifyStruc" data-toggle="collapse" data-target=".opUnifyStruc .collapse">
+<h2>opUnifyStruc</h2>
+<pre>opUnifyStruc </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="opUnifyVariable" id="opUnifyVariable"> </a><div class="element clickable constant  opUnifyVariable" data-toggle="collapse" data-target=".opUnifyVariable .collapse">
+<h2>opUnifyVariable</h2>
+<pre>opUnifyVariable </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-08-06T09:08:21+02:00.<br></footer></div>
+</div>
+</body>
+</html>

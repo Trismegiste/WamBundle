@@ -1,0 +1,1601 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>phpDocumentor</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="css/template.css" rel="stylesheet" media="all">
+<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="js/bootstrap.js" type="text/javascript"></script><script src="js/template.js" type="text/javascript"></script><script src="js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="img/favicon.ico">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="index.html">phpDocumentor</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a>Namespaces</a></li>
+<li><a href="namespaces/Trismegiste.html"><i class="icon-th"></i> Trismegiste</a></li>
+</ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">237</span></a></li>
+<li><a href="markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul><li>todo 
+                <span class="label label-info">7</span>
+</li></ul></a></li>
+<li><a href="deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4"><ul class="side-nav nav nav-list">
+<li class="nav-header">Filter type</li>
+<li><div class="btn-group type-filter" data-toggle="buttons-checkbox">
+<button class="btn critical">Critical</button><button class="btn error">Error</button><button class="btn notice">Notice</button>
+</div></li>
+<li class="nav-header">Navigation</li>
+<li><a href="#console.php"><i class="icon-file"></i>console.php</a></li>
+<li><a href="#TrismegisteWamBundle.php"><i class="icon-file"></i>TrismegisteWamBundle.php</a></li>
+<li><a href="#Prolog/QueryCompiler.php"><i class="icon-file"></i>Prolog/QueryCompiler.php</a></li>
+<li><a href="#Prolog/WAM.php"><i class="icon-file"></i>Prolog/WAM.php</a></li>
+<li><a href="#Prolog/CompilerStructure.php"><i class="icon-file"></i>Prolog/CompilerStructure.php</a></li>
+<li><a href="#Prolog/Solution.php"><i class="icon-file"></i>Prolog/Solution.php</a></li>
+<li><a href="#Prolog/Compiler.php"><i class="icon-file"></i>Prolog/Compiler.php</a></li>
+<li><a href="#Prolog/WAMConsole.php"><i class="icon-file"></i>Prolog/WAMConsole.php</a></li>
+<li><a href="#Prolog/Program.php"><i class="icon-file"></i>Prolog/Program.php</a></li>
+<li><a href="#Prolog/PrologContext.php"><i class="icon-file"></i>Prolog/PrologContext.php</a></li>
+<li><a href="#Prolog/PrologCompiler.php"><i class="icon-file"></i>Prolog/PrologCompiler.php</a></li>
+<li><a href="#Prolog/OutputInterface.php"><i class="icon-file"></i>Prolog/OutputInterface.php</a></li>
+<li><a href="#Prolog/Inner/Trail.php"><i class="icon-file"></i>Prolog/Inner/Trail.php</a></li>
+<li><a href="#Prolog/Inner/ChoicePoint.php"><i class="icon-file"></i>Prolog/Inner/ChoicePoint.php</a></li>
+<li><a href="#Prolog/Inner/KeyValue.php"><i class="icon-file"></i>Prolog/Inner/KeyValue.php</a></li>
+<li><a href="#Prolog/Inner/Environment.php"><i class="icon-file"></i>Prolog/Inner/Environment.php</a></li>
+<li><a href="#Prolog/Inner/Variable.php"><i class="icon-file"></i>Prolog/Inner/Variable.php</a></li>
+<li><a href="#Prolog/CodeReader.php"><i class="icon-file"></i>Prolog/CodeReader.php</a></li>
+<li><a href="#Prolog/Statement.php"><i class="icon-file"></i>Prolog/Statement.php</a></li>
+<li><a href="#Prolog/WAMService.php"><i class="icon-file"></i>Prolog/WAMService.php</a></li>
+<li><a href="#Form/PrologConsole.php"><i class="icon-file"></i>Form/PrologConsole.php</a></li>
+<li><a href="#Controller/PrologGuiController.php"><i class="icon-file"></i>Controller/PrologGuiController.php</a></li>
+<li><a href="#Command/WAMCommand.php"><i class="icon-file"></i>Command/WAMCommand.php</a></li>
+</ul></div>
+<div class="span8">
+<ul class="breadcrumb">
+<li>
+<a href=""><i class="icon-remove-sign"></i></a><span class="divider">\</span>
+</li>
+<li>Compilation Errors</li>
+</ul>
+<div class="package-contents">
+<a name="console.php" id="console.php"></a><h3>
+<i class="icon-file"></i>console.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file console.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="TrismegisteWamBundle.php" id="TrismegisteWamBundle.php"></a><h3>
+<i class="icon-file"></i>TrismegisteWamBundle.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file TrismegisteWamBundle.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>8</td>
+<td>No DocBlock was found for \Trismegiste\WamBundle\TrismegisteWamBundle</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for method build()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/QueryCompiler.php" id="Prolog/QueryCompiler.php"></a><h3>
+<i class="icon-file"></i>Prolog/QueryCompiler.php<small style="float: right;padding-right: 10px;">4</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/QueryCompiler.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method query()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>No DocBlock was found for method compile()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/WAM.php" id="Prolog/WAM.php"></a><h3>
+<i class="icon-file"></i>Prolog/WAM.php<small style="float: right;padding-right: 10px;">61</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/WAM.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>75</td>
+<td>No DocBlock was found for property $debugOn</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>76</td>
+<td>No DocBlock was found for property $benchmarkOn</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No DocBlock was found for property $maxOpCount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for property $opCount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>78</td>
+<td>No DocBlock was found for property $backtrackCount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No DocBlock was found for property $p</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No DocBlock was found for property $trail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>81</td>
+<td>No DocBlock was found for property $failed</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>82</td>
+<td>No DocBlock was found for property $displayQValue</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>83</td>
+<td>No DocBlock was found for property $displayQCount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>85</td>
+<td>No DocBlock was found for property $queryVariables</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>86</td>
+<td>No DocBlock was found for property $programCounter</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>87</td>
+<td>No DocBlock was found for property $continuationPointer</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>88</td>
+<td>No DocBlock was found for property $choicePoint</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No DocBlock was found for property $cutPoint</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>90</td>
+<td>No DocBlock was found for property $env</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>No DocBlock was found for property $arguments</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>128</td>
+<td>Argument $s is missing from the Docblock of write()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>133</td>
+<td>Argument $s is missing from the Docblock of writeLn()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>178</td>
+<td>No DocBlock was found for method setInternalVariable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>199</td>
+<td>No DocBlock was found for method getInternalVariable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>216</td>
+<td>No DocBlock was found for method parseInt()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>224</td>
+<td>No DocBlock was found for method get_ref()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>244</td>
+<td>No DocBlock was found for method create_variable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>261</td>
+<td>No DocBlock was found for method comparison()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>308</td>
+<td>No DocBlock was found for method smaller()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>315</td>
+<td>No DocBlock was found for method smallereq()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>322</td>
+<td>No DocBlock was found for method biggereq()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>329</td>
+<td>No DocBlock was found for method bigger()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>336</td>
+<td>No DocBlock was found for method unequal()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>343</td>
+<td>No DocBlock was found for method is()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>404</td>
+<td>No DocBlock was found for method get_variable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>414</td>
+<td>No DocBlock was found for method get_value()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>421</td>
+<td>No DocBlock was found for method get_constant()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>442</td>
+<td>No DocBlock was found for method unify_variable2()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>478</td>
+<td>No DocBlock was found for method unify_list2()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>500</td>
+<td>No DocBlock was found for method unify_struc2()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>522</td>
+<td>No DocBlock was found for method unify_variable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>534</td>
+<td>No DocBlock was found for method unify_list()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>547</td>
+<td>No DocBlock was found for method unify_struc()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>560</td>
+<td>No DocBlock was found for method put_constant()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>570</td>
+<td>No DocBlock was found for method put_list()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>581</td>
+<td>No DocBlock was found for method put_value()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>591</td>
+<td>No DocBlock was found for method put_variable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>602</td>
+<td>No DocBlock was found for method try_me_else()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>616</td>
+<td>No DocBlock was found for method proceed()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>623</td>
+<td>No DocBlock was found for method is_bound()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>634</td>
+<td>No DocBlock was found for method allocate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>643</td>
+<td>No DocBlock was found for method deallocate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>652</td>
+<td>No DocBlock was found for method call()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>665</td>
+<td>No DocBlock was found for method cut()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>674</td>
+<td>No DocBlock was found for method get_level()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>686</td>
+<td>No DocBlock was found for method backtrack()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>824</td>
+<td>No DocBlock was found for method isAtom()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>834</td>
+<td>No DocBlock was found for method isInteger()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>845</td>
+<td>No DocBlock was found for method assert()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>860</td>
+<td>No DocBlock was found for method removeProgramLines()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>873</td>
+<td>No DocBlock was found for method retract()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>892</td>
+<td>No DocBlock was found for method retractall()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>908</td>
+<td>No DocBlock was found for method consult()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/CompilerStructure.php" id="Prolog/CompilerStructure.php"></a><h3>
+<i class="icon-file"></i>Prolog/CompilerStructure.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/CompilerStructure.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>46</td>
+<td>No DocBlock was found for property $type</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for property $head</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>48</td>
+<td>No DocBlock was found for property $tail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>49</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $aType is missing from the Docblock of __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>51</td>
+<td>Argument $aValue is missing from the Docblock of __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Solution.php" id="Prolog/Solution.php"></a><h3>
+<i class="icon-file"></i>Prolog/Solution.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Solution.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $succeed</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $variable</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $output</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $elapsedTime</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $opCount</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $backtrackCount</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Compiler.php" id="Prolog/Compiler.php"></a><h3>
+<i class="icon-file"></i>Prolog/Compiler.php<small style="float: right;padding-right: 10px;">30</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Compiler.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for property $owner</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for property $errorString</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>No DocBlock was found for property $varPrefix</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>25</td>
+<td>No DocBlock was found for property $substitutionList</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for property $lastVar</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>27</td>
+<td>No DocBlock was found for property $bodyCalls</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>No DocBlock was found for method isPredicate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for method isVariable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for method isConstant()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>73</td>
+<td>No DocBlock was found for method isNumber()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>80</td>
+<td>No DocBlock was found for method predicate()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>96</td>
+<td>No DocBlock was found for method constant()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>122</td>
+<td>No DocBlock was found for method variable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>138</td>
+<td>No DocBlock was found for method structure()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>161</td>
+<td>No DocBlock was found for method element()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>180</td>
+<td>No DocBlock was found for method isNextToken()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>191</td>
+<td>No DocBlock was found for method token()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>204</td>
+<td>No DocBlock was found for method atom()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>215</td>
+<td>No DocBlock was found for method expression()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>248</td>
+<td>No DocBlock was found for method condition()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>332</td>
+<td>No DocBlock was found for method body()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>356</td>
+<td>No DocBlock was found for method clause()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>383</td>
+<td>No DocBlock was found for method program()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>400</td>
+<td>No DocBlock was found for method head()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>422</td>
+<td>No DocBlock was found for method listx()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>451</td>
+<td>No DocBlock was found for method stringToList()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>493</td>
+<td>No DocBlock was found for method substituteVariable()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>509</td>
+<td>No DocBlock was found for method firstOccurrence()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>522</td>
+<td>No DocBlock was found for method structureToCode()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/WAMConsole.php" id="Prolog/WAMConsole.php"></a><h3>
+<i class="icon-file"></i>Prolog/WAMConsole.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/WAMConsole.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for method readLn()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>31</td>
+<td>No DocBlock was found for method write()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method writeLn()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>43</td>
+<td>No DocBlock was found for method showHelp()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>67</td>
+<td>No DocBlock was found for method runQuery()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>194</td>
+<td>No DocBlock was found for method main()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Program.php" id="Prolog/Program.php"></a><h3>
+<i class="icon-file"></i>Prolog/Program.php<small style="float: right;padding-right: 10px;">17</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Program.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>34</td>
+<td>No DocBlock was found for property $statements</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>35</td>
+<td>No DocBlock was found for property $labels</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>36</td>
+<td>No DocBlock was found for property $owner</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>38</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>44</td>
+<td>No DocBlock was found for method addProgram()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>67</td>
+<td>No DocBlock was found for method addStatement()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for method addStatementAtPosition()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>79</td>
+<td>No DocBlock was found for method getStatementCount()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>84</td>
+<td>No DocBlock was found for method getStatement()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>89</td>
+<td>No DocBlock was found for method deleteFromLine()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>107</td>
+<td>No DocBlock was found for method deleteFrom()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>112</td>
+<td>No DocBlock was found for method getLastClauseOf()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>129</td>
+<td>No DocBlock was found for method getLastClauseButOneOf()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>149</td>
+<td>No DocBlock was found for method addClause()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>180</td>
+<td>No DocBlock was found for method getLabelIndex()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>244</td>
+<td>No DocBlock was found for method __toString()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/PrologContext.php" id="Prolog/PrologContext.php"></a><h3>
+<i class="icon-file"></i>Prolog/PrologContext.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/PrologContext.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>24</td>
+<td>Argument $v is missing from the Docblock of retract()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>29</td>
+<td>Argument $s is missing from the Docblock of assertClause()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>Argument $filename is missing from the Docblock of loadWam()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>45</td>
+<td>Argument $filename is missing from the Docblock of loadProlog()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/PrologCompiler.php" id="Prolog/PrologCompiler.php"></a><h3>
+<i class="icon-file"></i>Prolog/PrologCompiler.php<small style="float: right;padding-right: 10px;">8</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/PrologCompiler.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method compile()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>Argument $programCode is missing from the Docblock of compileSimpleClause()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>72</td>
+<td>No DocBlock was found for method compileFile()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>95</td>
+<td>No DocBlock was found for method getProcedureCount()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>103</td>
+<td>No DocBlock was found for method setProcedureCount()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>108</td>
+<td>No DocBlock was found for method updateNames()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/OutputInterface.php" id="Prolog/OutputInterface.php"></a><h3>
+<i class="icon-file"></i>Prolog/OutputInterface.php<small style="float: right;padding-right: 10px;">1</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody><tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/OutputInterface.php</td>
+</tr></tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Inner/Trail.php" id="Prolog/Inner/Trail.php"></a><h3>
+<i class="icon-file"></i>Prolog/Inner/Trail.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Inner/Trail.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $contents</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $machine</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>23</td>
+<td>No DocBlock was found for method getLength()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>28</td>
+<td>No DocBlock was found for method setLength()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>37</td>
+<td>No DocBlock was found for method addEntry()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>42</td>
+<td>No DocBlock was found for method getEntry()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for method undo()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Inner/ChoicePoint.php" id="Prolog/Inner/ChoicePoint.php"></a><h3>
+<i class="icon-file"></i>Prolog/Inner/ChoicePoint.php<small style="float: right;padding-right: 10px;">9</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Inner/ChoicePoint.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $arguments</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $lastEnviron</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $returnAddress</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $lastCP</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $cutPoint</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $nextClause</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $trailPointer</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>22</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Inner/KeyValue.php" id="Prolog/Inner/KeyValue.php"></a><h3>
+<i class="icon-file"></i>Prolog/Inner/KeyValue.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Inner/KeyValue.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $key</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $stringValue</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $intValue</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Inner/Environment.php" id="Prolog/Inner/Environment.php"></a><h3>
+<i class="icon-file"></i>Prolog/Inner/Environment.php<small style="float: right;padding-right: 10px;">5</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Inner/Environment.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>11</td>
+<td>No DocBlock was found for property $variables</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>12</td>
+<td>No DocBlock was found for property $lastEnviron</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $returnAddress</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Inner/Variable.php" id="Prolog/Inner/Variable.php"></a><h3>
+<i class="icon-file"></i>Prolog/Inner/Variable.php<small style="float: right;padding-right: 10px;">18</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Inner/Variable.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for property $tag</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for property $value</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No DocBlock was found for property $reference</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>16</td>
+<td>No DocBlock was found for property $name</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $head</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>17</td>
+<td>No DocBlock was found for property $tail</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>18</td>
+<td>No DocBlock was found for property $cutLevel</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>20</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>40</td>
+<td>No DocBlock was found for method constructVariable1()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>47</td>
+<td>No DocBlock was found for method constructVariable2()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>55</td>
+<td>No DocBlock was found for method constructVariable3()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>63</td>
+<td>No DocBlock was found for method constructVariable4()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>71</td>
+<td>No DocBlock was found for method constructVariable5()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>77</td>
+<td>No DocBlock was found for method copyFrom()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>91</td>
+<td>No DocBlock was found for method deref()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>104</td>
+<td>No DocBlock was found for method __toString()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>126</td>
+<td>No DocBlock was found for method toString2()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/CodeReader.php" id="Prolog/CodeReader.php"></a><h3>
+<i class="icon-file"></i>Prolog/CodeReader.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/CodeReader.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No short description for method readProgram()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>Argument $fileName is missing from the Docblock of readProgram()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/Statement.php" id="Prolog/Statement.php"></a><h3>
+<i class="icon-file"></i>Prolog/Statement.php<small style="float: right;padding-right: 10px;">22</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/Statement.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>65</td>
+<td>No DocBlock was found for property $label</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>66</td>
+<td>No DocBlock was found for property $fonction</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>67</td>
+<td>No DocBlock was found for property $args</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>68</td>
+<td>No DocBlock was found for property $operator</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>69</td>
+<td>No DocBlock was found for property $jump</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No DocBlock was found for property $arg1</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No DocBlock was found for property $arg2</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>70</td>
+<td>No DocBlock was found for property $arg3</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>74</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>90</td>
+<td>No DocBlock was found for method doCommonStuff()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>99</td>
+<td>No DocBlock was found for method functionToInt()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>136</td>
+<td>No DocBlock was found for method getLabel()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>142</td>
+<td>No DocBlock was found for method setLabel()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>148</td>
+<td>No DocBlock was found for method getFunction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>153</td>
+<td>No DocBlock was found for method setFunction()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>170</td>
+<td>No DocBlock was found for method getArgAt()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>175</td>
+<td>No DocBlock was found for method dumpWamCode()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>196</td>
+<td>No DocBlock was found for method __toString()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>209</td>
+<td>No DocBlock was found for method toString2()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>218</td>
+<td>No DocBlock was found for method setJump()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>224</td>
+<td>No DocBlock was found for method getJump()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Prolog/WAMService.php" id="Prolog/WAMService.php"></a><h3>
+<i class="icon-file"></i>Prolog/WAMService.php<small style="float: right;padding-right: 10px;">7</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Prolog/WAMService.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>14</td>
+<td>No DocBlock was found for method __construct()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for property $stringBuffer</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>21</td>
+<td>No DocBlock was found for method readLn()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>26</td>
+<td>No DocBlock was found for method write()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>32</td>
+<td>No DocBlock was found for method writeLn()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>54</td>
+<td>No DocBlock was found for method runQuery()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Form/PrologConsole.php" id="Form/PrologConsole.php"></a><h3>
+<i class="icon-file"></i>Form/PrologConsole.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Form/PrologConsole.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>13</td>
+<td>No DocBlock was found for method buildForm()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method getName()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Controller/PrologGuiController.php" id="Controller/PrologGuiController.php"></a><h3>
+<i class="icon-file"></i>Controller/PrologGuiController.php<small style="float: right;padding-right: 10px;">2</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Controller/PrologGuiController.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>15</td>
+<td>No short description for method runAction()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<div class="package-contents">
+<a name="Command/WAMCommand.php" id="Command/WAMCommand.php"></a><h3>
+<i class="icon-file"></i>Command/WAMCommand.php<small style="float: right;padding-right: 10px;">3</small>
+</h3>
+<div><table class="table markers table-bordered">
+<thead><tr>
+<th>Type</th>
+<th>Line</th>
+<th>Description</th>
+</tr></thead>
+<tbody>
+<tr class="error">
+<td>error</td>
+<td>0</td>
+<td>No page-level DocBlock was found in file Command/WAMCommand.php</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>19</td>
+<td>No DocBlock was found for method configure()</td>
+</tr>
+<tr class="error">
+<td>error</td>
+<td>30</td>
+<td>No DocBlock was found for method execute()</td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a8</a> and<br>
+            generated on 2012-08-06T09:08:21+02:00.<br></footer></div>
+</div>
+</body>
+</html>
