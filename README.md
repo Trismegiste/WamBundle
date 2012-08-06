@@ -3,8 +3,9 @@
 [![Build Status](https://secure.travis-ci.org/Trismegiste/WamBundle.png?branch=master)](http://travis-ci.org/Trismegiste/WamBundle)
 
 ## A Warren's Abstract Machine for Symfony2.1
-Original java version by Stefan Büttcher.
+Original java version by Stefan Büttcher.<br/>
 PHP port, PhpUnit tests and bundle for Symfony2.1 by Florent Genette.
+
 Version 1.0 beta
 
 ## What ?
@@ -42,10 +43,10 @@ Prolog has a very limited scope but sometimes it can simplify some problem like 
  * You need a big bunch of Chain of Responsability which changes every week
  * You face a logic problem with non deterministic path
 
-## Is there a releaase for ZF/CodeIgniter/FatFreeFramework instead of Symfony 2.1 ?
+## Is there a release for ZF/CodeIgniter/FatFreeFramework ?
 Yes U can: this library can be included in whatever you want.
-For example : the console can be run as far as you have PHP 5.3.8. 
-PhpUnit and TravisCI don't need any framework to be ran.
+For example : the console can be run as far as you have PHP 5.3.8.
+PhpUnit and TravisCI don't need any framework to be run.
 
 But for convinience, there is also service for symfony 2.1 because it is the
 most advanced framework for PHP today 
@@ -79,15 +80,19 @@ internals has improved.
 ## Some notes about perfs
 Yes, this WAM is slow compared to SWI-Prolog. If you need a lot of recursions
 or a big set of datas, I don't think this piece of software is for you.
+
 As I wrote, this is for specific problems where the imperative programming paradigm
 is irrelevant. This is not the only paradigm : Think declarative programming !
 And if you like this and want to go further, look at the Clojure language.
 
 ## I want to fork, can I ?
 Yes you can ! But don't forget to test new features or changes !
+
 Today, this library has 421 assertions, it took me a lot of time but it
 was mandatory before refactoring this to make it as a modern PHP bundle for
-Symfony2. There is still a lot to do : a CLI compiler, a better (abstract) filesystem,
+Symfony2. 
+
+There is still a lot to do : a CLI compiler, a better (abstract) filesystem,
 updating the metalogic clause known as 'retract', adding features like 'bagof' and
 'findall' but don't forget the tests and documentations because I'll never merge
 a PR for new features if it's not tested and commented.
