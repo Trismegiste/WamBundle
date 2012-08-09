@@ -9,10 +9,9 @@ PHP port, PhpUnit tests and bundle for Symfony2.1 by Florent Genette.
 Version 1.0 beta
 
 ## What ?
-A Warren Abstract Machine (WAM) is a virtual machine for Prolog (like a JVM for Java).
-Today, this thing would be called a "PVM" (Prolog Virtual Machine) but at
-the Old Ages, when one programmer can change the face of the (computer) world,
-it was named by its maker.
+A Warren Abstract Machine (WAM) is a virtual machine (like a JVM for Java) for
+Prolog. This library is intended to run on PHP 5.3 and preferably on Symfony 2.1.
+Prolog is a logic language which solve problems with an inference engine.
 
 
 David Warren wrote in "WAM - A tutorial reconstruction" :
@@ -49,7 +48,7 @@ For example : the console can be run as far as you have PHP 5.3.8.
 PhpUnit and TravisCI don't need any framework to be run.
 
 But for convinience, there is also service for symfony 2.1 because it is the
-most advanced framework for PHP today 
+most advanced framework for PHP today
 (I mean with features like namespace, ORM, DDD, DI, AOP to name a few )
 
 ## Can I haZ example ?
@@ -63,7 +62,8 @@ eight queen problem and hanoi problem.
 Well, first thing it is a matter of taste. Even with 3 hundreds years, JS Bach
 is still the best musician in the Multiverse. Second, I am not saying Prolog
 can solve anything, no. I think there is one language one can use for one
-specific coding problem.
+specific coding problem. As you know : "one language is not enough".
+See http://memeagora.blogspot.fr/2006/12/polyglot-programming.html
 
 I also think, like any other language, we, programmers, have some responsability
 to keep this knowledge alive, and today the best way is to port this WAM to PHP.
@@ -90,7 +90,7 @@ Yes you can ! But don't forget to test new features or changes !
 
 Today, this library has 421 assertions, it took me a lot of time but it
 was mandatory before refactoring this to make it as a modern PHP bundle for
-Symfony2. 
+Symfony2.
 
 There is still a lot to do : a CLI compiler, a better (abstract) filesystem,
 updating the metalogic clause known as 'retract', adding features like 'bagof' and
@@ -98,7 +98,7 @@ updating the metalogic clause known as 'retract', adding features like 'bagof' a
 a PR for new features if it's not tested and commented.
 
 ## I found a bug, what can I do ?
- * Fork it with Github ! 
+ * Fork it with Github !
  * Write a new test in the class IFoundABugTest to show the bug
  * Make a Pull Request for the faulty test
  * I merge the new test

@@ -10,7 +10,8 @@
     }
     ],
     "require": {
-
+        "php": ">=5.3.8",
+        "symfony/symfony": "dev-master"
     },
     "autoload": {
         "psr-0": {
