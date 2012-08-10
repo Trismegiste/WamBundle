@@ -109,6 +109,17 @@ I like TDD for debugging. Sometimes it's annoying but it is always
 for the best, specially accross the net. With the help of TravisCI, tracking bugs
 is a piece of cake.
 
+## Licence
+This work is provided with the Creative Commons Attribution Share Alike 3.0 Licence.
+It means you must keep my name and must provide any derivative works with this licence.
+You can make money with this as long as you follow these rules. In other words :
+
+<blockquote>licence(wam_bundle, cc_by_sa_3).
+derivate_work_from(your_work, wam_bundle).
+licence(X, L) :- derivate_work_from(X, Y), licence(Y, L).
+price(wam_bundle, 0).
+price(your_work, _).</blockquote>
+
 ## Special thanks
  * Johann Sebastian Bach
  * William Gibson
