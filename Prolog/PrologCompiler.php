@@ -72,15 +72,15 @@ class PrologCompiler extends Compiler
     public function compileFile($fileName)
     {
         $code = "";
-        //String dummy;
         try {
             $ms = microtime(true);
             $atAll = $ms;
             // reading file in java is much different from php
             $r = file($fileName, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($r as $dummy) {
-                if ($dummy == "#")
-                    break;
+                // if the first char of this line is '%' then it is a comment and we skip it
+                if ($dummy[0] == "%")
+                    continue;
                 $code .= " " . $dummy;
             }
             $this->owner->debug("File Operations: " . (microtime(true) - $ms) . " ms.", -1);
