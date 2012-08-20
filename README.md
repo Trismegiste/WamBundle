@@ -85,6 +85,12 @@ As I wrote, this is for specific problems where the imperative programming parad
 is irrelevant. This is not the only paradigm : Think declarative programming !
 And if you like this and want to go further, look at the Clojure language.
 
+## Running test
+To run all tests. I have splitted the test suite into two groups to extract lengthy stress tests.
+``` bash
+phpunit
+```
+
 ## I want to fork, can I ?
 Yes you can ! But don't forget to test new features or changes !
 
@@ -110,6 +116,8 @@ for the best, specially accross the net. With the help of TravisCI, tracking bug
 is a piece of cake.
 
 ## Licence
+![cc-by-sa](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)
+
 This work is provided with the Creative Commons Attribution Share Alike 3.0 Licence.
 It means you must keep my name and must provide any derivative works with this licence.
 You can make money with this as long as you follow these rules. In other words :
@@ -119,6 +127,9 @@ You can make money with this as long as you follow these rules. In other words :
     licence(X, L) :- derivate_work_from(X, Y), licence(Y, L).
     price(wam_bundle, 0).
     price(your_work, _).
+
+## Contributors
+ * Lead : [Trismegiste](https://github.com/Trismegiste)
 
 ## Special thanks
  * Johann Sebastian Bach
