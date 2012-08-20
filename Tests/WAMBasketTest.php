@@ -86,4 +86,12 @@ class WAMBasketTest extends WAM_TestCase
         $this->checkOneValueSuccess($solve, 'X', 1750 / 30, false);
     }
 
+    public function testCommentSkipped()
+    {
+        $compiler = new PrologCompiler(new WAMService());
+        $prog = $compiler->compileFile(FIXTURES_DIR . "basket.pro");
+        $this->assertNotNull($prog);
+        // @todo I can't further test the preprocessing because it is not decoupled from compiling : need to refactor
+    }
+
 }

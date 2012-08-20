@@ -88,7 +88,7 @@ And if you like this and want to go further, look at the Clojure language.
 ## I want to fork, can I ?
 Yes you can ! But don't forget to test new features or changes !
 
-Today, this library has 421 assertions, it took me a lot of time but it
+Today, this library has 422 assertions, it took me a lot of time but it
 was mandatory before refactoring this to make it as a modern PHP bundle for
 Symfony2.
 

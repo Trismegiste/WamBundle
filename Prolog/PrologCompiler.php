@@ -69,6 +69,12 @@ class PrologCompiler extends Compiler
             return null;
     }
 
+    /**
+     * Read and compile a prolog file
+     *
+     * @param type $fileName
+     * @return null
+     */
     public function compileFile($fileName)
     {
         $code = "";
