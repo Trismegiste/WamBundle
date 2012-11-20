@@ -2,16 +2,18 @@
     "name": "trismegiste/prolog",
     "description": "Warren Abstract Machine for symfony2.1",
     "type": "symfony-bundle",
-    "keywords": ["inference", "engine", "prolog", "symfony2.1"],
+    "keywords": ["inference", "engine", "prolog", "symfony2"],
     "authors": [
     {
         "name": "Trismegiste",
         "email": "florent.g@allopneus.com"
     }
     ],
-    "require": {
-        "php": ">=5.3.8",
-        "symfony/symfony": "dev-master"
+   "require": {
+        "php": ">=5.3.8"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.1,<2.2-dev"
     },
     "autoload": {
         "psr-0": {
