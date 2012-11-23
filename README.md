@@ -57,8 +57,8 @@ based on the content of a cart. For functional tests, I have also added many
 programs like list operations (see 'append', it is very fun), family trees,
 eight queen problem and hanoi problem.
 
-## Why port a nearly-forty-year language in PHP ?
-### (from a ten-year release in Java  ?)
+## Why port a forty-year-old language in PHP ?
+### (from a ten-year-old release in Java  ?)
 Well, first thing it is a matter of taste. Even with 3 hundreds years, JS Bach
 is still the best musician in the Multiverse. Second, I am not saying Prolog
 can solve anything, no. I think there is one language one can use for one
