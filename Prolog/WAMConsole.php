@@ -22,7 +22,7 @@ class WAMConsole extends WAM
             $line = fgets($handle);
 
             return trim($line);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
 
             return "";
         }

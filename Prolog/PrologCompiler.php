@@ -92,7 +92,7 @@ class PrologCompiler extends Compiler
             $this->owner->debug("File Operations: " . (microtime(true) - $ms) . " ms.", -1);
             $p = $this->compile($code);
             return $p;
-        } catch (Exception $io) {
+        } catch (\Exception $io) {
             $this->owner->writeLn("File \" $fileName \" could not be opened.");
             return null;
         }

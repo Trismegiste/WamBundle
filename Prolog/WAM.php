@@ -190,7 +190,7 @@ abstract class WAM extends PrologContext
                     break;
             }
             $this->getInternalVariable($variable);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->writeLn("An error occurred. Illegal query.");
         }
     }
@@ -216,7 +216,7 @@ abstract class WAM extends PrologContext
     protected function parseInt($number)
     {
         if (!is_numeric($number))
-            throw new Exception('NumberFormatException');
+            throw new \InvalidArgumentException('NumberFormatException');
         return (int) $number;
     }
 
@@ -394,7 +394,7 @@ abstract class WAM extends PrologContext
             // only when alle stricke reissen: backtrack!
             else
                 $this->backtrack();
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->backtrack();
         }
     }
@@ -836,7 +836,7 @@ abstract class WAM extends PrologContext
         try {
             $this->parseInt($stuff);
             $this->programCounter++;
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             $this->backtrack();
         }
     }

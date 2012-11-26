@@ -168,7 +168,7 @@ class Program
                 $s->setJump(count($this->statements));
                 // update labels and program itself
                 $this->addProgram($code);
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 // TODO maybe do something ?
             }
         } else {  // first label of that kind: just add to code and update jumpings

@@ -67,7 +67,7 @@ class CodeReader
             fclose($b);
             $p->updateLabels();
             return $p;
-        } catch (Exception $io) {
+        } catch (\Exception $io) {
             return null;
         }
     }

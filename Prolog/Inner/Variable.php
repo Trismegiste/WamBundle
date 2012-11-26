@@ -32,7 +32,7 @@ class Variable
                 $this->constructVariable3($param1, $param2);
             }
         } else {
-            throw new InvalidArgumentException("Construct Variable dies");
+            throw new \InvalidArgumentException("Construct Variable dies");
         }
     }
 
