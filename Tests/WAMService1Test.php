@@ -80,4 +80,13 @@ class WAMService1Test extends WAM_TestCase
         $this->assertFalse($solve[2]->succeed);
     }
 
+    /**
+     * @depends testFixtures1
+     */
+    public function testPredicateArg(WAMService $wam)
+    {
+        $solve = $wam->runQuery("equal(molecule(carbon, oxygen), molecule(carbon, X)).");
+        $this->checkOneValueSuccess($solve, 'X', 'oxygen', false);
+    }
+
 }

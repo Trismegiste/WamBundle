@@ -4,8 +4,8 @@ I have to cut it down to maintain readability and performance.
 
 You can pass predicate as parameter, example :
 ```prolog
-not(X) :- call(X), !, fail.
-not(X).
+equal(X, X).
+equal(molecule(carbon, oxygen), molecule(carbon, X)).
 ```
 
 There also are some metalogic like :
