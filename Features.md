@@ -2,18 +2,25 @@
 
 I have to cut it down to maintain readability and performance.
 
+## Parameter as predicate
+
 You can pass predicate as parameter, example :
 ```prolog
 equal(X, X).
 equal(molecule(carbon, oxygen), molecule(carbon, X)).
 ```
 
-There also are some metalogic like :
+## Metalogic
+
+There are some metalogic like :
 
 * call
+* cut a.k.a "!"
 * assert
 * retract (limited on last predicate)
 * write/read
+
+## Missing features
 
 There are no no findall or bagof or other shiny metalogic. Mainly for two reasons :
 
