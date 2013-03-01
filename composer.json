@@ -21,6 +21,6 @@
         }
     },
     "target-dir": "Trismegiste/WamBundle",
-    "licence": "CC-BY-SA-3.0",
-    "version": "1.0.0-beta2"
+    "license": "CC-BY-SA-3.0",
+    "version": "1.0.0"
 }
