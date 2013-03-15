@@ -4,9 +4,12 @@ define('FIXTURES_DIR', __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SE
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'WAM_TestCase.php';
 
-spl_autoload_register(function ($class) {
-            if (preg_match('#^Trismegiste\\\\WamBundle\\\\(.+)$#', $class, $ret)) {
-                $relPath = str_replace('\\', DIRECTORY_SEPARATOR, $ret[1]);
-                require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . $relPath . '.php';
-            }
-        });
+/*
+ * bootstrapping the test suite with composer
+ */
+
+if (!$loader = @include __DIR__.'/../vendor/autoload.php') {
+    die('You must set up the project dependencies, run the following commands:'.PHP_EOL.
+        'curl -s http://getcomposer.org/installer | php'.PHP_EOL.
+        'php composer.phar install'.PHP_EOL);
+}
