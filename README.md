@@ -2,15 +2,15 @@
 
 [![Build Status](https://secure.travis-ci.org/Trismegiste/WamBundle.png?branch=master)](http://travis-ci.org/Trismegiste/WamBundle)
 
-## A Warren's Abstract Machine for Symfony2.1
+## A Warren's Abstract Machine for Symfony2.3
 Original java version by Stefan Büttcher.<br/>
-PHP port, PhpUnit tests and bundle for Symfony2.1 by Florent Genette.
+PHP port, PhpUnit tests and bundle for Symfony2.3 by Florent Genette.
 
-Version 1.0 beta
+Version 1.3
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine (like a JVM for Java) for
-Prolog. This library is intended to run on PHP 5.3 and preferably on Symfony 2.1.
+Prolog. This library is intended to run on PHP 5.3 and preferably on Symfony 2.3.
 Prolog is a logic language which solve problems with an inference engine.
 
 
@@ -47,7 +47,7 @@ Yes U can: this library can be included in whatever you want.
 For example : the console can be run as far as you have PHP 5.3.8.
 PhpUnit and TravisCI don't need any framework to be run.
 
-But for convinience, there is also service for symfony 2.1 because it is the
+But for convinience, there is also service for symfony 2.3 because it is the
 most advanced framework for PHP today
 (I mean with features like namespace, ORM, DDD, DI, AOP to name a few )
 
