@@ -24,6 +24,14 @@ class GuiControllerTest extends WebTestCase
         $client = self::createClient();
 
         $crawler = $client->request('GET', '/gui');
+        $form = $crawler->selectButton('Query')->form();
+
+        $client->submit($form, array(
+            'prolog_gui[program]' => 'father(anakin, luke).',
+            'prolog_gui[query]' => 'father(X, luke).'
+        ));
+
+        $this->assertRegExp('#X = anakin#', $client->getResponse()->getContent());
     }
 
 }
