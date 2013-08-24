@@ -1,0 +1,15 @@
+framework:
+    secret:          $ecret
+    router:
+        resource: "%kernel.root_dir%/routing_test.yml"
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    fragments:       ~
+    test: ~
+    session:
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false

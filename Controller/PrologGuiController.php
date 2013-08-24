@@ -4,7 +4,6 @@ namespace Trismegiste\WamBundle\Controller;
 
 use Trismegiste\WamBundle\Prolog;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
  * Description of PrologGuiController
@@ -12,9 +11,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class PrologGuiController extends Controller
 {
 
-    /**
-     * @Template()
-     */
     public function runAction()
     {
         $form = $this->createForm(new \Trismegiste\WamBundle\Form\PrologConsole());
@@ -34,7 +30,7 @@ class PrologGuiController extends Controller
             }
         }
 
-        return array('form' => $form->createView(), 'output' => $result);
+        return $this->render('TrismegisteWamBundle:PrologGui:run.html.twig', array('form' => $form->createView(), 'output' => $result));
     }
 
 }

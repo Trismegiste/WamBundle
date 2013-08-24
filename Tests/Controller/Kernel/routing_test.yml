@@ -1,0 +1,3 @@
+_wam:
+    pattern:   /gui
+    defaults:  { _controller: TrismegisteWamBundle:PrologGui:run }
