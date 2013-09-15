@@ -11,11 +11,11 @@ class Solution implements OutputInterface
 {
 
     public $succeed = false;
-    public $variable = array();
     protected $output = array('');
     public $elapsedTime = 0;
     public $opCount = 0;
     public $backtrackCount = 0;
+    protected $queryVariable = array();
 
     /**
      * Close a line and start a new one
@@ -34,6 +34,16 @@ class Solution implements OutputInterface
     public function write($str)
     {
         $this->output[count($this->output) - 1] .= $str;
+    }
+
+    public function setQueryVar($name, $value)
+    {
+        $this->queryVariable[$name] = $value;
+    }
+
+    public function getQueryVars()
+    {
+        return new \ArrayIterator($this->queryVariable);
     }
 
 }

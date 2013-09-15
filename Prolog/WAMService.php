@@ -104,8 +104,8 @@ class WAMService extends WAM
                     for ($i = 0; $i < 100; $i++)  // yes, we do not allow more than 100 query variables!
                         if ($this->displayQValue[$i]) {
                             $key = $this->queryVariables[$i]->name;
-                            $value = $this->queryVariables[$i]->__toString();
-                            $result->variable[$key] = $value;
+                            $value = $this->queryVariables[$i];
+                            $result->setQueryVar($key, $value->toArrayValue());
                             $cnt++;  // if Q[i] is to be displayed, just do that
                             $this->write($key . " = " . $value);
                             if ($cnt < $this->displayQCount)

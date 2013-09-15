@@ -31,7 +31,7 @@ class WAMBasketTest extends WAM_TestCase
         $this->assertCount(3, $solve);
         foreach (array('tyre', 'keychain') as $k => $name) {
             $this->assertTrue($solve[$k]->succeed);
-            $this->assertEquals($name, $solve[$k]->variable['X']);
+            $this->assertEquals($name, $solve[$k]->getQueryVars()['X']);
         }
         $this->assertFalse($solve[2]->succeed);
     }
@@ -54,7 +54,7 @@ class WAMBasketTest extends WAM_TestCase
         $this->assertCount(3, $solve);
         foreach (array('lightsaber', 'life') as $k => $name) {
             $this->assertTrue($solve[$k]->succeed);
-            $this->assertEquals($name, $solve[$k]->variable['X']);
+            $this->assertEquals($name, $solve[$k]->getQueryVars()['X']);
         }
         $this->assertFalse($solve[2]->succeed);
     }

@@ -3,6 +3,7 @@
 namespace Trismegiste\WamBundle\Prolog\Inner;
 
 use Trismegiste\WamBundle\Prolog\WAM;
+use Trismegiste\WamBundle\Prolog\Solution;
 
 /**
  * This class is an Y(n) in the W.A.M
@@ -103,35 +104,54 @@ class Variable
     // returns a string in the form NAME = VALUE, representing the variable's value
     public function __toString()
     {
-        if (($this->tag == WAM::REF) && ($this->reference === $this))
-            return "_"; // "(unbound variable)";
-        if ($this->tag == WAM::CON) {
-//        if (value.indexOf(' ') < 0) {
-            if ((strlen($this->value) > 2) && (strpos($this->value, ".0") === (strlen($this->value) - 2)))
-                return substr($this->value, 0, strlen($this->value) - 2);
-            else
-                return $this->value;
-        }
-        if ($this->tag == WAM::LIS)
-            return "[" . $this->toString2() . "]";
-        if ($this->tag == WAM::STR) {
-            $result = $this->head->__toString() . "(" . $this->tail->toString2() . ")";
-            return $result;
-        }
-        if ($this->tag == WAM::REF)
-            return $this->deref()->__toString();
-        return "";
+        return (string) $this->toArrayValue();
     }
 
-    public function toString2()
+    /**
+     * Returns a value string or object, representing the variable's value
+     * 
+     * @return string|\Trismegiste\WamBundle\Prolog\Solution\Lis|\Trismegiste\WamBundle\Prolog\Solution\Str
+     */
+    public function toArrayValue()
+    {
+        switch ($this->tag) {
+            case WAM::REF:
+                if ($this->reference === $this) {
+                    return '_';
+                }
+                return $this->deref()->toArrayValue();
+                break;
+
+            case WAM::CON:
+                if ((strlen($this->value) > 2) && (strpos($this->value, ".0") === (strlen($this->value) - 2)))
+                    return substr($this->value, 0, strlen($this->value) - 2);
+                else
+                    return $this->value;
+                break;
+
+            case WAM::LIS:
+                $result = new Solution\Lis();
+                $this->pushTail($result);
+                return $result;
+                break;
+
+            case WAM::STR:
+                $result = new Solution\Str($this->head->toArrayValue());
+                $this->tail->pushTail($result);
+                return $result;
+                break;
+
+            default : return "";
+        }
+    }
+
+    public function pushTail(\ArrayAccess $lst)
     {
         if ($this->tag == WAM::LIS) {
-            $result = $this->head->__toString();
+            $lst[] = $this->head->toArrayValue();
             if (($this->tail !== null) && ($this->tail->tag != WAM::CON))
-                $result .= ", " . $this->tail->toString2();
-            return $result;
+                $this->tail->pushTail($lst);
         }
-        return "";
     }
 
 }

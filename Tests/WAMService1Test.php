@@ -48,9 +48,9 @@ class WAMService1Test extends WAM_TestCase
         $solve = $wam->runQuery("grandmother(X, luke).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
-        $this->assertEquals('ruwee', $solve[0]->variable['X']);
+        $this->assertEquals('ruwee', $solve[0]->getQueryVars()['X']);
         $this->assertTrue($solve[1]->succeed);
-        $this->assertEquals('shmi', $solve[1]->variable['X']);
+        $this->assertEquals('shmi', $solve[1]->getQueryVars()['X']);
         $this->assertFalse($solve[2]->succeed);
     }
 
@@ -62,9 +62,9 @@ class WAMService1Test extends WAM_TestCase
         $solve = $wam->runQuery("grandmother(shmi, X).");
         $this->assertCount(3, $solve);
         $this->assertTrue($solve[0]->succeed);
-        $this->assertEquals('luke', $solve[0]->variable['X']);
+        $this->assertEquals('luke', $solve[0]->getQueryVars()['X']);
         $this->assertTrue($solve[1]->succeed);
-        $this->assertEquals('leia', $solve[1]->variable['X']);
+        $this->assertEquals('leia', $solve[1]->getQueryVars()['X']);
         $this->assertFalse($solve[2]->succeed);
     }
 

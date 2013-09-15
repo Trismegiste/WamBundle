@@ -107,7 +107,7 @@ class WAMMetalogicTest extends WAM_TestCase
         $this->assertCount(2, $solve);
         foreach (array('c3po', 'ig88') as $k => $name) {
             $this->assertTrue($solve[$k]->succeed);
-            $this->assertEquals($name, $solve[$k]->variable['X']);
+            $this->assertEquals($name, $solve[$k]->getQueryVars()['X']);
         }
     }
 
