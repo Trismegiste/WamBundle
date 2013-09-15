@@ -3,6 +3,7 @@
 namespace Trismegiste\WamBundle\Prolog\Inner;
 
 use Trismegiste\WamBundle\Prolog\WAM;
+use Trismegiste\WamBundle\Prolog\Solution;
 
 /**
  * This class is an Y(n) in the W.A.M
@@ -132,6 +133,48 @@ class Variable
             return $result;
         }
         return "";
+    }
+
+    // returns a string in the form NAME = VALUE, representing the variable's value
+    public function toArrayValue()
+    {
+        switch ($this->tag) {
+            case WAM::REF:
+                if ($this->reference === $this) {
+                    return '_';
+                }
+                return $this->deref()->toArrayValue();
+                break;
+
+            case WAM::CON:
+                if ((strlen($this->value) > 2) && (strpos($this->value, ".0") === (strlen($this->value) - 2)))
+                    return substr($this->value, 0, strlen($this->value) - 2);
+                else
+                    return $this->value;
+                break;
+
+            case WAM::LIS:
+                $result = new Solution\Lis();
+                $this->pushTail($result);
+                return $result;
+                break;
+
+            case WAM::STR:
+                $result = new Solution\Str($this->head->toArrayalue());
+                $this->tail->pushTail($result);
+                return $result;
+                break;
+            default : return "";
+        }
+    }
+
+    public function pushTail(\ArrayAccess $lst)
+    {
+        if ($this->tag == WAM::LIS) {
+            $lst[] = $this->head->toArrayValue();
+            if (($this->tail !== null) && ($this->tail->tag != WAM::CON))
+                $this->tail->pushTail($lst);
+        }
     }
 
 }
