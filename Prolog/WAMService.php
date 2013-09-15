@@ -105,7 +105,6 @@ class WAMService extends WAM
                         if ($this->displayQValue[$i]) {
                             $key = $this->queryVariables[$i]->name;
                             $value = $this->queryVariables[$i];
-                            $result->variable[$key] = $value->__toString();
                             $result->setQueryVar($key, $value->toArrayValue());
                             $cnt++;  // if Q[i] is to be displayed, just do that
                             $this->write($key . " = " . $value);

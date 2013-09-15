@@ -160,7 +160,7 @@ class Variable
                 break;
 
             case WAM::STR:
-                $result = new Solution\Str($this->head->toArrayalue());
+                $result = new Solution\Str($this->head->toArrayValue());
                 $this->tail->pushTail($result);
                 return $result;
                 break;

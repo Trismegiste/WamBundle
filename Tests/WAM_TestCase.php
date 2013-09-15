@@ -44,10 +44,10 @@ class WAM_TestCase extends PHPUnit_Framework_TestCase
     {
         $this->assertCount(1 + ($withEndingFailure ? 1 : 0), $solve);
         $this->assertTrue($solve[0]->succeed);
-        $this->assertCount(count($expected), $solve[0]->variable);
+        $this->assertCount(count($expected), $solve[0]->getQueryVars());
         foreach ($expected as $key => $value) {
-            $this->assertArrayHasKey($key, $solve[0]->variable);
-            $this->assertEquals($value, $solve[0]->variable[$key]);
+            $this->assertArrayHasKey($key, $solve[0]->getQueryVars());
+            $this->assertEquals($value, $solve[0]->getQueryVars()[$key]);
         }
         if ($withEndingFailure)
             $this->assertFalse($solve[1]->succeed);

@@ -11,7 +11,6 @@ class Solution implements OutputInterface
 {
 
     public $succeed = false;
-    public $variable = array();
     protected $output = array('');
     public $elapsedTime = 0;
     public $opCount = 0;

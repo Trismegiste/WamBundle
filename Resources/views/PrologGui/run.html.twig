@@ -29,7 +29,7 @@
             <td>{{ row.opCount }}</td>
             <td>{{ row.backtrackCount }}</td>
             <td>{{ (1000 * row.elapsedTime)|number_format(0) }}</td>
-            {% for key, val in row.variable %}
+            {% for key, val in row.getQueryVars() %}
                 <td>{{ key }} = {{ val }}</td>
             {% endfor %}
         </tr>
