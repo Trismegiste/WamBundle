@@ -104,38 +104,14 @@ class Variable
     // returns a string in the form NAME = VALUE, representing the variable's value
     public function __toString()
     {
-        if (($this->tag == WAM::REF) && ($this->reference === $this))
-            return "_"; // "(unbound variable)";
-        if ($this->tag == WAM::CON) {
-//        if (value.indexOf(' ') < 0) {
-            if ((strlen($this->value) > 2) && (strpos($this->value, ".0") === (strlen($this->value) - 2)))
-                return substr($this->value, 0, strlen($this->value) - 2);
-            else
-                return $this->value;
-        }
-        if ($this->tag == WAM::LIS)
-            return "[" . $this->toString2() . "]";
-        if ($this->tag == WAM::STR) {
-            $result = $this->head->__toString() . "(" . $this->tail->toString2() . ")";
-            return $result;
-        }
-        if ($this->tag == WAM::REF)
-            return $this->deref()->__toString();
-        return "";
+        return (string) $this->toArrayValue();
     }
 
-    public function toString2()
-    {
-        if ($this->tag == WAM::LIS) {
-            $result = $this->head->__toString();
-            if (($this->tail !== null) && ($this->tail->tag != WAM::CON))
-                $result .= ", " . $this->tail->toString2();
-            return $result;
-        }
-        return "";
-    }
-
-    // returns a string in the form NAME = VALUE, representing the variable's value
+    /**
+     * Returns a value string or object, representing the variable's value
+     * 
+     * @return string|\Trismegiste\WamBundle\Prolog\Solution\Lis|\Trismegiste\WamBundle\Prolog\Solution\Str
+     */
     public function toArrayValue()
     {
         switch ($this->tag) {
@@ -164,6 +140,7 @@ class Variable
                 $this->tail->pushTail($result);
                 return $result;
                 break;
+
             default : return "";
         }
     }
