@@ -10,7 +10,7 @@ Version 1.3
 
 ## What ?
 A Warren Abstract Machine (WAM) is a virtual machine (like a JVM for Java) for
-Prolog. This library is intended to run on PHP 5.3 and preferably on Symfony 2.3.
+Prolog. This library is intended to run on PHP 5.4 and preferably on Symfony 2.3.
 Prolog is a logic language which solve problems with an inference engine.
 
 
@@ -43,9 +43,9 @@ Prolog has a very limited scope but sometimes it can simplify some problem like 
  * You face a logic problem with non deterministic path
 
 ## Is there a release for ZF/CodeIgniter/FatFreeFramework ?
-Yes U can: this library can be included in whatever you want.
+This library can be included in whatever you want.
 For example : the console can be run as far as you have PHP 5.3.8.
-PhpUnit and TravisCI don't need any framework to be run.
+PhpUnit and TravisCI need symfony2 and PHP 5.4 to be launched.
 
 But for convinience, there is also service for symfony 2.3 because it is the
 most advanced framework for PHP today

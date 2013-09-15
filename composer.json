@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.3.8"
+        "php": ">=5.4.3"
     },
     "require-dev": {
         "symfony/symfony": "2.3.*",
@@ -22,5 +22,5 @@
     },
     "target-dir": "Trismegiste/WamBundle",
     "license": "CC-BY-SA-3.0",
-    "version": "1.3.0"
+    "version": "1.4.0"
 }
