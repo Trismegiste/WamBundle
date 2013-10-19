@@ -105,7 +105,7 @@ a PR for new features if it's not tested and commented.
 
 ## I found a bug, what can I do ?
  * Fork it with Github !
- * Write a new test in the class IFoundABugTest to show the bug
+ * Write a new test to show the bug
  * Make a Pull Request for the faulty test
  * I merge the new test
  * Someone (you, me, anyone) fix it and make a Pull Request for the fix

@@ -5,7 +5,7 @@ namespace Trismegiste\WamBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Trismegiste\WamBundle\Prolog\WAMConsole;
+use Trismegiste\Prolog\WAMConsole;
 
 /**
  * Wrapper for WAMConsole

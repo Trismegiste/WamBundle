@@ -2,3 +2,4 @@
 /vendor
 /Tests/Controller/Kernel/cache
 /Tests/Controller/Kernel/logs
+/composer.lock

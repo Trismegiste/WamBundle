@@ -10,7 +10,7 @@ class TrismegisteWamBundle extends Bundle
 
     public function build(ContainerBuilder $container)
     {
-        $container->register('prolog.wam', __NAMESPACE__ . '\Prolog\WAMService');
+        $container->register('prolog.wam', 'Trismegiste\Prolog\WAMService');
     }
 
 }

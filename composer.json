@@ -9,7 +9,8 @@
         }
     ],
     "require": {
-        "php": ">=5.4.3"
+        "php": ">=5.4.3",
+        "trismegiste/wam-prolog": "dev-master"        
     },
     "require-dev": {
         "symfony/symfony": "2.3.*",
@@ -22,5 +23,5 @@
     },
     "target-dir": "Trismegiste/WamBundle",
     "license": "CC-BY-SA-3.0",
-    "version": "1.4.0"
+    "version": "1.5.0"
 }

@@ -2,7 +2,7 @@
 
 namespace Trismegiste\WamBundle\Controller;
 
-use Trismegiste\WamBundle\Prolog;
+use Trismegiste\Prolog;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
